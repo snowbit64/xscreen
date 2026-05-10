@@ -42,6 +42,75 @@ extern "C" {
 
 using namespace xscreen;
 
+static std::string readAssetString(AAssetManager* mgr, const char* path) {
+    AAsset* asset = AAssetManager_open(mgr, path, AASSET_MODE_BUFFER);
+    if (!asset) {
+        LOGE("Failed to open asset: %s", path);
+        return "";
+    }
+    off_t len = AAsset_getLength(asset);
+    std::string content(len, '\0');
+    AAsset_read(asset, &content[0], len);
+    AAsset_close(asset);
+    return content;
+}
+
+static std::vector<unsigned char> readAssetBinary(AAssetManager* mgr, const char* path) {
+    AAsset* asset = AAssetManager_open(mgr, path, AASSET_MODE_BUFFER);
+    if (!asset) {
+        LOGE("Failed to open binary asset: %s", path);
+        return {};
+    }
+    off_t len = AAsset_getLength(asset);
+    std::vector<unsigned char> data(len);
+    AAsset_read(asset, data.data(), len);
+    AAsset_close(asset);
+    return data;
+}
+
+struct AppState {
+    ANativeActivity* activity = nullptr;
+    ANativeWindow* window = nullptr;
+    AInputQueue* inputQueue = nullptr;
+
+    EGLDisplay display = EGL_NO_DISPLAY;
+    EGLSurface surface = EGL_NO_SURFACE;
+    EGLContext context = EGL_NO_CONTEXT;
+
+    bool running = false;
+    bool windowReady = false;
+    bool destroyed = false;
+    bool hasFocus = false;
+
+    int width = 0;
+    int height = 0;
+
+    std::unique_ptr<GLESRenderer> renderer;
+    std::unique_ptr<ProfileManager> profiles;
+    std::unique_ptr<WidgetFactory> factory;
+    std::unique_ptr<LuaBridge> lua;
+    std::unique_ptr<LayoutEngine> layout;
+    std::unique_ptr<ScreenManager> screenManager;
+    std::unique_ptr<AnimationManager> animations;
+
+    std::vector<unsigned char> fontData;
+
+    pthread_mutex_t mutex;
+    pthread_cond_t cond;
+
+    int msgPipe[2] = {-1, -1};
+};
+
+enum AppCmd {
+    CMD_WINDOW_CREATED = 1,
+    CMD_WINDOW_DESTROYED,
+    CMD_INPUT_QUEUE_CREATED,
+    CMD_INPUT_QUEUE_DESTROYED,
+    CMD_RESUME,
+    CMD_PAUSE,
+    CMD_DESTROY,
+};
+
 static void showSoftKeyboard(ANativeActivity* activity, bool show) {
     JavaVM* vm = activity->vm;
     JNIEnv* env = nullptr;
@@ -116,75 +185,6 @@ static void installTextFieldFocusCallbacks(AppState* app, const std::shared_ptr<
         installTextFieldFocusCallbacks(app, child);
     }
 }
-
-static std::string readAssetString(AAssetManager* mgr, const char* path) {
-    AAsset* asset = AAssetManager_open(mgr, path, AASSET_MODE_BUFFER);
-    if (!asset) {
-        LOGE("Failed to open asset: %s", path);
-        return "";
-    }
-    off_t len = AAsset_getLength(asset);
-    std::string content(len, '\0');
-    AAsset_read(asset, &content[0], len);
-    AAsset_close(asset);
-    return content;
-}
-
-static std::vector<unsigned char> readAssetBinary(AAssetManager* mgr, const char* path) {
-    AAsset* asset = AAssetManager_open(mgr, path, AASSET_MODE_BUFFER);
-    if (!asset) {
-        LOGE("Failed to open binary asset: %s", path);
-        return {};
-    }
-    off_t len = AAsset_getLength(asset);
-    std::vector<unsigned char> data(len);
-    AAsset_read(asset, data.data(), len);
-    AAsset_close(asset);
-    return data;
-}
-
-struct AppState {
-    ANativeActivity* activity = nullptr;
-    ANativeWindow* window = nullptr;
-    AInputQueue* inputQueue = nullptr;
-
-    EGLDisplay display = EGL_NO_DISPLAY;
-    EGLSurface surface = EGL_NO_SURFACE;
-    EGLContext context = EGL_NO_CONTEXT;
-
-    bool running = false;
-    bool windowReady = false;
-    bool destroyed = false;
-    bool hasFocus = false;
-
-    int width = 0;
-    int height = 0;
-
-    std::unique_ptr<GLESRenderer> renderer;
-    std::unique_ptr<ProfileManager> profiles;
-    std::unique_ptr<WidgetFactory> factory;
-    std::unique_ptr<LuaBridge> lua;
-    std::unique_ptr<LayoutEngine> layout;
-    std::unique_ptr<ScreenManager> screenManager;
-    std::unique_ptr<AnimationManager> animations;
-
-    std::vector<unsigned char> fontData;
-
-    pthread_mutex_t mutex;
-    pthread_cond_t cond;
-
-    int msgPipe[2] = {-1, -1};
-};
-
-enum AppCmd {
-    CMD_WINDOW_CREATED = 1,
-    CMD_WINDOW_DESTROYED,
-    CMD_INPUT_QUEUE_CREATED,
-    CMD_INPUT_QUEUE_DESTROYED,
-    CMD_RESUME,
-    CMD_PAUSE,
-    CMD_DESTROY,
-};
 
 static bool initEGL(AppState* app) {
     app->display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
