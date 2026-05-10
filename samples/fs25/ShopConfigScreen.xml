@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="bitmap" profile="shopConfigGlow" />
+    <GuiElement type="bitmap" profile="bgVignette"/>
+
+    <GuiElement type="empty" profile="shopConfigContainerLeft">
+        <GuiElement type="bitmap" profile="shopConfigBrandIcon" id="shopConfigBrandIcon" />
+        <GuiElement type="text"   profile="shopConfigItemName" id="shopConfigItemName" />
+
+        <!-- Cost summary -->
+        <GuiElement type="empty" profile="shopConfigSummaryContainer">
+            <!-- Top column: vehicle attributes -->
+            <GuiElement type="text" profile="shopConfigSummaryTitle" text="$l10n_ui_information" position="0 260px" />
+            <GuiElement type="flowLayout" profile="shopConfigAttributesLayout" id="attributesLayout" position="0 170px">
+                <GuiElement type="empty" profile="shopConfigAttributesItem" id="attributeItem">
+                    <GuiElement type="bitmap" profile="shopConfigAttributesIcon" name="icon" />
+                    <GuiElement type="text" profile="shopConfigAttributesValue" name="text" />
+                </GuiElement>
+            </GuiElement>
+
+            <!-- Bottom column: purchase -->
+            <GuiElement type="empty" profile="shopConfigSummaryBox" size="325px 144px">
+                <GuiElement type="text" profile="shopConfigSummaryTitle" text="$l10n_ui_purchase" />
+
+                <GuiElement type="text"   profile="shopConfigPriceTitle"      position="0 88px"  text="$l10n_shop_configurationPriceBase:" />
+                <GuiElement type="text"   profile="shopConfigPriceValue"      position="0 88px"  id="basePriceText"/>
+
+                <GuiElement type="text"   profile="shopConfigPriceTitle"      position="0 63px"  text="$l10n_shop_configurationPriceOptions:" />
+                <GuiElement type="text"   profile="shopConfigPriceValue"      position="0 63px"  id="upgradesPriceText" />
+
+                <GuiElement type="bitmap" profile="shipConfigPriceTotalBox">
+                    <GuiElement type="text"   profile="shopConfigPriceTitleTotal" text="$l10n_shop_configurationPriceTotal:" />
+                    <GuiElement type="text"   profile="shopConfigPriceValueTotal" id="totalPriceText" />
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="empty" profile="shopConfigContainer" id="shopConfigContent">
+        <!-- Vehicle display panel, top right -->
+        <GuiElement type="empty" profile="emptyPanel" size="660px 560px" anchors="0.5 0.5 0.5 0.5" position="0 100px">
+            <GuiElement type="animation" profile="shopConfigScreenLoadingAnimation" id="loadingAnimation" anchors="0.5 0.5 0.5 0.5" position="0 0" visible="false" />
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="empty" profile="shopConfigContainerRight">
+        <!-- current balance, top right docked -->
+        <GuiElement type="flowLayout" profile="shopConfigMoneyBox">
+            <GuiElement type="text" profile="shopBalance" text="$l10n_ui_balance:" />
+            <GuiElement type="text" profile="shopMoney" position="0px 0px" id="shopMoney" />
+        </GuiElement>
+
+        <!-- List of configurations -->
+        <GuiElement type="text" profile="shopConfigConfigurationsTitle" text="$l10n_shop_configurations" id="configurationsTitle" />
+
+        <GuiElement type="empty" profile="shopConfigConfigurationLayout" id="configurationsBox">
+            <GuiElement type="bitmap" profile="topScrollClipper" name="topClipper" />
+            <GuiElement type="bitmap" profile="bottomScrollClipper" name="bottomClipper" />
+
+            <GuiElement type="scrollingLayout" profile="shopConfigConfigurationLayout" id="configurationLayout" topClipperElementName="topClipper" bottomClipperElementName="bottomClipper">
+
+                <GuiElement type="empty" profile="shopConfigConfigurationItem" id="configurationItemTemplate">
+                    <GuiElement type="multiTextOption" profile="shopMultiTextOption" name="option" onFocus="onFocusConfigurationOption" onLeave="onLeaveConfigurationOption" visible="false" namedComponents="true">
+                        <GuiElement type="bitmap" profile="shopMultiTextOptionGradientTop" name="gradient" />
+                        <GuiElement type="bitmap" profile="shopMultiTextOptionGradientBottom" name="gradient" />
+                    </GuiElement>
+
+                    <GuiElement type="button" profile="shopConfigColorButton" onClick="onClickSelectColor" name="color" onFocus="onFocusConfigurationOption" onLeave="onLeaveConfigurationOption" visible="false">
+                        <GuiElement type="bitmap" profile="shopMultiTextOptionGradientTop" />
+                        <GuiElement type="bitmap" profile="shopMultiTextOptionGradientBottom" />
+
+                        <GuiElement type="bitmap" profile="shopConfigColorButtonPicked" name="colorImage" />
+                        <GuiElement type="bitmap" profile="shopConfigColorButtonPickedMetallic" name="colorImageMetallic" />
+                    </GuiElement>
+
+                    <GuiElement type="button" profile="shopConfigConfigurationButton" name="button" onFocus="onFocusConfigurationOption" onLeave="onLeaveConfigurationOption" visible="false">
+                        <GuiElement type="bitmap" profile="shopMultiTextOptionGradientTop" />
+                        <GuiElement type="bitmap" profile="shopMultiTextOptionGradientBottom" />
+
+                        <GuiElement type="render" profile="baseReference" anchors="0.5 0.5 0.5 0.5" size="200px 40px" filename="dataS/menu/licensePlate/creationBox.i3d" cameraNode="0|1" superSamplingFactor="2" name="plate" onRenderLoad="onRenderLoad" />
+                    </GuiElement>
+
+                    <GuiElement type="text" text="Option Title" profile="shopMultiTextOptionTitle" name="title" />
+                    <GuiElement type="text" text="Option Price" profile="shopMultiTextOptionPrice" name="price" />
+                </GuiElement>
+
+                <GuiElement type="empty" profile="shopConfigConfigurationItem" id="configurationItemTemplateLarge">
+                    <GuiElement type="multiTextOption" profile="shopMultiTextOption" name="option" onFocus="onFocusConfigurationOption" onLeave="onLeaveConfigurationOption" visible="false" namedComponents="true">
+                        <GuiElement type="button" profile="shopMultiTextOptionLeft" name="left" />
+                        <GuiElement type="button" profile="shopMultiTextOptionRight" name="right" />
+
+                        <GuiElement type="bitmap" profile="shopMultiTextOptionBg" />
+
+                        <GuiElement type="bitmap" profile="shopMultiTextOptionLargeIcon" name="icon" />
+                        <GuiElement type="text"   profile="multiTextOptionText" text="" name="text" />
+
+                        <GuiElement type="bitmap" profile="shopMultiTextOptionGradientTop" />
+                        <GuiElement type="bitmap" profile="shopMultiTextOptionGradientBottom" />
+                    </GuiElement>
+
+                    <GuiElement type="text" text="Option Title" profile="shopMultiTextOptionTitle" name="title" />
+                    <GuiElement type="text" text="Option Price" profile="shopMultiTextOptionPrice" name="price" />
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+
+        <!-- slider for config list -->
+        <GuiElement type="threePartBitmap" profile="verticalListSliderRightDocked" size="12px 670px" position="28px -86px">
+            <GuiElement type="slider" profile="verticalListSliderBar" size="6px 662px" dataElementId="configurationLayout" id="configSlider" onChanged="onSliderChanged" />
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="bitmap" profile="ingameMenuMapButtonsBackground" />
+
+    <GuiElement type="flowLayout" profile="buttonBoxDockedOnScreen" id="buttonsPanel">
+        <GuiElement type="button" profile="buttonBuy" text="$l10n_ui_purchase" onClick="onClickBuy" id="buyButton" />
+        <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" />
+        <GuiElement type="button" profile="buttonActivate" text="$l10n_button_lease" onClick="onClickLease" id="leaseButton" />
+        <GuiElement type="button" profile="buttonCancel" text="$l10n_button_change" onClick="onClickConfigAction" id="configButton" visible="false" />
+
+        <GuiElement type="inputGlyph" profile="shopConfigInputGlyph" id="zoomGlyph" />
+        <GuiElement type="text" profile="shopConfigInputGlyphText" textAutoWidth="true" text="$l10n_action_cameraZoom" />
+        <GuiElement type="inputGlyph" profile="shopConfigInputGlyph" id="lookGlyph" />
+        <GuiElement type="text" profile="shopConfigInputGlyphText" textAutoWidth="true" text="$l10n_action_rotateCamera" />
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="shopConfigGlow" extends="bgGlow" with="anchorBottomCenter">
+            <Value name="position" value="0 -300px" />
+            <Value name="size" value="1.5 500px" />
+        </Profile>
+
+        <Profile name="shopConfigContainerLeft" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="size" value="600px 756px" />
+            <Value name="position" value="96.5px 0" />
+        </Profile>
+
+        <Profile name="shopConfigBrandIcon" extends="baseReference" with="anchorTopLeft">
+            <Value name="size" value="300px 150px"/>
+            <Value name="position" value="0 95px"/>
+            <Value name="imageUVs" value="0 0 1 1"/>
+        </Profile>
+
+        <Profile name="shopConfigItemName" extends="textDefault" with="anchorTopLeft">
+            <Value name="size" value="300px 80px"/>
+            <Value name="position" value="0 -60px"/>
+            <Value name="textSize" value="38px"/>
+            <Value name="textMaxWidth" value="3000px"/>
+            <Value name="textMaxNumLines" value="1"/>
+            <Value name="textAlignment" value="left"/>
+            <Value name="textVerticalAlignment" value="top"/>
+        </Profile>
+
+        <Profile name="shopConfigSummaryContainer" extends="emptyPanel" with="anchorBottomLeft">
+            <Value name="size" value="325px 340px" />
+        </Profile>
+
+        <Profile name="shopConfigSummaryTitle" extends="textDefault" with="anchorTopLeft">
+            <Value name="size" value="325px 28px" />
+            <Value name="textSize" value="28px" />
+            <Value name="textUpperCase" value="true" />
+        </Profile>
+
+        <Profile name="shopConfigAttributesLayout" extends="emptyPanel" with="anchorBottomCenter">
+            <Value name="size" value="325px 390px" />
+            <Value name="alignmentX" value="left" />
+            <Value name="alignmentY" value="top" />
+            <Value name="isHorizontal" value="false" />
+        </Profile>
+
+        <Profile name="shopConfigAttributesItem" extends="emptyPanel">
+            <Value name="size" value="325px 38px" />
+            <Value name="margin" value="0 2px 0 2px" />
+        </Profile>
+
+        <Profile name="shopConfigAttributesIcon" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="size" value="36px 36px" />
+            <Value name="imageColor" value="$preset_colorMainUI" />
+        </Profile>
+
+        <Profile name="shopConfigAttributeIconMaintenanceCosts" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="6px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopConfigAttributeIconPower" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="54px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopConfigAttributeIconPowerReq" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="102px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopConfigAttributeIconTransmission" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="582px 246px 36px 36px"/>
+        </Profile>
+        <Profile name="shopConfigAttributeIconWorkingWidth" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="246px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopConfigAttributeIconCapacity" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="294px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopConfigAttributeIconWeight" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="54px 246px 36px 36px"/>
+        </Profile>
+        <Profile name="shopConfigAttributeIconAdditionalWeight" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="6px 246px 36px 36px"/>
+        </Profile>
+        <Profile name="shopConfigAttributeIconFuel" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="438px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopConfigAttributeIconElectricCharge" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="534px 246px 36px 36px"/>
+        </Profile>
+        <Profile name="shopConfigAttributeIconMethane" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="872px 246px 36px 36px"/>
+        </Profile>
+        <Profile name="shopConfigAttributeIconLifeTime" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="486px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopConfigAttributeIconMaxSpeed" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="534px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopConfigAttributeIconWorkSpeed" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="726px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopConfigAttributeIconBaleSizeRound" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="246px 246px 36px 36px"/>
+        </Profile>
+        <Profile name="shopConfigAttributeIconBaleSizeSquare" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="150px 246px 36px 36px"/>
+        </Profile>
+        <Profile name="shopConfigAttributeIconBaleWrapperBaleSizeRound" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="294px 246px 36px 36px"/>
+        </Profile>
+        <Profile name="shopConfigAttributeIconBaleWrapperBaleSizeSquare" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="199px 246px 36px 36px"/>
+        </Profile>
+        <Profile name="shopConfigAttributeIconAttacher" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="580px 945px 36px 36px"/>
+        </Profile>
+        <Profile name="shopConfigAttributeIconIncomePerHour" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="630px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopConfigAttributeIconOperatingHours" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="774px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopConfigAttributeIconSlots" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="822px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopConfigAttributeIconWheels" extends="shopConfigAttributesIcon">
+            <Value name="imageUVs" value="102px 246px 36px 36px"/>
+        </Profile>
+
+        <Profile name="shopConfigAttributesValue" extends="textDefault" with="anchorMiddleLeft">
+            <Value name="position" value="50px 0" />
+            <Value name="size" value="275px 30px" />
+
+            <Value name="textAlignment" value="left" />
+            <Value name="textVerticalAlignment" value="middle" />
+            <Value name="textSize" value="16px" />
+            <Value name="textBold" value="false" />
+            <Value name="textMaxNumLines" value="1" />
+            <Value name="textLayoutMode" value="overflow" />
+        </Profile>
+
+        <Profile name="shopConfigSummaryBox" extends="emptyPanel" with="anchorBottomLeft">
+            <Value name="size" value="325px 340px" />
+        </Profile>
+
+        <Profile name="shopConfigPriceTitle" extends="textDefault" with="anchorBottomLeft">
+            <Value name="size" value="150px 17px"/>
+            <Value name="textSize" value="17px"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="textMaxWidth" value="200px"/>
+            <Value name="textLayoutMode" value="resize"/>
+        </Profile>
+
+        <Profile name="shopConfigPriceValue" extends="textDefault" with="anchorBottomRight">
+            <Value name="size" value="150px 17px"/>
+            <Value name="textSize" value="17px"/>
+            <Value name="textAlignment" value="right"/>
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="textMaxWidth" value="125px"/>
+            <Value name="textLayoutMode" value="resize"/>
+        </Profile>
+
+        <Profile name="shipConfigPriceTotalBox" extends="baseReference" with="anchorBottomLeft">
+            <Value name="size" value="325px 46px" />
+            <Value name="imageColor" value="0.314 0.807 1 0.08" />
+        </Profile>
+
+        <Profile name="shopConfigPriceTitleTotal" extends="shopConfigPriceTitle">
+            <Value name="size" value="0 45px" />
+            <Value name="textVerticalAlignment" value="middle" />
+            <Value name="textOffset" value="13px 0" />
+        </Profile>
+
+        <Profile name="shopConfigPriceValueTotal" extends="shopConfigPriceValue">
+            <Value name="size" value="0 46px" />
+            <Value name="textVerticalAlignment" value="middle" />
+            <Value name="textColor" value="$preset_colorMainUI"/>
+            <Value name="textOffset" value="-13px 0" />
+            <Value name="textBold" value="true"/>
+        </Profile>
+
+        <Profile name="shopConfigContainer" extends="baseReference" with="anchorMiddleCenter">
+            <Value name="size" value="1727px 756px" />
+        </Profile>
+
+        <Profile name="shopConfigScreenLoadingAnimation" extends="baseReference" with="anchorBottomRight">
+            <Value name="size" value="127px 127px" />
+            <Value name="pivot" value="0.5 0.5" />
+            <Value name="position" value="-125px 125px" />
+            <Value name="imageUVs" value="293px 495px 127px 127px" />
+            <Value name="imageColor" value="$preset_colorMainUI" />
+
+            <Value name="animationMode" value="rotate" />
+            <Value name="animationSpeed" value="1000"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="180px 180px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="shopConfigContainerRight" extends="baseReference" with="anchorMiddleRight">
+            <Value name="size" value="600px 756px" />
+            <Value name="position" value="-96.5px 0" />
+        </Profile>
+
+        <Profile name="shopConfigMoneyBox" extends="shopMoneyBox" with="anchorTopRight">
+            <Value name="position" value="0 40px"/>
+        </Profile>
+
+        <Profile name="shopConfigConfigurationsTitle" extends="textDefault" with="anchorBottomRight">
+            <Value name="textSize" value="32px" />
+            <Value name="textAlignment" value="right" />
+            <Value name="textAutoWidth" value="true" />
+            <Value name="position" value="0 695px" />
+            <Value name="textColor" value="$preset_colorWhite" />
+            <Value name="textUpperCase" value="true" />
+        </Profile>
+
+        <Profile name="shopConfigConfigurationLayout" extends="emptyPanel" with="anchorBottomRight">
+            <Value name="size" value="316px 670px" />
+            <Value name="flowDirection" value="vertical" />
+            <Value name="autoValidateLayout" value="false" />
+
+            <Variant name="mobile">
+                <Value name="supportsTouchScrolling" value="true" />
+            </Variant>
+        </Profile>
+
+        <Profile name="shopConfigConfigurationItem" extends="listItem">
+            <Value name="size" value="316px 70px" />
+            <Value name="margin" value="0 0 0 30px" />
+        </Profile>
+
+        <Profile name="shopMultiTextOption" extends="multiTextOption" with="anchorBottomLeft">
+            <Value name="scrollDelayDuration" value="250" />
+
+            <Value name="defaultProfileButtonLeft" value="shopMultiTextOptionLeft" />
+            <Value name="defaultProfileButtonRight" value="shopMultiTextOptionRight" />
+            <Value name="defaultProfileBg" value="shopMultiTextOptionBg" />
+        </Profile>
+
+        <Profile name="shopMultiTextOptionLeft" extends="multiTextOptionLeft">
+            <Value name="clickSound" value="NONE"/>
+
+            <Value name="iconColor" value="0.5 0.5 0.5 1"/>
+            <Value name="iconHighlightedColor" value="$preset_colorMainUI_50"/>
+            <Value name="iconFocusedColor" value="$preset_colorMainUI"/>
+            <Value name="iconDisabledColor" value="0.5 0.5 0.5 0.15"/>
+
+            <Value name="size" value="18px 48px"/>
+            <Value name="hotspot" value="-15px 0px 15px 0px" />
+
+            <Value name="imageColor" value="0 0 0 0"/>
+            <Value name="imageDisabledColor" value="0 0 0 0"/>
+            <Value name="imageFocusedColor" value="0 0 0 0"/>
+            <Value name="imageHighlightedColor" value="0 0 0 0"/>
+        </Profile>
+
+        <Profile name="shopMultiTextOptionRight" extends="multiTextOptionRight">
+            <Value name="clickSound" value="NONE"/>
+
+            <Value name="iconColor" value="0.5 0.5 0.5 1"/>
+            <Value name="iconHighlightedColor" value="$preset_colorMainUI_50"/>
+            <Value name="iconFocusedColor" value="$preset_colorMainUI"/>
+            <Value name="iconDisabledColor" value="0.5 0.5 0.5 0.15"/>
+
+            <Value name="size" value="18px 48px"/>
+            <Value name="hotspot" value="-15px 0px 15px 0px" />
+
+            <Value name="imageColor" value="0 0 0 0"/>
+            <Value name="imageDisabledColor" value="0 0 0 0"/>
+            <Value name="imageFocusedColor" value="0 0 0 0"/>
+            <Value name="imageHighlightedColor" value="0 0 0 0"/>
+        </Profile>
+
+        <Profile name="shopMultiTextOptionBg" extends="multiTextOptionBg">
+            <Value name="imageUVs" value="$preset_imageDoublesidedGradient" />
+            <Value name="imageDisabledColor" value="0 0 0 0"/>
+            <Value name="imageColor" value="0 0 0 0.2" />
+            <Value name="imageFocusedColor" value="0 0 0 0.6" />
+            <Value name="imageHighlightedColor" value="0 0 0 0.8" />
+        </Profile>
+
+        <Profile name="shopMultiTextOptionGradientTop" extends="baseReference" with="anchorTopCenter">
+            <Value name="size" value="316px 1dp" />
+            <Value name="imageColor" value="0.7 0.7 0.7 0.5" />
+            <Value name="imageUVs" value="$preset_imageDoublesidedGradient" />
+            <Value name="imageFocusedColor" value="$preset_colorMainUI_50" />
+            <Value name="imageHighlightedColor" value="$preset_colorMainUI_80" />
+        </Profile>
+
+        <Profile name="shopMultiTextOptionGradientBottom" extends="shopMultiTextOptionGradientTop" with="anchorBottomCenter">
+        </Profile>
+
+        <Profile name="shopConfigColorButton" extends="baseReference" with="anchorBottomLeft">
+            <Value name="handleFocus" value="true"/>
+            <Value name="size" value="316px 48px"/>
+            <Value name="position" value="0"/>
+            <Value name="iconSize" value="0"/>
+
+            <Value name="imageUVs" value="$preset_imageDoublesidedGradient" />
+            <Value name="imageDisabledColor" value="0 0 0 0"/>
+            <Value name="imageColor" value="0 0 0 0.2" />
+            <Value name="imageFocusedColor" value="0 0 0 0.6" />
+            <Value name="imageHighlightedColor" value="0 0 0 0.8" />
+        </Profile>
+
+        <Profile name="shopConfigColorButtonPicked" extends="baseReference" with="anchorMiddleCenter">
+            <Value name="size" value="300px 32px"/>
+        </Profile>
+
+        <Profile name="shopConfigColorButtonPickedMetallic" extends="shopConfigColorButtonPicked">
+            <Value name="imageUVs" value="544px 772px 300px 32px"/>
+        </Profile>
+
+        <Profile name="shopConfigConfigurationButton" extends="buttonBase" with="anchorBottomLeft">
+            <Value name="handleFocus" value="true"/>
+            <Value name="size" value="316px 48px"/>
+
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="textMaxWidth" value="260px"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textLayoutMode" value="resize"/>
+            <Value name="textMaxNumLines" value="2"/>
+
+            <Value name="imageUVs" value="$preset_imageDoublesidedGradient" />
+            <Value name="imageDisabledColor" value="0 0 0 0"/>
+            <Value name="imageColor" value="0 0 0 0.2" />
+            <Value name="imageFocusedColor" value="0 0 0 0.6" />
+            <Value name="imageHighlightedColor" value="0 0 0 0.8" />
+        </Profile>
+
+        <Profile name="shopMultiTextOptionTitle" extends="textDefault" with="anchorTopLeft">
+            <Value name="textAlignment" value="left"/>
+            <Value name="textColor" value="$preset_colorWhite"/>
+            <Value name="textSize" value="17px"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="textMaxWidth" value="155px"/>
+            <Value name="textLayoutMode" value="resize"/>
+        </Profile>
+
+        <Profile name="shopMultiTextOptionPrice" extends="textDefault" with="anchorTopRight">
+            <Value name="textAlignment" value="right"/>
+            <Value name="textSize" value="17px"/>
+            <Value name="textColor" value="$preset_colorWhite"/>
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="textMaxWidth" value="155px"/>
+            <Value name="textLayoutMode" value="resize"/>
+        </Profile>
+
+        <Profile name="shopMultiTextOptionLargeIcon" extends="baseReference" with="anchorBottomCenter">
+            <Value name="size" value="96px 48px"/>
+            <Value name="imageUVs" value="2px 2px 252px 124px"/>
+            <Value name="imageColor" value="$preset_colorWhite"/>
+            <Value name="imageSize" value="256 128"/>
+        </Profile>
+
+        <Profile name="buttonConfigurate" extends="wideButton">
+            <Value name="inputAction" value="MENU_ACCEPT"/>
+        </Profile>
+    </GUIProfiles>
+</GUI>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="bitmap" profile="uiFullBlurBG"/>
+
+    <GuiElement type="bitmap" profile="uiElementContainerFullScreen" id="mainBox">
+        <GuiElement type="bitmap" profile="selectMasterServerBg" id="background">
+            <GuiElement type="bitmap" profile="headerBoxDocked">
+                <GuiElement type="text" profile="headerText" text="$l10n_ui_inGameMenuModeMultiplayer" textOffset="16px 0" />
+            </GuiElement>
+
+            <GuiElement type="list" profile="masterServerList" onSelectionChanged="onListSelectionChanged" onDoubleClick="onDoubleClick" focusInit="onOpen" id="serverList" >
+                <GuiElement type="listItem" profile="masterServerListItem" id="listTemplate" >
+                    <GuiElement type="text" profile="masterServerText" onCreate="onCreateServer" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="flowLayout" profile="buttonBoxDocked" >
+                <GuiElement type="button" profile="buttonOK" text="$l10n_button_start" onClick="onClickOk" />
+                <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" />
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+</GUI>

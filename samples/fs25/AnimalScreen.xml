@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="bitmap" profile="uiFullInGameBackground"/>
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlow" />
+
+    <GuiElement type="bitmap" profile="uiElementContainerFullScreen">
+        <GuiElement type="empty" profile="animalDealerCenterBox">
+
+            <GuiElement type="empty" profile="animalDealerListBoxLeft">
+                <GuiElement type="text" profile="animalHeaderText" id="headerSource" text="$l10n_animals_dealer"/>
+
+                <GuiElement type="bitmap" profile="animalTopScrollClipper" name="topClipperLeft" position="0 2dp" />
+                <GuiElement type="bitmap" profile="animalBottomScrollClipper" name="bottomClipperLeft" />
+
+                <GuiElement type="smoothList" profile="animalDealerList" onDoubleClick="onSourceListDoubleClick" id="listSource" focusChangeRight="targetList" focusId="sourceList" focusChangeBottom="nil"
+                    focusChangeTop="nil" listDelegate="self" listDataSource="self" onClick="onSourceListClick" startClipperElementName="topClipperLeft" endClipperElementName="bottomClipperLeft">
+                    <GuiElement type="listItem" profile="animalListItem">
+                        <GuiElement type="empty" profile="animalListItemHighlight" name="highlight"/>
+                        <GuiElement type="bitmap" profile="animalListItemIcon" name="icon"/>
+                        <GuiElement type="text" profile="animalListItemName" text="Type" name="name" />
+                        <GuiElement type="text" profile="animalListItemPrice" text="500€" name="price" />
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="threePartBitmap" profile="verticalListSliderRightDocked" size="12px 780px" >
+                    <GuiElement type="slider" profile="verticalListSliderBar" dataElementId="listSource" handleFocus="false" size="6px 772px" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="animalDealerListBoxCenterInfo" id="centerBox">
+                <GuiElement type="flowLayout" profile="animalDealerMoneyBox">
+                    <GuiElement type="text" profile="shopBalance" text="$l10n_ui_balance:" />
+                    <GuiElement type="text" profile="shopMoney" text="0" id="balanceElement" />
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="animalIcon" id="infoIcon"/>
+                <GuiElement type="text" profile="animalDealerIconTitle" text="Holstein" id="infoName" />
+                <GuiElement type="text" profile="animalDealerInfoTitle" position="20px -280px"  id="infoTitle[1]" text="$l10n_ui_age:"/>
+                <GuiElement type="text" profile="animalDealerInfoValue" position="160px -280px" id="infoValue[1]" text="15 Monate" />
+                <GuiElement type="text" profile="animalDealerInfoTitle" position="20px -300px"  id="infoTitle[2]" text="$l10n_ui_horseHealth:"/>
+                <GuiElement type="text" profile="animalDealerInfoValue" position="160px -300px" id="infoValue[2]" text="75 %" />
+                <GuiElement type="text" profile="animalDealerInfoTitle" position="20px -320px"  id="infoTitle[3]" text="$l10n_statistic_productivity:"/>
+                <GuiElement type="text" profile="animalDealerInfoValue" position="160px -320px" id="infoValue[3]" text="30 %" />
+                <GuiElement type="text" profile="animalDealerInfoTitle" position="20px -340px"  id="infoTitle[4]" text="$l10n_statistic_productivity:"/>
+                <GuiElement type="text" profile="animalDealerInfoValue" position="160px -340px" id="infoValue[4]" text="30 %" />
+
+                <GuiElement type="text" profile="animalDealerInfoTitle" position="270px -280px" id="infoTitle[5]" text="$l10n_ui_age:"/>
+                <GuiElement type="text" profile="animalDealerInfoValue" position="410px -280px" id="infoValue[5]" text="15 Monate"/>
+                <GuiElement type="text" profile="animalDealerInfoTitle" position="270px -300px" id="infoTitle[6]" text="$l10n_statistic_productivity:"/>
+                <GuiElement type="text" profile="animalDealerInfoValue" position="410px -300px" id="infoValue[6]" text="75 %"/>
+                <GuiElement type="text" profile="animalDealerInfoTitle" position="270px -320px" id="infoTitle[7]" text="$l10n_ui_horseHealth:"/>
+                <GuiElement type="text" profile="animalDealerInfoValue" position="410px -320px" id="infoValue[7]" text="30 %"/>
+                <GuiElement type="text" profile="animalDealerInfoTitle" position="270px -340px" id="infoTitle[8]" text="$l10n_ui_horseHealth:"/>
+                <GuiElement type="text" profile="animalDealerInfoValue" position="410px -340px" id="infoValue[8]" text="30 %"/>
+
+                <GuiElement type="text" profile="animalDealerInfoText" position="20px -360px" id="infoDescription"/>
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="animalDealerListBoxCenterInfo" id="centerBoxMobile">
+                <GuiElement type="flowLayout" profile="animalDealerMoneyBox">
+                    <GuiElement type="text" profile="shopBalance" text="$l10n_ui_balance:" />
+                    <GuiElement type="text" profile="shopMoney" text="0" id="balanceElementMobile" />
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="animalIcon" id="infoIconMobile"/>
+                <GuiElement type="text" profile="animalDealerIconTitle" position="20px -270px"  id="infoNameMobile" />
+                <GuiElement type="text" profile="animalDealerInfoTitle" position="60px -345px"  id="infoTitleMobile[1]" text="$l10n_ui_age:"/>
+                <GuiElement type="text" profile="animalDealerInfoValue" position="380px -345px" id="infoValueMobile[1]" text="15 Monate" />
+                <GuiElement type="text" profile="animalDealerInfoTitle" position="60px -380px"  id="infoTitleMobile[2]" text="$l10n_ui_horseHealth:"/>
+                <GuiElement type="text" profile="animalDealerInfoValue" position="380px -380px" id="infoValueMobile[2]" text="75 %" />
+                <GuiElement type="text" profile="animalDealerInfoTitle" position="60px -415px"  id="infoTitleMobile[3]" text="$l10n_statistic_productivity:"/>
+                <GuiElement type="text" profile="animalDealerInfoValue" position="380px -415px" id="infoValueMobile[3]" text="30 %" />
+                <GuiElement type="text" profile="animalDealerInfoTitle" position="60px -450px"  id="infoTitleMobile[4]" text="$l10n_statistic_productivity:"/>
+                <GuiElement type="text" profile="animalDealerInfoValue" position="380px -450px" id="infoValueMobile[4]" text="30 %" />
+
+                <GuiElement type="text" profile="animalDealerInfoText" position="20px -520px" id="infoDescriptionMobile" />
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="animalDealerListBoxCenterMoney" id="centerBoxMoney">
+                <GuiElement type="multiTextOption" profile="multiTextOptionAnimalDealerNumAnimals" onClick="onClickNumAnimals" id="numAnimalsElement" />
+
+                <GuiElement type="empty" profile="animalDealerInfoBox" id="infoBox">
+                    <GuiElement type="text"  profile="animalDealerMoneyTitle" position="0 190px" text="$l10n_ui_prices:" />
+                    <GuiElement type="text"  profile="animalDealerMoneyValue" position="0 190px" text="0" id="infoPrice"/>
+                    <GuiElement type="text"  profile="animalDealerMoneyTitle" position="0 160px" text="$l10n_shop_fee:" />
+                    <GuiElement type="text"  profile="animalDealerMoneyValue" position="0 160px" text="0" id="infoFee"/>
+
+                    <GuiElement type="empty" profile="singleLineSeparator"    position="0 150px" size="510px 1dp" />
+                    <GuiElement type="empty" profile="singleLineSeparator"    position="0 148px" size="510px 1dp" />
+
+                    <GuiElement type="text"  profile="animalDealerMoneyTitle" position="0 120px" text="$l10n_ui_total:" />
+                    <GuiElement type="text"  profile="animalDealerMoneyValue" position="0 120px" text="0" id="infoTotal"/>
+
+                    <GuiElement type="empty" profile="singleLineSeparator" position="0 82px" size="510px 1dp" />
+
+                    <GuiElement type="bitmap" profile="animalDealerInfoIcon" />
+                    <GuiElement type="text"  profile="animalDealerInfo" text="$l10n_shop_transportationFee" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="empty" profile="animalDealerListBoxRight">
+                <GuiElement type="text" profile="animalHeaderText" id="headerTarget" text="$l10n_animals_dealer" />
+
+                <GuiElement type="bitmap" profile="animalTopScrollClipper" name="topClipperRight" position="0 2dp" />
+                <GuiElement type="bitmap" profile="animalBottomScrollClipper" name="bottomClipperRight" />
+
+                <GuiElement type="smoothList" profile="animalDealerList" onDoubleClick="onTargetListDoubleClick" id="listTarget" focusId="targetList" focusChangeLeft="sourceList" focusChangeBottom="nil"
+                    focusChangeTop="nil" listDelegate="self" listDataSource="self" onClick="onTargetListClick" startClipperElementName="topClipperRight" endClipperElementName="bottomClipperRight">
+                    <GuiElement type="listItem" profile="animalListItem">
+                        <GuiElement type="bitmap" profile="animalListItemHighlight" name="highlight"/>
+                        <GuiElement type="bitmap" profile="animalListItemIcon" name="icon"/>
+                        <GuiElement type="text" profile="animalListItemName" text="Name" name="name" />
+                        <GuiElement type="text" profile="animalListItemPrice" text="500€" name="price" />
+                        <GuiElement type="text" profile="animalListItemAmount" text="10" name="numAnimals" />
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="threePartBitmap" profile="verticalListSliderRightDocked" size="12px 780px" >
+                    <GuiElement type="slider" profile="verticalListSliderBar" dataElementId="listTarget" handleFocus="false" size="6px 772px" />
+                </GuiElement>
+            </GuiElement>
+
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="flowLayout" profile="buttonBoxDockedOnScreen" id="buttonBox">
+        <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" />
+        <GuiElement type="button" profile="buttonBuy" text="$l10n_button_buy" onClick="onClickBuy" id="buttonBuy"/>
+        <GuiElement type="button" profile="buttonSell" text="$l10n_button_sell" onClick="onClickSell" id="buttonSell"/>
+        <GuiElement type="button" profile="buttonOK" text="$l10n_button_select" onClick="onClickSelect" id="buttonSelect"/>
+        <GuiElement type="button" profile="buttonActivate" text="$l10n_button_confirm" onClick="onClickApply" id="buttonApply"/>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="animalDealerCenterBox" extends="ingameMenuCenterBox">
+
+            <Variant name="mobile">
+                <Value name="size" value="1768px 800px"/>
+                <Value name="position" value="0px 50px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="animalDealerListBoxLeft"  extends="emptyPanel" with="anchorTopLeft">
+            <Value name="size" value="400px 756px"/>
+
+            <Variant name="mobile" with="anchorTopLeft">
+                <Value name="size" value="500px 780px" />
+                <Value name="hasFrame" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="animalHeaderText" extends="textDefault" with="anchorTopLeft">
+            <Value name="size" value="1200px 64px" />
+            <Value name="textSize" value="31px"/>
+            <Value name="textBold" value="false"/>
+            <Value name="textUpperCase" value="true"/>
+            <Value name="textDisabledColor" value="$preset_colorDisabled"/>
+
+            <Value name="position" value="5px 55px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="500px 64px" />
+                <Value name="textSize" value="40px"/>
+                <Value name="textAlignment" value="left"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="animalTopScrollClipper" extends="topScrollClipper" with="anchorTopCenter">
+            <Value name="position" value="0 -77dp" />
+            <Value name="size" value="490px 2dp" />
+        </Profile>
+
+        <Profile name="animalBottomScrollClipper" extends="animalTopScrollClipper" with="anchorBottomCenter">
+            <Value name="position" value="0 -2dp" />
+        </Profile>
+
+        <Profile name="animalDealerList" extends="list" with="anchorTopLeft" >
+            <Value name="size" value="400px 756px"/>
+            <Value name="isHorizontalList" value="false"/>
+            <Value name="selectedWithoutFocus" value="false" />
+
+            <Variant name="mobile" >
+                <Value name="size" value="500px 780px"/>
+                <Value name="listItemHeight" value="90px"/>
+                <Value name="listItemWidth" value="500px"/>
+                <Value name="itemsPerCol" value="4"/>
+
+                <Value name="supportsTouchScrolling" value="true"/>
+                <Value name="keepSelectedInView" value="true" />
+                <Value name="supportsMouseScrolling" value="false" />
+                <Value name="isPaginated" value="true"/>
+                <Value name="focusScrollsList" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="animalListItem" extends="listItem" with="alternating">
+            <Value name="imageColor" value="$preset_colorListRowBackground"/>
+            <Value name="imageFocusedColor" value="$preset_colorFocusBackgroundGradient"/>
+            <Value name="imageSelectedColor" value="$preset_colorFocusBackgroundGradient"/>
+
+            <Value name="size" value="400px 68px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="500px 90px" />
+                <Value name="imageColor" value="0 0 0 0"/>
+                <Value name="imageFocusedColor" value="$preset_colorListRowAlternateBackground"/>
+                <Value name="imageSelectedColor" value="$preset_colorListRowAlternateBackground"/>
+                <Value name="alternateBackgroundColor" value="0 0 0 0" />
+            </Variant>
+        </Profile>
+
+        <Profile name="animalListItemHighlight" extends="emptyPanel" with="anchorBottomLeft">
+            <Value name="hasFrame" value="true" />
+            <Value name="frameThickness" value="4dp 4dp 4dp 4px"/>
+            <Value name="frameLeftColor" value="$preset_colorBlue" />
+            <Value name="frameTopColor" value="$preset_colorBlue" />
+            <Value name="frameRightColor" value="$preset_colorBlue" />
+            <Value name="frameBottomColor" value="$preset_colorBlue" />
+            <Value name="size" value="400px 68px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="500px 90px" />
+                <Value name="hasFrame" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="animalListItemIcon" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="size" value="65px 65px"/>
+            <Value name="position" value="5px 0px"/>
+            <Value name="imageUVs" value="0 0 1 1"/>
+            <Value name="imageColor" value="$preset_colorWhite"/>
+
+            <Variant name="mobile">
+                <Value name="position" value="6px 0px"/>
+                <Value name="size" value="90px 90px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="animalListItemName" extends="textDefault" with="anchorTopLeft">
+            <Value name="position" value="80px -15px" />
+            <Value name="textSize" value="21px" />
+
+            <Value name="textBold" value="true"/>
+            <Value name="textMaxWidth" value="280px"/>
+            <Value name="textResizeWidth" value="280px"/>
+            <Value name="textAutoWidth" value="true" />
+
+            <Variant name="mobile">
+                <Value name="position" value="100px -10px"/>
+                <Value name="textSize" value="33px" />
+                <Value name="textMaxWidth" value="300px"/>
+                <Value name="textResizeWidth" value="445px" />
+                <Value name="textLayoutMode" value="resize" />
+            </Variant>
+        </Profile>
+
+        <Profile name="animalListItemPrice" extends="textDefault" with="anchorBottomRight">
+            <Value name="position" value="-10px 10px" />
+
+            <Value name="format" value="currency"/>
+            <Value name="formatDecimalPlaces" value="0"/>
+
+            <Value name="textBold" value="false"/>
+            <Value name="textAlignment" value="right"/>
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textSize" value="18px"/>
+            <Value name="textMaxWidth" value="280px"/>
+            <Value name="textResizeWidth" value="280px"/>
+
+            <Variant name="mobile" with="anchorBottomRight">
+                <Value name="position" value="-20px 15px"/>
+                <Value name="textSize" value="25px" />
+                <Value name="textAlignment" value="center"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="animalDealerListBoxCenterInfo" extends="animalDealerListBoxLeft" with="anchorTopLeft">
+            <Value name="size" value="540px 464px"/>
+            <Value name="position" value="440px 0px"/>
+            <Value name="imageColor" value="$preset_colorDetailBackground"/>
+
+            <Variant name="mobile" with="anchorTopCenter">
+                <Value name="position" value="0px 0px"/>
+                <Value name="size" value="629px 780px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="animalDealerMoneyBox" extends="shopMoneyBox" with="anchorTopRight">
+            <Value name="position" value="0 40px" />
+
+            <Variant name="mobile">
+                <Value name="position" value="0 45px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="animalIcon" extends="baseReference" with="anchorTopCenter">
+            <Value name="position" value="0px 10px"/>
+            <Value name="size" value="250px 250px"/>
+            <Value name="imageUVs" value="0 0 1 1"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="350px 350px"/>
+                <Value name="position" value="0px 30px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="animalDealerIconTitle" extends="textDefault" with="anchorTopLeft">
+            <Value name="textSize" value="25px"/>
+            <Value name="textBold" value="true"/>
+            <Value name="position" value="10px -240px"/>
+            <Value name="textAutoWidth" value="true"/>
+
+            <Variant name="mobile">
+                <Value name="textSize" value="33px"/>
+                <Value name="position" value="0px -25px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="animalDealerInfoTitle" extends="textDefault" with="anchorTopLeft">
+            <Value name="textSize" value="14px"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textAutoWidth" value="true"/>
+
+            <Variant name="mobile">
+                <Value name="textSize" value="25px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="animalDealerInfoValue" extends="textDefault" with="anchorTopLeft">
+            <Value name="textSize" value="14px"/>
+            <Value name="textBold" value="false"/>
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="textAlignment" value="left"/>
+
+            <Variant name="mobile">
+                <Value name="textSize" value="25px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="animalDealerInfoText" extends="textDefault" with="anchorTopLeft">
+            <Value name="textSize" value="14px"/>
+            <Value name="textBold" value="false"/>
+            <Value name="textAlignment" value="left"/>
+            <Value name="textMaxWidth" value="500px"/>
+            <Value name="textLineHeightScale" value="1.3"/>
+            <Value name="textMaxNumLines" value="5"/>
+            <Value name="textVerticalAlignment" value="top"/>
+
+            <Variant name="mobile">
+                <Value name="textSize" value="25px"/>
+                <Value name="textMaxWidth" value="600px"/>
+                <Value name="textMaxNumLines" value="8"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="animalDealerListBoxCenterMoney" extends="animalDealerListBoxLeft" with="anchorTopLeft">
+            <Value name="size" value="540px 220px"/>
+            <Value name="position" value="440px -536px"/>
+            <Value name="imageColor" value="$preset_colorDetailBackground"/>
+
+            <Variant name="mobile">
+                <Value name="visible" value="false"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="animalDealerListBoxRight" extends="animalDealerListBoxLeft" with="anchorTopRight" />
+
+        <Profile name="animalListItemAmount" extends="textDefault" with="anchorTopLeft">
+            <Value name="visible" value="false"/>
+
+            <Variant name="mobile" with="anchorTopRight">
+                <Value name="visible" value="true"/>
+                <Value name="position" value="-20px -15px"/>
+                <Value name="textSize" value="25px" />
+                <Value name="textBold" value="false"/>
+                <Value name="textFocusedOffset" value="0px 0px"/>
+                <Value name="textAutoWidth" value="true" />
+                <Value name="textMaxWidth" value="360px"/>
+                <Value name="textResizeWidth" value="550px"/>
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

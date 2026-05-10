@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="ingameMenuMapOverview">
+    <GuiElement type="ingameMap" id="ingameMap" profile="ingameMapOverview" cursorId="mapCursor" onClickMap="onClickMap" onDrawPostIngameMap="onDrawPostIngameMap" onClickHotspot="onClickHotspot" />
+    <GuiElement type="bitmap" profile="ingameMapCursor" id="mapCursor" visible="false" />
+    <GuiElement type="text" profile="ingameMapDynamicLoadingText" id="dynamicMapImageLoading" position="0.5 0.3" text="$l10n_ui_loadingFruitMap"/>
+
+    <GuiElement type="empty" profile="uiInGameMenuMapFrame">
+        <!-- Hotspot context display box -->
+        <GuiElement type="bitmap" profile="ingameMenuMapContextBoxFrameBottom" visible="false" handleFocus="false" id="contextBox">
+            <GuiElement type="bitmap" profile="ingameMenuMapContextCorner" id="contextBoxCorner"/>
+            <GuiElement type="bitmap" profile="ingameMenuMapContextImage" id="contextImage"/>
+            <GuiElement type="text" profile="ingameMenuMapContextText" id="contextText"/>
+            <GuiElement type="text" profile="ingameMenuMapContextFarm" id="contextFarm"/>
+        </GuiElement>
+
+        <!-- Area with no overlapping UI elements -->
+        <GuiElement type="empty" profile="ingameMenuMapSafeArea" id="safeArea" />
+
+        <!-- Filter box -->
+        <GuiElement type="bitmap" profile="ingameMenuMapFilterBox" id="filterBox">
+            <GuiElement type="bitmap" profile="ingameMenuMapFilterBg" >
+                <GuiElement type="text" profile="ingameMenuMapFilter" text="$l10n_ui_filters" position="0px 0px"/>
+            </GuiElement>
+
+            <GuiElement type="boxLayout" profile="ingameMenuMapFilterButtonBox">
+                <GuiElement type="button" profile="ingameMenuMapFilterButtonIconSteerable" id="filterButtonVehicle" onClick="onClickMapFilterSteerable"/>
+                <GuiElement type="button" profile="ingameMenuMapFilterButtonIconCombine" id="filterButtonCombine" onClick="onClickMapFilterCombine"/>
+                <GuiElement type="button" profile="ingameMenuMapFilterButtonIconTrailer" id="filterButtonTrailer" onClick="onClickMapFilterTrailer"/>
+                <GuiElement type="button" profile="ingameMenuMapFilterButtonIconTool" id="filterButtonTool" onClick="onClickMapFilterTools"/>
+                <GuiElement type="button" profile="ingameMenuMapFilterButtonIconTipping" id="filterButtonTipping" onClick="onClickMapFilterTipStations"/>
+                <GuiElement type="button" profile="ingameMenuMapFilterButtonIconFieldJobs" id="filterButtonContracts" onClick="onClickMapFilterContracts"/>
+                <GuiElement type="button" profile="ingameMenuMapFilterButtonIconOther" id="filterButtonOther" onClick="onClickMapFilterOther"/>
+            </GuiElement>
+
+            <GuiElement type="empty" profile="emptyPanel" size="280px 640px" position="20px -138px" screenAlign="topLeft" positionOrigin="topLeft">
+                <GuiElement type="multiTextOption" profile="ingameMenuMapOverviewSelector" onClick="onClickMapOverviewSelector" id="mapOverviewSelector">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionText" textMaxWidth="184px" textResizeWidth="184px" />
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" size="184px 48px" />
+                </GuiElement>
+
+                <GuiElement type="paging" profile="ingameMenuMapFilterPaging" position="0px -50px" id="filterPaging">
+                    <!-- Crop type filter selection -->
+                    <GuiElement type="boxLayout" profile="ingameMenuMapFilterOptionPage" id="mapOverviewFruitTypeBox[1]">
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" name="cropTypeFilterButton">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColor" name="cropTypeFilterColor"/>
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicIcon" name="cropTypeFilterIcon"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" name="cropTypeFilterText" text="Crop Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" name="cropTypeFilterButton">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColor" name="cropTypeFilterColor"/>
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicIcon" name="cropTypeFilterIcon"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" name="cropTypeFilterText" text="Crop Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" name="cropTypeFilterButton">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColor" name="cropTypeFilterColor"/>
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicIcon" name="cropTypeFilterIcon"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" name="cropTypeFilterText" text="Crop Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" name="cropTypeFilterButton">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColor" name="cropTypeFilterColor"/>
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicIcon" name="cropTypeFilterIcon"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" name="cropTypeFilterText" text="Crop Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" name="cropTypeFilterButton">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColor" name="cropTypeFilterColor"/>
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicIcon" name="cropTypeFilterIcon"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" name="cropTypeFilterText" text="Crop Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" name="cropTypeFilterButton">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColor" name="cropTypeFilterColor"/>
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicIcon" name="cropTypeFilterIcon"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" name="cropTypeFilterText" text="Crop Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" name="cropTypeFilterButton">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColor" name="cropTypeFilterColor"/>
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicIcon" name="cropTypeFilterIcon"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" name="cropTypeFilterText" text="Crop Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" name="cropTypeFilterButton">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColor" name="cropTypeFilterColor"/>
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicIcon" name="cropTypeFilterIcon"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" name="cropTypeFilterText" text="Crop Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" name="cropTypeFilterButton">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColor" name="cropTypeFilterColor"/>
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicIcon" name="cropTypeFilterIcon"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" name="cropTypeFilterText" text="Crop Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" name="cropTypeFilterButton">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColor" name="cropTypeFilterColor"/>
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicIcon" name="cropTypeFilterIcon"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" name="cropTypeFilterText" text="Crop Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" name="cropTypeFilterButton">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColor" name="cropTypeFilterColor"/>
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicIcon" name="cropTypeFilterIcon"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" name="cropTypeFilterText" text="Crop Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" name="cropTypeFilterButton">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColor" name="cropTypeFilterColor"/>
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicIcon" name="cropTypeFilterIcon"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" name="cropTypeFilterText" text="Crop Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" name="cropTypeFilterButton">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColor" name="cropTypeFilterColor"/>
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicIcon" name="cropTypeFilterIcon"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" name="cropTypeFilterText" text="Crop Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" name="cropTypeFilterButton">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColor" name="cropTypeFilterColor"/>
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicIcon" name="cropTypeFilterIcon"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" name="cropTypeFilterText" text="Crop Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" name="cropTypeFilterButton">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColor" name="cropTypeFilterColor"/>
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicIcon" name="cropTypeFilterIcon"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" name="cropTypeFilterText" text="Crop Description"/>
+                        </GuiElement>
+                    </GuiElement>
+
+                    <!-- Growth state filter selection -->
+                    <GuiElement type="boxLayout" profile="ingameMenuMapFilterOptionPage" id="mapOverviewGrowthBox">
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="growthStateFilterButton[1]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="growthStateFilterColor[1]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="growthStateFilterText[1]" text="Growth Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="growthStateFilterButton[2]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="growthStateFilterColor[2]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="growthStateFilterText[2]" text="Growth Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="growthStateFilterButton[3]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="growthStateFilterColor[3]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="growthStateFilterText[3]" text="Growth Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="growthStateFilterButton[4]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="growthStateFilterColor[4]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="growthStateFilterText[4]" text="Growth Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="growthStateFilterButton[5]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="growthStateFilterColor[5]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="growthStateFilterText[5]" text="Growth Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="growthStateFilterButton[6]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="growthStateFilterColor[6]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="growthStateFilterText[6]" text="Growth Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="growthStateFilterButton[7]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="growthStateFilterColor[7]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="growthStateFilterText[7]" text="Growth Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="growthStateFilterButton[8]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="growthStateFilterColor[8]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="growthStateFilterText[8]" text="Growth Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="growthStateFilterButton[9]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="growthStateFilterColor[9]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="growthStateFilterText[9]" text="Growth Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="growthStateFilterButton[10]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="growthStateFilterColor[10]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="growthStateFilterText[10]" text="Growth Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="growthStateFilterButton[11]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="growthStateFilterColor[11]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="growthStateFilterText[11]" text="Growth Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="growthStateFilterButton[12]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="growthStateFilterColor[12]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="growthStateFilterText[12]" text="Growth Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="growthStateFilterButton[13]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="growthStateFilterColor[13]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="growthStateFilterText[13]" text="Growth Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="growthStateFilterButton[14]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="growthStateFilterColor[14]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="growthStateFilterText[14]" text="Growth Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="growthStateFilterButton[15]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="growthStateFilterColor[15]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="growthStateFilterText[15]" text="Growth Description"/>
+                        </GuiElement>
+                    </GuiElement>
+
+                    <!-- Soil state filter selection -->
+                    <GuiElement type="boxLayout" profile="ingameMenuMapFilterOptionPage" id="mapOverviewSoilBox">
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="soilStateFilterButton[1]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="soilStateFilterColor[1]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="soilStateFilterText[1]" text="Soil Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="soilStateFilterButton[2]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="soilStateFilterColor[2]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="soilStateFilterText[2]" text="Soil Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="soilStateFilterButton[3]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="soilStateFilterColor[3]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="soilStateFilterText[3]" text="Soil Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="soilStateFilterButton[4]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="soilStateFilterColor[4]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="soilStateFilterText[4]" text="Soil Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="soilStateFilterButton[5]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="soilStateFilterColor[5]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="soilStateFilterText[5]" text="Soil Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="soilStateFilterButton[6]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="soilStateFilterColor[6]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="soilStateFilterText[6]" text="Soil Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="soilStateFilterButton[7]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="soilStateFilterColor[7]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="soilStateFilterText[7]" text="Soil Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="soilStateFilterButton[8]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="soilStateFilterColor[8]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="soilStateFilterText[8]" text="Soil Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="soilStateFilterButton[9]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="soilStateFilterColor[9]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="soilStateFilterText[9]" text="Soil Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="soilStateFilterButton[10]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="soilStateFilterColor[10]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="soilStateFilterText[10]" text="Soil Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="soilStateFilterButton[11]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="soilStateFilterColor[11]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="soilStateFilterText[11]" text="Soil Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="soilStateFilterButton[12]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="soilStateFilterColor[12]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="soilStateFilterText[12]" text="Soil Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="soilStateFilterButton[13]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="soilStateFilterColor[13]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="soilStateFilterText[13]" text="Soil Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="soilStateFilterButton[14]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="soilStateFilterColor[14]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="soilStateFilterText[14]" text="Soil Description"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuMapFilterDynamicButton" id="soilStateFilterButton[15]">
+                            <GuiElement type="bitmap" profile="ingameMenuMapFilterDynamicColorLarge" id="soilStateFilterColor[15]"/>
+                            <GuiElement type="text" profile="ingameMenuMapFilterDynamicText" id="soilStateFilterText[15]" text="Soil Description"/>
+                        </GuiElement>
+                    </GuiElement>
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+
+        <!-- Map input help glyphs, handled by code -->
+        <GuiElement type="empty" profile="emptyPanel" size="200px 144px" screenAlign="bottomLeft" positionOrigin="bottomLeft" position="100px -50px">
+            <GuiElement type="button" profile="buttonSwitchMapMode" size="220px 40px" position="0px 102px" onClick="onClickSwitchMapMode" id="buttonSwitchMapMode"/>
+            <GuiElement type="empty" profile="ingameMenuMapGlyphPlaceholder" id="mapMoveGlyphPlaceholder" size="200px 40px" position="0px 52px"/>
+            <GuiElement type="empty" profile="ingameMenuMapGlyphPlaceholder" id="mapZoomGlyphPlaceholder" size="200px 40px" position="0px 0px"/>
+        </GuiElement>
+
+        <!-- Map overview custom buttons -->
+        <GuiElement type="bitmap" profile="ingameMenuMapButtonBox" id="buttonBox">
+            <!-- Fade background elements -->
+            <GuiElement type="bitmap" profile="ingameMenuMapButtonBoxFade" imageRotation="180" />
+            <GuiElement type="bitmap" profile="ingameMenuMapButtonBoxFade" screenAlign="bottomRight" positionOrigin="bottomRight" />
+
+            <GuiElement type="bitmap" profile="ingameMenuMapButtonBoxFadeLine" imageRotation="180"/>
+            <GuiElement type="bitmap" profile="ingameMenuMapButtonBoxFadeLine" screenAlign="bottomRight" positionOrigin="bottomRight" />
+            <GuiElement type="bitmap" profile="ingameMenuMapButtonBoxFadeLine" screenAlign="topLeft" positionOrigin="topLeft" imageRotation="180" />
+            <GuiElement type="bitmap" profile="ingameMenuMapButtonBoxFadeLine" screenAlign="topRight" positionOrigin="topRight" />
+
+            <!-- Balance and selected farmland value labels for farmland view -->
+            <GuiElement type="empty" profile="emptyPanel" screenAlign="bottomCenter" positionOrigin="bottomCenter" position="0px 64px" size="800px 32px" visible="false" id="farmlandValueBox">
+                <GuiElement type="empty" profile="emptyPanel" screenAlign="middleLeft" positionOrigin="middleLeft" size="300px 32px">
+                    <GuiElement type="text" profile="ingameMenuMapMoneyLabel" text="$l10n_ui_balance:" position="0px 0px"/>
+                    <GuiElement type="text" profile="ingameMenuMapMoneyValue" text="0" position="160px 0px" id="balanceText"/>
+                </GuiElement>
+                <GuiElement type="empty" profile="emptyPanel" screenAlign="middleRight" positionOrigin="middleRight" size="300px 32px">
+                    <GuiElement type="text" profile="ingameMenuMapMoneyLabel" text="$l10n_ui_sellValue:" position="0px 0px"/>
+                    <GuiElement type="text" profile="ingameMenuMapMoneyValue" text="0" position="160px 0px" id="farmlandValueText"/>
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="boxLayout" profile="ingameMenuMapButtonBoxLayout" id="buttonLayout">
+                <GuiElement type="button" profile="buttonSelectMap" size="220px 60px" text="$l10n_button_select" id="buttonSelectIngame" />
+                <GuiElement type="button" profile="buttonEnterVehicle" size="220px 60px" text="$l10n_button_enterVehicle" onClick="onClickEnterVehicle" id="buttonEnterVehicle" />
+                <GuiElement type="button" profile="buttonResetVehicle" size="220px 60px" text="$l10n_button_reset" onClick="onClickResetVehicle" id="buttonResetVehicle" />
+                <GuiElement type="button" profile="buttonVisitPlace" size="220px 60px" text="$l10n_action_visit" onClick="onClickVisitPlace" id="buttonVisitPlace" />
+                <GuiElement type="button" profile="buttonSetMarker" size="220px 60px" text="$l10n_action_tag" onClick="onClickTagPlace" id="buttonSetMarker" />
+
+                <GuiElement type="button" profile="buttonBuyFarmland" size="220px 60px" text="$l10n_button_buy" onClick="onClickBuyFarmland" id="buttonBuyFarmland" />
+                <GuiElement type="button" profile="buttonSellFarmland" size="220px 60px" text="$l10n_button_sell" onClick="onClickSellFarmland" id="buttonSellFarmland" />
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+</GUI>

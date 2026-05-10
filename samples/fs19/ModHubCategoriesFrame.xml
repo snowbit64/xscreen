@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="modHubCategories">
+    <GuiElement type="empty" profile="modHubFrame">
+        <!-- Navigation header -->
+        <GuiElement type="breadcrumbs" profile="modHubNavLayout" id="breadcrumbs">
+            <GuiElement type="text" profile="modHubNavCategoryText" />
+            <GuiElement type="bitmap" profile="modHubNavCategoryArrow" />
+        </GuiElement>
+
+        <!-- Categories list -->
+        <GuiElement type="list" profile="modHubCategoryList" position="0px 0px" id="categoryList" onClick="onClickCategory" onDoubleClick="onDoubleClickCategory" onSelectionChanged="onCategorySelected" onScroll="onScroll" focusInit="onOpen">
+            <!-- Category template -->
+            <GuiElement type="listItem" profile="modHubCategoryItem" id="categoryTemplate">
+                <GuiElement type="empty" profile="modHubCategoryItemImagePanel" position="0px 36px">
+                    <!-- <GuiElement type="bitmap" profile="modHubItemCircle"> -->
+                        <GuiElement type="bitmap" profile="modHubCategoryItemImage" name="categoryImage"/>
+                    <!-- </GuiElement> -->
+                </GuiElement>
+                <GuiElement type="text" profile="shopCategoryItemText" position="0px -66px"  name="categoryText"/>
+
+                <GuiElement type="flowLayout" profile="modHubMarkerBox" name="categoryMarkerBox">
+                    <GuiElement type="bitmap" profile="modHubMarkerConflict" name="categoryMarkerConflict">
+                        <GuiElement type="text" profile="modHubMarkerText" name="categoryMarkerConflictText" text="1"/>
+                    </GuiElement>
+                    <GuiElement type="bitmap" profile="modHubMarkerUpdate" name="categoryMarkerUpdate">
+                        <GuiElement type="text" profile="modHubMarkerText" name="categoryMarkerUpdateText" text="1"/>
+                    </GuiElement>
+                    <GuiElement type="bitmap" profile="modHubMarkerNew" name="categoryMarkerNew">
+                        <GuiElement type="text" profile="modHubMarkerText" name="categoryMarkerNewText" text="1"/>
+                    </GuiElement>
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+
+        <!-- View scroll buttons -->
+        <GuiElement type="button" profile="ingameMenuContentButtonLeft" position="50px -60px" onClick="onClickLeft" id="buttonLeft"/>
+        <GuiElement type="button" profile="ingameMenuContentButtonRight" position="-50px -60px" onClick="onClickRight" id="buttonRight"/>
+    </GuiElement>
+</GUI>

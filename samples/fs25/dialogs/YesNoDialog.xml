@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" id="dialogBg" />
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="roundCorner" profile="yesNoDialogBg" id="dialogElement">
+        <GuiElement type="animation" profile="dialogLoading"  id="iconLoadingElement" visible="false" />
+
+        <GuiElement type="bitmap" profile="yesNoDialogCircle" id="dialogCircle">
+            <GuiElement type="bitmap"    profile="dialogQuestion" id="iconQuestionElement" visible="false"/>
+            <GuiElement type="bitmap"    profile="dialogWarning"  id="iconWarningElement" visible="false"/>
+            <GuiElement type="bitmap"    profile="dialogKey"      id="iconKeyElement" visible="false"/>
+            <GuiElement type="bitmap"    profile="dialogInfo"     id="iconInfoElement"/>
+        </GuiElement>
+
+        <GuiElement type="text" profile="yesNoDialogTitle"    id="dialogTitleElement" />
+        <GuiElement type="text" profile="yesNoDialogTextWithTitle" id="dialogTextElement" />
+
+        <GuiElement type="flowLayout" profile="buttonBoxDialog">
+            <GuiElement type="button" profile="buttonYes" text="$l10n_button_yes" onClick="onYes" id="yesButton" />
+            <GuiElement type="button" profile="buttonNo" text="$l10n_button_no" onClick="onNo" id="noButton" />
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="yesNoDialogBg" extends="dialogBg">
+            <Value name="size" value="630px 235px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="1400px 250px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="yesNoDialogCircle" extends="dialogCircle">
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+                <Value name="position" value="0px -30px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="yesNoDialogTitle" extends="dialogTitle">
+
+            <Variant name="mobile">
+                <Value name="position" value="0px -170px"/>
+                <Value name="textColor" value="1 1 1 1"/>
+                <Value name="margin" value="0 30px 0 30px"/>
+                <Value name="textSize" value="40px"/>
+                <Value name="textMaxNumLines" value="7" />
+            </Variant>
+        </Profile>
+
+        <Profile name="yesNoDialogTextWithTitle" extends="dialogTextWithTitle">
+
+            <Variant name="mobile">
+                <Value name="position" value="0px -170px"/>
+                <Value name="textColor" value="1 1 1 1"/>
+                <Value name="margin" value="0 30px 0 30px"/>
+                <Value name="textSize" value="40px"/>
+                <Value name="textMaxNumLines" value="7" />
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

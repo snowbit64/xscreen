@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onCreate="onCreate" onOpen="onOpen" onClose="onClose">
+    <GuiElement type="dynamicFadedBitmap" id="backgroundImage" profile="backgroundImage" />
+
+    <GuiElement type="empty" id="sidebarContainer" profile="mainScreenSidebar">
+        <GuiElement type="dynamicFadedBitmap" id="backgroundBlurImage" profile="mainScreenBackgroundBlur" />
+        <GuiElement type="bitmap" profile="bgGlow" size="1500px 1080px" position="0 -180px" anchors="1 1 0.5 0.5" />
+
+        <GuiElement type="bitmap" id="logo" profile="mainScreenLogo" />
+
+        <!-- Main Button Container -->
+        <GuiElement id="buttonBox" type="boxLayout" profile="mainScreenButtonBox">
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_career" onClick="onCareerClick" id="careerButton" onHighlight="onHighlight" visible="false" />
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_multiplayer" onClick="onMultiplayerClick" id="multiplayerButton" onHighlight="onHighlight" visible="false" />
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_scenarios" onClick="onScenariosClick" id="scenariosButton" onHighlight="onHighlight" visible="false" />
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_downloadableContent" onClick="onDownloadModsClick" id="downloadModsButton" onHighlight="onHighlight" visible="false" />
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_achievements" onClick="onAchievementsClick" id="achievementsButton" onHighlight="onHighlight" visible="false" />
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_dlcStore" onClick="onStoreClick" id="storeButton" onHighlight="onHighlight" visible="false" />
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_settings" onClick="onSettingsClick" id="settingsButton" onHighlight="onHighlight" visible="false" />
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_credits" onClick="onCreditsClick" id="creditsButton" onHighlight="onHighlight" visible="false" />
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_changeUser" onClick="onChangeUserClick" id="changeUserButton" onHighlight="onHighlight" visible="false" />
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_settings" onClick="onChangeMobileSettingsClick" id="changeLanguageButton" onHighlight="onHighlight" visible="false" />
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_quit" onClick="onQuitClick" id="quitButton" onHighlight="onHighlight" visible="false" />
+        </GuiElement>
+    </GuiElement>
+
+    <!-- Notifications Container -->
+
+    <GuiElement type="empty" profile="notificationLayout" id="notificationElement">
+        <GuiElement type="bitmap" profile="notificationHeader">
+            <GuiElement type="flowLayout" profile="notificationIndexLayout">
+                <GuiElement type="button" profile="notificationLeft" onClick="onClickPreviousNotification" id="notificationButtonLeft"/>
+
+                <GuiElement type="indexState" profile="notificationIndexState" stateElementTemplateId="stateIconTemplate" id="indexState">
+                    <GuiElement type="bitmap" profile="notificationSelectionState" id="stateIconTemplate"/>
+                </GuiElement>
+
+                <GuiElement type="button" profile="notificationRight" onClick="onClickNextNotification" id="notificationButtonRight" focusId="notificationButtonRight" focusChangeRight="notificationButtonRight"/>
+            </GuiElement>
+
+            <GuiElement type="text" profile="notificationHeaderTitle" text="UPDATE" />
+            <GuiElement type="bitmap" profile="notificationHeaderIcon" />
+        </GuiElement>
+
+        <GuiElement type="bitmap" id="notificationImage" profile="notificationImage" />
+
+        <GuiElement type="bitmap" profile="notificationBg">
+            <GuiElement type="text" id="notificationTitle" profile="notificationTitle" text="Title" />
+            <GuiElement type="text" id="notificationDate" profile="notificationDate" text="Date" />
+
+            <GuiElement type="text" id="notificationMessage" profile="notificationText" text="Description" />
+
+            <GuiElement type="button" profile="notificationOpen" text="" onClick="onClickOpenNotification" id="notificationButtonOpen"/>
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="text" profile="versionText" onCreate="onCreateGameVersion"/>
+    <GuiElement type="text" profile="gamerTagText" id="gamerTagElement" />
+
+    <GuiElement type="button" profile="googlePlayButton" id="googlePlayButton" onClick="onClickGooglePlayButton" />
+
+
+    <GUIProfiles>
+
+        <Profile name="notificationLayout" extends="baseReference" with="anchorBottomRight">
+            <Value name="size" value="495px 558px" />
+            <Value name="position" value="-40px 40px" />
+
+            <Value name="fadeTime" value="0.5"/>
+            <Value name="fadeOutTime" value="0.5"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="645px 880px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="notificationHeader" extends="baseReference" with="anchorTopCenter">
+            <Value name="size" value="495px 56px"/>
+            <Value name="imageColor" value="0.0036 0.0056 0.0065 0.5" />
+
+            <Variant name="mobile">
+                <Value name="size" value="645px 93px"/>
+                <Value name="imageColor" value="0.0036 0.0042 0.0044 0.85" />
+            </Variant>
+        </Profile>
+
+        <Profile name="notificationIndexLayout" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="alignmentX" value="left" />
+            <Value name="flowDirection" value="horizontal" />
+            <Value name="size" value="200px 24px" />
+            <Value name="position" value="20px 0" />
+            <Value name="imageColor" value="$preset_colorTransparent" />
+
+            <Variant name="mobile">
+                <Value name="position" value="20px 10px" />
+                <Value name="size" value="605px 72px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="notificationLeft" extends="wideButton">
+            <Value name="size" value="14px 24px"/>
+            <Value name="handleFocus" value="true"/>
+            <Value name="clickSound" value="PAGING"/>
+            <Value name="fitToContent" value="false"/>
+            <Value name="margin" value="0 0 10px 0"/>
+
+            <Value name="iconTextOffset" value="0"/>
+            <Value name="iconDisabledColor" value="$preset_colorDisabled" />
+            <Value name="iconUVs" value="$preset_arrowIconUVs"/>
+            <Value name="iconSize" value="14px 24px"/>
+            <Value name="iconUVRotation" value="180"/>
+            <Value name="iconColor" value="$preset_colorMainUI"/>
+
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+
+            <Variant name="mobile">
+                <Value name="margin" value="0 0 486px 0px"/>
+                <Value name="iconSize" value="36px 48px"/>
+                <Value name="size" value="48px 48px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="notificationRight" extends="notificationLeft">
+            <Value name="margin" value="10px 0 0px 0"/>
+            <Value name="iconUVRotation" value="0"/>
+        </Profile>
+
+        <Profile name="notificationIndexState" extends="baseReference">
+            <Value name="alignmentX" value="left"/>
+            <Value name="alignmentY" value="middle"/>
+            <Value name="flowDirection" value="horizontal"/>
+            <Value name="imageColor" value="$preset_colorTransparent"/>
+            <Value name="indexMinimizeWidth" value="true"/>
+            <Value name="size" value="240px 24px"/>
+            <Value name="useFullVisibility" value="false"/>
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="notificationSelectionState" extends="baseReference">
+            <Value name="size" value="8px 8px"/>
+            <Value name="margin" value="6px 0px 6px 0px"/>
+            <Value name="pivot" value="0.5 0.5"/>
+
+            <Value name="imageUVs" value="534px 390px 48px 48px"/>
+            <Value name="imageColor" value="$preset_colorMainUI_40"/>
+            <Value name="imageSelectedColor" value="$preset_colorMainUI"/>
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="notificationHeaderTitle" extends="textDefault" with="anchorMiddleRight">
+            <Value name="size" value="0 38px" />
+            <Value name="textAutoWidth" value="true" />
+            <Value name="position" value="-60px 0" />
+            <Value name="textSize" value="22px" />
+            <Value name="textUpperCase" value="true" />
+            <Value name="textColor" value="$preset_colorMainUI" />
+
+            <Variant name="mobile" with="anchorMiddleCenter" >
+                <Value name="textAlignment" value="center" />
+                <Value name="textBold" value="true"/>
+                <Value name="textSize" value="35px"/>
+                <Value name="position" value="0 0" />
+                <Value name="textMaxWidth" value="355px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="notificationHeaderIcon" extends="baseReference" with="anchorMiddleRight">
+            <Value name="size" value="38px 38px" />
+            <Value name="position" value="-12px 0" />
+            <Value name="imageColor" value="$preset_colorMainUI" />
+            <Value name="imageUVs" value="906px 294px 39px 39px" />
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="notificationImage" extends="baseReference" with="anchorTopCenter">
+            <Value name="size" value="495px 247.5px"/>
+            <Value name="position" value="0 -56px"/>
+
+            <Value name="imageSize" value="256 128"/>
+            <Value name="imageUVs" value="0 0 1 1"/>
+            <Value name="imageIsWebOverlay" value="true"/>
+            <Value name="imagePreviewFilename" value="dataS/menu/notification_dummy.png"/>
+            <Value name="imageColor" value="1 1 1 0.95"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="645px 287.5px"/>
+                <Value name="position" value="0px -93px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="notificationBg" extends="baseReference" with="anchorBottomRight">
+            <Value name="size" value="495px 255px"/>
+            <Value name="imageColor" value="0.0036 0.0042 0.0044 0.85" />
+
+            <Variant name="mobile">
+                <Value name="size" value="645px 500px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="notificationTitle" extends="textDefault" with="anchorTopLeft">
+            <Value name="position" value="40px -40px" />
+            <Value name="textBold" value="true"/>
+            <Value name="textSize" value="20px"/>
+            <Value name="textAlignment" value="left"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textMaxNumLines" value="2"/>
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="textMaxWidth" value="415px" />
+
+            <Variant name="mobile">
+                <Value name="textMaxNumLines" value="1"/>
+                <Value name="textAutoWidth" value="false"/>
+                <Value name="textLayoutMode" value="resize"/>
+                <Value name="textSize" value="40px"/>
+                <Value name="textMaxWidth" value="565px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="notificationDate" extends="textDefault" with="anchorTopLeft">
+            <Value name="position" value="40px -92px" />
+            <Value name="textUpperCase" value="true"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="textAlignment" value="left"/>
+            <Value name="textColor" value="$preset_colorMainUI"/>
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="textMaxWidth" value="415px" />
+
+            <Variant name="mobile">
+                <Value name="textSize" value="35px"/>
+                <Value name="textMaxWidth" value="565px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="notificationText" extends="textDefault" with="anchorTopLeft">
+            <Value name="position" value="40px -126px" />
+            <Value name="textSize" value="17px"/>
+            <Value name="textAlignment" value="left"/>
+            <Value name="textVerticalAlignment" value="top"/>
+            <Value name="textMaxNumLines" value="2"/>
+            <Value name="textMaxWidth" value="415px" />
+
+            <Variant name="mobile">
+                <Value name="position" value="40px -135px" />
+                <Value name="textSize" value="35px"/>
+                <Value name="textMaxNumLines" value="5"/>
+                <Value name="textMaxWidth" value="565px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="notificationOpen" extends="wideButton" with="anchorBottomLeft touchButton">
+            <Value name="position" value="40px 40px" />
+            <Value name="inputAction" value="MENU_EXTRA_1"/>
+
+            <Value name="touchIconUVs" value="341px 725px 44px 44px" />
+            <Value name="touchIconSize" value="36px 36px"/>
+            <Variant name="mobile">
+                <Value name="textMaxWidth" value="405px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="gamerTagText" extends="textDefault" with="anchorTopRight">
+            <Value name="text2Size" value="20px"/>
+            <Value name="textSize" value="20px"/>
+            <Value name="textBold" value="true"/>
+            <Value name="text2Bold" value="true"/>
+            <Value name="text2Color" value="0 0 0 1"/>
+            <Value name="text2Offset" value="-1px -1px"/>
+            <Value name="textAlignment" value="right"/>
+            <Value name="position" value="-100px -55px"/>
+            <Value name="size" value="300px 20px"/>
+
+            <Variant name="mobile" >
+                <Value name="textSize" value="50px"/>
+                <Value name="text2Size" value="50px"/>
+                <Value name="position" value="-50px -55px"/>
+                <Value name="size" value="800px 20px"/>
+            </Variant>
+        </Profile>
+
+
+        <Profile name="googlePlayButton" extends="wideButton" with="anchorTopRight">
+            <Value name="position" value="-48px -53px" />
+            <Value name="iconFilename" value="dataS/menu/google_play_icon.png"/>
+            <Value name="iconUVs" value="0 0 1 1"/>
+            <Value name="iconColor" value="$preset_colorWhite"/>
+            <Value name="iconFocusedColor" value="$preset_colorMainUI"/>
+            <Value name="iconPressedColor" value="$preset_colorMainUI"/>
+            <Value name="iconSelectedColor" value="$preset_colorMainUI"/>
+            <Value name="iconHighlightedColor" value="$preset_colorMainUI"/>
+            <Value name="size" value="50px 140px" />
+
+            <Value name="textAlignment" value="left"/>
+
+            <Value name="textBold" value="true"/>
+            <Value name="textUpperCase" value="false"/>
+            <Value name="textColor" value="$preset_colorWhite"/>
+            <Value name="textFocusedColor" value="$preset_colorWhite"/>
+            <Value name="textHighlightedColor" value="$preset_colorWhite"/>
+            <Value name="textPressedColor" value="$preset_colorWhite"/>
+            <Value name="textSelectedColor" value="$preset_colorWhite"/>
+            <Value name="textOffset" value="0px 5px"/>
+            <Value name="margin" value="0px 0px 32px 0px"/>
+            <Value name="fitExtraWidth" value="0px" />
+
+            <Variant name="mobile">
+                <Value name="iconTextOffset" value="-20px -5px"/>
+                <Value name="textSize" value="50px"/>
+                <Value name="iconSize" value="120px 120px"/>
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" id="dialogBg" />
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="roundCorner" profile="savegameUploadProgressDialogBg" id="dialogElement">
+        <GuiElement type="animation" profile="savegameUploadDialogLoading"   id="iconLoadingElement">
+            <GuiElement type="text" profile="savegameUploadProgressText" text="0%" id="progressElement" />
+        </GuiElement>
+
+        <GuiElement type="text" profile="savegameUploadDialogText" text="$l10n_savegameUpload_uploadInProgressPleaseWait" id="dialogTextElement" />
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="savegameUploadDialogLoading" extends="dialogLoading">
+            <Variant name="mobile">
+                <Value name="size" value="170px 170px"/>
+            </Variant>
+        </Profile>
+        <Profile name="savegameUploadProgressDialogBg" extends="dialogBg">
+            <Variant name="mobile">
+                <Value name="size" value="800px 410px"/>
+            </Variant>
+        </Profile>
+        <Profile name="savegameUploadProgressText" extends="dialogText">
+            <Variant name="mobile">
+                <Value name="position" value="0px -65px"/>
+                <Value name="textMaxWidth" value="150px"/>
+            </Variant>
+        </Profile>
+        <Profile name="savegameUploadDialogText" extends="dialogText">
+            <Variant name="mobile">
+                <Value name="position" value="0px -270px"/>
+                <Value name="textMaxWidth" value="700px" />
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

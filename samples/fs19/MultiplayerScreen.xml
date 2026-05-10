@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="bitmap" profile="uiFullBlurBG"/>
+
+    <GuiElement type="bitmap" profile="uiElementContainerFullScreen">
+        <GuiElement type="bitmap" profile="multiplayerScreenBg">
+            <GuiElement type="bitmap" profile="headerBoxDocked">
+                <GuiElement type="text" profile="headerText" text="$l10n_ui_inGameMenuModeMultiplayer" textOffset="16px 0" />
+            </GuiElement>
+
+            <GuiElement type="boxLayout" profile="multiplayerScreenBox">
+                <GuiElement type="button" profile="multiplayerButton" onClick="onClickJoinGame" text="$l10n_button_joinGame" focusInit="onOpen" />
+                <GuiElement type="button" profile="multiplayerButton" onClick="onClickCreateGame" text="$l10n_button_createGame" />
+                <GuiElement type="button" profile="multiplayerButton" onClick="onRentAServerClick" text="$l10n_button_rentAServer" id="rentButton"/>
+            </GuiElement>
+
+            <GuiElement type="flowLayout" profile="buttonBoxDocked" >
+                <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" />
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="bitmap" profile="natWarningBg" id="natWarning">
+        <GuiElement type="text" profile="natWarning" text="$l10n_ui_strictNatWarning"/>
+    </GuiElement>
+</GUI>
+
+

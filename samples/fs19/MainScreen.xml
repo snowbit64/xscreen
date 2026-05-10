@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onCreate="onCreate" onOpen="onOpen" onClose="onClose">
+    <GuiElement type="bitmap" id="backgroundImage" profile="backgroundImage" /> <!-- Background Image Box Art -->
+    <GuiElement type="bitmap" id="backgroundBlurImage" profile="baseReference" screenAlign="bottomLeft" positionOrigin="bottomLeft" position="0px 0px" size="576px 1920px" fixedWidth="true" imageUVs="0 0 0.3 1" imageFilename="shared/splashBlur.png"/> <!-- Blurred Version of Background Image Box Art -->
+    <GuiElement type="bitmap" id="glassEdgeOverlay" profile="glassEdgeOverlay" screenAlign="bottomLeft" positionOrigin="bottomLeft" position="572px 0px" size="4px 1920px" fixedWidth="true" imageRotation="180" />
+    <GuiElement type="bitmap" id="backgroundTractor" profile="baseReference" screenAlign="bottomCenter" positionOrigin="bottomCenter" position="130px 32px" size="640px 640px" fixedWidth="true" imageUVs="0 0 1 1" imageFilename="dataS2/menu/menuTractors/menuTractor_01.png" /> <!-- Random Tractor -->
+    <GuiElement type="bitmap" id="logo" profile="baseReference" screenAlign="middleLeft" positionOrigin="middleCenter" position="274px 120px" size="400px 200px" imageUVs="0 0 1 1" imageFilename="dataS2/menu/main_logo_en.png" fadeOutTime="1" fadeInTime="1"/> <!-- Title Logo -->
+
+    <!-- Main Button Container -->
+    <GuiElement id="buttonBox" type="boxLayout" profile="buttonBoxMainScreenColor" wrapAround="true" alignmentX="left" alignmentY="middle" screenAlign="middleLeft" positionOrigin="middleLeft" position="0px -240px" size="576px 420px" >
+        <GuiElement type="button" profile="buttonMainMenu" text="$l10n_button_career" onClick="onCareerClick" onCreate="onCreateCareerButton" onHighlight="onHighlight" />
+        <GuiElement type="button" profile="buttonMainMenu" text="$l10n_button_multiplayer" onClick="onMultiplayerClick" onCreate="onCreateMultiplayerButton" onHighlight="onHighlight"/>
+        <GuiElement type="button" profile="buttonMainMenu" text="$l10n_button_tutorials" onClick="onTutorialsClick" onCreate="onCreateTutorialsButton" onHighlight="onHighlight"/>
+        <GuiElement type="button" profile="buttonMainMenu" text="$l10n_button_modHub" onClick="onDownloadModsClick" onCreate="onCreateDownloadModsButton" onHighlight="onHighlight"/>
+        <GuiElement type="button" profile="buttonMainMenu" text="$l10n_button_achievements" onClick="onAchievementsClick" onCreate="onCreateAchievementsButton" onHighlight="onHighlight"/>
+        <GuiElement type="button" profile="buttonMainMenu" text="$l10n_button_dlcStore" onClick="onStoreClick" onCreate="onCreateStoreButton" onHighlight="onHighlight"/>
+        <GuiElement type="button" profile="buttonMainMenu" text="$l10n_button_settings" onClick="onSettingsClick" onCreate="onCreateSettingsButton" onHighlight="onHighlight"/>
+        <GuiElement type="button" profile="buttonMainMenu" text="$l10n_button_credits" onClick="onCreditsClick" onCreate="onCreateCreditsButton" onHighlight="onHighlight"/>
+        <GuiElement type="button" profile="buttonMainMenu" text="$l10n_button_changeUser" onClick="onChangeUserClick" onCreate="onCreateChangeUserButton" onHighlight="onHighlight"/>
+        <GuiElement type="button" profile="buttonMainMenu" text="$l10n_button_quit" onClick="onQuitClick" onCreate="onCreateQuitButton" onHighlight="onHighlight"/>
+    </GuiElement>
+
+    <!-- Notifications Container -->
+    <GuiElement type="bitmap" profile="notificationBg" id="notificationElement" position="0px 0px">
+        <GuiElement type="bitmap" id="notificationImage" profile="notificationImage" position="0px -1px"/>
+
+        <GuiElement type="empty" profile="notificationHeader" position="1px -131px">
+            <GuiElement type="text" id="notificationTitle" profile="notificationTitle" text="Title" position="20px -4px"/>
+            <GuiElement type="text" id="notificationDate" profile="notificationDate" text="Date" position="20px 8px"/>
+        </GuiElement>
+
+        <GuiElement type="text" id="notificationMessage" profile="notificationText" text="Description" position="0px -231px"/>
+
+        <GuiElement type="empty" profile="notificationFooter" position="1px 5px">
+            <GuiElement type="button" profile="notificationLeft" onClick="onClickPreviousNotification" position="20px 0px" id="notificationButtonLeft"/>
+
+            <GuiElement type="indexState" profile="notificationIndexState" stateElementTemplateId="stateIconTemplate" id="indexState">
+                <GuiElement type="bitmap" profile="selectionStateDocked" id="stateIconTemplate"/>
+            </GuiElement>
+
+            <GuiElement type="button" profile="notificationRight" onClick="onClickNextNotification" position="-20px 0px" id="notificationButtonRight" focusId="notificationButtonRight" focusChangeRight="notificationButtonRight"/>
+        </GuiElement>
+
+        <!-- Dialog-style bottom button -->
+        <GuiElement type="button" profile="notificationOpen" text="" position="1px -60px" onClick="onClickOpenNotification" id="notificationButtonOpen"/>
+    </GuiElement>
+
+    <GuiElement type="text" profile="versionText" onCreate="onCreateGameVersion"/>
+    <GuiElement type="text" profile="gamerTagText" id="gamerTagElement" />
+</GUI>
+

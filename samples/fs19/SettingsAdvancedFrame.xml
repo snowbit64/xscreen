@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="settingsAdvanced">
+    <GuiElement type="empty" profile="uiInGameMenuFrame">
+        <!-- Static page header -->
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel" position="130px -60px">
+            <GuiElement type="bitmap" profile="ingameMenuDisplaySettingsHeaderIcon" position="0px 0px"/>
+            <GuiElement type="text" profile="ingameMenuFrameHeaderText" position="80px 0px" text="$l10n_setting_advanced"/>
+        </GuiElement>
+
+        <!-- Layouted settings box -->
+        <GuiElement type="bitmap" profile="mainMenuSettingsBox" position="130px -124px" id="settingsContainer">
+            <GuiElement type="boxLayout" profile="ingameMenuSettingsLayout" position="50px -50px" id="boxLayout">
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickPerformanceClass" onCreate="onCreatePerformanceClass" id="performanceClassElement" focusInit="onOpen">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle" text="$l10n_setting_hardwareProfile"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings"  onClick="onClickMSAA" onCreate="onCreateMSAA" id="msaaElement">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle" text="$l10n_setting_MSAA"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickShadowQuality" onCreate="onCreateShadowQuality" id="shadowQualityElement">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle" text="$l10n_setting_shadowQuality"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickLightsProfile" onCreate="onCreateLightsProfile" id="lightsProfileElement">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle" text="$l10n_setting_lightQuality"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickObjectDrawDistance" onCreate="onCreateObjectDrawDistance" id="objectDrawDistanceElement">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle" text="$l10n_setting_objectDrawDistance"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickTerrainLODDistance" onCreate="onCreateTerrainLODDistance" id="terrainLODDistanceElement">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle" text="$l10n_setting_terrainLODDistance"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickMaxMirrors" onCreate="onCreateMaxMirrors" id="maxMirrorsElement">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle" text="$l10n_setting_maxNumMirrors"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickTextureFiltering" onCreate="onCreateTextureFiltering" id="textureFilteringElement">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle" text="$l10n_setting_textureFiltering"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickShadowMapFiltering" onCreate="onCreateShadowMapFiltering" id="shadowMapFilteringElement">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle" text="$l10n_setting_shadowMapFiltering"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickTerrainQuality" onCreate="onCreateTerrainQuality" id="terrainQualityElement">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle" text="$l10n_setting_terrainQuality"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickFoliageDrawDistance" onCreate="onCreateFoliageDrawDistance" id="foliageDrawDistanceElement">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle" text="$l10n_setting_foliageDrawDistance"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickVolumeMeshTessellation" onCreate="onCreateVolumeMeshTessellation" id="volumeMeshTessellationElement">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle" text="$l10n_setting_volumeMeshTessellation"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="checkedOption" profile="multiTextOptionSettings" onClick="onClickRealBeaconLights" id="realBeaconLightsElement" >
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle" text="$l10n_setting_realBeaconLights"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickTextureResolution" onCreate="onCreateTextureResolution" id="textureResolutionElement" >
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle" text="$l10n_setting_textureResolution"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickShadowMaxLights" onCreate="onCreateShadowMaxLights" id="maxLightsElement">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle" text="$l10n_setting_shadowMaxNumLights"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickShaderQuality" onCreate="onCreateShaderQuality" id="shaderQualityElement" >
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle" text="$l10n_setting_shaderQuality"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickLODDistance" onCreate="onCreateLODDistance" id="lodDistanceElement">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle" text="$l10n_setting_LODDistance"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickMaxTireTracks" onCreate="onCreateMaxTireTracks" id="maxTireTracksElement">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle" text="$l10n_setting_maxNumTireTracks"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+</GUI>

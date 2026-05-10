@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="ingameMenuAI">
+    <GuiElement type="ingameMap" id="ingameMap" profile="ingameMapOverview" cursorId="mapCursor" onClickMap="onClickMap" onDrawPostIngameMap="onDrawPostIngameMap" onDrawPostIngameMapHotspots="onDrawPostIngameMapHotspots" onClickHotspot="onClickHotspot" />
+    <GuiElement type="bitmap" profile="ingameMapCursor" id="mapCursor" visible="false" />
+
+    <!-- Area with no overlapping UI elements -->
+    <GuiElement type="empty" profile="ingameMenuMapSafeArea" id="safeArea" />
+
+    <!-- gradient background -->
+    <GuiElement type="bitmap" profile="ingameMenuMapFilterBackground">
+        <GuiElement type="bitmap" profile="ingameMenuAIGroupActiveWorkers" id="jobOverview">
+            <GuiElement type="text" profile="ingameMenuAICreateTitle" text="$l10n_ui_activeAIJobs" />
+
+            <GuiElement type="smoothList" profile="ingameMenuAIWorkerList" id="activeWorkerList" emptyIndicatorId="activeWorkerListEmpty" onSelectionChanged="onListSelectionChanged" listDelegate="self" listDataSource="self">
+                <GuiElement type="listItem" profile="ingameMenuAIWorkerListItem">
+                    <GuiElement type="bitmap" profile="ingameMenuAIWorkerListItemIcon" />
+                    <GuiElement type="text" profile="ingameMenuAIWorkerListItemHelper" name="helper"/>
+                    <GuiElement type="text" profile="ingameMenuAIWorkerListItemTitle" name="title"/>
+                    <GuiElement type="text" profile="ingameMenuAIWorkerListItemText" name="text"/>
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="text" profile="ingameMenuAIWorkerListEmpty" text="$l10n_ui_inGameMenuNoActiveWorkers" id="activeWorkerListEmpty" />
+
+            <GuiElement type="text" profile="ingameMenuAILimitReached" text="$l10n_ai_warningLimitReached" id="limitReachedWarning"/>
+
+            <GuiElement type="empty" id="hotspotDetailsBox">
+                <GuiElement type="bitmap" profile="ingameMenuAIHotspotImage" id="hotspotImage" />
+                <GuiElement type="bitmap" profile="ingameMenuAIHotspotBrand" id="hotspotBrand" />
+                <GuiElement type="text" profile="ingameMenuAIHotspotName" id="hotspotName" />
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="ingameMenuAISeparator" />
+
+        </GuiElement>
+        <GuiElement type="empty" profile="newLayer" />
+        <GuiElement type="bitmap" profile="ingameMenuAIDialogFullBg" id="fullscreenBg" visible="false" />
+        <GuiElement type="empty" profile="ingameMenuAIGroupJobMenu" id="jobMenu" visible="false">
+            <GuiElement type="bitmap" profile="ingameMenuAIDialogBg" />
+
+            <GuiElement type="text" profile="ingameMenuAICreateJobTitle" text="$l10n_button_createJob" />
+
+            <GuiElement type="multiTextOption" profile="ingameMenuJobTypeOption" id="jobTypeElement" onClick="onJobTypeChanged" />
+
+            <GuiElement type="boxLayout" profile="ingameMenuAICreateLayout" id="jobMenuLayout">
+
+                <!-- MTO -->
+                <GuiElement type="optionToggle" profile="ingameMenuAIParameterOption" id="createMultiOptionTemplate" onClick="onClickMultiTextOptionParameter" >
+                    <GuiElement type="bitmap" profile="ingameMenuAIParameterInvalid" name="invalid" />
+                </GuiElement>
+
+                <!-- VEHICLE -->
+                <GuiElement type="bitmap" profile="ingameMenuAIParameterText" id="createTextTemplate">
+                    <GuiElement type="bitmap" profile="ingameMenuAIParameterVehicleIcon" />
+                    <GuiElement type="text" profile="ingameMenuAIParameterTextTitle" name="title" text="My JD" />
+                    <GuiElement type="bitmap" profile="ingameMenuAIParameterInvalid" name="invalid" />
+                </GuiElement>
+
+                <!-- Group title -->
+                <GuiElement type="text" profile="ingameMenuAIParameterGroupTitle" id="createTitleTemplate" text="Group title" />
+
+                <!-- Position -->
+                <GuiElement type="button" profile="ingameMenuAIParameterPosition" id="createPositionTemplate" text="&lt;400, 300&gt;" onClick="onClickPositionParameter">
+                    <GuiElement type="bitmap" profile="ingameMenuAIParameterPositionIcon" />
+                    <GuiElement type="bitmap" profile="ingameMenuAIParameterInvalid" name="invalid" />
+                </GuiElement>
+
+                <!-- Position + Rotation -->
+                <GuiElement type="button" profile="ingameMenuAIParameterPosition" id="createPositionRotationTemplate" text="172a" onClick="onClickPositionRotationParameter">
+                    <GuiElement type="bitmap" profile="ingameMenuAIParameterPositionIcon" />
+                    <GuiElement type="bitmap" profile="ingameMenuAIParameterInvalid" name="invalid" />
+                </GuiElement>
+
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="text" profile="ingameMenuAIActionText" id="actionMessage" />
+    <GuiElement type="bitmap" profile="ingameMenuAIActionBg" id="actionMessageBg" />
+    <GuiElement type="text" profile="ingameMenuAIErrorText" id="errorMessage" />
+    <GuiElement type="bitmap" profile="ingameMenuAIErrorBg" id="errorMessageBg" />
+    <GuiElement type="text" profile="ingameMenuAIStatusText" id="statusMessage" />
+    <GuiElement type="bitmap" profile="ingameMenuAIStatusBg" id="statusMessageBg" />
+
+    <GuiElement type="text" profile="ingameMenuAILimitReachedMobile" text="$l10n_ai_warningLimitReached" id="limitReachedWarningMobile"/>
+    <GuiElement type="bitmap" profile="ingameMenuAILimitReachedMobileBg" id="limitReachedWarningMobileBg"/>
+
+    <!-- Hotspot context display box -->
+    <GuiElement type="bitmap" profile="ingameMenuMapContextBoxFrameBottom" visible="false" handleFocus="false" id="contextBox">
+        <GuiElement type="bitmap" profile="ingameMenuMapContextCorner" name="corner"/>
+        <GuiElement type="bitmap" profile="ingameMenuMapContextImage" name="image"/>
+        <GuiElement type="text" profile="ingameMenuMapContextText" name="text"/>
+        <GuiElement type="text" profile="ingameMenuMapContextFarm" name="farm"/>
+    </GuiElement>
+
+    <!-- gradient background -->
+    <GuiElement type="bitmap" profile="ingameMenuMapButtonsBackground" />
+
+    <GuiElement type="flowLayout" profile="ingameMenuAIButtonBox" id="buttonBox" >
+        <GuiElement type="button" profile="ingameMenuAIButtonBack" text="$l10n_button_back" onClick="onClickBack" id="buttonBack" onSizeChanged="updateButtonPositions" />
+        <GuiElement type="button" profile="ingameMenuAIButtonBack" text="$l10n_button_cancel" onClick="onClickBack" id="buttonCancel" onSizeChanged="updateButtonPositions" />
+
+        <GuiElement type="inputGlyph" profile="ingameMenuAIInputGlyph" id="mapMoveGlyph" />
+        <GuiElement type="text" profile="ingameMenuAIInputGlyphText" textAutoWidth="true" id="mapMoveGlyphText" />
+        <GuiElement type="inputGlyph" profile="ingameMenuAIInputGlyph" id="mapZoomGlyph" />
+        <GuiElement type="text" profile="ingameMenuAIInputGlyphText" textAutoWidth="true" id="mapZoomGlyphText" />
+
+        <GuiElement type="button" profile="ingameMenuAIButtonSelectMap" text="$l10n_button_select" id="buttonSelectIngame" />
+
+        <GuiElement type="button" profile="ingameMenuAIButtonCancel" text="$l10n_button_gotoJob" onClick="onStartGoToJob" id="buttonGotoJob" />
+        <GuiElement type="button" profile="ingameMenuAIButtonOK" text="$l10n_button_createJob" onClick="onCreateJob" id="buttonCreateJob" />
+
+        <GuiElement type="button" profile="ingameMenuAIButtonActivate" text="$l10n_button_startJob" onClick="onStartCancelJob" id="buttonStartJob" />
+        <GuiElement type="button" profile="ingameMenuAIButtonActivate" text="$l10n_button_cancelJob" onClick="onStartCancelJob" id="buttonCancelJob" />
+        <GuiElement type="button" profile="ingameMenuAIButtonCancel" text="$l10n_button_skipTask" onClick="onSkipJobTask" id="buttonSkipTask" />
+
+        <GuiElement type="button" profile="ingameMenuAIButtonCancel" text="$l10n_button_confirmPosition" onClick="onConfirmAITarget" id="buttonConfirmAITarget" />
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="ingameMenuAIGroup" extends="emptyPanel" with="anchorMiddleRight" >
+            <Value name="size" value="1000px 1080px" />
+            <Value name="anchors" value="1 1 0 1" />
+        </Profile>
+
+        <Profile name="ingameMenuAIGroupActiveWorkers" extends="ingameMenuAIGroup" >
+
+            <Variant name="mobile" with="anchorTopLeft" >
+                <Value name="position" value="0px 0px" />
+                <Value name="size" value="470px 3000px" />
+                <Value name="frameThickness" value="0dp 0dp 1dp 0dp" />
+                <Value name="imageColor" value="0 0 0 1" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAICreateTitle" extends="textDefault" with="anchorTopRight">
+            <Value name="position" value="-42px -156px" />
+
+            <Value name="size" value="316px 28px" />
+            <Value name="textSize" value="31px" />
+            <Value name="textAlignment" value="right" />
+            <Value name="textUpperCase" value="true" />
+
+            <Variant name="mobile" with="anchorTopCenter" >
+                <Value name="size" value="400px 40px" />
+                <Value name="position" value="0px -470px"/>
+
+                <Value name="textAlignment" value="center" />
+                <Value name="textSize" value="35px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIGroupJobMenu" extends="ingameMenuAIGroup" >
+
+            <Variant name="mobile" with="anchorMiddleCenter" >
+                <Value name="size" value="1400px 770px" />
+                <Value name="position" value="100px 150px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIDialogFullBg" extends="dialogFullscreenBg" >
+            <Value name="visible" value="false" />
+
+            <Variant name="mobile" >
+                <Value name="newLayer" value="true"/>
+                <Value name="visible" value="true" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIDialogBg" extends="dialogBg" >
+
+            <Variant name="mobile">
+                <Value name="size" value="1400px 770px"/>
+                <Value name="imageColor" value="$preset_colorBlack3_97"/>
+                <Value name="handleFocus" value="true"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAICreateJobTitle" extends="textDefault" with="anchorTopRight">
+            <Value name="position" value="-42px -156px" />
+
+            <Value name="size" value="316px 28px" />
+            <Value name="textSize" value="31px" />
+            <Value name="textAlignment" value="right" />
+            <Value name="textUpperCase" value="true" />
+
+            <Variant name="mobile" with="anchorTopLeft" >
+                <Value name="textAlignment" value="left" />
+                <Value name="position" value="60px -40px"/>
+                <Value name="textSize" value="40px" />
+                <Value name="textBold" value="true" />
+                <Value name="size" value="550px 40px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIWorkerList" extends="list" with="anchorTopRight">
+            <Value name="position" value="-42px -196px" />
+            <Value name="size" value="322px 800px" />
+            <Value name="imageColor" value="$preset_colorTransparent" />
+
+            <Value name="listItemSpacing" value="2dp"/>
+            <Value name="selectOnScroll" value="true"/>
+            <Value name="isHorizontalList" value="false"/>
+
+            <Variant name="mobile" with="anchorTopLeft" >
+                <Value name="position" value="20px -520px"/>
+                <Value name="size" value="430px 300px" />
+                <Value name="supportsTouchScrolling" value="true" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIWorkerListItem" extends="listItem" with="alternating">
+            <Value name="size" value="322px 50px"/>
+            <Value name="iconSize" value="0"/>
+            <Value name="iconColor" value="$preset_colorTransparent"/>
+            <Value name="imageColor" value="$preset_colorMainUI_10"/>
+            <Value name="imageFocusedColor" value="$preset_colorMainUI_60"/>
+            <Value name="imageSelectedColor" value="$preset_colorFocusBackgroundGradient"/>
+            <Value name="imageHighlightedColor" value="$preset_colorMainUI_60"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="430px 90px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIWorkerListItemTitle" extends="textDefault" with="anchorBottomLeft">
+            <Value name="position" value="55px 24px" />
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textSize" value="16px" />
+            <Value name="textBold" value="true" />
+            <Value name="textColor" value="$preset_colorWhite"/>
+            <Value name="textFocusedColor" value="$preset_colorWhite"/>
+            <Value name="textHighlightedColor" value="$preset_colorWhite"/>
+            <Value name="textDisabledColor" value="$preset_colorDisabled"/>
+
+            <Variant name="mobile" with="anchorTopLeft" >
+                <Value name="position" value="90px -10px" />
+                <Value name="textSize" value="35px" />
+                <Value name="textMaxWidth" value="310px" />
+                <Value name="textLayoutMode" value="resize" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIWorkerListItemText" extends="textDefault" with="anchorBottomLeft">
+            <Value name="position" value="55px 11px" />
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textSize" value="10px" />
+            <Value name="textBold" value="false" />
+            <Value name="textColor" value="$preset_colorWhite"/>
+            <Value name="textHighlightedColor" value="$preset_colorWhite"/>
+            <Value name="textFocusedColor" value="$preset_colorWhite"/>
+            <Value name="textDisabledColor" value="$preset_colorDisabled"/>
+
+            <Variant name="mobile" with="anchorTopLeft" >
+                <Value name="position" value="90px -50px" />
+                <Value name="textSize" value="28px" />
+                <Value name="textMaxWidth" value="310px" />
+                <Value name="textLayoutMode" value="resize" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIWorkerListItemHelper" extends="textDefault" with="anchorMiddleLeft">
+            <Value name="size" value="10px 10px"/>
+            <Value name="position" value="20px 0px" />
+            <Value name="textSize" value="10px" />
+            <Value name="textBold" value="false" />
+            <Value name="textAlignment" value="center" />
+            <Value name="textColor" value="$preset_colorWhite"/>
+            <Value name="textHighlightedColor" value="$preset_colorWhite"/>
+            <Value name="textFocusedColor" value="$preset_colorWhite"/>
+            <Value name="textDisabledColor" value="$preset_colorDisabled"/>
+
+            <Variant name="mobile" >
+                <Value name="size" value="25px 25px"/>
+                <Value name="textSize" value="18px" />
+                <Value name="position" value="27px 0px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIWorkerListItemIcon" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="position" value="0px 0px" />
+            <Value name="size" value="50px 50px"/>
+            <Value name="imageFilename" value="dataS/menu/hud/mapHotspots.png"/>
+            <Value name="imageUVs" value="447px 121px 80px 80px"/>
+            <Value name="imageSize" value="1024 512"/>
+
+            <Variant name="mobile" >
+                <Value name="size" value="80px 80px"/>
+                <Value name="imageUVs" value="446px 121px 80px 80px"/>
+                <Value name="imageSize" value="1024 1024"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIWorkerListEmpty" extends="textDefault" with="anchorBottomCenter">
+            <Value name="visible" value="false" />
+
+            <Variant name="mobile" >
+                <Value name="visible" value="true" />
+
+                <Value name="position" value="0px 100px" />
+
+                <Value name="textSize" value="30px" />
+                <Value name="textAlignment" value="center" />
+                <Value name="textMaxWidth" value="300px" />
+                <Value name="textMaxNumLines" value="2" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAILimitReached" extends="textDefault" with="anchorBottomRight">
+            <Value name="position" value="-42px 150px" />
+
+            <Value name="size" value="316px 28px" />
+            <Value name="textSize" value="18px" />
+            <Value name="textAlignment" value="left" />
+            <Value name="textMaxNumLines" value="4"/>
+            <Value name="textWrapWidth" value="300px"/>
+
+            <Variant name="mobile" >
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAILimitReachedMobile" extends="textDefault" with="anchorTopRight">
+            <Value name="position" value="-350px -25px" />
+
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textBold" value="true" />
+            <Value name="textAlignment" value="right" />
+            <Value name="text2Bold" value="true"/>
+
+            <Variant name="mobile" with="anchorBottomRight" >
+                <Value name="position" value="-50px 180px" />
+
+                <Value name="textSize" value="35px"/>
+                <Value name="textMaxWidth" value="700px"/>
+                <Value name="textMaxNumLines" value="3"/>
+                <Value name="text2Size" value="35px"/>
+                <Value name="text2Offset" value="2px -2px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIHotspotImage" extends="baseReference" with="anchorTopCenter">
+
+            <Variant name="mobile">
+                <Value name="size" value="280px 280px" />
+                <Value name="position" value="0px 20px" />
+
+                <Value name="imageSize" value="512 512"/>
+                <Value name="imageUVs" value="2px 2px 508px 508px"/>
+                <Value name="imageColor" value="$preset_colorWhite"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIHotspotBrand" extends="baseReference" with="anchorTopCenter">
+            <Value name="visible" value="false" />
+
+            <Variant name="mobile">
+                <Value name="visible" value="true" />
+
+                <Value name="size" value="180px 90px"/>
+                <Value name="position" value="0px -260px" />
+
+                <Value name="imageSize" value="512 512"/>
+                <Value name="imageUVs" value="2px 2px 508px 508px"/>
+                <Value name="imageColor" value="$preset_colorWhite"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIHotspotName" extends="textDefault" with="anchorTopCenter">
+            <Value name="visible" value="false" />
+
+            <Variant name="mobile">
+                <Value name="visible" value="true" />
+
+                <Value name="size" value="400px 80px"/>
+                <Value name="position" value="0px -350px"/>
+
+                <Value name="textSize" value="40px"/>
+                <Value name="textBold" value="true"/>
+                <Value name="textMaxNumLines" value="2"/>
+                <Value name="textAlignment" value="center"/>
+                <Value name="textLayoutMode" value="resize"/>
+                <Value name="textVerticalAlignment" value="top"/>
+                <Value name="textColor" value="$preset_colorWhite"/>
+                <Value name="textSelectedColor" value="$preset_colorWhite"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAISeparator" extends="baseReference" with="anchorTopCenter">
+
+            <Variant name="mobile">
+                <Value name="size" value="410px 3dp" />
+                <Value name="position" value="0px -440px" />
+                <Value name="imageColor" value="1 1 1 0.4" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuJobTypeOption" extends="multiTextOption" with="anchorMiddleRight">
+            <Value name="position" value="-40px 330px" />
+
+            <Variant name="mobile" with="anchorTopLeft" >
+                <Value name="position" value="60px -90px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAICreateLayout" extends="emptyPanel" with="anchorMiddleRight">
+            <Value name="size" value="316px 700px" />
+            <Value name="position" value="-40px -52px" />
+
+            <Value name="alignmentY" value="top" />
+            <Value name="flowDirection" value="vertical" />
+            <Value name="fitFlowToElements" value="true" />
+
+            <Variant name="mobile" with="anchorTopRight" >
+                <Value name="size" value="600px 600px"/>
+                <Value name="position" value="-30px -22px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIParameterOption" extends="multiTextOption">
+            <Value name="margin" value="0 4px 0 4px" />
+        </Profile>
+
+        <Profile name="ingameMenuAIParameterInvalid" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="size" value="48px 48px"/>
+            <Value name="position" value="-50px 0px" />
+            <Value name="imageFilename" value="dataS/menu/hud/hud_elements.png"/>
+            <Value name="imageUVs" value="96px 0px 48px 48px"/>
+            <Value name="imageColor" value="$preset_colorWhite"/>
+
+            <Variant name="mobile" >
+                <Value name="size" value="72px 72px"/>
+            <Value name="position" value="-70px 0px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIParameterBackground" extends="baseReference">
+            <Value name="size" value="316px 48px" />
+            <Value name="margin" value="0 4px 0 4px" />
+
+            <Value name="imageColor" value="$preset_colorMainUI_10"/>
+            <Value name="imageDisabledColor" value="$preset_colorGlass"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="568px 105px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIParameterText" extends="ingameMenuAIParameterBackground" >
+
+            <Variant name="mobile" >
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIParameterIcon" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="size" value="48px 48px" />
+            <Value name="position" value="8px 0px" />
+            <Value name="imageColor" value="$preset_colorMainUI" />
+            <Value name="imageFocusedColor" value="$preset_colorWhite" />
+
+            <Variant name="mobile" >
+                <Value name="size" value="72px 72px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIParameterVehicleIcon" extends="ingameMenuAIParameterIcon">
+            <Value name="imageUVs" value="912px 96px 48px 48px" />
+        </Profile>
+
+        <Profile name="ingameMenuAIParameterTextTitle" extends="multiTextOptionText">
+
+            <Variant name="mobile" >
+                <Value name="textSize" value="35px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIParameterGroupTitle" extends="textDefault">
+            <Value name="size" value="316px 35px" />
+            <Value name="textAlignment" value="left"/>
+            <Value name="textVerticalAlignment" value="bottom"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="textMaxWidth" value="295px"/>
+            <Value name="margin" value="0 4px 0 4px" />
+
+            <Variant name="mobile" >
+                <Value name="size" value="560px 35px" />
+                <Value name="textMaxWidth" value="560px"/>
+                <Value name="textSize" value="40px"/>
+                <Value name="margin" value="0 25px 0 4px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIParameterButton" extends="ingameMenuAIParameterBackground">
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="textMaxWidth" value="215px"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textLayoutMode" value="resize"/>
+            <Value name="textMaxNumLines" value="1"/>
+
+            <Value name="imageFocusedColor" value="$preset_colorMainUI"/>
+            <Value name="imageHighlightedColor" value="$preset_colorMainUI"/>
+        </Profile>
+
+        <Profile name="ingameMenuAIParameterPosition" extends="ingameMenuAIParameterButton">
+
+            <Variant name="mobile" >
+                <Value name="textSize" value="35px"/>
+                <Value name="textMaxWidth" value="400px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIParameterPositionIcon" extends="ingameMenuAIParameterIcon">
+            <Value name="imageUVs" value="774px 390px 28px 28px" />
+        </Profile>
+
+        <Profile name="ingameMenuAIActionText" extends="textDefault" with="anchorBottomLeft">
+            <Value name="position" value="0px 0px" />
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textSize" value="24px" />
+            <Value name="textBold" value="true" />
+            <Value name="textOffset" value="25px 5px" />
+
+            <Value name="text2Size" value="24px"/>
+            <Value name="text2Offset" value="24px 4px"/>
+            <Value name="text2Bold" value="true"/>
+
+            <Variant name="mobile" with="anchorBottomRight" >
+                <Value name="textSize" value="35px"/>
+                <Value name="textOffset" value="0px 0px"/>
+                <Value name="text2Size" value="35px"/>
+                <Value name="text2Offset" value="2px -2px"/>
+
+                <Value name="position" value="-50px 130px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIErrorText"  extends="textDefault" with="anchorBottomCenter">
+            <Value name="position" value="0px 140px" />
+
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textSize" value="24px" />
+            <Value name="textBold" value="true" />
+            <Value name="text2Size" value="24px"/>
+            <Value name="text2Offset" value="-1px -1px"/>
+            <Value name="text2Bold" value="true"/>
+
+            <Variant name="mobile" with="anchorMiddleCenter" >
+                <Value name="textAlignment" value="center"/>
+                <Value name="textSize" value="40px"/>
+                <Value name="textOffset" value="0px 0px"/>
+                <Value name="text2Size" value="40px"/>
+                <Value name="text2Offset" value="2px -2px"/>
+
+                <Value name="size" value="1400px 75px" />
+                <Value name="position" value="100px -300px"/>
+            </Variant>
+
+
+
+                        <!-- <Variant name="mobile" with="anchorMiddleCenter"> -->
+                <!-- <Value name="size" value="1400px 75px" /> -->
+                <!-- <Value name="position" value="100px -301px"/> -->
+                <!-- <Value name="alignmentX" value="right"/> -->
+                <!-- <Value name="alignmentY" value="middle"/> -->
+                <!-- <Value name="imageColor" value="0.5029 0.0152 0.0152 1.0"/> -->
+
+                <!-- <Value name="handleFocus" value="false"/> -->
+                <!-- <Value name="useFullVisibility" value="false"/> -->
+                <!-- <Value name="autoValidateLayout" value="true"/> -->
+            <!-- </Variant> -->
+
+
+        </Profile>
+
+        <Profile name="ingameMenuAIStatusText"  extends="textDefault" with="anchorTopRight">
+            <Value name="position" value="-350px -25px" />
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textSize" value="15px" />
+            <Value name="textBold" value="true" />
+            <Value name="textAlignment" value="right" />
+
+            <Value name="text2Size" value="15px"/>
+            <Value name="text2Offset" value="-1px -1px"/>
+            <Value name="text2Bold" value="true"/>
+
+            <Variant name="mobile" >
+                <Value name="textSize" value="35px"/>
+                <Value name="textOffset" value="0px 0px"/>
+                <Value name="text2Size" value="35px"/>
+                <Value name="text2Offset" value="2px -2px"/>
+
+                <Value name="position" value="-50px -250px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIActionBg" extends="baseReference" with="anchorBottomRight">
+            <Value name="visible" value="false" />
+
+            <Variant name="mobile">
+                <Value name="size" value="720px 50px" />
+                <Value name="position" value="-40px 123px"/>
+                <Value name="alignmentX" value="right"/>
+                <Value name="alignmentY" value="middle"/>
+                <Value name="imageColor" value="0.0482 0.0482 0.0482 0.8"/>
+
+                <Value name="handleFocus" value="false"/>
+                <Value name="useFullVisibility" value="false"/>
+                <Value name="autoValidateLayout" value="true"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIErrorBg" extends="baseReference" with="anchorBottomRight">
+            <Value name="visible" value="false" />
+
+            <Variant name="mobile" with="anchorMiddleCenter">
+                <Value name="size" value="1400px 75px" />
+                <Value name="position" value="100px -301px"/>
+                <Value name="alignmentX" value="right"/>
+                <Value name="alignmentY" value="middle"/>
+                <Value name="imageColor" value="0.5029 0.0152 0.0152 1.0"/>
+
+                <Value name="handleFocus" value="false"/>
+                <Value name="useFullVisibility" value="false"/>
+                <Value name="autoValidateLayout" value="true"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIStatusBg" extends="baseReference" with="anchorTopRight">
+            <Value name="visible" value="false" />
+
+            <Variant name="mobile" with="anchorBottomRight" >
+                <Value name="size" value="720px 50px" />
+                <Value name="position" value="-40px -250px"/>
+                <Value name="alignmentX" value="right"/>
+                <Value name="alignmentY" value="middle"/>
+                <Value name="imageColor" value="0.0482 0.0482 0.0482 0.8"/>
+
+                <Value name="handleFocus" value="false"/>
+                <Value name="useFullVisibility" value="false"/>
+                <Value name="autoValidateLayout" value="true"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAILimitReachedMobileBg" extends="baseReference" with="anchorBottomRight">
+            <Value name="visible" value="false" />
+
+            <Variant name="mobile">
+                <Value name="size" value="720px 100px" />
+                <Value name="position" value="-40px 145px"/>
+                <Value name="alignmentX" value="right"/>
+                <Value name="alignmentY" value="middle"/>
+                <Value name="imageColor" value="0.0482 0.0482 0.0482 0.8"/>
+
+                <Value name="handleFocus" value="false"/>
+                <Value name="useFullVisibility" value="false"/>
+                <Value name="autoValidateLayout" value="true"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIInputGlyph" extends="shopConfigInputGlyph" >
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIInputGlyphText" extends="shopConfigInputGlyphText" >
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIButtonBox" extends="buttonBoxDockedOnScreen" >
+
+            <Variant name="mobile">
+                <Value name="position" value="0px 0px" />
+                <Value name="size" value="1980px 200px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIButtonBoxDialog" with="anchorMiddleCenter">
+            <Value name="position" value="390px -420px" />
+        </Profile>
+
+        <Profile name="ingameMenuAIButtonBack" extends="buttonBack" with="touchButtonWithBg gamepadUsesTouchButton" >
+        </Profile>
+
+        <Profile name="ingameMenuAIButtonSelectMap" extends="buttonSelectMap" with="touchButtonWithBg gamepadUsesTouchButton" >
+        </Profile>
+
+        <Profile name="ingameMenuAIButtonCancel" extends="buttonCancel" with="touchButtonWithBg gamepadUsesTouchButton" >
+
+            <Variant name="mobile" >
+                <Value name="touchIconUVs" value="432px 96px 48px 48px" />
+                <Value name="touchIconSize" value="48px 48px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIButtonOK" extends="buttonOK" with="touchButtonWithBg gamepadUsesTouchButton" >
+
+            <Variant name="mobile" >
+                <Value name="touchIconUVs" value="250px 347px 27px 27px"/>
+                <Value name="touchIconSize" value="36px 36px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAIButtonActivate" extends="buttonActivate" with="touchButtonWithBg gamepadUsesTouchButton" >
+        </Profile>
+    </GUIProfiles>
+</GUI>

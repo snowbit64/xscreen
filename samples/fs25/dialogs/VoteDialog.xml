@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" id="dialogBg" />
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="roundCorner" profile="voteDialogBg" id="dialogElement">
+        <GuiElement type="bitmap" profile="dialogHeaderDocked">
+            <GuiElement type="text" profile="dialogHeaderText" text="$l10n_button_rate" id="headerText" />
+        </GuiElement>
+
+        <GuiElement type="boxLayout" profile="voteDialogLayout" onLeave="onLayoutLeave" handleFocus="true">
+            <GuiElement type="button" profile="voteDialogStarButtonZero" id="stars[0]" focusChangeLeft="lastStar" />
+
+            <GuiElement type="button" profile="voteDialogStarButton" id="stars[1]" onHighlight="onStarHighlight" onHighlightRemove="onStarHighlightRemove" onFocus="onStarFocus" onClick="onStarClick" focusChangeLeft="" />
+            <GuiElement type="button" profile="voteDialogStarButton" id="stars[2]" onHighlight="onStarHighlight" onHighlightRemove="onStarHighlightRemove" onFocus="onStarFocus" onClick="onStarClick" />
+            <GuiElement type="button" profile="voteDialogStarButton" id="stars[3]" onHighlight="onStarHighlight" onHighlightRemove="onStarHighlightRemove" onFocus="onStarFocus" onClick="onStarClick" />
+            <GuiElement type="button" profile="voteDialogStarButton" id="stars[4]" onHighlight="onStarHighlight" onHighlightRemove="onStarHighlightRemove" onFocus="onStarFocus" onClick="onStarClick" />
+            <GuiElement type="button" profile="voteDialogStarButton" id="stars[5]" onHighlight="onStarHighlight" onHighlightRemove="onStarHighlightRemove" onFocus="onStarFocus" onClick="onStarClick" focusChangeRight="" focusId="lastStar" />
+        </GuiElement>
+
+        <GuiElement type="flowLayout" profile="voteButtonBoxDialog">
+            <GuiElement type="button" profile="buttonOK" text="$l10n_button_rate" onClick="onClickOk" id="okButton" />
+            <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" />
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="voteDialogBg" extends="dialogBg">
+            <Value name="size" value="380px 145px"/>
+
+            <Variant name="mobile">
+                <Value name="position" value="0px 0px" />
+                <Value name="size" value="700px 200px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="voteButtonBoxDialog" extends="buttonBoxDialog">
+            <Variant name="mobile">
+                <Value name="size" value="700px 200px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="voteDialogLayout" extends="baseReference" with="anchorMiddleCenter">
+            <Value name="imageColor" value="$preset_colorTransparent" />
+            <Value name="size" value="250px 50px" />
+            <Value name="numFlows" value="6" />
+            <Value name="flowDirection" value="horizontal" />
+            <Value name="alignmentY" value="bottom" />
+
+            <Variant name="mobile">
+                <Value name="size" value="800px 100px" />
+                <Value name="position" value="0px 0px" />
+                <Value name="alignmentX" value="center" />
+            </Variant>
+        </Profile>
+
+        <Profile name="voteDialogStarButtonZero" extends="voteDialogStarButton">
+            <Value name="size" value="0 50px" />
+        </Profile>
+
+        <Profile name="voteDialogStarButton" extends="baseReference" with="anchorTopLeft">
+            <Value name="size" value="50px 50px" />
+            <Value name="margin" value="0" />
+            <Value name="iconSize" value="50px 50px" />
+            <Value name="imageFilename" value="dataS/menu/modhubStar.png" />
+            <Value name="imageUVs" value="0 0 1 1" />
+
+            <Value name="imageColor" value="$preset_colorGlassMedium" />
+            <Value name="imageFocusedColor" value="$preset_colorMainUI" />
+            <Value name="imageHighlightedColor" value="$preset_colorBlue" />
+
+            <Value name="handleFocus" value="true" />
+
+            <Variant name="mobile">
+                <Value name="imageFilename" value="dataS/menu/modhubStar.png" />
+                <Value name="size" value="100px 100px" />
+                <Value name="iconSize" value="100px 100px" />
+
+                <Value name="imageColor" value="$preset_colorGlassMedium" />
+                <Value name="imageFocusedColor" value="$preset_colorWhite" />
+                <Value name="imageHighlightedColor" value="$preset_colorWhite" />
+            </Variant>
+        </Profile>
+
+        <Profile name="voteDialogStarButtonActive" extends="voteDialogStarButton">
+            <Value name="imageColor" value="$preset_colorMainUI" />
+            <Variant name="mobile">
+                <Value name="imageColor" value="$preset_colorWhite" />
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

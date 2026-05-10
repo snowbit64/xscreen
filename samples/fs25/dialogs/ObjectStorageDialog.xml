@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" id="dialogBg" />
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="roundCorner" profile="objectStorageDialogBg" id="dialogElement">
+        <GuiElement type="bitmap" profile="dialogHeaderDocked">
+            <GuiElement type="text" profile="dialogHeaderText" text="" id="dialogTitleElement"/>
+        </GuiElement>
+
+        <GuiElement type="text" profile="objectStorageDialogText" text="$l10n_ui_objectStorageDescription:" id="dialogTextElement" />
+
+        <GuiElement type="multiTextOption" profile="multiTextOptionItems" onClick="onClickItems" id="itemsElement" focusInit="onOpen" handleFocus="true">
+            <GuiElement type="text"   profile="multiTextOptionStorageText" id="itemText" name="text" />
+        </GuiElement>
+
+        <GuiElement type="multiTextOption" profile="multiTextOptionAmount" onClick="onClickAmount" id="amountElement" handleFocus="true">
+            <GuiElement type="text"   profile="multiTextOptionStorageText" id="itemTextAmount" name="text" />
+        </GuiElement>
+
+        <GuiElement type="flowLayout" profile="buttonBoxDialogObjectStorage" id="buttonsPC">
+            <GuiElement type="button" profile="buttonOK" text="$l10n_button_start" onClick="onClickOk" id="yesButton" />
+            <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" id="noButton" />
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="objectStorageDialogBg" extends="dialogBg">
+            <Value name="size" value="498px 234px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="1200px 515px"/>
+                <Value name="textMaxWidth" value="1000px"/>
+            </Variant>
+        </Profile>
+        <Profile name="buttonBoxDialogObjectStorage" extends="buttonBoxDialog">
+            <Variant name="mobile">
+                <Value name="size" value="1200px 200px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="objectStorageDialogText" extends="dialogTextWithTitle">
+            <Value name="position" value="0px -35px"/>
+            <Value name="textWrapWidth" value="420px"/>
+
+            <Variant name="mobile">
+                <Value name="textMaxWidth" value="850px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="multiTextOptionItems" extends="multiTextOption" with="anchorTopCenter">
+            <Value name="size" value="408px 48px"/>
+            <Value name="position" value="0px -110px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="800px 105px"/>
+                <Value name="position" value="0px -200px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="multiTextOptionAmount" extends="multiTextOption" with="anchorTopCenter">
+            <Value name="size" value="408px 48px"/>
+            <Value name="position" value="0px -170px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="800px 105px"/>
+                <Value name="position" value="0px -325px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="multiTextOptionStorageText" extends="multiTextOptionText">
+            <!-- offset for icon -->
+            <Value name="position" value="15px 0"/>
+
+            <Variant name="mobile">
+                <Value name="position" value="0px 0px"/>
+                <Value name="textResizeWidth" value="420px"/>
+                <Value name="textMaxWidth" value="550px"/>
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

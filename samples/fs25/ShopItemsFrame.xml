@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="shopItems">
+    <GuiElement type="empty" profile="uiInGameMenuFrame">
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel">
+            <GuiElement type="bitmap" profile="ingameMenuFinancesHeaderIcon" id="itemsHeaderIcon"/>
+            <GuiElement type="text" profile="ingameMenuFrameHeaderText" id="itemsHeaderText"/>
+
+            <!-- Current balance display in header -->
+            <GuiElement type="flowLayout" profile="shopItemsMoneyBox" id="moneySlotBox">
+                <GuiElement type="bitmap" profile="shopSlotsIcon" id="shopSlotsIcon" />
+                <GuiElement type="text" profile="shopSlots" text="0 / 0" id="shopSlotsText" />
+
+                <GuiElement type="text" profile="shopBalance" text="$l10n_ui_balance:" id="currentBalanceLabel" />
+                <GuiElement type="text" profile="shopMoney" text="0" id="currentBalanceText" />
+            </GuiElement>
+        </GuiElement>
+
+        <!-- Navigation header -->
+        <GuiElement type="breadcrumbs" profile="shopItemsNavLayout" id="breadcrumbs">
+            <GuiElement type="textBackdrop" profile="shopItemsNavItemTextBackdrop">
+                <GuiElement type="text" profile="shopItemsNavItemText" />
+            </GuiElement>
+            <GuiElement type="bitmap" profile="shopItemsNavFilledArrow" />
+        </GuiElement>
+
+        <GuiElement type="flowLayout" profile="shopItemsTooltipLayout">
+            <GuiElement type="text" profile="shopItemsTooltipText" id="shopListAttributeInfo" text="Dummy" />
+            <GuiElement type="bitmap" profile="shopItemsTooltipIcon" id="shopListAttributeInfoIcon" />
+        </GuiElement>
+
+        <!-- Items list -->
+        <GuiElement type="smoothList" profile="shopItemsList" onClick="onOpenItem" onDoubleClick="onOpenItem" id="itemsList">
+            <GuiElement type="listItem" profile="shopItemsListItem">
+                <GuiElement type="bitmap" profile="shopItemsListItemImage" name="icon"/>
+                <GuiElement type="bitmap" profile="shopItemsListItemBrandImage" name="brandIcon"/>
+                <GuiElement type="roundCorner" profile="shopItemsListItemPriceTag" name="priceTag" visible="false">
+                    <GuiElement type="text" profile="shopItemsListItemPriceTagText" name="priceTagText" text="0.99€"/>
+                </GuiElement>
+
+                <GuiElement type="text" profile="shopItemsListItemLabelText" name="title"/>
+                <GuiElement type="text" profile="shopItemsListItemValueText" name="value"/>
+                <GuiElement type="text" profile="shopItemsListItemModDlcText" name="modDlc" />
+
+                <GuiElement type="bitmap" profile="listItemSelector"/>
+            </GuiElement>
+        </GuiElement>
+
+        <!-- Item information box -->
+        <GuiElement type="bitmap" profile="shopItemsDetailBox" id="detailBox">
+            <GuiElement type="bitmap" profile="shopListAttributeFruitIcon" id="fruitIconTemplate" visible="false" />
+
+            <GuiElement type="text" profile="shopItemDetailName" id="itemDetailName" />
+            <GuiElement type="text" profile="shopItemDetailOwned" id="itemDetailOwned" />
+
+            <GuiElement type="bitmap" profile="shopItemDetailsSeparator" id="detailSeparator" />
+
+            <GuiElement type="flowLayout" profile="shopItemsDetailAttributesRow" id="attributesLayout">
+                <GuiElement type="bitmap" profile="shopListAttributeIconPrice" id="attrVehicleValueIcon"/>
+                <GuiElement type="text" profile="shopListAttributeText" text="Dummy" id="attrVehicleValue"/>
+
+                <GuiElement type="bitmap" profile="shopListAttributeIcon" id="attrIcon[1]"/>
+                <GuiElement type="text" profile="shopListAttributeText" text="Dummy" id="attrValue[1]"/>
+                <GuiElement type="empty" profile="shopListAttributeIconsLayoutBox">
+                    <GuiElement type="flowLayout" profile="shopListAttributeIconsLayout" id="attrIconsLayout[1]" />
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="shopListAttributeIcon" id="attrIcon[2]"/>
+                <GuiElement type="text" profile="shopListAttributeText" text="Dummy" id="attrValue[2]"/>
+                <GuiElement type="empty" profile="shopListAttributeIconsLayoutBox">
+                    <GuiElement type="flowLayout" profile="shopListAttributeIconsLayout" id="attrIconsLayout[2]"/>
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="shopListAttributeIcon" id="attrIcon[3]"/>
+                <GuiElement type="text" profile="shopListAttributeText" text="Dummy" id="attrValue[3]"/>
+                <GuiElement type="empty" profile="shopListAttributeIconsLayoutBox">
+                    <GuiElement type="flowLayout" profile="shopListAttributeIconsLayout" id="attrIconsLayout[3]"/>
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="shopListAttributeIcon" id="attrIcon[4]"/>
+                <GuiElement type="text" profile="shopListAttributeText" text="Dummy" id="attrValue[4]"/>
+                <GuiElement type="empty" profile="shopListAttributeIconsLayoutBox">
+                    <GuiElement type="flowLayout" profile="shopListAttributeIconsLayout" id="attrIconsLayout[4]"/>
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="shopListAttributeIcon" id="attrIcon[5]"/>
+                <GuiElement type="text" profile="shopListAttributeText" text="Dummy" id="attrValue[5]"/>
+                <GuiElement type="empty" profile="shopListAttributeIconsLayoutBox">
+                    <GuiElement type="flowLayout" profile="shopListAttributeIconsLayout" id="attrIconsLayout[5]"/>
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="shopListAttributeIcon" id="attrIcon[6]"/>
+                <GuiElement type="text" profile="shopListAttributeText" text="Dummy" id="attrValue[6]"/>
+                <GuiElement type="empty" profile="shopListAttributeIconsLayoutBox">
+                    <GuiElement type="flowLayout" profile="shopListAttributeIconsLayout" id="attrIconsLayout[6]"/>
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="shopListAttributeIcon" id="attrIcon[7]"/>
+                <GuiElement type="text" profile="shopListAttributeText" text="Dummy" id="attrValue[7]"/>
+                <GuiElement type="empty" profile="shopListAttributeIconsLayoutBox">
+                    <GuiElement type="flowLayout" profile="shopListAttributeIconsLayout" id="attrIconsLayout[7]"/>
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="shopListAttributeIcon" id="attrIcon[8]"/>
+                <GuiElement type="text" profile="shopListAttributeText" text="Dummy" id="attrValue[8]"/>
+                <GuiElement type="empty" profile="shopListAttributeIconsLayoutBox">
+                    <GuiElement type="flowLayout" profile="shopListAttributeIconsLayout" id="attrIconsLayout[8]"/>
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="shopListAttributeIcon" id="attrIcon[9]"/>
+                <GuiElement type="text" profile="shopListAttributeText" text="Dummy" id="attrValue[9]"/>
+                <GuiElement type="empty" profile="shopListAttributeIconsLayoutBox">
+                    <GuiElement type="flowLayout" profile="shopListAttributeIconsLayout" id="attrIconsLayout[9]"/>
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="shopListAttributeIcon" id="attrIcon[10]"/>
+                <GuiElement type="text" profile="shopListAttributeText" text="Dummy" id="attrValue[10]"/>
+                <GuiElement type="empty" profile="shopListAttributeIconsLayoutBox">
+                    <GuiElement type="flowLayout" profile="shopListAttributeIconsLayout" id="attrIconsLayout[10]"/>
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="shopListAttributeIcon" id="attrIcon[11]"/>
+                <GuiElement type="text" profile="shopListAttributeText" text="Dummy" id="attrValue[11]"/>
+                <GuiElement type="empty" profile="shopListAttributeIconsLayoutBox">
+                    <GuiElement type="flowLayout" profile="shopListAttributeIconsLayout" id="attrIconsLayout[11]"/>
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="shopListAttributeIcon" id="attrIcon[12]"/>
+                <GuiElement type="text" profile="shopListAttributeText" text="Dummy" id="attrValue[12]"/>
+                <GuiElement type="empty" profile="shopListAttributeIconsLayoutBox">
+                    <GuiElement type="flowLayout" profile="shopListAttributeIconsLayout" id="attrIconsLayout[12]"/>
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+
+        <GuiElement type="threePartBitmap" profile="shopItemsSlider">
+            <GuiElement type="slider" profile="shopItemsSliderBar" dataElementId="itemsList" />
+        </GuiElement>
+
+        <GuiElement type="text" profile="ingameMenuNoContentText" text="$l10n_ui_noShopItems" id="noItemsText" />
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="shopItemsMoneyBox" extends="shopMoneyBox">
+
+            <Variant name="mobile">
+                <Value name="size" value="900px 50px"/>
+                <Value name="position" value="-80px -100px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="shopSlotsIcon" extends="shopListAttributeIconSlots" with="anchorBottomLeft">
+            <Value name="size" value="36px 36px"/>
+            <Value name="imageColor" value="$preset_colorWhite"/>
+            <Value name="margin" value="0 0 10px 0"/>
+
+            <Variant name="mobile">
+                <Value name="margin" value="0 0 10px 0"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="shopSlots" extends="shopMoney">
+            <Value name="margin" value="0 0 40px 0"/>
+            <Variant name="mobile" with="anchorBottomLeft">
+                <Value name="margin" value="0 0 50px 0"/>
+                <Value name="textSize" value="33px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="shopItemsTooltipLayout" extends="emptyPanel" with="anchorTopRight">
+            <Value name="size" value="1200px 42px" />
+            <Value name="alignmentX" value="right" />
+            <Value name="alignmentY" value="middle" />
+
+            <Variant name="mobile" with="anchorMiddleLeft">
+                <Value name="alignmentX" value="left" />
+                <Value name="position" value="230px -235px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="shopItemsTooltipText" extends="textDefault">
+            <Value name="size" value="0 42px" />
+            <Value name="textMaxNumLines" value="2" />
+            <Value name="textColor" value="0.2462 0.3372 0.3564 1" />
+            <Value name="textAlignment" value="right" />
+            <Value name="textMaxWidth" value="800px" />
+            <Value name="textSize" value="16px" />
+            <Value name="textVerticalAlignment" value="middle" />
+            <Value name="textLayoutMode" value="resize" />
+
+            <Variant name="mobile" >
+                <Value name="textAlignment" value="left" />
+                <Value name="textSize" value="33px" />
+                <Value name="textColor" value="$preset_colorWhite" />
+                <Value name="textOffset" value="60px 2px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="shopItemsTooltipIcon" extends="baseReference">
+            <Value name="size" value="28px 28px" />
+            <Value name="margin" value="10px 7px 0 7px" />
+            <Value name="imageColor" value="$preset_colorMainUI" />
+            <Value name="imageUVs" value="390px 294px 36px 36px" />
+
+            <Variant name="mobile" >
+                <Value name="size" value="50px 50px"/>
+                <Value name="margin" value="0px 7px 0px 7px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="shopItemsList" extends="baseReference" with="anchorTopLeft">
+            <Value name="handleFocus" value="true"/>
+            <Value name="selectOnClick" value="true"/>
+            <Value name="size" value="1400px 533px"/>
+            <Value name="position" value="0 -48px" />
+
+            <Value name="isHorizontalList" value="true"/>
+            <Value name="listItemSpacing" value="9.33px"/>
+
+            <Variant name="mobile" with="anchorMiddleCenter mobilePaginatedList">
+                <Value name="size" value="1760px 450px"/>
+                <Value name="position" value="0px 120px" />
+                <Value name="supportsTouchScrolling" value="true" />
+                <Value name="selectOnClick" value="false"/>
+
+                <Value name="supportsMouseScrolling" value="true" /> <!-- only needed for debug purposes -->
+
+                <Value name="listItemWidth" value="576px"/>
+                <Value name="listItemHeight" value="450px"/>
+                <Value name="listItemPadding" value="20px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="shopItemsListItem" extends="emptyPanel">
+            <Value name="handleFocus" value="false"/>
+            <Value name="size" value="343px 533px"/>
+
+            <Value name="imageColor" value="$preset_colorItemBgNormal"/>
+            <Value name="imageFocusedColor" value="$preset_colorItemBgSelected"/>
+            <Value name="imageSelectedColor" value="$preset_colorItemBgSelected"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="576px 475px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="shopItemsListItemImage" extends="emptyPanel" with="anchorTopCenter">
+            <Value name="imageSize" value="512 512"/>
+            <Value name="imageUVs" value="2px 2px 508px 508px"/>
+            <Value name="imageColor" value="$preset_colorWhite"/>
+            <Value name="size" value="310px 310px"/>
+            <Value name="position" value="0px 15px"/>
+
+            <Variant name="mobile">
+                <Value name="position" value="0px 40px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="shopItemsListItemImageWithoutBrand" extends="shopItemsListItemImage" >
+            <Value name="position" value="0px 15px"/>
+
+            <Variant name="mobile">
+                <Value name="position" value="0px -10px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="shopItemsListItemBrandImage" extends="shopItemsListItemImage">
+            <Value name="imageSize" value="256 128"/>
+            <Value name="imageUVs" value="2px 2px 252px 124px"/>
+            <Value name="size" value="160px 80px"/>
+            <Value name="position" value="0px -330px"/>
+
+            <Variant name="mobile" with="anchorBottomCenter">
+                <Value name="size" value="180px 90px"/>
+                <Value name="position" value="0px 90px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="shopItemsListItemPriceTag" extends="emptyPanel" with="anchorTopLeft">
+            <Value name="size" value="111px 48px"/>
+            <Value name="position" value="15px -15px" />
+            <Value name="hasFrame" value="false" />
+            <Value name="color" value="1.0000 0.6038 0.0000 1" />
+            <Value name="cornerSize" value="0.75" />
+        </Profile>
+        <Profile name="shopItemsListItemPriceTagRecoverable" extends="shopItemsListItemPriceTag">
+            <Value name="color" value="$preset_colorMainUI" />
+        </Profile>
+
+        <Profile name="shopItemsListItemPriceTagText" extends="textDefault" with="anchorTopLeft">
+            <Value name="size" value="111px 48px"/>
+            <Value name="position" value="0px 0px"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textSize" value="33px"/>
+            <Value name="textMaxNumLines" value="1"/>
+            <Value name="textColor" value="$preset_colorBlack"/>
+            <Value name="textSelectedColor" value="$preset_colorBlack"/>
+            <Value name="textBold" value="true"/>
+        </Profile>
+
+        <Profile name="shopItemsListItemLabelText" extends="textDefault" with="anchorBottomCenter">
+            <Value name="size" value="290px 42px"/>
+            <Value name="position" value="0px 80px"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textSize" value="20px"/>
+            <Value name="textMaxNumLines" value="2"/>
+            <Value name="textColor" value="$preset_colorWhite_50"/>
+            <Value name="textSelectedColor" value="$preset_colorMainUI"/>
+
+            <Variant name="mobile" >
+                <Value name="size" value="520px 80px"/>
+                <Value name="position" value="0px 10px"/>
+                <Value name="textBold" value="true"/>
+                <Value name="textSize" value="40px"/>
+                <Value name="textResizeWidth" value="560px"/>
+                <Value name="textWrapWidth" value="1"/>
+                <Value name="textColor" value="$preset_colorWhite"/>
+                <Value name="textSelectedColor" value="$preset_colorWhite"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="shopItemsListItemValueText" extends="textDefault" with="anchorBottomCenter">
+            <Value name="size" value="220px 28px"/>
+            <Value name="position" value="0px 45px"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textSize" value="26px"/>
+            <Value name="textBold" value="false"/>
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+                <!-- Used for IAP price -->
+                <Value name="textBold" value="true"/>
+                <Value name="textSize" value="40px"/>
+                <Value name="textColor" value="$preset_colorMainUI"/>
+                <Value name="textSelectedColor" value="$preset_colorMainUI"/>
+                <Value name="textMaxNumLines" value="1"/>
+                <Value name="size" value="560px 56px"/>
+                <Value name="position" value="0px 90px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="shopItemsListItemModDlcText" extends="textDefault" with="anchorBottomCenter">
+            <Value name="size" value="300px 16px"/>
+            <Value name="position" value="0px 15px"/>
+            <Value name="textLayoutMode" value="resize"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textSize" value="14px"/>
+            <Value name="textColor" value="$preset_colorWhite_50"/>
+            <Value name="textSelectedColor" value="$preset_colorMainUI"/>
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="shopItemsDetailBox" extends="emptyPanel" with="anchorBottomLeft">
+            <Value name="size" value="1400px 169px"/>
+
+            <Variant name="mobile" with="defaultGameFrame anchorMiddleCenter">
+                <Value name="size" value="1760px 170px"/>
+                <Value name="position" value="0px -240px"/>
+                <Value name="imageColor" value="$preset_colorItemBgNormal" />
+            </Variant>
+        </Profile>
+
+        <Profile name="shopListAttributeFruitIcon" extends="baseReference">
+            <Value name="size" value="36px 36px"/>
+            <Value name="margin" value="0 0 5px 0"/>
+
+            <Value name="imageColor" value="$preset_colorWhite"/>
+            <Value name="imageUVs" value="0 0 1 1"/>
+            <Value name="imageFilename" value="dataS/menu/hud/fillTypes/hud_fill_chaff.png"/>
+
+            <Variant name="mobile" >
+                <Value name="margin" value="0 0 0 0"/>
+                <Value name="size" value="50px 50px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="shopItemDetailName" extends="textDefault" with="anchorMiddleLeft">
+            <Value name="pivot" value="0 0" />
+            <Value name="textSize" value="21px" />
+            <Value name="textBold" value="true" />
+            <Value name="textMaxWidth" value="320px" />
+            <Value name="textLayoutMode" value="resize" />
+            <Value name="textMaxNumLines" value="3" />
+            <Value name="position" value="0 3px" />
+            <Value name="textVerticalAlignment" value="bottom" />
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="shopItemDetailOwned" extends="textDefault" with="anchorMiddleLeft">
+            <Value name="pivot" value="0 1" />
+            <Value name="textMaxWidth" value="320px" />
+            <Value name="textLayoutMode" value="resize" />
+            <Value name="textMaxNumLines" value="2" />
+            <Value name="textSize" value="18px" />
+            <Value name="textColor" value="1 1 1 0.7" />
+            <Value name="textVerticalAlignment" value="top" />
+            <Value name="position" value="0 -3px" />
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="shopItemDetailsSeparator" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="size" value="1dp 100px" />
+            <Value name="position" value="345px 0px" />
+            <Value name="imageColor" value="1 1 1 0.25" />
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="shopItemsDetailAttributesRow" extends="emptyPanel" with="anchorTopRight">
+            <Value name="size" value="1000px 169px"/>
+            <Value name="flowDirection" value="horizontal"/>
+            <Value name="alignmentX" value="left"/>
+            <Value name="alignmentY" value="middle"/>
+            <Value name="numFlows" value="2"/>
+            <Value name="lateralFlowSize" value="46px" />
+
+            <Variant name="mobile" with="anchorTopCenter">
+                <Value name="size" value="1740px 150px"/>
+                <Value name="position" value="0px -10px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="shopListAttributeText" extends="textDefault">
+            <Value name="textSize" value="18px"/>
+            <Value name="textColor" value="$preset_colorWhite"/>
+            <Value name="margin" value="0 4px 12px 4px"/>
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="size" value="0 36px" />
+            <Value name="textMinWidth" value="35px" />
+            <Value name="disallowFlowCut" value="true" />
+
+            <Variant name="mobile">
+                <Value name="position" value="65px 0px" />
+                <Value name="textSize" value="33px"/>
+                <Value name="size" value="260px 73px"/>
+                <Value name="textResizeWidth" value="260px"/>
+                <Value name="textMaxWidth" value="260px"/>
+                <Value name="margin" value="0 4px 60px 4px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="shopListAttributeIcon" extends="baseReference">
+            <Value name="imageColor" value="$preset_colorMainUI"/>
+            <Value name="size" value="36px 36px"/>
+            <Value name="margin" value="0 4px 12px 4px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="50px 50px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="shopListAttributeIconPrice" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="835px 576px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconSaleRemaining" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="551px 360px 40px 40px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconMaintenanceCosts" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="6px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconPower" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="54px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconPowerReq" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="102px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconTransmission" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="582px 246px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconOwned" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="150px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconLeased" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="198px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconWorkingWidth" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="246px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconCapacity" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="294px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconWeight" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="54px 246px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconAdditionalWeight" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="6px 246px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconCow" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="534px 674px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconPig" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="438px 674px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconSheep" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="486px 674px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconHorse" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="582px 674px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconChicken" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="630px 674px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconCombinations" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="342px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconInfo" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="390px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconFuel" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="438px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconElectricCharge" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="534px 246px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconMethane" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="872px 246px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconWheels" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="102px 246px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconLicensePlate" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="486px 246px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconLifeTime" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="486px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconMaxSpeed" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="534px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconWorkSpeed" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="726px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconSeeds" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="678px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconFillTypes" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="582px 294px 36px 36px"/> <!-- TODO -->
+        </Profile>
+        <Profile name="shopListAttributeIconBaleSizeRound" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="246px 246px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconBaleSizeSquare" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="150px 246px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconBaleWrapperBaleSizeRound" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="294px 246px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconBaleWrapperBaleSizeSquare" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="199px 246px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconAttacher" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="580px 945px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconIncomePerHour" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="630px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconOperatingHours" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="774px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconSlots" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="822px 294px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconPlus" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="870px 294px 36px 36px"/>
+            <Value name="imageColor" value="1 1 1 0.5"/>
+            <Value name="size" value="28px 28px"/>
+            <Value name="margin" value="0 0 5px 0"/>
+        </Profile>
+        <Profile name="shopListAttributeIconValue" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="780px 209px 65px 65px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconInput" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="630px 246px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconOutput" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="678px 246px 36px 36px"/>
+        </Profile>
+        <Profile name="shopListAttributeIconCondition" extends="shopListAttributeIcon">
+            <Value name="imageUVs" value="822px 246px 36px 36px"/>
+        </Profile>
+
+        <Profile name="shopListAttributeIconsLayoutBox" extends="emptyPanel">
+            <Value name="size" value="60px 36px" />
+            <Value name="visible" value="false" />
+            <Value name="margin" value="0 4px 12px 4px"/>
+            <Value name="disallowFlowCut" value="true" />
+            <Value name="clipping" value="true" />
+
+            <Variant name="mobile" >
+                <Value name="size" value="50px 50px" />
+                <Value name="margin" value="0 4px 60px 4px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="shopListAttributeIconsLayout" extends="emptyPanel">
+            <Value name="size" value="10px 36px" />
+            <Value name="alignmentY" value="middle" />
+            <Value name="flowDirection" value="horizontal" />
+            <Value name="numFlows" value="1" />
+
+            <Variant name="mobile" >
+                <Value name="size" value="50px 50px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="shopItemsSlider" extends="horizontalListSliderRightDocked" >
+            <Value name="size" value="1400px 12px" />
+
+            <Variant name="mobile" with="anchorMiddleCenter" >
+                <Value name="position" value="0px -140px" />
+                <Value name="size" value="1760px 12px" />
+                <Value name="isHorizontal" value="true" />
+            </Variant>
+        </Profile>
+
+        <Profile name="shopItemsSliderBar" extends="horizontalListSliderBar">
+            <Value name="size" value="1392px 6px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="1752px 6px" />
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

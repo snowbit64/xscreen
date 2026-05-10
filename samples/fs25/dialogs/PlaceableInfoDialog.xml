@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" id="dialogBg" />
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="roundCorner" profile="placeableInfoDialogBg" id="dialogElement">
+        <GuiElement type="bitmap" profile="placeableInfoDialogVehicleImage" id="icon" />
+        <GuiElement type="text" profile="placeableInfoDialogName" id="titleText" />
+
+        <GuiElement type="flowLayout" profile="placeableInfoDialogDetailsLayout" size="300px 100px">
+            <GuiElement type="empty" profile="placeableInfoDialogDetailRow" size="300px 24px">
+                <GuiElement type="text" profile="placeableInfoDialogDetailRowLabel" text="$l10n_ui_sellValue" />
+                <GuiElement type="text" profile="placeableInfoDialogDetailRowValue" id="priceText"/>
+            </GuiElement>
+
+            <GuiElement type="empty" profile="placeableInfoDialogDetailRow" size="300px 24px">
+                <GuiElement type="text" profile="placeableInfoDialogDetailRowLabel" text="$l10n_ui_age" />
+                <GuiElement type="text" profile="placeableInfoDialogDetailRowValue" id="ageText"/>
+            </GuiElement>
+
+        </GuiElement>
+
+        <GuiElement type="flowLayout" profile="buttonBoxDialog" id="buttonsPC" >
+            <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" id="okButton" />
+            <GuiElement type="button" profile="buttonCancel" text="$l10n_button_sell" onClick="onClickSell" id="sellButton" />
+            <GuiElement type="button" profile="buttonActivate" text="$l10n_button_rename" onClick="onClickRename" id="renameButton" />
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="placeableInfoDialogBg" extends="dialogBg">
+            <Value name="size" value="640px 400px"/>
+            <Value name="imageColor" value="$preset_colorDetailBackground"/>
+        </Profile>
+
+        <Profile name="placeableInfoDialogVehicleImage" extends="baseReference" with="anchorTopCenter">
+            <Value name="size" value="200px 200px"/>
+            <Value name="position" value="0 0"/>
+            <Value name="imageUVs" value="0 0 1 1"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="250px 250px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="placeableInfoDialogName" extends="textDefault" with="anchorTopCenter">
+            <Value name="position" value="0 -250px"/>
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textSize" value="22px"/>
+
+            <Variant name="mobile">
+                <Value name="textSize" value="30px" />
+                <Value name="position" value="0px -60px" />
+                <Value name="hasFrame" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="placeableInfoDialogDetailsLayout" extends="emptyPanel" with="anchorTopCenter">
+            <Value name="size" value="442px 240px" />
+            <Value name="position" value="0 -290px" />
+            <Value name="alignmentY" value="top" />
+        </Profile>
+
+        <Profile name="placeableInfoDialogDetailRow" extends="emptyPanel">
+            <Value name="size" value="442px 24px"/>
+            <Value name="margin" value="0px 0px 0px 14px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="540px 40px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="placeableInfoDialogDetailRowLabel" extends="textDefault" with="anchorTopLeft">
+            <Value name="position" value="0 0"/>
+
+            <Value name="format" value="percentage" />
+            <Value name="formatDecimalPlaces" value="0" />
+
+            <Value name="textBold" value="false"/>
+            <Value name="textAlignment" value="right"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textSize" value="18px"/>
+            <Value name="textMaxWidth" value="280px"/>
+            <Value name="textResizeWidth" value="280px"/>
+
+
+            <Variant name="mobile">
+                <Value name="size" value="450px 30px"/>
+                <Value name="textSize" value="30px" />
+                <Value name="textAlignment" value="left"/>
+                <Value name="textMaxWidth" value="400px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="placeableInfoDialogDetailRowValue" extends="textDefault" with="anchorTopRight">
+            <Value name="position" value="0 0"/>
+
+            <Value name="format" value="percentage" />
+            <Value name="formatDecimalPlaces" value="0" />
+
+            <Value name="textBold" value="false"/>
+            <Value name="textAlignment" value="right"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textSize" value="18px"/>
+            <Value name="textMaxWidth" value="280px"/>
+            <Value name="textResizeWidth" value="280px"/>
+
+            <Variant name="mobile" with="anchorTopRight">
+                <Value name="size" value="450px 30px"/>
+                <Value name="textSize" value="30px" />
+                <Value name="textAlignment" value="right"/>
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

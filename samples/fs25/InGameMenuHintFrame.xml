@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="ingameMenuHint">
+    <GuiElement type="empty" profile="uiInGameMenuFrame">
+        <!-- Static page header -->
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel">
+            <GuiElement type="bitmap" profile="ingameMenuHintHeaderIcon" />
+            <GuiElement type="text" profile="ingameMenuFrameHeaderText" text="$l10n_ui_hint" id="headerText" />
+        </GuiElement>
+
+        <GuiElement type="empty" id="controlItem" profile="hintMenuItemControlsItem">
+            <GuiElement type="inputGlyph" name="glyph" profile="hintMenuItemControlsGlyph" />
+            <GuiElement type="text" name="text" profile="hintMenuItemControlsText" />
+        </GuiElement>
+
+        <GuiElement type="empty" profile="hintMenuContainer">
+            <GuiElement type="bitmap" profile="topScrollClipper" name="topClipper" />
+            <GuiElement type="bitmap" profile="bottomScrollClipper" name="bottomClipper" />
+            <GuiElement type="scrollingLayout" profile="hintMenuLayout" id="layout" topClipperElementName="topClipper" bottomClipperElementName="bottomClipper">
+                <GuiElement type="bitmap" profile="hintMenuItem" id="contentItem">
+                    <GuiElement type="text" profile="hintMenuItemText" name="text" />
+
+                    <GuiElement type="boxLayout" profile="hintMenuItemControls" name="controls" />
+                </GuiElement>
+
+            </GuiElement>
+
+            <GuiElement type="threePartBitmap" profile="ingameMenuHintsVerticalListSlider">
+                <GuiElement type="slider" profile="ingameMenuHintsVerticalListSliderBar" dataElementId="layout" handleFocus="false" />
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="ingameMenuHintHeaderIcon" extends="menuHeaderIcon">
+            <Value name="imageUVs" value="0px 65px 65px 65px"/>
+        </Profile>
+
+        <Profile name="hintMenuItemControlsItem" extends="emptyPanel">
+            <Value name="size" value="1340px 54px"/>
+
+            <Value name="hasFrame" value="true"/>
+            <Value name="frameThickness" value="0 1dp 0 0"/>
+            <Value name="frameBottomColor" value="$preset_colorWhite"/>
+        </Profile>
+
+        <Profile name="hintMenuItemControlsGlyph" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="size" value="36px 36px"/>
+            <Value name="glyphColor" value="$preset_colorWhite" />
+
+            <Variant name="mobile">
+                <Value name="size" value="45px 45px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="hintMenuItemControlsText" extends="textDefault" with="anchorMiddleRight">
+            <Value name="size" value="900px 40px"/>
+            <Value name="textAutoWidth" value="false"/>
+            <Value name="textAlignment" value="right"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+
+            <Variant name="mobile">
+                <Value name="textSize" value="28px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="hintMenuContainer" extends="emptyPanel" >
+
+            <Variant name="mobile" with="anchorMiddleCenter">
+                <Value name="size" value="1400px 656px"/>
+                <Value name="position" value="0px 50px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="hintMenuLayout" extends="emptyPanel" with="anchorTopLeft">
+            <Value name="size" value="1400px 756px"/>
+            <Value name="imageColor" value="$preset_colorTransparent"/>
+            <Value name="autoValidateLayout" value="false"/>
+
+            <Variant name="mobile" with="anchorMiddleCenter">
+                <Value name="size" value="1400px 656px"/>
+                <Value name="supportsTouchScrolling" value="true" />
+            </Variant>
+        </Profile>
+
+        <Profile name="hintMenuItem" extends="emptyPanel" with="anchorTopLeft">
+            <Value name="size" value="1400px 756px"/>
+            <Value name="position" value="0 0"/>
+            <Value name="imageColor" value="$preset_colorListRowBackground" />
+
+            <Variant name="mobile">
+                <Value name="size" value="1400px 756px"/>
+                <Value name="imageColor" value="0 0 0 0"/>
+                <Value name="imageFocusedColor" value="$preset_colorListRowAlternateBackground"/>
+                <Value name="imageSelectedColor" value="$preset_colorListRowAlternateBackground"/>
+                <Value name="alternateBackgroundColor" value="0 0 0 0" />
+            </Variant>
+        </Profile>
+
+        <Profile name="hintMenuItemAlt" extends="hintMenuItem">
+            <Value name="imageColor" value="$preset_colorListRowAlternateBackground" />
+            <Variant name="mobile">
+                <Value name="imageColor" value="0 0 0 0"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="hintMenuItemCurrent" extends="hintMenuItem">
+            <Value name="imageColor" value="0.3140 0.8069 1.0000 0.3"/>
+            <Variant name="mobile">
+                <Value name="imageColor" value="0 0 0 0"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="hintMenuItemText" extends="textDefault" with="anchorTopLeft">
+            <Value name="size" value="1340px 200px"/>
+            <Value name="position" value="30px -30px"/>
+
+            <Value name="textVerticalAlignment" value="top"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="textBold" value="false"/>
+            <Value name="textMaxWidth" value="1340px"/>
+            <Value name="textMaxNumLines" value="100"/>
+            <Value name="textColor" value="$preset_colorWhite"/>
+
+            <Variant name="mobile">
+                <Value name="textSize" value="28px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="hintMenuItemControls" extends="emptyPanel" with="anchorBottomLeft">
+            <Value name="position" value="30px 30px"/>
+            <Value name="size" value="1340px 100px"/>
+            <Value name="alignmentY" value="top"/>
+            <Value name="flowDirection" value="vertical"/>
+        </Profile>
+
+        <Profile name="hintMenuItemControlsItemFirst" extends="hintMenuItemControlsItem">
+            <Value name="hasFrame" value="false"/>
+        </Profile>
+
+        <Profile name="ingameMenuHintsVerticalListSlider" extends="verticalListSliderRightDocked">
+
+            <Variant name="mobile">
+                <Value name="size" value="12px 656px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuHintsVerticalListSliderBar" extends="verticalListSliderBar">
+
+            <Variant name="mobile">
+        <Value name="size" value="6px 648px" />
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" id="dialogBg" />
+    <GuiElement type="bitmap" profile="bgVignette"/>
+
+    <GuiElement type="roundCorner" profile="licensePlateDialogBg" id="dialogElement">
+        <GuiElement type="bitmap" profile="licensePlateDialogHeaderDocked">
+            <GuiElement type="text" profile="dialogHeaderText" text="$l10n_ui_chooseLicensePlate" />
+        </GuiElement>
+
+        <GuiElement type="render" profile="licensePlateRender" filename="dataS/menu/licensePlate/creationBox.i3d" cameraNode="0|1" superSamplingFactor="2" id="sceneRender" onRenderLoad="onRenderLoad" />
+        <GuiElement type="button" profile="licensePlateCursorLeft" onClick="onClickCursorLeft" id="buttonCursorLeft"/>
+        <GuiElement type="button" profile="licensePlateCursorRight" onClick="onClickCursorRight" id="buttonCursorRight"/>
+
+        <GuiElement type="bitmap" profile="licensePlateCursor" id="cursorElement" />
+
+        <GuiElement type="button" profile="licensePlateKeyboardButton" id="keyboardButtonTemplate" onClick="onClickKeyboardButton" />
+
+        <GuiElement type="flowLayout" profile="licensePlateKeyboardAlpha" id="keyboardAlpha" />
+        <GuiElement type="flowLayout" profile="licensePlateKeyboardNumeric" id="keyboardNumeric" />
+        <GuiElement type="flowLayout" profile="licensePlateKeyboardSpecial" id="keyboardSpecial" />
+
+        <GuiElement type="empty" profile="licensePlateMultiTextOptionWithTitleText" >
+            <GuiElement type="multiTextOption" profile="multiTextOption" id="typeOption" onClick="onClickTypeOptionChanged" />
+            <GuiElement type="text"   profile="licensePlateMultiTextOptionTitle" text="$l10n_ui_licensePlateType" />
+        </GuiElement>
+
+        <GuiElement type="empty" profile="licensePlateMultiTextOptionWithTitleText2" >
+            <GuiElement type="multiTextOption" profile="multiTextOption" id="placementOption" onClick="onClickPlacementOptionChanged" onCreate="onCreatePlacementOption" />
+            <GuiElement type="text"   profile="licensePlateMultiTextOptionTitle" text="$l10n_ui_licensePlatePlacement" />
+        </GuiElement>
+
+        <GuiElement type="empty" profile="licensePlateMultiTextOptionColor">
+            <GuiElement type="text"   profile="licensePlateMultiTextOptionTitle" text="$l10n_configuration_baseColor" />
+            <GuiElement type="button" profile="licensePlateColorButton" onClick="onClickChangeColor" id="changeColorButton">
+                <GuiElement type="bitmap" profile="licensePlateColorButtonPicked" id="changeColorButtonImage" />
+            </GuiElement>
+        </GuiElement>
+
+        <GuiElement type="flowLayout" profile="licensePlateButtonBoxDialog" id="buttonsPC">
+            <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" id="backButton" />
+            <GuiElement type="button" profile="buttonActivate" text="$l10n_button_ok" onClick="onClickOk" id="okButton" />
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="licensePlateDialogBg" extends="dialogBg">
+            <Value name="size" value="556px 800px"/>
+
+            <Variant name="mobile" with="anchorTopCenter">
+                <Value name="size" value="1500px 900px"/>
+                <Value name="position" value="0px -20px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="licensePlateDialogHeaderDocked" extends="dialogHeaderDocked">
+
+            <Variant name="mobile">
+                <Value name="visible" value="false"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="licensePlateRender" extends="baseReference">
+            <Value name="size" value="300px 100px" />
+            <Value name="position" value="0px -25px" />
+
+            <Variant name="mobile" with="anchorTopCenter">
+                <Value name="position" value="0px -15px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="licensePlateCursorLeft" extends="multiTextOptionLeft" with="anchorTopCenter">
+            <Value name="clickSound" value="NONE"/>
+            <Value name="position" value="-195px -51px" />
+
+            <Value name="imageColor" value="$preset_colorTransparent"/>
+            <Value name="imageDisabledColor" value="$preset_colorTransparent"/>
+            <Value name="imageFocusedColor" value="$preset_colorTransparent"/>
+            <Value name="imageHighlightedColor" value="$preset_colorTransparent"/>
+
+            <Variant name="mobile">
+                <Value name="position" value="-200px -12px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="licensePlateCursorRight" extends="multiTextOptionRight" with="anchorTopCenter">
+            <Value name="clickSound" value="NONE"/>
+            <Value name="position" value="195px -51px" />
+
+            <Value name="imageColor" value="$preset_colorTransparent"/>
+            <Value name="imageDisabledColor" value="$preset_colorTransparent"/>
+            <Value name="imageFocusedColor" value="$preset_colorTransparent"/>
+            <Value name="imageHighlightedColor" value="$preset_colorTransparent"/>
+
+            <Variant name="mobile">
+                <Value name="position" value="200px -12px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="licensePlateCursor" extends="baseReference" with="anchorTopLeft">
+            <Value name="imageColor" value="$preset_colorMainUI_50" />
+        </Profile>
+
+        <Profile name="licensePlateKeyboardButton" extends="wideButton">
+            <Value name="size" value="40px 40px" />
+            <Value name="margin" value="0 0 6px 6px" />
+
+            <Value name="fitToContent" value="false"/>
+            <Value name="fitExtraWidth" value="0" />
+
+            <Value name="handleFocus" value="true"/>
+
+            <Value name="iconSize" value="0 0"/>
+            <Value name="iconTextOffset" value="0"/>
+
+            <Value name="textColor" value="$preset_colorMainUI"/>
+            <Value name="textFocusedColor" value="$preset_colorWhite"/>
+            <Value name="textSelectedColor" value="$preset_colorWhite"/>
+            <Value name="textHighlightedColor" value="$preset_colorWhite"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+
+            <Value name="imageColor" value="$preset_colorDarkGrey7"/>
+            <Value name="imageDisabledColor" value="$preset_colorGlass"/>
+            <Value name="imageFocusedColor" value="$preset_colorMainUI"/>
+            <Value name="imageHighlightedColor" value="$preset_colorMainUI"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="72px 72px" />
+                <Value name="margin" value="0 0 8px 8px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="licensePlateKeyboardAlpha" extends="emptyPanel" with="anchorTopCenter">
+            <Value name="size" value="460px 138px" />
+            <Value name="position" value="3px -152px" />
+
+            <Value name="alignmentX" value="left" />
+            <Value name="alignmentY" value="top" />
+            <Value name="rememberLastFocus" value="true" />
+
+            <Variant name="mobile">
+                <Value name="position" value="4px -140px" />
+                <Value name="size" value="1040px 160px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="licensePlateKeyboardNumeric" extends="licensePlateKeyboardAlpha" with="anchorTopCenter">
+            <Value name="size" value="460px 46px" />
+            <Value name="position" value="3px -290px" />
+
+            <Variant name="mobile">
+                <Value name="position" value="4px -300px" />
+                <Value name="size" value="1040px 80px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="licensePlateKeyboardSpecial" extends="licensePlateKeyboardAlpha" with="anchorTopCenter">
+            <Value name="size" value="460px 46px" />
+            <Value name="position" value="3px -336px" />
+
+            <Variant name="mobile">
+                <Value name="position" value="4px -380px" />
+                <Value name="size" value="1040px 80px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="licensePlateMultiTextOptionWithTitleText" extends="multiTextOptionWithTitleText" with="anchorBottomCenter">
+            <Value name="size" value="316px 48px"/>
+            <Value name="position" value="0 210px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="565px 105px"/>
+                <Value name="position" value="180px 300px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="licensePlateMultiTextOptionWithTitleText2" extends="multiTextOptionWithTitleText" with="anchorBottomCenter">
+            <Value name="size" value="316px 48px"/>
+            <Value name="position" value="0 120px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="565px 105px"/>
+                <Value name="position" value="180px 160px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="licensePlateMultiTextOptionColor" extends="baseReference" with="anchorBottomCenter">
+            <Value name="size" value="316px 48px"/>
+            <Value name="position" value="0 30px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="565px 105px"/>
+                <Value name="position" value="180px 30px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="licensePlateMultiTextOptionTitle" extends="multiTextOptionTitle">
+            <Value name="position" value="0px 40px" />
+
+            <Variant name="mobile" with="anchorMiddleLeft">
+                <Value name="position" value="-350px 0px" />
+                <Value name="textSize" value="35px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="licensePlateColorButton" extends="baseReference" with="anchorBottomLeft">
+            <Value name="handleFocus" value="true"/>
+            <Value name="size" value="316px 48px"/>
+            <Value name="position" value="0"/>
+            <Value name="iconSize" value="0"/>
+
+            <Value name="imageUVs" value="$preset_colorUVs" />
+            <Value name="imageColor" value="$preset_colorMainUI_30"/>
+            <Value name="imageFocusedColor" value="$preset_colorMainUI"/>
+            <Value name="imageHighlightedColor" value="$preset_colorMainUI"/>
+            <Value name="imageDisabledColor" value="$preset_colorGlass"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="565px 105px"/>
+                <Value name="position" value="0px 0px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="licensePlateColorButtonPicked" extends="baseReference" with="anchorMiddleCenter">
+            <Value name="size" value="300px 32px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="535px 75px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="licensePlateButtonBoxDialog" extends="buttonBoxDialog">
+
+            <Variant name="mobile">
+                <Value name="size" value="1200px 120px" />
+                <Value name="position" value="0px -140px"/>
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

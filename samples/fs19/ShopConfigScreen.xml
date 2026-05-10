@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <!-- Header - Top 120 px-->
+    <GuiElement type="bitmap" profile="uiElementBaseHeader">
+
+    </GuiElement>
+
+    <!-- Body - Central -->
+    <GuiElement type="bitmap" profile="uiElementContainerFullScreen" id="shopConfigContent">
+        <GuiElement type="flowLayout" profile="shopConfigMoneyBox" position="-288px -8px" id="shopMoneyBox">
+            <GuiElement type="text" profile="shopBalance" text="$l10n_ui_balance:" />
+            <GuiElement type="text" profile="shopMoney" margin="0 0 0 0" id="shopMoney" />
+        </GuiElement>
+
+        <!-- Vehicle specifications, top left -->
+        <GuiElement type="boxLayout" size="660px 300px" positionOrigin="topLeft" screenAlign="topLeft" position="264px -140px" flowDirection="vertical" lateralFlowSize="660px" autoValidateLayout="true">
+            <GuiElement type="bitmap" profile="shopConfigBrandIcon" id="shopConfigBrandIcon" >
+                <GuiElement type="empty" profile="emptyPanel" size="330px 104px" positionOrigin="bottomLeft" screenAlign="bottomLeft" position="330px 0px">
+                    <GuiElement type="empty" profile="emptyPanel" size="330px 48px" position="0px 56px">
+                        <GuiElement type="text" profile="shopPriceTitle" text="$l10n_action_cameraZoom" position="-60px 2px" screenAlign="middleRight" positionOrigin="middleRight" textAlignment="right" textVerticalAlignment="middle"/>
+                        <GuiElement type="empty" profile="emptyPanel" id="zoomInputGlyphFrame" size="60px 48px" positionOrigin="bottomRight" screenAlign="bottomRight"/>
+                    </GuiElement>
+                    <GuiElement type="empty" profile="emptyPanel" size="330px 48px" position="0px 0px">
+                        <GuiElement type="text" profile="shopPriceTitle" text="$l10n_action_rotateCamera"  position="-60px 2px" screenAlign="middleRight" positionOrigin="middleRight" textAlignment="right" textVerticalAlignment="middle"/>
+                        <GuiElement type="empty" profile="emptyPanel" id="rotateInputGlyphFrame" size="60px 48px" positionOrigin="bottomRight" screenAlign="bottomRight" position="0px 0px"/>
+                    </GuiElement>
+                </GuiElement>
+            </GuiElement>
+            <GuiElement type="text"   profile="shopConfigItemName" id="shopConfigItemName"/>
+
+            <GuiElement type="bitmap" profile="lineSeparator" size="660px 1px" position="0px 190px" screenAlign="topLeft" ignoreLayout="true"/>
+
+            <GuiElement type="boxLayout" profile="emptyPanel" size="660px 60px" positionOrigin="topLeft" screenAlign="topLeft" flowDirection="horizontal" autoValidateLayout="true" alignmentY="middle">
+                <GuiElement type="empty" profile="emptyPanel" size="165px 60px" positionOrigin="middleLeft">
+                    <GuiElement type="bitmap" profile="shopListAttributeIconMaintenanceCosts" id="attrIcon[1]" position="0px 0px"/>
+                    <GuiElement type="text" profile="shopConfigListAttributeText" text="Value" id="attrValue[1]" />
+                </GuiElement>
+
+                <GuiElement type="empty" profile="emptyPanel" size="165px 60px" positionOrigin="middleLeft">
+                    <GuiElement type="bitmap" profile="shopListAttributeIconPower" id="attrIcon[2]" position="0px 0px"/>
+                    <GuiElement type="text" profile="shopConfigListAttributeText" text="Value" id="attrValue[2]" />
+                </GuiElement>
+
+                <GuiElement type="empty" profile="emptyPanel" size="165px 60px" positionOrigin="middleLeft">
+                    <GuiElement type="bitmap" profile="shopListAttributeIconFuel" id="attrIcon[3]" position="0px 0px"/>
+                    <GuiElement type="text" profile="shopConfigListAttributeText" text="Value" id="attrValue[3]" />
+                </GuiElement>
+
+                <GuiElement type="empty" profile="emptyPanel" size="165px 60px" positionOrigin="middleLeft">
+                    <GuiElement type="bitmap" profile="shopListAttributeIconMaxSpeed" id="attrIcon[4]" position="0px 0px"/>
+                    <GuiElement type="text" profile="shopConfigListAttributeText" text="Value" id="attrValue[4]" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="lineSeparator" size="660px 1px" position="0px 250px" screenAlign="topLeft" layoutIgnore="true"/>
+
+            <!-- Color picker boxes -->
+            <GuiElement type="boxLayout" profile="emptyPanel" size="660px 300px" positionOrigin="topLeft" screenAlign="topLeft" position="264px -250px" flowDirection="horizontal" numFlows="3" fitFlowToElements="true" flowMargin="0px 0px 0px 0px" autoValidateLayout="true" alignmentY="top" margin="0px 16px 0px 0px">
+                <GuiElement type="button" profile="shopColorButton" onClick="onClickSelectColor" size="48px 48px" id="colorPicker[1]" margin="0px 0px 282px 0px" onFocus="onFocusColorButton" onLeave="onLeaveColorButton">
+                    <GuiElement type="bitmap" profile="shopColorButtonPicked"    id="colorImage[1]"/>
+                    <GuiElement type="text"   profile="shopColorTitle" id="colorName[1]"/>
+                    <GuiElement type="text"   profile="shopColorPrice" id="colorPrice[1]"/>
+                </GuiElement>
+
+                <GuiElement type="button" profile="shopColorButton" onClick="onClickSelectColor" size="48px 48px" id="colorPicker[2]" margin="0px 0px 0px 0px" onFocus="onFocusColorButton" onLeave="onLeaveColorButton">
+                    <GuiElement type="bitmap" profile="shopColorButtonPicked"    id="colorImage[2]"/>
+                    <GuiElement type="text"   profile="shopColorTitle" id="colorName[2]"/>
+                    <GuiElement type="text"   profile="shopColorPrice" id="colorPrice[2]"/>
+                </GuiElement>
+
+                <GuiElement type="button" profile="shopColorButton" onClick="onClickSelectColor" size="48px 48px" id="colorPicker[3]" margin="0px 8px 282px 0px" onFocus="onFocusColorButton" onLeave="onLeaveColorButton">
+                    <GuiElement type="bitmap" profile="shopColorButtonPicked"    id="colorImage[3]"/>
+                    <GuiElement type="text"   profile="shopColorTitle" id="colorName[3]"/>
+                    <GuiElement type="text"   profile="shopColorPrice" id="colorPrice[3]"/>
+                </GuiElement>
+
+                <GuiElement type="button" profile="shopColorButton" onClick="onClickSelectColor" size="48px 48px" id="colorPicker[4]" margin="0px 8px 0px 0px" onFocus="onFocusColorButton" onLeave="onLeaveColorButton">
+                    <GuiElement type="bitmap" profile="shopColorButtonPicked"    id="colorImage[4]"/>
+                    <GuiElement type="text"   profile="shopColorTitle" id="colorName[4]"/>
+                    <GuiElement type="text"   profile="shopColorPrice" id="colorPrice[4]"/>
+                </GuiElement>
+
+                <GuiElement type="button" profile="shopColorButton" onClick="onClickSelectColor" size="48px 48px" id="colorPicker[5]" margin="0px 8px 282px 0px" onFocus="onFocusColorButton" onLeave="onLeaveColorButton">
+                    <GuiElement type="bitmap" profile="shopColorButtonPicked"    id="colorImage[5]"/>
+                    <GuiElement type="text"   profile="shopColorTitle" id="colorName[5]"/>
+                    <GuiElement type="text"   profile="shopColorPrice" id="colorPrice[5]"/>
+                </GuiElement>
+
+                <GuiElement type="button" profile="shopColorButton" onClick="onClickSelectColor" size="48px 48px" id="colorPicker[6]" margin="0px 8px 0px 0px" onFocus="onFocusColorButton" onLeave="onLeaveColorButton">
+                    <GuiElement type="bitmap" profile="shopColorButtonPicked"    id="colorImage[6]"/>
+                    <GuiElement type="text"   profile="shopColorTitle" id="colorName[6]"/>
+                    <GuiElement type="text"   profile="shopColorPrice" id="colorPrice[6]"/>
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+
+        <!-- Vehicle display panel, top right -->
+        <GuiElement type="empty" profile="emptyPanel" size="660px 400px" positionOrigin="topRight" screenAlign="topRight" position="-290px -160px">
+            <GuiElement type="animation" profile="mpLoadingAnimation" id="loadingAnimation" positionOrigin="middleCenter" screenAlign="middleCenter" position="0px 0px" visible="false"/>
+        </GuiElement>
+
+        <!-- Vehicle configuration, lower third -->
+        <GuiElement type="empty" profile="emptyPanel" size="1368px 168px" position="-12px 70px" positionOrigin="bottomCenter" screenAlign="bottomCenter">
+            <!-- Transparent slider which covers the option box area to allow mouse wheel scrolling in there. The slider
+                 size is as big as the entire slider to make sure that clicking in an empty "bar" part does not scroll
+                 the view. Only mouse wheel input is intended to be caught by this slider. -->
+            <GuiElement type="slider" profile="emptyPanel" id="configSliderBox" onChanged="onSliderChanged" sliderSize="664px 192px" size="664px 192px" position="0px -12px"/>
+
+            <!-- Left config box -->
+            <GuiElement type="boxLayout" profile="shopOptionBox" position="0px 0px">
+                <GuiElement type="multiTextOption" profile="shopMultiTextOption" id="configOption[1]" margin="0px 24px 0px 24px">
+                    <GuiElement type="button" profile="shopMultiTextOptionLeft" />
+                    <GuiElement type="button" profile="shopMultiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+
+                    <GuiElement type="text"   text="Option Title" profile="shopMultiTextOptionTitle" id="configName[1]"/>
+                    <GuiElement type="text"   text="Option Price" profile="shopMultiTextOptionPrice" id="configPrice[1]"/>
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="shopMultiTextOption" id="configOption[2]" margin="28px 24px 0px 0px">
+                    <GuiElement type="button" profile="shopMultiTextOptionLeft" />
+                    <GuiElement type="button" profile="shopMultiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+
+                    <GuiElement type="text"   text="Option Title" profile="shopMultiTextOptionTitle" id="configName[2]"/>
+                    <GuiElement type="text"   text="Option Price" profile="shopMultiTextOptionPrice" id="configPrice[2]"/>
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="shopMultiTextOption" id="configOption[3]" margin="0px 24px 0px 24px">
+                    <GuiElement type="button" profile="shopMultiTextOptionLeft" />
+                    <GuiElement type="button" profile="shopMultiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+
+                    <GuiElement type="text"   text="Option Title" profile="shopMultiTextOptionTitle" id="configName[3]"/>
+                    <GuiElement type="text"   text="Option Price" profile="shopMultiTextOptionPrice" id="configPrice[3]"/>
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="shopMultiTextOption" id="configOption[4]" margin="28px 24px 0px 0px">
+                    <GuiElement type="button" profile="shopMultiTextOptionLeft" />
+                    <GuiElement type="button" profile="shopMultiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+
+                    <GuiElement type="text"   text="Option Title" profile="shopMultiTextOptionTitle" id="configName[4]"/>
+                    <GuiElement type="text"   text="Option Price" profile="shopMultiTextOptionPrice" id="configPrice[4]"/>
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="verticalGlassListSliderBackground" id="configSliderBackground" size="22px 144px" position="664px -24px" positionOrigin="topLeft" screenAlign="topLeft">
+                <GuiElement type="slider" profile="verticalGlassListSlider" id="configSlider" onChanged="onSliderChanged" sliderSize="16px 89px" size="16px 138px" position="-3px -3px"/>
+            </GuiElement>
+
+            <!-- Right cost summary -->
+            <GuiElement type="empty" profile="emptyPanel" size="660px 168px" position="0px 0px" positionOrigin="topRight" screenAlign="topRight">
+                <!-- Left column -->
+                <GuiElement type="empty" profile="emptyPanel" position="0px 0px" size="300px 168px" positionOrigin="topLeft" screenAlign="topLeft">
+                    <GuiElement type="text" profile="shopPriceTitle"       position="0px -24px"  text="$l10n_shop_costsBase:" />
+                    <GuiElement type="text" profile="shopPriceTitle"       position="0px -48px"  text="$l10n_shop_costsPerOperatingHour:" />
+                    <GuiElement type="text" profile="shopPriceTitle"       position="0px -72px"  text="$l10n_shop_costsPerDay:" />
+                    <GuiElement type="text" profile="shopPriceTitle"       position="0px -144px" text="$l10n_shop_initialCosts:" />
+
+                    <GuiElement type="text" profile="shopPriceValue"       position="0px -24px"  id="costsBaseText" />
+                    <GuiElement type="text" profile="shopPriceValue"       position="0px -48px"  id="costsPerOperatingHourText" />
+                    <GuiElement type="text" profile="shopPriceValue"       position="0px -72px"  id="costsPerDayText" />
+                    <GuiElement type="text" profile="shopPriceValueTotal2" position="0px -144px" id="initialCostsText" />
+                </GuiElement>
+
+                <!-- Right column -->
+                <GuiElement type="empty" profile="emptyPanel" position="360px 0px" size="300px 168px" positionOrigin="topLeft" screenAlign="topLeft">
+                    <GuiElement type="text"   profile="shopPriceTitle"      position="0px -24px"  text="$l10n_shop_configurationPriceBase:" />
+                    <GuiElement type="text"   profile="shopPriceTitle"      position="0px -48px"  text="$l10n_shop_configurationPriceOptions:" />
+                    <GuiElement type="text"   profile="shopPriceTitle"      position="0px -144px" text="$l10n_shop_configurationPriceTotal:" />
+
+                    <GuiElement type="text"   profile="shopPriceValue"      position="0px -24px"  id="basePriceText"/>
+                    <GuiElement type="text"   profile="shopPriceValue"      position="0px -48px"  id="upgradesPriceText" />
+                    <GuiElement type="text"   profile="shopPriceValueTotal" position="0px -144px" id="totalPriceText" />
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="lineSeparator" size="660px 1px" position="0px -120px" screenAlign="topLeft"/>
+                <GuiElement type="bitmap" profile="lineSeparator" size="660px 1px" position="0px -168px" screenAlign="topLeft"/>
+            </GuiElement>
+        </GuiElement>
+
+        <GuiElement type="flowLayout" profile="buttonBoxDocked" id="buttonsPC" screenAlign="bottomLeft" positionOrigin="bottomLeft" position="260px -70px">
+            <GuiElement type="button" profile="buttonBuy" text="$l10n_button_buy" onClick="onClickOk" id="buyButton" />
+            <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack"/>
+            <GuiElement type="button" profile="buttonActivate" text="$l10n_button_lease" onClick="onClickActivate" id="leaseButton" />
+            <GuiElement type="button" profile="buttonCancel" text="$l10n_button_changeColor" onClick="onClickCancel" id="changeColorButton" visible="false" />
+        </GuiElement>
+    </GuiElement>
+</GUI>

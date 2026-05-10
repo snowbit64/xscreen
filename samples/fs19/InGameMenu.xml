@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <!-- Background FullScreen Transparent -->
+    <GuiElement type="bitmap" profile="uiFullInGameBackground"/>
+
+    <!-- Header - Top 112 px-->
+    <GuiElement type="bitmap" profile="uiInGameMenuHeader" id="header">
+        <GuiElement type="multiTextOption" profile="uiInGameMenuHeaderSelector" onClick="onClickPageSelection" id="pageSelector" soundDisabled="true">
+            <GuiElement type="button" profile="uiInGameMenuPagingButtonLeft" id="pagingButtonLeft" />
+            <GuiElement type="button" profile="uiInGameMenuPagingButtonRight" id="pagingButtonRight" />
+        </GuiElement>
+
+        <GuiElement type="list" profile="uiInGameMenuPagingTabList" id="pagingTabList" handleFocus="false">
+            <!-- Page tab template element, will be cloned for each known page: -->
+            <GuiElement type="listItem" id="pagingTabTemplate" profile="uiTabbedMenuPageTab" position="0px 0px" handleFocus="false">
+                <GuiElement type="button" name="tabButton" profile="uiTabbedMenuPageTabButton" handleFocus="false"/>
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+    <!-- Body - Central -->
+    <GuiElement type="bitmap" profile="uiElementContainerFullScreenSpanning" size="1920px 1080px">
+        <GuiElement type="paging" profile="uiInGameMenuPaging" onPageChange="onPageChange" onPageUpdate="onPageUpdate" id="pagingElement">
+            <!-- PAUSE MENU PAGES -->
+            <GuiElement type="frameReference" ref="tutorial" name="tutorial" id="pageTutorial"/>
+
+            <GuiElement type="frameReference" ref="ingameMenuMapOverview" name="ingameMenuMapOverview" id="pageMapOverview"/>
+
+            <GuiElement type="frameReference" ref="ingameMenuPrices" name="ingameMenuPrices" id="pagePrices"/>
+            <GuiElement type="frameReference" ref="garageOverview" name="garageOverview" id="pageGarageOverview"/>
+            <GuiElement type="frameReference" ref="ingameMenuFinances" name="ingameMenuFinances" id="pageFinances"/>
+            <GuiElement type="frameReference" ref="ingameMenuAnimals" name="ingameMenuAnimals" id="pageAnimals"/>
+            <GuiElement type="frameReference" ref="ingameMenuContracts" name="ingameMenuContracts" id="pageContracts"/>
+            <GuiElement type="frameReference" ref="ingameMenuGameStats" name="ingameMenuGameStats" id="pageStatistics"/>
+
+            <GuiElement type="frameReference" ref="ingameMenuMultiplayerFarms" name="ingameMenuMultiplayerFarms" id="pageMultiplayerFarms"/>
+            <GuiElement type="frameReference" ref="ingameMenuMultiplayerUsers" name="ingameMenuMultiplayerUsers" id="pageMultiplayerUsers"/>
+
+            <GuiElement type="frameReference" ref="ingameMenuGameSettingsGame" name="ingameMenuGameSettingsGame" id="pageSettingsGame"/>
+            <GuiElement type="frameReference" ref="ingameMenuGameSettingsGeneral" name="ingameMenuGameSettingsGeneral" id="pageSettingsGeneral"/>
+            <GuiElement type="frameReference" ref="settingsControls" name="settingsControls" id="pageSettingsControls"/>
+
+            <GuiElement type="frameReference" ref="ingameMenuHelpLine" name="ingameMenuHelpLine" id="pageHelpLine"/>
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="flowLayout" profile="buttonBoxDocked" screenAlign="bottomLeft" positionOrigin="bottomLeft" position="130px 77px" id="buttonsPanel">
+        <GuiElement type="button" profile="buttonBack" onClick="onClickBack" id="menuButton[1]"/>
+        <GuiElement type="button" profile="buttonBack" onClick="onClickBack" id="menuButton[2]"/>
+        <GuiElement type="button" profile="buttonBack" onClick="onClickBack" id="menuButton[3]"/>
+        <GuiElement type="button" profile="buttonBack" onClick="onClickBack" id="menuButton[4]"/>
+        <GuiElement type="button" profile="buttonBack" onClick="onClickBack" id="menuButton[5]"/>
+        <GuiElement type="button" profile="buttonBack" onClick="onClickBack" id="menuButton[6]"/>
+    </GuiElement>
+</GUI>

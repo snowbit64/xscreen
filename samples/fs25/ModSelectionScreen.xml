@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="dynamicFadedBitmap" profile="uiFullBlurBG"/>
+    <GuiElement type="bitmap" profile="bgVignette" />
+    <GuiElement type="bitmap" profile="bgGlow" />
+
+    <GuiElement type="bitmap" profile="uiElementContainerFullScreen">
+        <GuiElement type="empty" profile="modSelectionLayout">
+            <GuiElement type="bitmap" profile="headerBoxDocked" >
+                <GuiElement type="bitmap" profile="modsIcon"/>
+                <GuiElement type="text" profile="headerText" text="$l10n_ui_modsDLCs" />
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="topScrollClipper" name="topClipper" />
+            <GuiElement type="bitmap" profile="bottomScrollClipper" name="bottomClipper" />
+
+            <GuiElement type="smoothList" profile="modSelectionList" onDoubleClick="onDoubleClick" id="modList" listDelegate="self" listDataSource="self" startClipperElementName="topClipper" endClipperElementName="bottomClipper">
+                <GuiElement type="listItem" profile="modSelectionListItem">
+                    <GuiElement type="bitmap" profile="modSelectionListItemImage" name="icon" />
+
+                    <GuiElement type="text" profile="modSelectionListItemTitle" name="title" />
+
+                    <GuiElement type="flowLayout" profile="modSelectionListItemBox">
+                        <GuiElement type="text" profile="modSelectionListItemVersionTitle" text="$l10n_ui_modVersion:" />
+                        <GuiElement type="text" profile="modSelectionListItemVersion" name="version" text="1.0.0.0" />
+                    </GuiElement>
+
+                    <GuiElement type="bitmap" profile="modSelectionListItemSelector">
+                        <GuiElement type="bitmap" profile="modSelectionListItemItemTick" name="tick" />
+                    </GuiElement>
+
+                    <GuiElement type="bitmap" profile="listItemSelector"/>
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="threePartBitmap" profile="verticalListSliderRightDocked" size="12px 684px">
+                <GuiElement type="slider" profile="verticalListSliderBar" size="6px 676px" dataElementId="modList" handleFocus="false" />
+            </GuiElement>
+
+            <GuiElement type="text" profile="serverDetailNoModsDLCs" text="$l10n_ui_noModsDLCsAvailable" id="noModsDLCsElement" />
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="flowLayout" profile="buttonBoxDockedOnScreen" id="buttonsPC">
+        <GuiElement type="button" profile="buttonOK" text="$l10n_button_start" onClick="onClickOk" id="buttonStart" />
+        <GuiElement type="button" profile="buttonBack" text="$l10n_button_back"  onClick="onClickBack" />
+        <GuiElement type="button" profile="buttonSelect" text="$l10n_button_select" onClick="toggleModAction" id="buttonSelect" />
+        <GuiElement type="button" profile="buttonSelectAll" text="$l10n_button_selectAll" onClick="toggleAllAction" id="buttonSelectAll" />
+        <GuiElement type="button" profile="buttonExtra1" text="$l10n_button_modHubShowCrossplay" onClick="toggleCrossplay" id="buttonToggleCrossplay" />
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="modSelectionLayout" extends="baseReference" with="anchorMiddleCenter">
+            <Value name="size" value="1624px 684px" />
+        </Profile>
+
+        <Profile name="modsIcon" extends="baseIcon">
+            <Value name="imageUVs" value="528px 96px 48px 48px"/>
+        </Profile>
+
+        <Profile name="modSelectionList" extends="list" with="anchorTopLeft">
+            <Value name="size" value="1624px 684px"/> <!-- margin of 16px all around, minus slider (28) -->
+
+            <Value name="listItemLateralSpacing" value="14px"/>
+            <Value name="listItemSpacing" value="14px"/>
+            <Value name="numLateralItems" value="7"/>
+            <Value name="isHorizontalList" value="false"/>
+        </Profile>
+
+        <Profile name="modSelectionListItem" extends="listItem">
+            <Value name="size" value="220px 335px"/>
+
+            <Value name="imageColor" value="$preset_colorItemBgNormal"/>
+            <Value name="imageFocusedColor" value="$preset_colorItemBgSelected"/>
+            <Value name="imageSelectedColor" value="$preset_colorItemBgSelected"/>
+        </Profile>
+
+        <Profile name="modSelectionListItemImage" extends="baseReference" with="anchorTopCenter">
+            <Value name="position" value="0px -35px"/>
+            <Value name="imageFilename" value="dataS/menu/black.png"/>
+            <Value name="imageColor" value="$preset_colorWhite"/>
+            <Value name="imageUVs" value="0 0 1 1"/>
+            <Value name="size" value="147px 147px"/>
+        </Profile>
+
+        <Profile name="modSelectionListItemBox" extends="baseReference" with="anchorTopCenter">
+            <Value name="size" value="200px 16px"/>
+            <Value name="position" value="0 -238px"/>
+
+            <Value name="useFullVisibility" value="false"/>
+            <Value name="alignmentX" value="center"/>
+
+            <Value name="imageColor" value="$preset_colorTransparent"/>
+        </Profile>
+
+        <Profile name="modSelectionListItemTitle" extends="textDefault" with="anchorTopCenter">
+            <Value name="size" value="0 38px"/>
+            <Value name="position" value="0 -190px"/>
+
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="textMaxNumLines" value="2"/>
+            <Value name="textMaxWidth" value="192px"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="textBold" value="false"/>
+            <Value name="textUpperCase" value="false"/>
+            <Value name="textColor" value="$preset_colorWhite_50" />
+            <Value name="textSelectedColor" value="$preset_colorMainUI" />
+        </Profile>
+
+        <Profile name="modSelectionListItemVersionTitle" extends="textDefault" with="anchorBottomLeft">
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="textSize" value="16px"/>
+            <Value name="margin" value="0px 0px 5px 0px"/>
+        </Profile>
+
+        <Profile name="modSelectionListItemVersion" extends="textDefault" with="anchorBottomLeft">
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="textSize" value="16px"/>
+            <Value name="textColor" value="0.1321 0.2090 0.2270 1"/>
+            <Value name="textSelectedColor" value="0.1321 0.2090 0.2270 1"/>
+        </Profile>
+
+        <Profile name="modSelectionListItemSelector" extends="baseReference" with="anchorBottomCenter">
+            <Value name="size" value="36px 36px"/>
+            <Value name="position" value="0 26px"/>
+            <Value name="imageColor" value="0.0003 0.2384 0.5467 0.09 0.0070 0.6172 0.8879 0.09 0.0003 0.2384 0.5467 0.09 0.0070 0.6172 0.8879 0.09" />
+        </Profile>
+
+        <Profile name="modSelectionListItemItemTick" extends="baseReference" with="anchorMiddleCenter">
+            <Value name="position" value="0"/>
+            <Value name="size" value="24px 24px"/>
+            <Value name="imageUVs" value="341px 725px 44px 44px"/>
+            <Value name="imageColor" value="$preset_colorMainUI"/>
+            <Value name="visible" value="false"/>
+        </Profile>
+
+        <Profile name="buttonSelectAll" extends="wideButton">
+            <Value name="inputAction" value="MENU_CANCEL"/>
+        </Profile>
+
+        <Profile name="buttonExtra1" extends="buttonOK">
+            <Value name="inputAction" value="MENU_EXTRA_1"/>
+        </Profile>
+    </GUIProfiles>
+</GUI>

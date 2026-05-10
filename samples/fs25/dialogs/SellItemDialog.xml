@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" id="dialogBg" />
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="roundCorner" profile="sellDialogBg" id="dialogElement">
+        <GuiElement type="bitmap" profile="dialogHeaderDocked">
+            <GuiElement type="text" profile="dialogHeaderText" text="$l10n_ui_sellItem" id="headerText" />
+        </GuiElement>
+
+        <GuiElement type="bitmap" profile="sellDialogImage" id="dialogImageElement" />
+        <GuiElement type="text" profile="sellDialogName" id="dialogItemNameElement" />
+
+        <GuiElement type="text" profile="sellDialogPrice" id="dialogItemPriceElement" />
+
+        <GuiElement type="flowLayout" profile="buttonBoxDialogSellItem">
+            <GuiElement type="button" profile="buttonOK" text="$l10n_button_yes" onClick="onYes" id="yesButton" />
+            <GuiElement type="button" profile="buttonBack" text="$l10n_button_no" onClick="onNo" id="noButton" />
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="sellDialogBg" extends="dialogBg">
+            <Value name="size" value="343px 460px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="700px 600px"/>
+            </Variant>
+        </Profile>
+        <Profile name="buttonBoxDialogSellItem" extends="buttonBoxDialog">
+            <Variant name="mobile">
+                <Value name="size" value="700px 200px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="sellDialogImage" extends="baseReference" with="anchorTopCenter">
+            <Value name="size" value="310px 310px"/>
+            <Value name="position" value="0px -10px"/>
+            <Value name="imageUVs" value="0 0 1 1"/>
+
+            <Variant name="mobile">
+                <Value name="position" value="0px 50px"/>
+                <Value name="size" value="450px 450px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="sellDialogText" extends="textDefault" with="anchorBottomCenter">
+            <Value name="position" value="0px 20px"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="textColor" value="$preset_colorDescriptionText"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textAutoWidth" value="true"/>
+
+            <Variant name="mobile">
+                <Value name="textSize" value="33px"/>
+                <Value name="position" value="0px -590px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="sellDialogName" extends="textDefault" with="anchorBottomCenter">
+            <Value name="position" value="0px 80px"/>
+            <Value name="size" value="290px 42px"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="bottom"/>
+            <Value name="textSize" value="20px"/>
+            <Value name="textMaxNumLines" value="2"/>
+            <Value name="textColor" value="$preset_colorWhite_50"/>
+            <Value name="textSelectedColor" value="$preset_colorMainUI"/>
+
+            <Variant name="mobile">
+                <Value name="textSize" value="40px"/>
+                <Value name="textMaxWidth" value="680px"/>
+                <Value name="position" value="0px 100px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="sellDialogPrice" extends="textDefault" with="anchorBottomCenter">
+            <Value name="position" value="0px 45px"/>
+            <Value name="size" value="220px 28px"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textSize" value="26px"/>
+            <Value name="textBold" value="false"/>
+
+            <Variant name="mobile">
+                <Value name="position" value="0px 40px"/>
+                <Value name="textSize" value="35px"/>
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

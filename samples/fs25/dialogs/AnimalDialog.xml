@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" id="dialogBg" />
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="roundCorner" profile="animalDialogBg" id="dialogElement" >
+        <GuiElement type="bitmap" profile="dialogHeaderDocked">
+            <GuiElement type="text" profile="dialogHeaderText" text="" id="dialogTitleElement"/>
+        </GuiElement>
+
+        <GuiElement type="multiTextOption" profile="animalDialogMultiTextOption" onClick="onClickHusbandry" id="husbandriesElement" focusInit="onOpen" />
+
+        <GuiElement type="flowLayout" profile="buttonBoxDialogAnimal" id="buttonsPC">
+            <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" id="noButton" />
+            <GuiElement type="button" profile="buttonOK" text="$l10n_button_start" onClick="onClickOk" id="yesButton" />
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="animalDialogBg" extends="dialogBg">
+            <Value name="size" value="498px 143px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="1000px 250px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="buttonBoxDialogAnimal" extends="buttonBoxDialog">
+            <Variant name="mobile">
+                <Value name="size" value="1000px 200px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="animalDialogMultiTextOption" extends="multiTextOption">
+            <Value name="defaultProfileText" value="animalDialogMultiTextOptionText" />
+
+            <Variant name="mobile">
+                <Value name="size" value="800px 105px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="animalDialogMultiTextOptionText" extends="multiTextOptionText">
+
+            <Variant name="mobile">
+                <Value name="textMaxWidth" value="570px"/>
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="ingameMenuMain">
+    <GuiElement type="empty" profile="uiInGameMenuFrame">
+
+        <GuiElement type="boxLayout" profile="ingameMenuMainLayout" id="container">
+
+            <GuiElement type="button" profile="ingameMenuMainButton" onClick="onClickCalendar" id="calendarButton">
+                <GuiElement type="bitmap" profile="ingameMenuMainFrontBg">
+                    <GuiElement type="bitmap" profile="ingameMenuMainFrontIconCalendar" />
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="ingameMenuMainContent">
+                    <GuiElement type="text" text="$l10n_ui_cropCalendar" profile="ingameMenuMainContentText" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="button" profile="ingameMenuMainButton" onClick="onClickWeather" focusInit="onOpen" id="weatherButton">
+                <GuiElement type="threePartBitmap" profile="ingameMenuMainButtonFrame">
+                    <GuiElement type="bitmap" profile="ingameMenuMainFrontIconWeather" />
+                    <GuiElement type="text" profile="ingameMenuMainContentText" text="$l10n_ui_ingameMenuWeather" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="button" profile="ingameMenuMainButton" onClick="onClickPrices" id="pricesButton">
+                <GuiElement type="threePartBitmap" profile="ingameMenuMainButtonFrame">
+                    <GuiElement type="bitmap" profile="ingameMenuMainFrontIconPrices" />
+                    <GuiElement type="text" profile="ingameMenuMainContentText" text="$l10n_ui_prices" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="button" profile="ingameMenuMainButton" onClick="onClickVehicles" id="vehicleButton">
+                <GuiElement type="threePartBitmap" profile="ingameMenuMainButtonFrame">
+                    <GuiElement type="bitmap" profile="ingameMenuMainFrontIconVehicles" />
+                    <GuiElement type="text" profile="ingameMenuMainContentText" text="$l10n_ui_vehicles" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="button" profile="ingameMenuMainButton" onClick="onClickFinances" id="financesButton">
+                <GuiElement type="threePartBitmap" profile="ingameMenuMainButtonFrame">
+                    <GuiElement type="bitmap" profile="ingameMenuMainFrontIconFinances" />
+                    <GuiElement type="text" profile="ingameMenuMainContentText" text="$l10n_ui_finances" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="button" profile="ingameMenuMainButton" onClick="onClickAnimals" id="animalsButton">
+                <GuiElement type="threePartBitmap" profile="ingameMenuMainButtonFrame">
+                    <GuiElement type="bitmap" profile="ingameMenuMainFrontIconAnimals" />
+                    <GuiElement type="text" profile="ingameMenuMainContentText" text="$l10n_ui_ingameMenuAnimals" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="button" profile="ingameMenuMainButton" onClick="onClickProduction" id="productionButton">
+                <GuiElement type="threePartBitmap" profile="ingameMenuMainButtonFrame">
+                    <GuiElement type="bitmap" profile="ingameMenuMainFrontIconProduction" />
+                    <GuiElement type="text" profile="ingameMenuMainContentText" text="$l10n_ui_production" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="button" profile="ingameMenuMainButton" onClick="onClickStatistics" id="statisticsButton">
+                <GuiElement type="threePartBitmap" profile="ingameMenuMainButtonFrame">
+                    <GuiElement type="bitmap" profile="ingameMenuMainFrontIconStatistics" />
+                    <GuiElement type="text" profile="ingameMenuMainContentText" text="$l10n_ui_statistics" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="button" profile="ingameMenuMainButton" onClick="onClickSettings" id="settingsButton">
+                <GuiElement type="threePartBitmap" profile="ingameMenuMainButtonFrame">
+                    <GuiElement type="bitmap" profile="ingameMenuMainFrontIconSettings" />
+                    <GuiElement type="text" profile="ingameMenuMainContentText" text="$l10n_ui_inGameMenuModeSettings" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="button" profile="ingameMenuMainButton" onClick="onClickHelp" id="helpButton">
+                <GuiElement type="threePartBitmap" profile="ingameMenuMainButtonFrame">
+                    <GuiElement type="bitmap" profile="ingameMenuMainFrontIconHelp" />
+                    <GuiElement type="text" profile="ingameMenuMainContentText" text="$l10n_ui_helpLine" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="button" profile="ingameMenuMainButton" onClick="onClickHints" id="hintsButton">
+                <GuiElement type="threePartBitmap" profile="ingameMenuMainButtonFrame">
+                    <GuiElement type="bitmap" profile="ingameMenuMainFrontIconHints" />
+                    <GuiElement type="text" profile="ingameMenuMainContentText" text="$l10n_ui_ingameMenuHints" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="button" profile="ingameMenuMainButton" onClick="onClickTour" id="tourButton">
+                <GuiElement type="threePartBitmap" profile="ingameMenuMainButtonFrame">
+                    <GuiElement type="bitmap" profile="ingameMenuMainFrontIconHints" />
+                    <GuiElement type="text" profile="ingameMenuMainContentText" text="$l10n_ui_tour" />
+                </GuiElement>
+            </GuiElement>
+
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="ingameMenuMainLayout" extends="baseReference" with="anchorMiddleCenter">
+            <Value name="size" value="1768px 800px" />
+            <Value name="position" value="0px 85px" />
+            <Value name="numFlows" value="2"/>
+            <Value name="lateralFlowSize" value="854px"/>
+            <Value name="flowDirection" value="vertical"/>
+            <Value name="alignmentX" value="left"/>
+            <Value name="alignmentY" value="top"/>
+            <Value name="imageColor" value="$preset_colorTransparent"/>
+            <Value name="useFullVisibility" value="false"/>
+            <Value name="autoValidateLayout" value="true"/>
+            <Value name="fitFlowToElements" value="true"/>
+            <Value name="wrapAround" value="true"/>
+            <Value name="flowMargin" value="0px 0px 59px 0px"/>
+        </Profile>
+
+        <Profile name="ingameMenuMainButton" extends="baseReference">
+            <Value name="size" value="855px 135px" />
+            <Value name="imageColor" value="$preset_colorTransparent"/>
+            <Value name="margin" value="0 0 0 20px" />
+        </Profile>
+
+        <Profile name="ingameMenuMainButtonFrame" extends="baseReference">
+            <Value name="size" value="855px 135px" />
+            <Value name="position" value="0 0" />
+            <Value name="imageColor" value="1 1 1 1" />
+
+            <Value name="startImageFilename" value="g_baseUIFilename" />
+            <Value name="endImageFilename" value="g_baseUIFilename" />
+
+            <Value name="startImageSize" value="30px 135px" />
+            <Value name="midImageSize" value="1px 135px" />
+            <Value name="endImageSize" value="30px 135px" />
+
+            <Value name="startImageUVs" value="6px 380px 30px 135px" />
+            <Value name="imageUVs" value="32px 380px 15px 135px" />
+            <Value name="endImageUVs" value="42px 380px 30px 135px" />
+
+            <Value name="startImageFocusedUVs" value="73px 380px 30px 135px" />
+            <Value name="imageFocusedUVs" value="99px 380px 15px 135px" />
+            <Value name="endImageFocusedUVs" value="109px 380px 30px 135px" />
+        </Profile>
+
+        <Profile name="ingameMenuMainFrontBg" extends="baseReference" with="anchorMiddleLeft lightFrame">
+            <Value name="size" value="120px 140px" />
+
+            <Value name="imageColor" value="$preset_colorGlassMedium"/>
+            <Value name="imageFocusedColor" value="$preset_colorMainUI"/>
+            <Value name="imageDisabledColor" value="$preset_colorGlassVeryLight"/>
+        </Profile>
+
+        <Profile name="ingameMenuMainFrontIcon" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="size" value="75px 75px" />
+            <Value name="position" value="30px 0px" />
+            <Value name="imageUVs" value="325px 144px 65px 65px"/>
+            <Value name="imageDisabledColor" value="0.15 0.15 0.15 1"/>
+        </Profile>
+
+        <Profile name="ingameMenuMainFrontIconPrices" extends="ingameMenuMainFrontIcon">
+            <Value name="imageUVs" value="666px 696px 65px 65px"/>
+        </Profile>
+
+        <Profile name="ingameMenuMainFrontIconWeather" extends="ingameMenuMainFrontIcon">
+            <Value name="imageUVs" value="671px 636px 55px 55px"/>
+        </Profile>
+
+        <Profile name="ingameMenuMainFrontIconCalendar" extends="ingameMenuMainFrontIcon">
+            <Value name="imageUVs" value="926px 696px 65px 65px"/>
+        </Profile>
+
+        <Profile name="ingameMenuMainFrontIconVehicles" extends="ingameMenuMainFrontIcon">
+            <Value name="imageUVs" value="731px 631px 65px 65px"/>
+        </Profile>
+
+        <Profile name="ingameMenuMainFrontIconFinances" extends="ingameMenuMainFrontIcon">
+            <Value name="imageUVs" value="861px 631px 65px 65px"/>
+        </Profile>
+
+        <Profile name="ingameMenuMainFrontIconSettings" extends="ingameMenuMainFrontIcon">
+            <Value name="imageUVs" value="731px 696px 65px 65px"/>
+        </Profile>
+
+        <Profile name="ingameMenuMainFrontIconAnimals" extends="ingameMenuMainFrontIcon">
+            <Value name="imageUVs" value="796px 631px 65px 65px"/>
+        </Profile>
+
+        <Profile name="ingameMenuMainFrontIconProduction" extends="ingameMenuMainFrontIcon">
+            <Value name="imageUVs" value="926px 631px 65px 65px"/>
+        </Profile>
+
+        <Profile name="ingameMenuMainFrontIconStatistics" extends="ingameMenuMainFrontIcon">
+            <Value name="imageUVs" value="861px 696px 65px 65px"/>
+        </Profile>
+
+        <Profile name="ingameMenuMainFrontIconHelp" extends="ingameMenuMainFrontIcon">
+            <Value name="imageUVs" value="796px 696px 65px 65px"/>
+        </Profile>
+
+        <Profile name="ingameMenuMainFrontIconHints" extends="ingameMenuMainFrontIcon">
+            <Value name="imageUVs" value="325px 912px 65px 65px"/>
+        </Profile>
+
+        <Profile name="ingameMenuMainContent" extends="baseReference" with="anchorMiddleRight lightFrame">
+            <Value name="size" value="725px 140px" />
+
+            <Value name="imageColor" value="$preset_colorGlassMedium"/>
+            <Value name="imageFocusedColor" value="$preset_colorGlassLight"/>
+        </Profile>
+
+        <Profile name="ingameMenuMainContentText" extends="textDefault" with="anchorMiddleLeft">
+            <Value name="position" value="150px 0" />
+            <Value name="textSize" value="53px" />
+            <Value name="textMaxWidth" value="660px" />
+            <Value name="textUpperCase" value="true" />
+            <Value name="textBold" value="true" />
+            <Value name="textDisabledColor" value="0.15 0.15 0.15 1"/>
+        </Profile>
+
+        <Profile name="buttonQuitGame" extends="wideButton" with="touchButton">
+            <Value name="touchIconUVs" value="107px 209px 27px 27px"/>
+            <Value name="touchIconSize" value="36px 36px"/>
+        </Profile>
+    </GUIProfiles>
+</GUI>

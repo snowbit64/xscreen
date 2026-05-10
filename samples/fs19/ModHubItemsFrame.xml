@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="modHubItems">
+    <GuiElement type="empty" profile="modHubFrame">
+        <!-- Breadcrumb -->
+        <GuiElement type="breadcrumbs" profile="modHubNavLayout" id="breadcrumbs">
+            <GuiElement type="text" profile="modHubNavCategoryText" />
+            <GuiElement type="bitmap" profile="modHubNavCategoryArrow" />
+        </GuiElement>
+
+        <!-- Items list -->
+        <GuiElement type="list" profile="modHubItemsList" onClick="onClickItem" onDoubleClick="onDoubleClickItem" onScroll="onScroll" onSelectionChanged="onItemSelected" id="itemsList" onItemAppear="onListItemAppear">
+            <!-- Item template -->
+            <GuiElement type="listItem" profile="modHubItemsListItem" visible="false" id="itemTemplate" >
+                <GuiElement type="bitmap" profile="modHubListItemImage" name="itemIcon" />
+                <GuiElement type="text" profile="modHubListItemLabelText" position="0px 25px" name="itemNameLabel" />
+
+                <GuiElement type="empty" profile="modHubStatusBox" name="itemStatusBox">
+                    <GuiElement type="bitmap" profile="modHubStatusBoxBar" position="1px 4px" name="itemStatusBar"/>
+                    <GuiElement type="text" profile="modHubStatusBoxText" position="0px 3px" name="itemStatusLabel" text="Installed"/>
+                </GuiElement>
+
+                <GuiElement type="flowLayout" profile="modHubMarkerBox" name="itemMarkerBox">
+                    <GuiElement type="bitmap" profile="modHubMarkerNew" name="itemMarker">
+                        <GuiElement type="text" profile="modHubMarkerText" name="itemMarkerText" text="1"/>
+                    </GuiElement>
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+
+        <!-- Item information box -->
+        <GuiElement type="bitmap" profile="modHubInfoBox" id="modInfoBox">
+            <GuiElement type="flowLayout" profile="modHubAttributeBox" id="modAttributeBox">
+                <GuiElement type="text" profile="modHubAttributeName" id="modAttributeName" />
+                <GuiElement type="text" profile="modHubAttributeInfoSpace" text="  |  "/>
+                <GuiElement type="text" profile="modHubAttributeInfo" id="modAttributeInfoAuthor" />
+                <GuiElement type="text" profile="modHubAttributeInfoSpace" text="  |  "/>
+                <GuiElement type="text" profile="modHubAttributeInfo" id="modAttributeInfoVersion"/>
+                <GuiElement type="text" profile="modHubAttributeInfoSpace" text="  |  " id="modAttributeInfoSizeSpace"/>
+                <GuiElement type="text" profile="modHubAttributeInfo" id="modAttributeInfoSize" />
+
+                <GuiElement type="text" profile="modHubAttributeInfoSpace" text="  |  " id="modAttributeInfoPriceSpace" />
+                <GuiElement type="text" profile="modHubAttributeName" id="modAttributePrice" />
+
+                <GuiElement type="text" profile="modHubAttributeInfoSpace" text="  |  " id="modAttributeInfoRatingSpace"/>
+
+                <GuiElement type="flowLayout" profile="modHubAttributeRatingBox" id="modAttributeRatingBox" >
+                    <GuiElement type="bitmap" profile="modHubAttributeRatingStar" id="modAttributeRatingStar[1]">
+                        <GuiElement type="bitmap" profile="modHubAttributeRatingStarHalf" id="modAttributeRatingStarHalf[1]" />
+                    </GuiElement>
+                    <GuiElement type="bitmap" profile="modHubAttributeRatingStar" id="modAttributeRatingStar[2]" >
+                        <GuiElement type="bitmap" profile="modHubAttributeRatingStarHalf" id="modAttributeRatingStarHalf[2]" />
+                    </GuiElement>
+                    <GuiElement type="bitmap" profile="modHubAttributeRatingStar" id="modAttributeRatingStar[3]" >
+                        <GuiElement type="bitmap" profile="modHubAttributeRatingStarHalf" id="modAttributeRatingStarHalf[3]" />
+                    </GuiElement>
+                    <GuiElement type="bitmap" profile="modHubAttributeRatingStar" id="modAttributeRatingStar[4]" >
+                        <GuiElement type="bitmap" profile="modHubAttributeRatingStarHalf" id="modAttributeRatingStarHalf[4]" />
+                    </GuiElement>
+                    <GuiElement type="bitmap" profile="modHubAttributeRatingStar" id="modAttributeRatingStar[5]" >
+                        <GuiElement type="bitmap" profile="modHubAttributeRatingStarHalf" id="modAttributeRatingStarHalf[5]" />
+                    </GuiElement>
+                </GuiElement>
+
+
+            </GuiElement>
+
+            <GuiElement type="text" profile="modHubListItemAbuseText" position="0px 10px" text="$l10n_modHub_abuse" id="disclaimerLabel" />
+        </GuiElement>
+
+        <GuiElement type="text" id="noModsElement" screenAlign="middleCenter" positionOrigin="middleCenter" text="$l10n_modHub_noMods" position="0px 0px" />
+
+        <!-- View scroll buttons -->
+        <GuiElement type="button" profile="ingameMenuContentButtonLeft" position="50px -60px" onClick="onClickLeft" id="buttonLeft"/>
+        <GuiElement type="button" profile="ingameMenuContentButtonRight" position="-50px -60px" onClick="onClickRight" id="buttonRight"/>
+    </GuiElement>
+</GUI>

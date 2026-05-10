@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="ingameMenuAnimals">
+    <GuiElement type="empty" profile="uiInGameMenuFrame">
+        <!-- Static page header -->
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel">
+            <GuiElement type="bitmap" profile="ingameMenuAnimalsHeaderIcon"/>
+            <GuiElement type="text" profile="ingameMenuFrameHeaderText" text="$l10n_ui_ingameMenuAnimals"/>
+        </GuiElement>
+
+        <GuiElement type="empty" profile="ingameMenuAnimalsCenterBox" id="animalsContainer">
+            <!-- Animal Type List -->
+            <GuiElement type="empty" profile="ingameMenuAnimalsListBox" id="animalsListBox">
+                <GuiElement type="bitmap" profile="ingameMenuAnimalsTopScrollClipper" name="topClipper" position="0 2dp" />
+                <GuiElement type="bitmap" profile="ingameMenuAnimalsBottomScrollClipper" name="bottomClipper" />
+                <GuiElement type="smoothList" profile="ingameMenuAnimalsList" id="list" focusInit="onOpen" listSectionHeader="section" startClipperElementName="topClipper" endClipperElementName="bottomClipper">
+                    <GuiElement type="listItem" profile="ingameMenuAnimalsListItem">
+                        <GuiElement type="bitmap" profile="ingameMenuAnimalsListItemTypeIcon" name="typeIcon"/>
+                        <GuiElement type="text" profile="ingameMenuAnimalsListItemTypeName" text="ANIMAL" name="name"/>
+                        <GuiElement type="text" profile="ingameMenuAnimalsListItemTypeCount" name="count"/>
+                        <GuiElement type="text" profile="ingameMenuAnimalsListItemStatusLabel" text="$l10n_ui_sellPrices:" name="statusLabel"/>
+                        <GuiElement type="text" profile="ingameMenuAnimalsListItemStatusValue" name="priceValue"/>
+                    </GuiElement>
+
+                    <GuiElement type="listItem" profile="ingameMenuAnimalsListSectionHeader" name="section">
+                        <GuiElement type="text" profile="ingameMenuAnimalsListSectionHeaderText" name="title" />
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsListSlider">
+                    <GuiElement type="slider" profile="ingameMenuAnimalsListSliderBar" dataElementId="list" handleFocus="false" />
+                </GuiElement>
+            </GuiElement>
+
+            <!-- Animal (Husbandry) Detail Information -->
+            <GuiElement type="empty" profile="ingameMenuAnimalsDetailsBox" id="detailsBox">
+                <!-- Animal Output / Value Information -->
+                <GuiElement type="roundCorner" profile="ingameMenuAnimalsDetailOutputBox" id="detailOutputBox">
+                    <GuiElement type="text" profile="ingameMenuAnimalsDetailTypeName" position="15px -15px" id="animalDetailTypeNameText" text="Animal Type"/>
+                    <GuiElement type="text" profile="ingameMenuAnimalsDetailTypeValue" position="-20px -20px" id="animalDetailTypeValueText" text="$ 45'123"/>
+                    <GuiElement type="bitmap" profile="ingameMenuAnimalsDetailTypeImage" id="animalDetailTypeImage"/>
+
+                    <!-- Livestock Attributes -->
+                    <GuiElement type="empty" profile="ingameMenuAnimalsDetailAttributesBox">
+                        <GuiElement type="boxLayout" profile="ingameMenuAnimalsProductivityLayout" id="livestockAttributesLayout">
+                            <GuiElement type="empty" profile="ingameMenuAnimalsProductivityRow">
+                                <GuiElement type="text" profile="ingameMenuAnimalsProductivityLabel" text="$l10n_ui_age"/>
+                                <GuiElement type="text" profile="ingameMenuAnimalsProductivityValue" id="animalAgeText"/>
+                            </GuiElement>
+
+                            <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRowOutput" id="infoRow[1]">
+                                <GuiElement type="empty" profile="ingameMenuAnimalsProductivityRowTextPanel">
+                                    <GuiElement type="text" profile="ingameMenuAnimalsRequirementsLabel" id="infoLabel[1]"/>
+                                    <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="infoValue[1]"/>
+                                </GuiElement>
+                                <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBarBackgroundOutput">
+                                    <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBar" id="infoStatusBar[1]"/>
+                                </GuiElement>
+                            </GuiElement>
+                            <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRowOutput" id="infoRow[2]">
+                                <GuiElement type="empty" profile="ingameMenuAnimalsProductivityRowTextPanel">
+                                    <GuiElement type="text" profile="ingameMenuAnimalsRequirementsLabel" id="infoLabel[2]"/>
+                                    <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="infoValue[2]"/>
+                                </GuiElement>
+                                <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBarBackgroundOutput">
+                                    <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBar" id="infoStatusBar[2]"/>
+                                </GuiElement>
+                            </GuiElement>
+                            <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRowOutput" id="infoRow[3]">
+                                <GuiElement type="empty" profile="ingameMenuAnimalsProductivityRowTextPanel">
+                                    <GuiElement type="text" profile="ingameMenuAnimalsRequirementsLabel" id="infoLabel[3]"/>
+                                    <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="infoValue[3]"/>
+                                </GuiElement>
+                                <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBarBackgroundOutput">
+                                    <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBar" id="infoStatusBar[3]"/>
+                                </GuiElement>
+                            </GuiElement>
+                            <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRowOutput" id="infoRow[4]">
+                                <GuiElement type="empty" profile="ingameMenuAnimalsProductivityRowTextPanel">
+                                    <GuiElement type="text" profile="ingameMenuAnimalsRequirementsLabel" id="infoLabel[4]"/>
+                                    <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="infoValue[4]"/>
+                                </GuiElement>
+                                <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBarBackgroundOutput">
+                                    <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBar" id="infoStatusBar[4]"/>
+                                </GuiElement>
+                            </GuiElement>
+                            <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRowOutput" id="infoRow[5]">
+                                <GuiElement type="empty" profile="ingameMenuAnimalsProductivityRowTextPanel">
+                                    <GuiElement type="text" profile="ingameMenuAnimalsRequirementsLabel" id="infoLabel[5]"/>
+                                    <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="infoValue[5]"/>
+                                </GuiElement>
+                                <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBarBackgroundOutput">
+                                    <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBar" id="infoStatusBar[5]"/>
+                                </GuiElement>
+                            </GuiElement>
+                        </GuiElement>
+                    </GuiElement>
+                </GuiElement>
+
+                <!-- Animal Conditions and Requirements -->
+                <GuiElement type="empty" profile="ingameMenuAnimalsDetailInputBox" id="detailInputBox">
+                    <GuiElement type="text" profile="ingameMenuAnimalsDetailTypeName" position="15px -15px" text="$l10n_ui_husbandryInformation"/>
+
+                    <GuiElement type="boxLayout" profile="ingameMenuAnimalsRequirementsLayout" position="0px -80px" id="requirementsLayout">
+                        <!-- Conditions -->
+                        <GuiElement type="text" profile="ingameMenuAnimalsRequirementsHeader" id="conditionsHeader" text="$l10n_ui_animalConditions"/>
+
+                        <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRow" id="conditionRow[1]">
+                            <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRowTextPanel">
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsLabel" id="conditionLabel[1]"/>
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="conditionValue[1]"/>
+                            </GuiElement>
+                            <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBarBackground">
+                                <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBar" id="conditionStatusBar[1]"/>
+                            </GuiElement>
+                        </GuiElement>
+                        <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRow" id="conditionRow[2]">
+                            <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRowTextPanel">
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsLabel" id="conditionLabel[2]"/>
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="conditionValue[2]"/>
+                            </GuiElement>
+                            <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBarBackground">
+                                <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBar" id="conditionStatusBar[2]"/>
+                            </GuiElement>
+                        </GuiElement>
+                        <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRow" id="conditionRow[3]">
+                            <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRowTextPanel">
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsLabel" id="conditionLabel[3]"/>
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="conditionValue[3]"/>
+                            </GuiElement>
+                            <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBarBackground">
+                                <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBar" id="conditionStatusBar[3]"/>
+                            </GuiElement>
+                        </GuiElement>
+                        <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRow" id="conditionRow[4]">
+                            <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRowTextPanel">
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsLabel" id="conditionLabel[4]"/>
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="conditionValue[4]"/>
+                            </GuiElement>
+                            <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBarBackground">
+                                <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBar" id="conditionStatusBar[4]"/>
+                            </GuiElement>
+                        </GuiElement>
+
+                        <!-- Requirements (Food) -->
+                        <GuiElement type="text" profile="ingameMenuAnimalsRequirementsHeader" id="conditionsHeader" text="$l10n_ui_animalFood"/>
+                        <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRow" id="foodRowTotal">
+                            <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRowTextPanel">
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsLabel" id="foodHeader" text="$l10n_ui_total" />
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="foodRowTotalValue"/>
+                            </GuiElement>
+                            <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBarBackground">
+                                <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBar" id="foodRowTotalStatusBar"/>
+                            </GuiElement>
+                        </GuiElement>
+
+                        <GuiElement type="empty" profile="ingameMenuAnimalsFoodRow" id="foodRow[1]">
+                            <GuiElement type="empty" profile="ingameMenuAnimalsFoodRowTextPanel">
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsLabel" id="foodLabel[1]"/>
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="foodValue[1]"/>
+                            </GuiElement>
+                            <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBarBackgroundRatios">
+                                <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBar" id="foodStatusBar[1]"/>
+                            </GuiElement>
+                        </GuiElement>
+                        <GuiElement type="empty" profile="ingameMenuAnimalsFoodRow" id="foodRow[2]">
+                            <GuiElement type="empty" profile="ingameMenuAnimalsFoodRowTextPanel">
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsLabel" id="foodLabel[2]"/>
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="foodValue[2]"/>
+                            </GuiElement>
+                            <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBarBackgroundRatios">
+                                <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBar" id="foodStatusBar[2]"/>
+                            </GuiElement>
+                        </GuiElement>
+                        <GuiElement type="empty" profile="ingameMenuAnimalsFoodRow" id="foodRow[3]">
+                            <GuiElement type="empty" profile="ingameMenuAnimalsFoodRowTextPanel">
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsLabel" id="foodLabel[3]"/>
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="foodValue[3]"/>
+                            </GuiElement>
+                            <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBarBackgroundRatios">
+                                <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBar" id="foodStatusBar[3]"/>
+                            </GuiElement>
+                        </GuiElement>
+                        <GuiElement type="empty" profile="ingameMenuAnimalsFoodRow" id="foodRow[4]">
+                            <GuiElement type="empty" profile="ingameMenuAnimalsFoodRowTextPanel">
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsLabel" id="foodLabel[4]"/>
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="foodValue[4]"/>
+                            </GuiElement>
+                            <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBarBackgroundRatios">
+                                <GuiElement type="threePartBitmap" profile="ingameMenuAnimalsSmallStatusBar" id="foodStatusBar[4]"/>
+                            </GuiElement>
+                        </GuiElement>
+                    </GuiElement>
+                </GuiElement>
+
+                <!-- Animal Description -->
+                <GuiElement type="bitmap" profile="ingameMenuAnimalsDetailDescriptionBox" id="detailDescriptionBox">
+                    <GuiElement type="bitmap" profile="ingameMenuAnimalsDetailDescriptionIcon" position="8px 0" />
+                    <GuiElement type="text" profile="ingameMenuAnimalsDetailDescriptionText" id="detailDescriptionText"/>
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="ingameMenuAnimalsEmptyBox" id="noHusbandriesBox">
+                <GuiElement type="text" profile="ingameMenuAnimalsEmptyText" text="$l10n_ui_noHusbandriesPlaced" />
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="ingameMenuAnimalsEmptyBox" id="noAnimalsBox">
+                <GuiElement type="text" profile="ingameMenuAnimalsEmptyText" text="$l10n_ui_noAnimals" position="200px 0px"/>
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="ingameMenuAnimalsTopScrollClipper" extends="topScrollClipper" with="anchorTopCenter">
+            <Value name="position" value="0 -77dp" />
+            <Value name="size" value="490px 2dp" />
+        </Profile>
+        <Profile name="ingameMenuAnimalsBottomScrollClipper" extends="ingameMenuAnimalsTopScrollClipper" with="anchorBottomCenter">
+            <Value name="position" value="0 -2dp" />
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsHeaderIcon" extends="menuHeaderIcon">
+            <Value name="size" value="64px 64px"/>
+            <Value name="imageUVs" value="390px 0px 65px 65px"/>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsCenterBox" extends="ingameMenuCenterBox">
+
+            <Variant name="mobile">
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsListBox" extends="emptyPanel" with="anchorTopLeft">
+            <Value name="size" value="400px 756px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="528px 700px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsList" extends="list" with="anchorTopLeft">
+            <Value name="size" value="400px 756px"/>
+            <Value name="isHorizontalList" value="false"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="528px 700px"/>
+
+                <Value name="itemsPerCol" value="6"/>
+                <Value name="listItemHeight" value="90px"/>
+
+                <Value name="supportsMouseScrolling" value="false" />
+                <Value name="isPaginated" value="true"/>
+                <Value name="focusScrollsList" value="false" />
+                <Value name="keepSelectedInView" value="true" />
+                <Value name="supportsTouchScrolling" value="true" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsListItem" extends="listItem" with="alternating">
+            <Value name="imageColor" value="$preset_colorListRowBackground"/>
+            <Value name="imageFocusedColor" value="$preset_colorFocusBackgroundGradient"/>
+            <Value name="imageSelectedColor" value="$preset_colorFocusBackgroundGradient"/>
+
+            <Value name="size" value="400px 68px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="528px 90px"/>
+                <Value name="imageColor" value="0 0 0 0"/>
+                <Value name="imageFocusedColor" value="$preset_colorListRowAlternateBackground"/>
+                <Value name="imageSelectedColor" value="$preset_colorListRowAlternateBackground"/>
+                <Value name="alternateBackgroundColor" value="0 0 0 0" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsListItemTypeIcon" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="size" value="48px 48px"/>
+            <Value name="position" value="10px 0" />
+            <Value name="imageUVs" value="0 0 1 1"/>
+            <Value name="imageColor" value="$preset_colorWhite"/>
+
+            <Variant name="mobile" >
+                <Value name="size" value="90px 90px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsListItemTypeName" extends="textDefault" with="anchorTopLeft">
+            <Value name="position" value="64px -10px" />
+
+            <Value name="textBold" value="true"/>
+            <Value name="textSize" value="22px"/>
+            <Value name="textMaxWidth" value="280px"/>
+            <Value name="textResizeWidth" value="280px"/>
+            <Value name="textAutoWidth" value="true" />
+
+            <Variant name="mobile" with="anchorMiddleLeft">
+                <Value name="position" value="110px 20px" />
+                <Value name="textSize" value="33px"/>
+                <Value name="textMaxWidth" value="360px"/>
+                <Value name="textResizeWidth" value="550px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsListItemTypeCount" extends="textDefault" with="anchorTopRight">
+            <Value name="position" value="-10px -10px" />
+
+            <Value name="format" value="number" />
+            <Value name="formatDecimalPlaces" value="0" />
+            <Value name="textAlignment" value="right"/>
+            <Value name="textAutoWidth" value="true" />
+
+            <Value name="textSize" value="22px"/>
+            <Value name="textMaxWidth" value="280px"/>
+            <Value name="textResizeWidth" value="280px"/>
+
+            <Value name="textAlignment" value="right"/>
+            <Value name="textBold" value="false" />
+
+            <Variant name="mobile">
+                <Value name="textSize" value="33px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsListItemStatusLabel" extends="textDefault" with="anchorBottomLeft">
+            <Value name="position" value="64px 10px" />
+
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textSize" value="18px"/>
+            <Value name="textMaxWidth" value="280px"/>
+            <Value name="textResizeWidth" value="280px"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+
+            <Variant name="mobile" with="anchorMiddleLeft">
+                <Value name="position" value="110px -20px" />
+                <Value name="textSize" value="33px"/>
+                <Value name="textLayoutMode" value="resize" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsListItemStatusValue" extends="textDefault" with="anchorBottomRight">
+            <Value name="position" value="-10px 10px" />
+
+            <Value name="format" value="percentage" />
+            <Value name="formatDecimalPlaces" value="0" />
+
+            <Value name="textBold" value="false"/>
+            <Value name="textAlignment" value="right"/>
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textSize" value="18px"/>
+            <Value name="textMaxWidth" value="280px"/>
+            <Value name="textResizeWidth" value="280px"/>
+
+            <Variant name="mobile">
+                <Value name="textSize" value="33px"/>
+                <Value name="textAlignment" value="center"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsListSectionHeader" extends="ingameMenuAnimalsListItem">
+            <Value name="imageColor" value="$preset_colorListHeaderBackground" />
+            <Value name="size" value="400px 40px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="528px 80px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsListSectionHeaderText" extends="textDefault" with="anchorMiddleLeft">
+            <Value name="position" value="30px 0px"/>
+
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="textMaxWidth" value="380px"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textSize" value="20px"/>
+            <Value name="textUpperCase" value="true"/>
+            <Value name="textColor" value="$preset_colorHeaderText"/>
+
+            <Variant name="mobile">
+                <Value name="position" value="18px 0px"/>
+                <Value name="textMaxWidth" value="508px"/>
+                <Value name="textSize" value="34px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsListSlider" extends="verticalListSliderRightDocked">
+
+            <Variant name="mobile">
+                <Value name="size" value="12px 700px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsListSliderBar" extends="verticalListSliderBar">
+
+            <Variant name="mobile">
+                <Value name="size" value="6px 692px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsDetailsBox" extends="emptyPanel" with="anchorTopRight">
+            <Value name="position" value="0px 0px" />
+            <Value name="size" value="960px 756px"/><!-- 20-->
+
+            <Variant name="mobile">
+                <Value name="size" value="1200px 700px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsDetailOutputBox" extends="emptyPanel" with="anchorTopLeft">
+            <Value name="size" value="472px 595px"/>
+            <Value name="imageColor" value="$preset_colorDetailBackground"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="585px 700px"/>
+                <Value name="color" value="$preset_colorDetailBackground"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsDetailTypeName" extends="textDefault" with="anchorTopLeft">
+            <Value name="size" value="300px 40px"/>
+            <Value name="textMaxWidth" value="300px"/>
+            <Value name="textResizeWidth" value="300px"/>
+            <Value name="textSize" value="30px"/>
+            <Value name="textBold" value="false"/>
+
+            <Variant name="mobile">
+                <Value name="textSize" value="40px"/>
+                <Value name="textBold" value="true"/>
+                <Value name="textMaxWidth" value="420px"/>
+                <Value name="textResizeWidth" value="420px"/>
+                <Value name="textLayoutMode" value="resize" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsDetailTypeCount" extends="ingameMenuAnimalsDetailTypeName" with="anchorTopRight">
+            <Value name="textAlignment" value="right"/>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsDetailTypeValue" extends="ingameMenuAnimalsDetailTypeCount">
+            <Value name="textColor" value="$preset_colorMainUI"/>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsDetailTypeImage" extends="baseReference" with="anchorTopCenter">
+            <Value name="size" value="240px 240px"/>
+            <Value name="position" value="0 -55px"/>
+            <Value name="imageUVs" value="0 0 1 1"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="400px 400px"/>
+                <Value name="position" value="-30px -45px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsDetailAttributesBox" extends="emptyPanel" with="anchorBottomCenter">
+            <Value name="size" value="472px 240px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="540px 340px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsDetailAttribute" extends="emptyPanel">
+            <Value name="size" value="320px 32px"/>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsProductivityLayout" extends="ingameMenuAnimalsRequirementsLayout" with="anchorBottomCenter">
+            <Value name="size" value="442px 260px"/>
+            <Value name="position" value="0px 15px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="540px 340px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsProductivityRow" extends="ingameMenuAnimalsRequirementsRow">
+            <Value name="size" value="442px 24px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="540px 40px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsProductivityLabel" extends="ingameMenuAnimalsRequirementsLabel">
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsProductivityValue" extends="ingameMenuAnimalsRequirementsValue">
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsProductivityRowTextPanel" extends="emptyPanel">
+            <Value name="anchors" value="0 1 0 1" />
+
+            <Variant name="mobile" with="anchorTopCenter">
+                <Value name="size" value="540px 30px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsRequirementsLabel" extends="ingameMenuAnimalsListItemStatusLabel" with="anchorTopLeft">
+            <Value name="position" value="0 0"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+
+            <Variant name="mobile" with="anchorTopLeft">
+                <Value name="textSize" value="30px" />
+                <Value name="textAlignment" value="left"/>
+                <Value name="textMaxWidth" value="400px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsRequirementsValue" extends="ingameMenuAnimalsListItemStatusValue" with="anchorTopRight">
+            <Value name="position" value="0 0"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+
+            <Variant name="mobile" with="anchorTopRight">
+                <Value name="textSize" value="30px" />
+                <Value name="textAlignment" value="right"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsSmallStatusBarBackground" extends="emptyPanel" with="anchorBottomLeft">
+            <Value name="size" value="442px 6px"/>
+
+            <Value name="imageColor" value="0 0 0 0.4" />
+            <Value name="imageUVs" value="593px 427px 20px 6px" />
+            <Value name="midImageSize" value="1px 6px" />
+
+            <Value name="startImageColor" value="0 0 0 0.4" />
+            <Value name="startImageFilename" value="g_baseUIFilename" />
+            <Value name="startImageSize" value="4px 6px" />
+            <Value name="startImageUVs" value="586px 427px 3px 6px" />
+
+            <Value name="endImageColor" value="0 0 0 0.4" />
+            <Value name="endImageFilename" value="g_baseUIFilename" />
+            <Value name="endImageSize" value="4px 6px" />
+            <Value name="endImageUVs" value="633px 427px 3px 6px" />
+
+            <Value name="isHorizontal" value="true" />
+
+            <Variant name="mobile" with="anchorBottomCenter">
+                <Value name="size" value="575px 10px" />
+                <Value name="imageColor" value="0.0802 0.0802 0.0802 1" />
+                <Value name="startImageColor" value="0.0802 0.0802 0.0802 1" />
+                <Value name="endImageColor" value="0.0802 0.0802 0.0802 1" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsSmallStatusBarBackgroundOutput" extends="ingameMenuAnimalsSmallStatusBarBackground">
+
+            <Variant name="mobile">
+                <Value name="size" value="540px 10px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsSmallStatusBar" extends="ingameMenuAnimalsSmallStatusBarBackground" with="anchorMiddleLeft">
+            <Value name="imageColor" value="$preset_colorGreen" />
+            <Value name="startImageColor" value="$preset_colorGreen" />
+            <Value name="endImageColor" value="$preset_colorGreen" />
+
+            <Value name="imageDisabledColor" value="$preset_colorDisabled" />
+            <Value name="startImageDisabledColor" value="$preset_colorDisabled" />
+            <Value name="endImageDisabledColor" value="$preset_colorDisabled" />
+
+            <Variant name="mobile">
+                <Value name="size" value="625px 8px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsDetailInputBox" extends="emptyPanel" with="anchorTopRight">
+            <Value name="size" value="472px 595px"/>
+            <Value name="imageColor" value="$preset_colorDetailBackground"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="605px 700px"/>
+                <Value name="color" value="$preset_colorDetailBackground"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsRequirementsLayout" extends="emptyPanel" with="anchorTopCenter">
+            <Value name="size" value="442px 500px"/>
+            <Value name="fitFlowToElements" value="true"/>
+            <Value name="alignmentX" value="left"/>
+            <Value name="alignmentY" value="top"/>
+            <Value name="flowDirection" value="vertical"/>
+            <Value name="numFlows" value="1"/>
+            <Value name="autoValidateLayout" value="true" />
+
+            <Variant name="mobile">
+                <Value name="size" value="575px 640px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsRequirementsHeader" extends="ingameMenuAnimalsListItemTypeName">
+            <Value name="size" value="442px 30px" />
+            <Value name="margin" value="0px 0px 0px 14px"/>
+            <Value name="textUpperCase" value="true"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textBold" value="true"/>
+
+            <Variant name="mobile">
+                <Value name="textColor" value="$preset_colorHeaderText" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsRequirementsRow" extends="emptyPanel">
+            <Value name="size" value="442px 28px"/>
+            <Value name="margin" value="0px 0px 0px 14px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="575px 45px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsRequirementsRowTextPanel" extends="emptyPanel" with="anchorTopLeft">
+            <Value name="size" value="442px 18px"/>
+
+            <Variant name="mobile" with="anchorTopCenter">
+                <Value name="size" value="575px 30px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsSmallStatusBarBackgroundRatios" extends="ingameMenuAnimalsSmallStatusBarBackground" >
+            <Value name="size" value="412px 6px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="500px 10px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsDetailDescriptionBox" extends="emptyPanel" with="anchorBottomLeft">
+            <Value name="size" value="960px 145px"/>
+            <Value name="imageColor" value="$preset_colorDetailBackground"/>
+
+            <Variant name="mobile" with="anchorBottomRight">
+                <Value name="visible" value="false"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsFoodRow" extends="ingameMenuAnimalsRequirementsRow">
+            <Value name="size" value="412px 28px"/>
+            <Value name="margin" value="30px 0px 0px 14px"/>
+
+            <Variant name="mobile">
+                <Value name="margin" value="37px 0px 0px 10px"/>
+                <Value name="size" value="575px 55px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsFoodRowTextPanel" extends="ingameMenuAnimalsRequirementsRowTextPanel" >
+            <Value name="size" value="412px 18px"/>
+
+            <Variant name="mobile" with="anchorTopCenter">
+                <Value name="size" value="500px 25px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsRequirementsRowOutput" extends="ingameMenuAnimalsRequirementsRow">
+
+            <Variant name="mobile" with="anchorTopCenter">
+                <Value name="size" value="540px 45px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsSmallStatusBarMedium" extends="ingameMenuAnimalsSmallStatusBar">
+            <Value name="imageColor" value="$preset_colorOrange"/>
+            <Value name="startImageColor" value="$preset_colorOrange" />
+            <Value name="endImageColor" value="$preset_colorOrange" />
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsSmallStatusBarLow" extends="ingameMenuAnimalsSmallStatusBar">
+            <Value name="imageColor" value="$preset_colorRed"/>
+            <Value name="startImageColor" value="$preset_colorRed" />
+            <Value name="endImageColor" value="$preset_colorRed" />
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsDetailDescriptionIcon" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="imageColor" value="$preset_colorMainUI"/>
+            <Value name="imageUVs" value="390px 294px 36px 36px"/>
+            <Value name="size" value="36px 36px"/>
+            <Value name="margin" value="0 4px 12px 4px"/>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsDetailDescriptionText" extends="textDefault" with="anchorTopRight">
+            <Value name="position" value="-15px 0"/>
+            <Value name="size" value="885px 145px"/>
+
+            <Value name="textMaxNumLines" value="8"/>
+            <Value name="textAlignment" value="left"/>
+            <Value name="textBold" value="false"/>
+            <Value name="textSize" value="16px"/>
+            <Value name="textLayoutMode" value="resize"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsEmptyBox" extends="emptyPanel" with="anchorMiddleCenter">
+            <Value name="position" value="0" />
+            <Value name="size" value="1400px 756px" />
+
+            <Variant name="mobile" with="anchorMiddleCenter">
+                <Value name="size" value="1768px 644px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuAnimalsEmptyText" extends="textDefault" with="anchorMiddleCenter">
+            <Value name="textSize" value="26px" />
+            <Value name="textAlignment" value="center" />
+            <Value name="textWrapWidth" value="475px"/>
+            <Value name="textMaxNumLines" value="4"/>
+            <Value name="size" value="500px 100px" />
+
+            <Variant name="mobile" with="anchorMiddleCenter">
+                <Value name="textSize" value="33px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="buttonRename" extends="wideButton" with="touchButton">
+            <Value name="touchIconUVs" value="384px 672px 48px 48px" />
+            <Value name="touchIconSize" value="48px 48px"/>
+        </Profile>
+
+        <Profile name="buttonInfo" extends="wideButton" with="touchButton">
+            <Value name="touchIconUVs" value="390px 294px 36px 36px" />
+            <Value name="touchIconSize" value="48px 48px"/>
+        </Profile>
+    </GUIProfiles>
+</GUI>

@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="ingameMenuProduction">
+    <GuiElement type="empty" profile="uiInGameMenuFrame">
+        <!-- Static page header -->
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel">
+            <GuiElement type="bitmap" profile="ingameMenuProductionHeaderIcon" />
+            <GuiElement type="text" profile="ingameMenuFrameHeaderText" id="headerText"  text="$l10n_ui_ingameMenuProductionChains"/>
+        </GuiElement>
+
+        <GuiElement type="empty" profile="ingameMenuProductionSettingsBox">
+            <GuiElement type="empty" profile="ingameMenuProductionListBox" id="productionListBox">
+                <GuiElement type="bitmap" profile="ingameMenuProductionTopScrollClipper" name="topClipper" position="0 2dp" />
+                <GuiElement type="bitmap" profile="ingameMenuProductionBottomScrollClipper" name="bottomClipper" />
+
+                <GuiElement type="smoothList" profile="ingameMenuProductionList" id="productionList" focusInit="onOpen" listSectionHeader="section" focusId="production" focusChangeBottom="nil" focusChangeTop="nil" focusChangeRight="storage" startClipperElementName="topClipper" endClipperElementName="bottomClipper">
+                    <GuiElement type="listItem" profile="ingameMenuProductionPointListItem">
+                        <GuiElement type="bitmap" profile="ingameMenuProductionGoodsIcon" name="icon" />
+                        <GuiElement type="text" profile="ingameMenuProductionProductionTitle" name="name" />
+
+                        <GuiElement type="bitmap" profile="ingameMenuProductionProductionActivityBg" name="activityBg" >
+                            <GuiElement type="bitmap" profile="ingameMenuProductionProductionActivity" name="activity" />
+                        </GuiElement>
+                    </GuiElement>
+
+                    <GuiElement type="listItem" profile="ingameMenuProductionListSectionHeader" name="section">
+                        <GuiElement type="text" profile="ingameMenuProductionListSectionHeaderText" name="title" />
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="threePartBitmap" profile="ingameMenuProductionListSlider">
+                    <GuiElement type="slider" profile="ingameMenuProductionListSliderBar" dataElementId="productionList" handleFocus="false" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="roundCorner" profile="ingameMenuProductionDetailsBox" id="detailsBox">
+                <GuiElement type="text" profile="ingameMenuProductionColumnTitle" text="$l10n_ui_productions_production" />
+
+                <GuiElement type="text" profile="ingameMenuProductionDetailKey1" text="$l10n_ui_productions_status"/>
+                <GuiElement type="text" profile="ingameMenuProductionDetailValue1" id="detailProductionStatus"/>
+
+                <GuiElement type="text" profile="ingameMenuProductionDetailKey2" id="productionCyclesDesc" text="$l10n_ui_productions_cyclesPerHour" />
+                <GuiElement type="text" profile="ingameMenuProductionDetailValue2" id="detailCyclesPerMonth"/>
+
+                <GuiElement type="text" profile="ingameMenuProductionDetailKey3" id="productionCostsDesc" text="$l10n_ui_productions_costsPerHour" />
+                <GuiElement type="text" profile="ingameMenuProductionDetailValue3" id="detailCostsPerMonth" format="currency" />
+
+                <GuiElement type="text" profile="ingameMenuProductionRecipeKey" text="$l10n_ui_productions_recipe" textBold="true" />
+
+                <GuiElement type="bitmap" profile="ingameMenuProductionDetailRecipeIcon" id="recipeFillIcon" />
+                <GuiElement type="text" profile="ingameMenuProductionDetailRecipeText" id="recipeText" />
+                <GuiElement type="bitmap" profile="ingameMenuProductionDetailRecipePlus" id="recipePlus" />
+
+                <GuiElement type="flowLayout" profile="ingameMenuProductionDetailRecipeLayoutInput" id="detailRecipeInputLayout" />
+                <GuiElement type="bitmap" profile="ingameMenuProductionDetailRecipeArrow" />
+                <GuiElement type="flowLayout" profile="ingameMenuProductionDetailRecipeLayoutOutput" id="detailRecipeOutputLayout" />
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="ingameMenuProductionStorageBox" id="storageListBox" >
+                <GuiElement type="text" profile="ingameMenuProductionColumnTitle" text="$l10n_ui_productions_buildingStorage" />
+
+                <GuiElement type="bitmap" profile="ingameMenuProductionTopScrollClipper" name="topClipper" />
+                <GuiElement type="bitmap" profile="ingameMenuProductionBottomScrollClipper" name="bottomClipper" />
+
+                <GuiElement type="smoothList" profile="ingameMenuProductionStorageList" id="storageList" listSectionHeader="section" focusId="storage" focusChangeLeft="production" focusChangeBottom="nil" focusChangeTop="nil" startClipperElementName="topClipper" endClipperElementName="bottomClipper">
+                    <GuiElement type="listItem" profile="ingameMenuProductionStorageListItem" name="inputCell">
+                        <GuiElement type="bitmap" name="icon" profile="ingameMenuProductionGoodsIcon" />
+                        <GuiElement type="text" profile="ingameMenuProductionStorageTitle" name="fillType" />
+
+                        <GuiElement type="text" profile="ingameMenuProductionStorageLevel" name="fillLevel" />
+                        <GuiElement type="threePartBitmap" profile="ingameMenuProductionStorageBarBackground">
+                            <GuiElement type="threePartBitmap" profile="ingameMenuProductionStorageBar" name="bar"/>
+                        </GuiElement>
+                    </GuiElement>
+
+                    <GuiElement type="listItem" profile="ingameMenuProductionStorageListOutputItem" name="outputCell">
+                        <GuiElement type="bitmap" name="icon" profile="ingameMenuProductionGoodsIcon" anchors="0 0 1 1" position="5.5px -8px" />
+                        <GuiElement type="text" profile="ingameMenuProductionStorageTitle" name="fillType" />
+
+                        <GuiElement type="text" profile="ingameMenuProductionStorageLevel" name="fillLevel" />
+                        <GuiElement type="threePartBitmap" profile="ingameMenuProductionStorageBarBackground">
+                            <GuiElement type="threePartBitmap" profile="ingameMenuProductionStorageBar" name="bar"/>
+                        </GuiElement>
+
+                        <GuiElement type="text" profile="ingameMenuProductionStorageMode" name="outputMode" />
+                    </GuiElement>
+
+                    <GuiElement type="listItem" profile="ingameMenuProductionListSectionHeader" name="section">
+                        <GuiElement type="text" profile="ingameMenuProductionListSectionHeaderText" name="title" />
+                    </GuiElement>
+                </GuiElement>
+                <GuiElement type="threePartBitmap" profile="ingameMenuProductionListSlider">
+                    <GuiElement type="slider" profile="ingameMenuProductionListSliderBar" dataElementId="storageList" handleFocus="false" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="ingameMenuProductionEmptyBox" id="noPointsBox">
+                <GuiElement type="text" profile="ingameMenuProductionEmptyText" text="$l10n_ui_noProductionPoints" />
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+    <Profile name="ingameMenuProductionHeaderIcon" extends="menuHeaderIcon">
+        <Value name="size" value="64px 64px"/>
+        <Value name="imageUVs" value="130px 0px 65px 65px"/>
+    </Profile>
+
+    <Profile name="ingameMenuProductionSettingsBox" extends="ingameMenuSettingsBox">
+
+        <Variant name="mobile">
+            <Value name="position" value="0px 40px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionListBox" extends="emptyPanel" with="anchorTopLeft">
+        <Value name="position" value="0" />
+        <Value name="size" value="400px 756px"/>
+
+        <Variant name="mobile">
+            <Value name="size" value="500px 700px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionList" extends="list" with="anchorTopLeft">
+        <Value name="size" value="400px 756px"/>
+        <Value name="isHorizontalList" value="false"/>
+        <Value name="selectedWithoutFocus" value="false" />
+
+        <Variant name="mobile">
+            <Value name="size" value="500px 700px"/>
+            <Value name="supportsTouchScrolling" value="true"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionPointListItem" extends="listItem" with="alternating">
+        <Value name="imageColor" value="$preset_colorListRowBackground"/>
+        <Value name="imageFocusedColor" value="$preset_colorFocusBackgroundGradient"/>
+        <Value name="imageSelectedColor" value="$preset_colorFocusBackgroundGradient"/>
+
+        <Value name="size" value="400px 50px"/>
+
+        <Variant name="mobile">
+            <Value name="size" value="500px 90px"/>
+            <Value name="imageColor" value="0 0 0 0"/>
+            <Value name="imageFocusedColor" value="$preset_colorListRowAlternateBackground"/>
+            <Value name="imageSelectedColor" value="$preset_colorListRowAlternateBackground"/>
+            <Value name="alternateBackgroundColor" value="0 0 0 0" />
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionGoodsIcon" extends="baseReference" with="anchorMiddleLeft">
+        <Value name="imageColor" value="$preset_colorWhite" />
+        <Value name="imageUVs" value="0 0 1 1" />
+        <Value name="size" value="34px 34px" />
+        <Value name="position" value="5.5px 0" />
+
+        <Variant name="mobile">
+            <Value name="size" value="75px 75px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionProductionTitle" extends="textDefault" with="anchorMiddleLeft">
+        <Value name="size" value="200px 50px" />
+        <Value name="textVerticalAlignment" value="middle" />
+        <Value name="textAutoWidth" value="true" />
+        <Value name="position" value="45px 0" />
+
+        <Variant name="mobile" with="anchorMiddleLeft">
+            <Value name="textSize" value="35px"/>
+            <Value name="position" value="95px 0" />
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionProductionActivityBg" extends="baseReference" with="anchorMiddleRight">
+        <Value name="size" value="12px 12px" />
+        <Value name="position" value="-15px 0" />
+        <Value name="imageUVs" value="630px 390px 12px 12px" />
+        <Value name="imageColor" value="$preset_colorTransparent" />
+        <Value name="imageSelectedColor" value="$preset_colorTransparent" />
+
+        <Variant name="mobile">
+            <Value name="imageUVs" value="586px 390px 24px 24px" />
+            <Value name="size" value="28px 28px" />
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionProductionActivityBgActive" extends="ingameMenuProductionProductionActivityBg">
+        <Value name="imageColor" value="$preset_colorBlack" />
+        <Value name="imageSelectedColor" value="$preset_colorBlack" />
+    </Profile>
+
+    <Profile name="ingameMenuProductionProductionActivityBgIssue" extends="ingameMenuProductionProductionActivityBg">
+        <Value name="imageColor" value="$preset_colorBlack" />
+        <Value name="imageSelectedColor" value="$preset_colorBlack" />
+    </Profile>
+
+    <Profile name="ingameMenuProductionProductionActivity" extends="baseReference" with="anchorMiddleCenter">
+        <Value name="size" value="12px 12px" />
+        <Value name="imageUVs" value="630px 390px 12px 12px" />
+        <Value name="imageColor" value="$preset_colorTransparent" />
+        <Value name="imageSelectedColor" value="$preset_colorTransparent" />
+
+        <Variant name="mobile">
+            <Value name="imageUVs" value="586px 390px 24px 24px" />
+            <Value name="position" value="0px 0px" />
+            <Value name="size" value="20px 20px" />
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionProductionActivityActive" extends="ingameMenuProductionProductionActivity">
+        <Value name="imageColor" value="$preset_colorMainUI" />
+        <Value name="imageSelectedColor" value="$preset_colorMainUI" />
+    </Profile>
+
+    <Profile name="ingameMenuProductionProductionActivityIssue" extends="ingameMenuProductionProductionActivity">
+        <Value name="imageColor" value="$preset_colorRed" />
+        <Value name="imageSelectedColor" value="$preset_colorRed" />
+    </Profile>
+
+    <Profile name="ingameMenuProductionListSectionHeader" extends="listItem" with="alternating">
+        <Value name="size" value="400px 40px"/>
+
+        <Value name="imageColor" value="$preset_colorListHeaderBackground" />
+        <Value name="imageFocusedColor" value="$preset_colorFocusBackgroundGradient"/>
+        <Value name="imageSelectedColor" value="$preset_colorFocusBackgroundGradient"/>
+
+        <Variant name="mobile">
+            <Value name="size" value="528px 80px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionListSectionHeaderText" extends="textDefault" with="anchorMiddleLeft">
+        <Value name="position" value="30px 0px"/>
+
+        <Value name="textAutoWidth" value="true"/>
+        <Value name="textMaxWidth" value="380px"/>
+        <Value name="textVerticalAlignment" value="middle"/>
+        <Value name="textBold" value="true"/>
+        <Value name="textSize" value="20px"/>
+        <Value name="textUpperCase" value="true"/>
+        <Value name="textColor" value="$preset_colorHeaderText"/>
+
+        <Variant name="mobile">
+            <Value name="position" value="18px 0px"/>
+            <Value name="textMaxWidth" value="508px"/>
+            <Value name="textSize" value="34px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionListSlider" extends="verticalListSliderRightDocked">
+
+        <Variant name="mobile">
+            <Value name="size" value="12px 700px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionListSliderBar" extends="verticalListSliderBar">
+
+        <Variant name="mobile">
+            <Value name="size" value="6px 692px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionDetailsBox" extends="emptyPanel" with="anchorTopLeft">
+        <Value name="size" value="472px 756px"/>
+        <Value name="position" value="440px 0"/>
+        <Value name="imageColor" value="$preset_colorDetailBackground"/>
+
+        <Variant name="mobile">
+            <Value name="position" value="540px 0"/>
+            <Value name="size" value="678px 700px"/>
+            <Value name="color" value="$preset_colorDetailBackground"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionColumnTitle" extends="textDefault" with="anchorTopLeft">
+        <Value name="size" value="300px 40px"/>
+        <Value name="position" value="15px -15px"/>
+
+        <Value name="textMaxWidth" value="300px"/>
+        <Value name="textSize" value="30px"/>
+        <Value name="textBold" value="false"/>
+
+        <Variant name="mobile">
+            <Value name="size" value="300px 50px"/>
+            <Value name="textSize" value="40px"/>
+            <Value name="position" value="15px -8px"/>
+            <Value name="textLayoutMode" value="resize" />
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionDetailKey1" extends="textDefault" with="anchorTopLeft">
+        <Value name="textAutoWidth" value="true" />
+        <Value name="position" value="15px -80px"/>
+
+        <Variant name="mobile">
+            <Value name="textSize" value="35px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionDetailKey2" extends="textDefault" with="anchorTopLeft">
+        <Value name="textAutoWidth" value="true" />
+        <Value name="position" value="15px -110px"/>
+
+        <Variant name="mobile">
+            <Value name="position" value="15px -130px"/>
+            <Value name="textSize" value="35px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionDetailKey3" extends="textDefault" with="anchorTopLeft">
+        <Value name="textAutoWidth" value="true" />
+        <Value name="position" value="15px -140px"/>
+
+        <Variant name="mobile">
+            <Value name="position" value="15px -180px"/>
+            <Value name="textSize" value="35px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionDetailValue1" extends="textDefault" with="anchorTopRight">
+        <Value name="textAutoWidth" value="true" />
+        <Value name="textAlignment" value="right" />
+        <Value name="position" value="-15px -80px"/>
+
+        <Variant name="mobile">
+            <Value name="textSize" value="35px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionDetailValue2" extends="textDefault" with="anchorTopRight">
+        <Value name="textAutoWidth" value="true" />
+        <Value name="textAlignment" value="right" />
+        <Value name="position" value="-15px -110px"/>
+
+        <Variant name="mobile">
+            <Value name="position" value="-15px -130px"/>
+            <Value name="textSize" value="35px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionDetailValue3" extends="textDefault" with="anchorTopRight">
+        <Value name="textAutoWidth" value="true" />
+        <Value name="textAlignment" value="right" />
+        <Value name="position" value="-15px -140px"/>
+
+        <Variant name="mobile">
+            <Value name="position" value="-15px -180px"/>
+            <Value name="textSize" value="35px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionDetailValueError" extends="ingameMenuProductionDetailValue1">
+        <Value name="textColor" value="$preset_colorRed" />
+    </Profile>
+
+    <Profile name="ingameMenuProductionRecipeKey" extends="textDefault" with="anchorTopLeft">
+        <Value name="textAutoWidth" value="true" />
+        <Value name="position" value="15px -210px"/>
+        <Value name="textSize" value="20px"/>
+
+        <Variant name="mobile">
+            <Value name="position" value="15px -260px"/>
+            <Value name="textSize" value="35px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionDetailRecipeIcon" extends="baseReference">
+        <Value name="imageColor" value="$preset_colorWhite" />
+        <Value name="imageUVs" value="0 0 1 1" />
+        <Value name="size" value="34px 34px" />
+
+        <Variant name="mobile">
+            <Value name="size" value="85px 85px" />
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionDetailRecipeText" extends="textDefault">
+        <Value name="textSize" value="22px" />
+        <Value name="size" value="0 34px" />
+        <Value name="textAutoWidth" value="true" />
+        <Value name="margin" value="1px 0 1px 0" />
+
+        <Variant name="mobile">
+            <Value name="size" value="0 85px" />
+            <Value name="textSize" value="55px" />
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionDetailRecipePlus" extends="baseReference">
+        <Value name="imageColor" value="$preset_colorWhite" />
+        <Value name="imageUVs" value="250px 335px 27px 51px" />
+        <Value name="size" value="16px 34px" />
+        <Value name="margin" value="2px 0px 2px 0px" />
+
+        <Variant name="mobile">
+            <Value name="size" value="32px 68px" />
+            <Value name="margin" value="5px 0px 5px 0px" />
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionDetailRecipeLayoutInput" extends="emptyPanel" with="anchorTopCenter">
+        <Value name="size" value="442px 34px" />
+        <Value name="position" value="0 -240px"/>
+        <Value name="alignmentX" value="center" />
+        <Value name="flowDirection" value="horizontal"/>
+        <Value name="numFlows" value="2"/>
+
+        <Variant name="mobile">
+            <Value name="alignmentY" value="middle" />
+            <Value name="size" value="600px 170px" />
+            <Value name="position" value="0 -320px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionDetailRecipeArrow" extends="baseReference" with="anchorTopCenter">
+        <Value name="imageColor" value="$preset_colorWhite" />
+        <Value name="imageUVs" value="203px 347px 27px 27px" />
+        <Value name="size" value="18px 18px" />
+        <Value name="imageUVRotation" value="90" />
+        <Value name="position" value="0 -280px"/>
+
+        <Variant name="mobile">
+            <Value name="position" value="0 -495px"/>
+            <Value name="size" value="45px 45px" />
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionDetailRecipeLayoutOutput" extends="emptyPanel" with="anchorTopCenter">
+        <Value name="size" value="442px 34px" />
+        <Value name="position" value="0 -308px"/>
+        <Value name="alignmentX" value="center" />
+        <Value name="flowDirection" value="horizontal"/>
+
+        <Variant name="mobile">
+            <Value name="size" value="600px 85px" />
+            <Value name="position" value="0 -545px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionStorageBox" extends="emptyPanel" with="anchorTopRight">
+        <Value name="size" value="472px 756px"/>
+        <Value name="imageColor" value="$preset_colorDetailBackground"/>
+
+        <Variant name="mobile">
+            <Value name="size" value="532px 700px"/>
+            <Value name="imageColor" value="0 0 0 0"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionTopScrollClipper" extends="topScrollClipper" with="anchorTopCenter">
+        <Value name="position" value="0 -77dp" />
+        <Value name="size" value="490px 2dp" />
+    </Profile>
+    <Profile name="ingameMenuProductionBottomScrollClipper" extends="ingameMenuProductionTopScrollClipper" with="anchorBottomCenter">
+        <Value name="position" value="0 -2dp" />
+    </Profile>
+
+    <Profile name="ingameMenuProductionStorageList" extends="list" with="anchorBottomRight">
+        <Value name="size" value="472px 686px"/>
+        <Value name="isHorizontalList" value="false"/>
+        <Value name="selectedWithoutFocus" value="false" />
+
+        <Variant name="mobile">
+            <Value name="size" value="532px 620px"/>
+            <Value name="supportsTouchScrolling" value="true"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionStorageListItem" extends="listItem" with="alternating">
+        <Value name="imageColor" value="$preset_colorListRowBackground"/>
+        <Value name="imageFocusedColor" value="$preset_colorFocusBackgroundGradient"/>
+        <Value name="imageSelectedColor" value="$preset_colorFocusBackgroundGradient"/>
+
+        <Value name="size" value="472px 50px"/>
+
+        <Variant name="mobile">
+            <Value name="size" value="532px 100px"/>
+            <Value name="imageColor" value="0 0 0 0"/>
+            <Value name="imageFocusedColor" value="$preset_colorListRowAlternateBackground"/>
+            <Value name="imageSelectedColor" value="$preset_colorListRowAlternateBackground"/>
+            <Value name="alternateBackgroundColor" value="0 0 0 0" />
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionStorageTitle" extends="textDefault" with="anchorTopLeft">
+        <Value name="size" value="200px 40px" />
+        <Value name="textVerticalAlignment" value="middle" />
+        <Value name="textAutoWidth" value="true" />
+        <Value name="position" value="45px 0px" />
+
+        <Variant name="mobile">
+            <Value name="textSize" value="35px"/>
+            <Value name="position" value="90px -10px" />
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionStorageLevel" extends="textDefault" with="anchorTopRight">
+        <Value name="size" value="200px 40px" />
+        <Value name="textVerticalAlignment" value="middle" />
+        <Value name="textAutoWidth" value="true" />
+        <Value name="position" value="-20px 0" />
+
+        <Variant name="mobile">
+            <Value name="textSize" value="35px"/>
+            <Value name="position" value="-20px -10px" />
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionStorageBarBackground" extends="emptyPanel" with="anchorTopRight">
+        <Value name="size" value="406px 6px"/>
+        <Value name="position" value="-20px -36px" />
+
+        <Value name="imageColor" value="0 0 0 0.4" />
+        <Value name="imageUVs" value="593px 427px 20px 6px" />
+        <Value name="midImageSize" value="1px 6px" />
+
+        <Value name="startImageColor" value="0 0 0 0.4" />
+        <Value name="startImageFilename" value="g_baseUIFilename" />
+        <Value name="startImageSize" value="4px 6px" />
+        <Value name="startImageUVs" value="586px 427px 3px 6px" />
+
+        <Value name="endImageColor" value="0 0 0 0.4" />
+        <Value name="endImageFilename" value="g_baseUIFilename" />
+        <Value name="endImageSize" value="4px 6px" />
+        <Value name="endImageUVs" value="633px 427px 3px 6px" />
+
+        <Value name="isHorizontal" value="true" />
+
+        <Variant name="mobile">
+            <Value name="position" value="-20px -60px" />
+            <Value name="size" value="420px 20px" />
+            <Value name="midImageSize" value="1px 20px" />
+            <Value name="startImageSize" value="10px 20px" />
+            <Value name="endImageSize" value="10px 20px" />
+            <Value name="imageColor" value="0.0802 0.0802 0.0802 1" />
+            <Value name="startImageColor" value="0.0802 0.0802 0.0802 1" />
+            <Value name="endImageColor" value="0.0802 0.0802 0.0802 1" />
+
+            <Value name="startImageUVs" value="438px 470px 10px 20px" />
+            <Value name="imageUVs" value="448px 470px 30px 20px" />
+            <Value name="endImageUVs" value="478px 470px 10px 20px" />
+        </Variant>
+    </Profile>
+    <Profile name="ingameMenuProductionStorageBar" extends="ingameMenuAnimalsSmallStatusBar" with="anchorTopLeft">
+        <Value name="size" value="406px 6px" />
+        <Value name="imageColor" value="$preset_colorGreen"/>
+        <Value name="startImageColor" value="$preset_colorGreen" />
+        <Value name="endImageColor" value="$preset_colorGreen" />
+
+        <Variant name="mobile">
+            <Value name="size" value="420px 20px" />
+            <Value name="midImageSize" value="1px 20px" />
+            <Value name="startImageSize" value="10px 20px" />
+            <Value name="endImageSize" value="10px 20px" />
+            <Value name="startImageUVs" value="438px 470px 10px 20px" />
+            <Value name="imageUVs" value="448px 470px 30px 20px" />
+            <Value name="endImageUVs" value="478px 470px 10px 20px" />
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionStorageBarDanger" extends="ingameMenuProductionStorageBar">
+        <Value name="imageColor" value="$preset_colorRed"/>
+        <Value name="startImageColor" value="$preset_colorRed" />
+        <Value name="endImageColor" value="$preset_colorRed" />
+    </Profile>
+
+    <Profile name="ingameMenuProductionStorageListOutputItem" extends="ingameMenuProductionStorageListItem">
+        <Value name="size" value="472px 70px"/>
+
+        <Variant name="mobile">
+            <Value name="size" value="532px 120px"/>
+            <Value name="imageColor" value="0 0 0 0"/>
+            <Value name="imageFocusedColor" value="$preset_colorListRowAlternateBackground"/>
+            <Value name="imageSelectedColor" value="$preset_colorListRowAlternateBackground"/>
+            <Value name="alternateBackgroundColor" value="0 0 0 0" />
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionStorageMode" extends="textDefault" with="anchorBottomRight">
+        <Value name="size" value="200px 32px" />
+        <Value name="textSize" value="16px" />
+        <Value name="textVerticalAlignment" value="middle" />
+        <Value name="textAutoWidth" value="true" />
+        <Value name="position" value="-20px 0" />
+
+        <Variant name="mobile">
+            <Value name="position" value="-20px 5px" />
+            <Value name="textSize" value="25px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuProductionEmptyBox" extends="emptyPanel" with="anchorMiddleCenter">
+        <Value name="size" value="1400px 756px" />
+    </Profile>
+
+    <Profile name="ingameMenuProductionEmptyText" extends="textDefault" with="anchorMiddleCenter">
+        <Value name="textSize" value="26px" />
+        <Value name="textAlignment" value="center" />
+        <Value name="textAutoWidth" value="true" />
+        <Value name="textMaxNumLines" value="2" />
+        <Value name="textMaxWidth" value="700px" />
+    </Profile>
+    </GUIProfiles>
+</GUI>

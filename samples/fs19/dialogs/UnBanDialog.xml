@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" />
+
+    <GuiElement type="bitmap" profile="dialogBg" id="dialogElement" size="735px 428px">
+        <GuiElement type="bitmap" profile="dialogHeaderDocked">
+            <GuiElement type="text" profile="dialogHeaderText" text="$l10n_ui_unbanPlayers" id="headerText" />
+        </GuiElement>
+
+        <GuiElement type="empty" profile="unBanDialogListBox" position="0px 0px">
+            <!-- Banned User List Header -->
+            <GuiElement type="bitmap" profile="unBanDialogHeaderBox" position="1px -1px">
+                <GuiElement type="text" profile="unBandDialogHeaderText" position="16px 0px" screenAlign="middleLeft" positionOrigin="middleLeft" text="$l10n_ui_bannedUserLastNickname"/>
+                <GuiElement type="text" profile="unBandDialogHeaderText" position="-44px 0px" screenAlign="middleRight" positionOrigin="middleRight" text="$l10n_ui_bannedUserDate"/>
+            </GuiElement>
+
+            <!-- Banned User List -->
+            <GuiElement type="list" profile="unBanDialogList" id="banList" position="1px -104px" onSelectionChanged="onListSelectionChanged">
+                <GuiElement type="listItem" profile="unBanDialogListItem" id="itemTemplate">
+                    <GuiElement type="text" profile="unBanDialogListText" position="16px 0px" name="userName"/>
+                    <GuiElement type="text" profile="unBanDialogListText" screenAlign="middleRight" positionOrigin="middleRight" textAlignment="right" position="-16px 0px" name="banDate"/>
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="text" text="$l10n_ui_gameIsLoadingPleaseWait" position="0 0" positionOrigin="middleCenter" screenAlign="middleCenter" profile="textDefault" visible="false" id="loadingText" />
+
+            <!-- List Slider -->
+            <GuiElement type="bitmap" profile="verticalGlassListSliderBackground" size="28px 320px" position="-1px -104px">
+                <GuiElement type="slider" profile="verticalGlassListSlider" size="16px 308px" dataElementId="banList" handleFocus="false"/>
+            </GuiElement>
+        </GuiElement>
+
+        <GuiElement type="flowLayout" profile="buttonBoxDialog" id="buttonLayout">
+            <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" id="backButton" />
+            <GuiElement type="button" profile="buttonActivate" text="$l10n_button_unbanAll" onClick="onClickActivate" id="unBanAllButton" />
+            <GuiElement type="button" profile="buttonCancel" text="$l10n_button_unban" onClick="onClickCancel" id="unBanButton" />
+        </GuiElement>
+    </GuiElement>
+</GUI>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" id="dialogBg" />
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="roundCorner" profile="animalTradingDialogBg" id="dialogElement">
+        <GuiElement type="animation" profile="dialogLoading"  id="iconLoadingElement" visible="false" />
+
+
+        <GuiElement type="multiTextOption" profile="multiTextOptionAnimalDealerNumAnimals" id="numAnimalsElement" onClick="onClickNumAnimals" focusInit="onOpen" >
+            <GuiElement type="text"   profile="multiTextOptionTextAnimalDealer" id="numAnimalsText" name="text" />
+        </GuiElement>
+
+        <GuiElement type="empty" profile="animalDealerInfoBox" id="infoBox">
+            <GuiElement type="text"  profile="animalDealerMoneyTitle" position="0 350px" text="$l10n_ui_prices:" />
+            <GuiElement type="text"  profile="animalDealerMoneyValue" position="0 350px" text="0" id="infoPrice"/>
+            <GuiElement type="text"  profile="animalDealerMoneyTitle" position="0 300px" text="$l10n_shop_fee:" />
+            <GuiElement type="text"  profile="animalDealerMoneyValue" position="0 300px" text="0" id="infoFee"/>
+
+            <GuiElement type="empty" profile="singleLineSeparator"    position="0 285px" size="700px 2dp" />
+            <GuiElement type="empty" profile="singleLineSeparator"    position="0 281px" size="700px 2dp" />
+
+            <GuiElement type="text"  profile="animalDealerMoneyTitle" position="0 240px" text="$l10n_ui_total:" />
+            <GuiElement type="text"  profile="animalDealerMoneyValue" position="0 240px" text="0" id="infoTotal"/>
+
+            <GuiElement type="bitmap" profile="animalDealerInfoIcon" />
+            <GuiElement type="text"  profile="animalDealerInfo" text="$l10n_shop_transportationFee" />
+        </GuiElement>
+
+
+        <GuiElement type="bitmap" profile="animalTradingDialogIcon" id="infoIcon"/>
+
+        <GuiElement type="flowLayout" profile="buttonBoxDialog">
+            <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" id="backButton" />
+            <GuiElement type="button" profile="buttonBuy" text="$l10n_button_buy" onClick="onBuy" id="buyButton" />
+            <GuiElement type="button" profile="buttonSell" text="$l10n_button_sell" onClick="onSell" id="sellButton" />
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="animalTradingDialogBg" extends="dialogBg">
+            <Value name="size" value="630px 500px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="1400px 600px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="multiTextOptionTextAnimalDealer" extends="multiTextOptionText">
+
+            <Variant name="mobile">
+                <Value name="textSize" value="40px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="animalTradingDialogIcon" extends="baseReference" with="anchorTopCenter">
+            <Value name="position" value="0px 10px"/>
+            <Value name="size" value="250px 250px"/>
+            <Value name="imageUVs" value="0 0 1 1"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="440px 440px"/>
+                <Value name="position" value="-400px 10px"/>
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

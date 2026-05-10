@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="dynamicFadedBitmap" profile="uiFullBlurBG"/>
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlow" />
+
+    <GuiElement type="bitmap" profile="uiElementContainerFullScreen">
+        <GuiElement type="empty" profile="multiplayerScreenContainer">
+            <GuiElement type="bitmap" profile="headerBoxDocked">
+                <GuiElement type="text" profile="headerText" text="$l10n_ui_inGameMenuModeMultiplayer" textOffset="0 0" />
+            </GuiElement>
+
+            <GuiElement type="smoothList" profile="multiplayerScreenList" id="list" onDoubleClick="onContinue" listDelegate="self" listDataSource="self">
+                <GuiElement type="listItem" profile="multiplayerButton">
+                    <GuiElement type="bitmap" profile="multiplayerButtonIcon" name="icon" />
+                    <GuiElement type="text" profile="multiplayerButtonText" name="title" />
+
+                    <GuiElement type="bitmap" profile="listItemSelector"/>
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="text" profile="multiplayerOnlinePresenceNameText" id="onlinePresenceNameElement" />
+
+    <GuiElement type="bitmap" profile="natWarningBg" id="natWarning">
+        <GuiElement type="text" profile="natWarning" text="$l10n_ui_strictNatWarning"/>
+    </GuiElement>
+
+    <GuiElement type="flowLayout" profile="buttonBoxDockedOnScreen" >
+        <GuiElement type="button" profile="buttonOK" text="$l10n_button_continue" onClick="onContinue" />
+        <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" />
+        <GuiElement type="button" profile="buttonActivate" text="$l10n_button_changeName" onClick="onClickChangeName" id="changeNameButton" />
+        <GuiElement type="button" profile="buttonCancel" text="$l10n_button_blocklist" onClick="onClickOpenBlocklist" />
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="multiplayerScreenContainer" with="anchorMiddleCenter">
+            <Value name="size" value="1258px 416px" />
+        </Profile>
+
+        <Profile name="multiplayerScreenList" extends="list" with="anchorTopLeft">
+            <Value name="size" value="1258px 416px" />
+            <Value name="imageColor" value="$preset_colorTransparent" />
+
+            <Value name="listItemSpacing" value="10px"/>
+            <Value name="selectOnScroll" value="true"/>
+            <Value name="isHorizontalList" value="true"/>
+        </Profile>
+
+        <Profile name="multiplayerButton" extends="mainMenuButton">
+            <Value name="size" value="411px 416px"/>
+
+            <Value name="imageColor" value="$preset_colorItemBgNormal"/>
+            <Value name="imageFocusedColor" value="$preset_colorItemBgSelected"/>
+            <Value name="imageSelectedColor" value="$preset_colorItemBgSelected"/>
+            <Value name="imageHighlightedColor" value="$preset_colorItemBgSelected"/>
+
+            <Value name="clickSound" value="CLICK"/>
+        </Profile>
+
+        <Profile name="multiplayerButtonIcon" extends="baseReference" with="anchorTopCenter">
+            <Value name="size" value="128px 128px" />
+            <Value name="position" value="0 -135px" />
+
+            <Value name="imageColor" value="$preset_colorMainUI" />
+            <Value name="imageSelectedColor" value="$preset_colorWhite" />
+            <Value name="imageFocusedColor" value="$preset_colorWhite" />
+            <Value name="imageHighlightedColor" value="$preset_colorWhite" />
+        </Profile>
+
+        <Profile name="multiplayerButtonIconJoin" extends="multiplayerButtonIcon">
+            <Value name="imageUVs" value="863px 816px 128px 128px" />
+        </Profile>
+        <Profile name="multiplayerButtonIconCreate" extends="multiplayerButtonIcon">
+            <Value name="imageUVs" value="607px 816px 128px 128px" />
+        </Profile>
+        <Profile name="multiplayerButtonIconRent" extends="multiplayerButtonIcon">
+            <Value name="imageUVs" value="735px 816px 128px 128px" />
+        </Profile>
+
+        <Profile name="multiplayerButtonText" extends="textDefault" with="anchorBottomLeft">
+            <Value name="position" value="30px 30px"/>
+
+            <Value name="textColor" value="$preset_colorWhite_50"/>
+            <Value name="textSelectedColor" value="$preset_colorMainUI"/>
+            <Value name="textSize" value="30px"/>
+            <Value name="textVerticalAlignment" value="bottom"/>
+            <Value name="textUpperCase" value="false"/>
+            <Value name="textMaxNumLines" value="2"/>
+            <Value name="textMaxWidth" value="350px"/>
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="textBold" value="false"/>
+        </Profile>
+
+        <Profile name="multiplayerOnlinePresenceNameText" extends="textDefault" with="anchorTopRight">
+            <Value name="text2Size" value="20px"/>
+            <Value name="textSize" value="20px"/>
+            <Value name="textBold" value="true"/>
+            <Value name="text2Bold" value="true"/>
+            <Value name="text2Color" value="0 0 0 1"/>
+            <Value name="text2Offset" value="-1px -1px"/>
+            <Value name="textAlignment" value="right"/>
+            <Value name="position" value="-50px -50px"/>
+            <Value name="textAutoWidth" value="true"/>
+        </Profile>
+
+        <Profile name="natWarningBg" extends="baseReference">
+            <Value name="fixedWidth" value="true"/>
+            <Value name="position" value="0px 100px"/>
+            <Value name="size" value="1920px 60px"/>
+            <Value name="imageColor" value="0.0037 0.0056 0.0065 0.65"/>
+        </Profile>
+
+        <Profile name="natWarning" extends="textDefault" with="anchorMiddleCenter">
+            <Value name="size" value="1500px 40px"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textMaxNumLines" value="2"/>
+        </Profile>
+    </GUIProfiles>
+</GUI>

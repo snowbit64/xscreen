@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <!-- Background FullScreen Relative -->
+    <GuiElement type="dynamicFadedBitmap" profile="uiFullBlurBG"/>
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlow" />
+
+    <GuiElement type="empty" id="sidebar" profile="languageSidebar">
+        <GuiElement type="bitmap" id="glassEdgeOverlay" profile="mainScreenSidebarGlassEdge" />
+        <GuiElement type="bitmap" id="logo" profile="mainScreenLogo" />
+
+        <!-- Main Button Container -->
+        <GuiElement id="buttonBox" type="boxLayout" profile="mainScreenButtonBox">
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_career" onClick="onCareerClick" />
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_achievements" onClick="onAchievementsClick" id="achievementsButton"/>
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_credits" onClick="onCreditsClick" />
+            <GuiElement type="button" profile="mainMenuButtonActive" text="$l10n_button_settings" id="changeLanguageButton"/>
+        </GuiElement>
+    </GuiElement>
+
+    <!-- Body - Central -->
+    <GuiElement type="empty" profile="languageContainerFullScreen" id="mainContainer">
+        <GuiElement type="flowLayout" profile="languageElementCenter" id="contentContainer">
+            <GuiElement type="text" profile="languageText" text="$l10n_toolTip_language" id="languageText" />
+            <GuiElement type="multiTextOption" profile="multiTextOptionLanguage" id="languageElement" focusInit="onOpen" />
+            <GuiElement type="text" profile="languageText" text="$l10n_toolTip_cloudSync" id="cloudSyncText" />
+            <GuiElement type="multiTextOption" profile="multiTextOptionLanguage" id="cloudSyncElement" />
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="flowLayout" profile="languageButtonBox" id="buttonsPC">
+        <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack"/>
+        <GuiElement type="button" profile="buttonOK" text="$l10n_button_apply" onClick="onClickOk"/>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="languageSidebar" extends="baseReference" with="anchorBottomLeft">
+            <Value name="visible" value="false" />
+
+            <Variant name="mobile">
+                <Value name="visible" value="true" />
+
+                <Value name="position" value="0" />
+                <Value name="size" value="763px 1" />
+                <Value name="anchors" value="0 0 0 1" />
+            </Variant>
+        </Profile>
+
+        <Profile name="languageContainerFullScreen" extends="uiElementContainerFullScreen">
+
+            <Variant name="mobile" with="anchorBottomRight">
+                <Value name="imageColor" value="$preset_colorGlass" />
+            </Variant>
+        </Profile>
+
+        <Profile name="languageElementCenter" extends="uiElementCenter">
+
+            <Variant name="mobile" >
+                <Value name="position" value="0px -50px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="multiTextOptionLanguage" extends="multiTextOption">
+
+            <Variant name="mobile" with="anchorMiddleCenter">
+                <Value name="size" value="700px 105px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="languageText" extends="dialogText">
+            <Value name="textColor" value="$preset_colorWhite" />
+
+            <Variant name="mobile" with="anchorMiddleCenter">
+                <Value name="size" value="900px 50px"/>
+                <Value name="textSize" value="40px"/>
+                <Value name="textMaxNumLines" value="7" />
+            </Variant>
+        </Profile>
+
+        <Profile name="languageButtonBox" extends="buttonBoxDockedOnScreen">
+
+            <Variant name="mobile" with="anchorBottomRight">
+                <Value name="size" value="1030px 60px" />
+                <Value name="position" value="-65px 70px" />
+                <Value name="alignmentX" value="right"/>
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" id="dialogBg" />
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="bitmap" profile="optionDialogBg" id="dialogElement">
+        <GuiElement type="bitmap" profile="dialogHeaderDocked">
+            <GuiElement type="text" profile="dialogHeaderText" text="" id="dialogTitleElement"/>
+        </GuiElement>
+
+        <GuiElement type="text" profile="optionDialogText" id="dialogTextElement" />
+
+        <GuiElement type="multiTextOption" profile="optionDialogMultiTextOption" id="optionElement">
+            <GuiElement type="text"   profile="optionDialogMultiTextOptionText" name="text"/>
+        </GuiElement>
+
+        <GuiElement type="flowLayout" profile="buttonBoxDialog" id="buttonsPC" >
+            <GuiElement type="button" profile="buttonOK" text="$l10n_button_ok" onClick="onClickOk" id="yesButton" />
+            <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" id="noButton" />
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="optionDialogBg" extends="dialogBg">
+
+            <Variant name="mobile">
+                <Value name="size" value="1400px 300px"/>
+            </Variant>
+        </Profile>
+        <Profile name="optionDialogText" extends="dialogTextWithTitle">
+            <Value name="position" value="0px -35px"/>
+            <Value name="textWrapWidth" value="420px"/>
+
+            <Variant name="mobile">
+                <Value name="textMaxWidth" value="850px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="optionDialogMultiTextOption" extends="multiTextOption">
+            <Value name="size" value="500px 48px"/>
+            <Value name="anchors" value="0.5 0.5 0.5 0.5" />
+            <Value name="handleFocus" value="true" />
+            <Value name="focusInit" value="onOpen" />
+
+            <Variant name="mobile">
+                <Value name="size" value="800px 105px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="optionDialogMultiTextOptionText" extends="multiTextOptionText">
+            <Value name="textMaxNumLines" value="3" />
+            <Value name="textMaxWidth" value="480px" />
+        </Profile>
+    </GUIProfiles>
+</GUI>

@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="ingameMenuContracts">
+    <GuiElement type="empty" profile="uiInGameMenuFrame">
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel">
+            <GuiElement type="bitmap" profile="ingameMenuContractsHeaderIcon" />
+            <GuiElement type="text" profile="ingameMenuFrameHeaderText" text="$l10n_ui_contracts"/>
+        </GuiElement>
+
+        <GuiElement type="empty" profile="ingameMenuCenterBox" id="contractsContainer">
+            <GuiElement type="empty" profile="ingameMenuContractsListBox" id="contractsListBox">
+                <GuiElement type="smoothList" profile="ingameMenuContractsList" id="contractsList" focusInit="onOpen" listSectionHeader="section">
+                    <GuiElement type="listItem" profile="ingameMenuContractsListItem">
+
+                        <GuiElement type="text" profile="ingameMenuContractsListItemContract" name="contract" />
+                        <GuiElement type="text" profile="ingameMenuContractsListItemReward" name="reward" />
+                        <GuiElement type="text" profile="ingameMenuContractsListItemField" name="field" />
+
+                        <GuiElement type="text" profile="ingameMenuContractsListItemIndicatorActive" text="$l10n_fieldJob_active" name="indicatorActive" />
+                        <GuiElement type="text" profile="ingameMenuContractsListItemIndicatorFinished" text="$l10n_fieldJob_finished" name="indicatorFinished" />
+                        <GuiElement type="text" profile="ingameMenuContractsListItemIndicatorFailed" text="$l10n_fieldJob_failed" name="indicatorFailed" />
+                    </GuiElement>
+
+                    <GuiElement type="listItem" profile="ingameMenuContractsListCategory" name="section">
+                        <GuiElement type="text" profile="ingameMenuContractsListCategoryTitle" text="Contracts Title" name="title"/>
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="threePartBitmap" profile="verticalListSliderRightDocked">
+                    <GuiElement type="slider" profile="verticalListSliderBar" dataElementId="contractsList" handleFocus="false" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="ingameMenuContractsDetailsBox" id="detailsBox">
+                <GuiElement type="empty" profile="ingameMenuContractsFarmerBox" id="farmerBox">
+                    <GuiElement type="bitmap" profile="ingameMenuContractsFarmerCircle">
+                        <GuiElement type="bitmap" profile="ingameMenuContractsFarmerImage" id="farmerImage" />
+                    </GuiElement>
+                    <GuiElement type="text" profile="ingameMenuContractsFarmerName" id="farmerName" textBold="true" text="Benjarmin" />
+                    <GuiElement type="text" profile="ingameMenuContractsFarmerText" text="Owner of field 14 (4.2 ha)" id="farmerText" />
+
+                    <GuiElement type="bitmap" profile="ingameMenuContractsFarmerDivider" />
+                </GuiElement>
+
+                <GuiElement type="empty" profile="ingameMenuContractsContractBox" id="contractBox">
+                    <GuiElement type="text" profile="ingameMenuContractsContractTitle" id="titleText" position="0px -10px" />
+
+                    <GuiElement type="text" profile="ingameMenuContractsContractTextSmall" text="$l10n_fieldJob_desc_offersReward" position="0px -40px" />
+                    <GuiElement type="text" profile="ingameMenuContractsContractTextBig" id="rewardText" position="0px -80px" textSize="40px" />
+                    <GuiElement type="text" profile="ingameMenuContractsContractTextSmall" id="actionText" position="0px -120px" />
+                    <GuiElement type="text" profile="ingameMenuContractsContractTextBig" id="fieldBigText" position="0px -150px" />
+
+                    <GuiElement type="text" profile="ingameMenuContractsContractTextSmall" id="contractDescriptionText" textWrapWidth="700px" size="800px 50px" position="0px -180px" />
+                    <GuiElement type="text" profile="ingameMenuContractsContractTextSmall" id="useOwnEquipementText" textWrapWidth="700px" size="800px 50px" position="0px -230px" />
+
+                    <GuiElement type="text" profile="ingameMenuContractsContractTextSmall" id="progressTitleText" text="$l10n_fieldJob_progress" position="0px -220px" />
+                    <GuiElement type="text" profile="ingameMenuContractsContractTextBig" id="progressText" position="0px -300px" />
+                    <GuiElement type="text" profile="ingameMenuContractsContractTextSmall" id="extraProgressText" position="0px -340px" />
+
+
+                    <GuiElement type="bitmap" profile="ingameMenuContractsProgressBarBackground" position="0px -260px" id="progressBarBg">
+                        <GuiElement type="bitmap" profile="ingameMenuContractsProgressBar" id="progressBar"/>
+                    </GuiElement>
+
+                    <GuiElement type="bitmap" profile="ingameMenuContractsVehiclesItem" id="vehicleTemplate" />
+
+                    <GuiElement type="empty" profile="ingameMenuContractsVehiclesBoxMarquee">
+                        <GuiElement type="flowLayout" profile="ingameMenuContractsVehiclesBox" id="vehiclesBox" />
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="empty" profile="ingameMenuContractsTallyBox" id="tallyBox">
+                    <GuiElement type="text" profile="ingameMenuContractsContractTitle" id="tallyTitle" position="0px -20px" text="$l10n_fieldJob_results" />
+
+                    <GuiElement type="text" profile="ingameMenuContractsTallyKey" text="$l10n_fieldJob_tally_contract" position="0px -70px" />
+                    <GuiElement type="text" profile="ingameMenuContractsTallyValue" name="reward" position="0px -70px" />
+
+                    <GuiElement type="text" profile="ingameMenuContractsTallyKey" text="$l10n_fieldJob_tally_vehicleReduction" position="0px -110px" />
+                    <GuiElement type="text" profile="ingameMenuContractsTallyValue" name="leaseCost" position="0px -110px" />
+
+                    <GuiElement type="text" profile="ingameMenuContractsTallyKey" text="$l10n_fieldJob_tally_reimbursement" position="0px -150px" />
+                    <GuiElement type="text" profile="ingameMenuContractsTallyValue" name="reimburse" position="0px -150px" />
+
+                    <GuiElement type="text" profile="ingameMenuContractsTallyKey" text="$l10n_fieldJob_tally_stealing" position="0px -190px" />
+                    <GuiElement type="text" profile="ingameMenuContractsTallyValue" name="stealing" position="0px -190px" />
+
+                    <GuiElement type="bitmap" profile="ingameMenuContractsTallyLine" position="0px -230px" />
+                    <GuiElement type="bitmap" profile="ingameMenuContractsTallyLine" position="0px -235px" />
+
+                    <GuiElement type="text" profile="ingameMenuContractsTallyKey" text="$l10n_fieldJob_tally_total"  position="0px -245px" />
+                    <GuiElement type="text" profile="ingameMenuContractsTallyValueColored" name="total"  position="0px -245px" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="ingameMenuContractsEmptyBox" id="noContractsBox">
+                <GuiElement type="text" profile="ingameMenuContractsEmptyText" text="$l10n_fieldJob_noJobAvailable" />
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+    <Profile name="ingameMenuContractsHeaderIcon" extends="menuHeaderIcon">
+        <Value name="size" value="64px 64px"/>
+        <Value name="imageUVs" value="455px 0px 65px 65px"/>
+    </Profile>
+
+    <Profile name="ingameMenuContractsListBox" extends="emptyPanel" with="anchorTopLeft">
+        <Value name="size" value="425px 756px"/>
+    </Profile>
+
+    <Profile name="ingameMenuContractsList" extends="list" with="anchorTopLeft">
+        <Value name="size" value="425px 756px"/>
+        <Value name="isHorizontalList" value="false"/>
+    </Profile>
+
+    <Profile name="ingameMenuContractsListItem" extends="listItem" with="alternating">
+        <Value name="imageColor" value="$preset_colorListRowBackground"/>
+        <Value name="imageFocusedColor" value="$preset_colorFocusBackgroundGradient"/>
+        <Value name="imageSelectedColor" value="$preset_colorFocusBackgroundGradient"/>
+
+        <Value name="size" value="425px 75.6px"/>
+    </Profile>
+
+    <Profile name="ingameMenuContractsListItemAlternate" extends="ingameMenuContractsListItem" with="alternateRow" />
+
+    <Profile name="ingameMenuContractsListItemContract" extends="textDefault" with="anchorBottomLeft">
+        <Value name="size" value="0 18px" />
+        <Value name="position" value="24px 16px" />
+        <Value name="textSize" value="18px"/>
+        <Value name="textBold" value="false" />
+        <Value name="textAutoWidth" value="true" />
+    </Profile>
+
+    <Profile name="ingameMenuContractsListItemReward" extends="textDefault" with="anchorTopRight">
+        <Value name="size" value="0 20px" />
+        <Value name="position" value="-24px -12px" />
+        <Value name="textAlignment" value="right" />
+        <Value name="textSize" value="20px"/>
+        <Value name="textBold" value="true"/>
+        <Value name="textAutoWidth" value="true"/>
+    </Profile>
+
+    <Profile name="ingameMenuContractsListItemField" extends="textDefault" with="anchorTopLeft">
+        <Value name="size" value="200px 20px" />
+        <Value name="position" value="24px -12px" />
+        <Value name="textSize" value="20px"/>
+        <Value name="textBold" value="true" />
+        <Value name="textAutoWidth" value="true" />
+    </Profile>
+
+    <Profile name="ingameMenuContractsListItemIndicator" extends="textDefault" with="anchorBottomRight">
+        <Value name="size" value="0px 20px" />
+        <Value name="position" value="-24px 16px" />
+        <Value name="textSize" value="18px"/>
+        <Value name="textAlignment" value="right" />
+        <Value name="textAutoWidth" value="true" />
+    </Profile>
+
+    <Profile name="ingameMenuContractsListItemIndicatorActive" extends="ingameMenuContractsListItemIndicator">
+        <Value name="textColor" value="$preset_colorBlue" />
+        <Value name="textHighlightedColor" value="$preset_colorBlue" />
+        <Value name="textSelectedColor" value="$preset_colorWhite" />
+    </Profile>
+
+    <Profile name="ingameMenuContractsListItemIndicatorFinished" extends="ingameMenuContractsListItemIndicator">
+        <Value name="textColor" value="$preset_colorGlassLight" />
+        <Value name="textHighlightedColor" value="$preset_colorGlassDark" />
+        <Value name="textSelectedColor" value="$preset_colorGlassDark" />
+    </Profile>
+
+    <Profile name="ingameMenuContractsListItemIndicatorFailed" extends="ingameMenuContractsListItemIndicator">
+        <Value name="textColor" value="$preset_colorDarkRed" />
+        <Value name="textHighlightedColor" value="$preset_colorRed" />
+        <Value name="textSelectedColor" value="$preset_colorRed" />
+    </Profile>
+
+    <Profile name="ingameMenuContractsListCategory" extends="listItem" with="alternating">
+        <Value name="size" value="426px 42px"/>
+
+        <Value name="imageColor" value="$preset_colorListHeaderBackground" />
+        <Value name="imageFocusedColor" value="$preset_colorFocusBackgroundGradient"/>
+        <Value name="imageSelectedColor" value="$preset_colorFocusBackgroundGradient"/>
+
+        <Variant name="mobile">
+            <Value name="size" value="530px 90px" />
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuContractsListCategoryTitle"  extends="textDefault">
+        <Value name="size" value="426px 42px" />
+        <Value name="textMaxWidth" value="360px" />
+        <Value name="textVerticalAlignment" value="middle"/>
+        <Value name="textBold" value="true"/>
+        <Value name="textOffset" value="30px 0px"/>
+        <Value name="textFocusedOffset" value="30px 0px"/>
+        <Value name="textSize" value="20px"/>
+        <Value name="textUpperCase" value="true"/>
+        <Value name="textColor" value="$preset_colorHeaderText"/>
+
+        <Variant name="mobile">
+            <Value name="size" value="530px 90px" />
+            <Value name="textMaxWidth" value="700px" />
+            <Value name="textResizeWidth" value="480px" />
+            <Value name="textSize" value="33px"/>
+            <Value name="textFocusedColor" value="$preset_colorWhite"/>
+            <Value name="textSelectedColor" value="$preset_colorWhite"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuContractsDetailsBox" extends="emptyPanel" with="anchorTopRight">
+        <Value name="position" value="0px 0px" />
+        <Value name="size" value="935px 756px"/><!-- 20-->
+        <Value name="imageColor" value="$preset_colorDetailBackground"/>
+
+        <Variant name="mobile">
+            <Value name="position" value="540px 0"/>
+            <Value name="size" value="678px 700px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuContractsFarmerBox" extends="baseReference" with="anchorTopCenter">
+        <Value name="size" value="935px 300px" />
+    </Profile>
+
+    <Profile name="ingameMenuContractsFarmerCircle" extends="baseReference" with="anchorBottomCenter">
+        <Value name="size" value="200px 200px" />
+        <Value name="position" value="0px 60px" />
+        <Value name="imageUVs" value="6px 390px 270px 270px"/>
+    </Profile>
+
+    <Profile name="ingameMenuContractsFarmerImage" extends="baseReference" with="anchorMiddleCenter">
+        <Value name="size" value="200px 200px" />
+        <Value name="position" value="0" />
+
+        <Value name="imageSize" value="512 512"/>
+        <Value name="imageUVs" value="4px 4px 504px 504px"/>
+        <Value name="imageFilename" value="dataS/character/humans/npc/portraits/npc_01.png"/>
+    </Profile>
+
+    <Profile name="ingameMenuContractsFarmerName" extends="textDefault" with="anchorBottomCenter">
+        <Value name="textSize" value="20px" />
+        <Value name="textBold" value="true" />
+        <Value name="position" value="0 35px" />
+        <Value name="textColor" value="$preset_colorMainUI" />
+        <Value name="textAlignment" value="center" />
+        <Value name="textAutoWidth" value="true" />
+    </Profile>
+
+    <Profile name="ingameMenuContractsFarmerText" extends="textDefault" with="anchorBottomCenter">
+        <Value name="textSize" value="18px" />
+        <Value name="textBold" value="false" />
+        <Value name="textAlignment" value="center" />
+        <Value name="position" value="0 8px" />
+        <Value name="textAutoWidth" value="true" />
+    </Profile>
+
+    <Profile name="ingameMenuContractsFarmerDivider" extends="baseReference" with="anchorBottomCenter">
+        <Value name="size" value="430px 2dp" />
+        <Value name="imageColor" value="$preset_colorMainUI" />
+        <Value name="imageUVs" value="$preset_imageDoublesidedGradient" />
+        <Value name="position" value="0 -6px" />
+    </Profile>
+
+    <Profile name="ingameMenuContractsContractBox" extends="baseReference" with="anchorBottomCenter">
+        <Value name="size" value="935px 456px" />
+    </Profile>
+
+    <Profile name="ingameMenuContractsContractTitle" extends="textDefault" with="anchorTopCenter">
+        <Value name="size" value="0 34px" />
+        <Value name="textSize" value="28px" />
+        <Value name="textAlignment" value="center" />
+        <Value name="textAutoWidth" value="true" />
+    </Profile>
+
+    <Profile name="ingameMenuContractsContractTextSmall" extends="textDefault" with="anchorTopCenter">
+        <Value name="textSize" value="18px" />
+        <Value name="textBold" value="false" />
+        <Value name="textAlignment" value="center" />
+        <Value name="size" value="400px 40px" />
+        <Value name="textMaxNumLines" value="4" />
+    </Profile>
+
+    <Profile name="ingameMenuContractsContractTextBig" extends="textDefault" with="anchorTopCenter">
+        <Value name="textSize" value="22px" />
+        <Value name="textBold" value="true" />
+        <Value name="textAlignment" value="center" />
+        <Value name="size" value="400px 40px" />
+        <Value name="textColor" value="$preset_colorMainUI" />
+    </Profile>
+
+    <Profile name="ingameMenuContractsProgressBarBackground" extends="emptyPanel" with="anchorTopCenter lightFrame defaultGameFrame">
+        <Value name="size" value="500px 38px"/>
+    </Profile>
+
+    <Profile name="ingameMenuContractsProgressBar" extends="baseReference" with="anchorMiddleLeft">
+        <Value name="size" value="164px 28px"/>
+        <Value name="margin" value="2px 2px 2px 2px"/>
+        <Value name="position" value="2px 0px"/>
+        <Value name="imageColor" value="$preset_colorGreen"/>
+        <Value name="size" value="496px 34px"/>
+        <Value name="imageColor" value="$preset_colorMainUI" />
+    </Profile>
+
+    <Profile name="ingameMenuContractsVehiclesItem" extends="baseReference">
+        <Value name="imageUVs" value="0 0 1 1"/>
+        <Value name="imageFilename" value="data/store/store_empty.png"/>
+
+        <Value name="size" value="206px 206px"/>
+        <Value name="margin" value="4px 0 4px 0px"/>
+    </Profile>
+
+    <Profile name="ingameMenuContractsVehiclesBoxMarquee" extends="baseReference" with="anchorBottomCenter">
+        <Value name="size" value="856px 206px" />
+        <Value name="position" value="0px 10px" />
+        <Value name="clipping" value="true" />
+    </Profile>
+
+    <Profile name="ingameMenuContractsVehiclesBox" extends="baseReference">
+        <Value name="size" value="856px 206px" />
+        <Value name="imageColor" value="$preset_colorTransparent" />
+        <Value name="alignmentX" value="center"/>
+        <Value name="alignmentY" value="bottom"/>
+    </Profile>
+
+    <Profile name="ingameMenuContractsTallyBox" extends="baseReference" with="anchorMiddleCenter">
+        <Value name="size" value="500px 290px" />
+        <Value name="position" value="0" />
+    </Profile>
+
+    <Profile name="ingameMenuContractsTallyKey" extends="textDefault" with="anchorTopLeft">
+        <Value name="textBold" value="true" />
+        <Value name="textSize" value="18px" />
+        <Value name="textAlignment" value="left" />
+        <Value name="size" value="360px 30px" />
+        <Value name="textOffset" value="16px 0" />
+    </Profile>
+
+    <Profile name="ingameMenuContractsTallyValue" extends="textDefault" with="anchorTopRight">
+        <Value name="textSize" value="18px" />
+        <Value name="textAlignment" value="right" />
+        <Value name="size" value="140px 30px" />
+        <Value name="textOffset" value="-16px 0" />
+    </Profile>
+
+    <Profile name="ingameMenuContractsTallyLine" extends="baseReference" with="anchorTopCenter">
+        <Value name="size" value="486px 1dp" />
+        <Value name="imageColor" value="$preset_colorGlassLight" />
+    </Profile>
+
+    <Profile name="ingameMenuContractsTallyValueColored" extends="ingameMenuContractsTallyValue">
+        <Value name="textColor" value="$preset_colorMainUI" />
+    </Profile>
+
+    <Profile name="ingameMenuContractsEmptyBox" extends="emptyPanel" with="anchorMiddleCenter">
+        <Value name="position" value="0" />
+        <Value name="size" value="1400px 756px" />
+
+        <Variant name="mobile" with="anchorMiddleCenter">
+            <Value name="size" value="1768px 644px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="ingameMenuContractsEmptyText" extends="textDefault" with="anchorMiddleCenter">
+        <Value name="textSize" value="26px" />
+        <Value name="textAlignment" value="center" />
+        <Value name="textWrapWidth" value="475px"/>
+        <Value name="textMaxNumLines" value="4"/>
+        <Value name="size" value="500px 100px" />
+
+        <Variant name="mobile" with="anchorMiddleCenter">
+            <Value name="textSize" value="33px"/>
+        </Variant>
+    </Profile>
+    </GUIProfiles>
+</GUI>

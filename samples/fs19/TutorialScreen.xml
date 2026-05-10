@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="bitmap" profile="uiFullBlurBG"/>
+
+    <GuiElement type="bitmap" profile="uiElementBaseHeader" />
+
+    <GuiElement type="bitmap" profile="uiElementContainerFullScreen">
+        <GuiElement type="bitmap" profile="uiElementCenter">
+
+            <GuiElement type="bitmap" profile="headerBoxDocked" >
+                <GuiElement type="bitmap" profile="tutorialsIcon"/>
+                <GuiElement type="text" profile="headerText" text="$l10n_ui_tutorials" />
+            </GuiElement>
+
+            <GuiElement type="flowLayout" profile="tutorialsStatsBox">
+                <GuiElement type="text"   profile="tutorialsTotalText" text="$l10n_tutorials_stats"/>
+                <GuiElement type="text"   profile="tutorialsTotalValue" id="statsValue"/>
+            </GuiElement>
+
+            <GuiElement type="slider" profile="sliderInvisible" id="listSlider" dataElementId="tutorialList" handleFocus="false" >
+                <GuiElement type="button" profile="largeSelectorRight" />
+                <GuiElement type="button" profile="largeSelectorLeft" />
+            </GuiElement>
+
+            <!-- TODO Turn into horizontal list like achievements, career -->
+            <GuiElement type="list" profile="tutorialsList" onSelectionChanged="onListSelectionChanged" onDoubleClick="onDoubleClick" id="tutorialList" focusInit="onOpen" handleFocus="true">
+
+                <GuiElement type="listItem" profile="tutorialsListItem" id="listItemTemplate" >
+
+                    <GuiElement type="bitmap" profile="tutorialItemCircle">
+                        <GuiElement type="bitmap" profile="tutorialItemIcon" name="icon" />
+                        <GuiElement type="bitmap" profile="tutorialItemCircleChecked" onCreate="onCreateTick">
+                            <GuiElement type="bitmap" profile="tutorialItemTick"/>
+                        </GuiElement>
+                    </GuiElement>
+
+                    <GuiElement type="text" profile="tutorialItemTitle" name="title" onCreateArgs="1"/>
+                    <GuiElement type="bitmap" profile="tutorialItemTextDivider"/>
+                    <GuiElement type="text" profile="tutorialItemText" name="description" />
+
+                    <GuiElement type="bitmap" profile="listItemSelector"/>
+                </GuiElement>
+
+            </GuiElement>
+
+            <GuiElement type="flowLayout" profile="buttonBoxDocked" id="buttonsPC">
+                <GuiElement type="button" profile="buttonOK"   text="$l10n_button_start" onClick="onClickOk"   focusId="buttonOK"   focusChangeTop="buttonBack" id="buttonStartPC"/>
+                <GuiElement type="button" profile="buttonBack" text="$l10n_button_back"  onClick="onClickBack" focusId="buttonBack" focusChangeBottom="buttonOK"/>
+            </GuiElement>
+
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="bitmap" profile="uiElementBaseFooter" />
+
+</GUI>

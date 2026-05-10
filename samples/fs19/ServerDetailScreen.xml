@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="bitmap" profile="uiFullBlurBG"/>
+
+    <GuiElement type="bitmap" profile="uiElementBaseHeader" />
+
+    <GuiElement type="bitmap" profile="uiElementContainerFullScreen">
+        <GuiElement type="bitmap" profile="uiElementCenterBg">
+            <GuiElement type="bitmap" profile="headerBoxDocked" >
+                <GuiElement type="bitmap" profile="multiplayerIcon"/>
+                <GuiElement type="text" profile="headerText" text="$l10n_ui_joinMultiplayerGame" id="headerText" />
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="serverDetailDataBg">
+
+                <GuiElement type="bitmap" profile="serverDetailMapPreview" id="mapIconElement" />
+
+                <GuiElement type="bitmap" profile="serverDetailWarningOk" id="warningElement" >
+                    <GuiElement type="text" profile="serverDetailWarningTextOk" id="warningTextElement" text="$l10n_ui_allModsDLCsInstalled" />
+                </GuiElement>
+
+                <GuiElement type="text"   profile="serverDetailGameName"  position="450px 175px" id="serverNameElement" />
+
+                <GuiElement type="bitmap" profile="serverDetailSeparator" position="450px 165px"/>
+                <GuiElement type="text"   profile="serverDetailTitle"     position="450px 141px" text="$l10n_ui_map:" />
+                <GuiElement type="text"   profile="serverDetailText"      position="-210px 141px" id="mapElement" />
+
+                <GuiElement type="bitmap" profile="serverDetailSeparator" position="450px 129px"/>
+                <GuiElement type="text"   profile="serverDetailTitle"     position="450px 105px" text="$l10n_setting_language:" />
+                <GuiElement type="text"   profile="serverDetailText"      position="-210px 105px" id="languageElement" />
+
+                <GuiElement type="bitmap" profile="serverDetailSeparator" position="450px 93px"/>
+                <GuiElement type="text"   profile="serverDetailTitle"     position="450px 69px"  text="$l10n_ui_password:" />
+                <GuiElement type="text"   profile="serverDetailText"      position="-210px 69px"  id="passwordElement"/>
+
+                <GuiElement type="empty" profile="serverDetailPlayerBg">
+                    <GuiElement type="bitmap" profile="serverDetailPlayerCircleOk" id="playerCircleElement">
+                        <GuiElement type="bitmap" profile="serverDetailPlayerIcon" />
+                        <GuiElement type="text" profile="serverDetailNumPlayers" id="numPlayersElement" />
+                    </GuiElement>
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="list" profile="serverDetailList" onSelectionChanged="onListSelectionChanged" onDoubleClick="onDoubleClick" id="modList">
+                <GuiElement type="listItem" profile="serverDetailListItem" id="listItemTemplate"  handleFocus="false">
+                    <GuiElement type="text" profile="serverDetailModTitle" name="title" />
+                    <GuiElement type="text" profile="serverDetailModHash" name="hash" />
+                    <GuiElement type="text" profile="serverDetailModAuthor" name="author" />
+                    <GuiElement type="bitmap" profile="serverDetailIconModsMissing" name="available" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="text" profile="serverDetailNoModsDLCs" text="$l10n_ui_noModsDLCsUsed" id="noModsDLCsElement" />
+
+            <GuiElement type="bitmap" profile="verticalGlassListSliderBackground" position="-1px -241px" size="28px 435px" focusInit="onOpen">
+                <GuiElement type="slider" profile="verticalGlassListSlider" size="16px 423px" dataElementId="modList" handleFocus="false" />
+            </GuiElement>
+
+            <GuiElement type="flowLayout" profile="buttonBoxDocked">
+                <GuiElement type="button" profile="buttonOK" text="$l10n_button_start" onClick="onClickOk"  id="startElement" />
+                <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" />
+                <GuiElement type="button" profile="buttonDownloadMods" text="$l10n_button_getModsDlc" onClick="onClickActivate" id="getModsButton" />
+            </GuiElement>
+
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="bitmap" profile="uiElementBaseFooter" />
+</GUI>

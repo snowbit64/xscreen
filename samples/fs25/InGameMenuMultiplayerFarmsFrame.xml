@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="ingameMenuMultiplayerFarms">
+    <GuiElement type="empty" profile="uiInGameMenuFrame">
+        <!-- Static page header -->
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel">
+            <GuiElement type="bitmap" profile="ingameMenuMPFarmsIcon" />
+            <GuiElement type="text" profile="ingameMenuFrameHeaderText" text="$l10n_ui_ingameMenuMultiplayerFarms"/>
+        </GuiElement>
+
+        <GuiElement type="text" profile="ingameMenuMPFarmsListItemFarmPlayerName" id="playerNameTemplate" />
+
+        <GuiElement type="bitmap" profile="leftScrollClipper" name="leftClipper" />
+        <GuiElement type="bitmap" profile="rightScrollClipper" name="rightClipper" />
+
+        <!-- Farms List -->
+        <GuiElement type="smoothList" profile="ingameMenuMPFarmsList" onClick="onClickFarm" onDoubleClick="onDoubleClickFarm" id="farmList" startClipperElementName="leftClipper" endClipperElementName="rightClipper" listDelegate="self" listDataSource="self">
+            <!-- Farm Item Template -->
+            <GuiElement type="listItem" profile="ingameMenuMPFarmsListItem">
+                <GuiElement type="empty" profile="emptyFullPanel" name="existingFarm">
+                    <GuiElement type="bitmap" profile="ingameMenuMPFarmsListItemFarmIconBg"/>
+                    <GuiElement type="bitmap" profile="ingameMenuMPFarmsListItemFarmIcon" name="farmIcon"/>
+                    <GuiElement type="text" profile="ingameMenuMPFarmsListItemFarmName" name="farmName" text=""/>
+
+                    <GuiElement type="bitmap" profile="ingameMenuMPFarmsListItemLineSeparator" position="0 -455px" />
+                    <GuiElement type="text" profile="ingameMenuMPFarmsListItemFarmBalance" name="farmBalance" text="" format="currency" formatDecimalPlaces="0" />
+                    <GuiElement type="bitmap" profile="ingameMenuMPFarmsListItemLineSeparator" position="0 -513px" />
+
+                    <GuiElement type="text" profile="ingameMenuMPFarmsListItemFarmPlayerCount" name="farmPlayerCount" text="$l10n_ui_mpPlayers:"/>
+
+                    <GuiElement type="flowLayout" profile="ingameMenuMPFarmsListItemFarmPlayerNameLayout" name="playerNameLayout" />
+                </GuiElement>
+
+                <GuiElement type="empty" profile="emptyFullPanel" name="newFarm">
+                    <GuiElement type="bitmap" profile="ingameMenuMPFarmsListItemFarmNewIcon"/>
+                    <GuiElement type="text" profile="ingameMenuMPFarmsListItemFarmNewTitle" text="$l10n_ui_createNewFarm"/>
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="listItemSelector"/>
+            </GuiElement>
+        </GuiElement>
+
+        <GuiElement type="empty" profile="ingameMenuMPFarmsNoFarmsBox" id="noFarmsBox" visible="false">
+            <GuiElement type="text" profile="ingameMenuMPFarmsNoFarmsText" text="$l10n_ui_noFarmsCreated" />
+        </GuiElement>
+
+        <GuiElement type="threePartBitmap" profile="horizontalListSliderRightDocked" size="1400px 12px">
+            <GuiElement type="slider" profile="horizontalListSliderBar" dataElementId="farmList" size="1392px 6px" />
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="ingameMenuMPFarmsIcon" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="size" value="64px 64px"/>
+            <Value name="imageUVs" value="585px 144px 64px 64px"/>
+        </Profile>
+
+        <Profile name="ingameMenuMPFarmsListItemFarmPlayerName" extends="textDefault">
+            <Value name="size" value="200px 20px"/>
+
+            <Value name="textSize" value="18px"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textMaxWidth" value="160px"/>
+            <Value name="textColor" value="$preset_colorDescriptionText2" />
+            <Value name="textSelectedColor" value="$preset_colorDescriptionText2" />
+        </Profile>
+
+        <Profile name="ingameMenuMPFarmsList" extends="list" with="anchorTopLeft">
+            <Value name="size" value="1400px 756px"/>
+            <Value name="position" value="0"/>
+            <Value name="imageColor" value="$preset_colorTransparent" />
+
+            <Value name="listItemSpacing" value="14px"/>
+            <Value name="itemizedScrollDelta" value="true"/>
+
+            <Variant name="mobile" with="anchorBottomCenter">
+                <Value name="size" value="1036px 850px"/>
+                <Value name="position" value="0px 0px"/>
+                <Value name="supportsTouchScrolling" value="true"/>
+                <Value name="itemsPerCol" value="3"/>
+                <Value name="itemsPerRow" value="1"/>
+                <Value name="listItemWidth" value="1036px"/>
+                <Value name="listItemHeight" value="180px"/>
+                <Value name="listItemSpacing" value="13px"/>
+                <Value name="useSelectionOnLeave" value="true" />
+                <Value name="keepSelectedInView" value="true" />
+                <Value name="isHorizontalList" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuMPFarmsListItem" extends="listItem">
+            <Value name="size" value="410px 698px"/>
+            <Value name="clipping" value="true" />
+
+            <Value name="imageColor" value="$preset_colorItemBgNormal"/>
+            <Value name="imageFocusedColor" value="$preset_colorItemBgSelected"/>
+            <Value name="imageSelectedColor" value="$preset_colorItemBgSelected"/>
+
+            <Variant name="mobile" >
+                <Value name="imageColor" value="$preset_colorGlassMedium"/>
+                <Value name="imageFocusedColor" value="$preset_colorGlassMedium"/>
+                <Value name="imageSelectedColor" value="$preset_colorGlassMedium"/>
+                <Value name="size" value="1036px 180px"/>
+                <Value name="position" value="0 200px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuMPFarmsListItemFarmIconBg" extends="baseReference" with="anchorTopCenter">
+            <Value name="position" value="0px -126px" />
+            <Value name="size" value="228px 228px"/>
+            <Value name="imageColor" value="$preset_colorMainUI_10"/>
+            <Value name="imageUVs" value="0 0 256px 256px"/>
+            <Value name="imageFilename" value="dataS/menu/hud/multiplayer_icons.png"/>
+        </Profile>
+
+        <Profile name="ingameMenuMPFarmsListItemFarmIcon" extends="baseReference" with="anchorTopCenter">
+            <Value name="position" value="0px -126px" />
+            <Value name="size" value="228px 228px"/>
+            <Value name="imageColor" value="$preset_colorWhite"/>
+            <Value name="imageUVs" value="330px 0 256px 256px"/>
+            <Value name="imageFilename" value="dataS/menu/hud/multiplayer_icons.png"/>
+        </Profile>
+
+        <Profile name="ingameMenuMPFarmsListItemFarmName" extends="textDefault" with="anchorTopCenter">
+            <Value name="size" value="360px 70px"/>
+            <Value name="position" value="0 -360px"/>
+
+            <Value name="textSize" value="32px"/>
+            <Value name="textBold" value="false"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textMaxNumLines" value="2"/>
+            <Value name="textVerticalAlignment" value="bottom"/>
+        </Profile>
+
+        <Profile name="ingameMenuMPFarmsListItemLineSeparator" extends="lineSeparator" with="anchorTopCenter">
+            <Value name="size" value="360px 1dp" />
+            <Value name="imageColor" value="1 1 1 0.3" />
+        </Profile>
+
+        <Profile name="ingameMenuMPFarmsListItemFarmBalance" extends="textDefault" with="anchorTopCenter">
+            <Value name="textSize" value="32px"/>
+            <Value name="textBold" value="false"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVertialAlignment" value="middle"/>
+            <Value name="textColor" value="$preset_colorMainUI"/>
+            <Value name="textFocusedColor" value="$preset_colorMainUI"/>
+            <Value name="textSelectedColor" value="$preset_colorMainUI"/>
+            <Value name="textMaxWidth" value="360px"/>
+
+            <Value name="position" value="0 -455px"/>
+            <Value name="size" value="300px 58px"/>
+        </Profile>
+
+        <Profile name="ingameMenuMPFarmsListItemFarmPlayerCount" extends="textDefault" with="anchorTopCenter">
+            <Value name="position" value="0 -525px" />
+            <Value name="textSize" value="18px"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textAutoWidth" value="true"/>
+        </Profile>
+
+        <Profile name="ingameMenuMPFarmsListItemFarmPlayerNameLayout" extends="emptyPanel" with="anchorTopCenter">
+            <Value name="size" value="400px 200px"/>
+            <Value name="position" value="0 -550px"/>
+            <Value name="alignmentY" value="top"/>
+        </Profile>
+
+        <Profile name="ingameMenuMPFarmsListItemFarmNewIcon" extends="baseReference" with="anchorTopCenter">
+            <Value name="size" value="102px 102px" />
+            <Value name="position" value="0 -260px" />
+            <Value name="imageColor" value="$preset_colorMainUI" />
+            <Value name="imageUVs" value="438px 714px 102px 102px" />
+        </Profile>
+
+        <Profile name="ingameMenuMPFarmsListItemFarmNewTitle" extends="textDefault" with="anchorTopCenter">
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textMaxNumLines" value="2" />
+            <Value name="textMaxWidth" value="200px" />
+            <Value name="position" value="0 -400px" />
+            <Value name="textSize" value="32px" />
+            <Value name="textColor" value="1 1 1 0.5" />
+            <Value name="textUpperCase" value="true" />
+            <Value name="textAlignment" value="center" />
+        </Profile>
+
+        <Profile name="ingameMenuMPFarmsNoFarmsBox" extends="emptyPanel" with="anchorMiddleCenter">
+            <Value name="position" value="0" />
+            <Value name="size" value="1660px 708px" />
+        </Profile>
+
+        <Profile name="ingameMenuMPFarmsNoFarmsText" extends="textDefault" with="anchorMiddleCenter">
+            <Value name="textSize" value="26px"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textMaxWidth" value="960px"/>
+            <Value name="size" value="960px 64px"/>
+        </Profile>
+    </GUIProfiles>
+</GUI>

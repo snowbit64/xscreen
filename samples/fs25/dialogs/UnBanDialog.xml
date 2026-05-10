@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" id="dialogBg" />
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="roundCorner" profile="dialogBg" id="dialogElement" size="735px 428px">
+        <GuiElement type="bitmap" profile="dialogHeaderDocked">
+            <GuiElement type="text" profile="dialogHeaderText" text="$l10n_ui_blockedPlayers" id="headerText" />
+        </GuiElement>
+
+        <GuiElement type="empty" profile="unBanDialogListBox" position="0px 0px">
+            <!-- Banned User List Header -->
+            <GuiElement type="bitmap" profile="unBanDialogHeaderBox">
+                <GuiElement type="text" profile="unBandDialogHeaderText" position="16px 0px" text="$l10n_ui_bannedUserLastNickname"/>
+            </GuiElement>
+
+            <!-- Banned User List -->
+            <GuiElement type="smoothList" profile="unBanDialogList" id="banList" position="0 -104px">
+                <GuiElement type="listItem" profile="unBanDialogListItem">
+                    <GuiElement type="text" profile="unBanDialogListText" position="16px 0px" name="name"/>
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="text" profile="unBanDialogEmptyText" id="noBansText" text="$l10n_ui_noBlockedPlayers" />
+            <GuiElement type="text" profile="unBanDialogEmptyText" id="loadingText" text="$l10n_ui_gameIsLoadingPleaseWait" />
+
+            <GuiElement type="threePartBitmap" profile="verticalListSliderRightDocked" size="12px 320px" anchors="1 1 0 0">
+                <GuiElement type="slider" profile="verticalListSliderBar" dataElementId="banList" handleFocus="false" size="6px 312px" />
+            </GuiElement>
+        </GuiElement>
+
+        <GuiElement type="flowLayout" profile="buttonBoxDialog" id="buttonLayout">
+            <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" id="backButton" />
+            <GuiElement type="button" profile="buttonCancel" text="$l10n_button_unblock" onClick="onClickUnblock" id="unblockButton" />
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="unBanDialogListBox" extends="emptyPanel" with="anchorTopLeft">
+            <Value name="position" value="0" />
+            <Value name="size" value="735px 428px"/>
+            <Value name="imageColor" value="$preset_colorTransparent"/>
+        </Profile>
+
+        <Profile name="unBanDialogHeaderBox" extends="emptyPanel" with="anchorTopLeft">
+            <Value name="size" value="735px 104px"/>
+            <Value name="imageColor" value="$preset_colorListHeaderBackground"/>
+        </Profile>
+
+        <Profile name="unBandDialogHeaderText" extends="textDefault" with="anchorMiddleLeft">
+            <Value name="textAlignment" value="left"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textUpperCase" value="true"/>
+            <Value name="textSize" value="20px" />
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textColor" value="$preset_colorHeaderText"/>
+            <Value name="textAutoWidth" value="true"/>
+        </Profile>
+
+        <Profile name="unBanDialogList" extends="list" with="anchorTopLeft alternating">
+            <Value name="size" value="735px 320px"/>
+            <Value name="selectOnScroll" value="true"/>
+            <Value name="isHorizontalList" value="false"/>
+        </Profile>
+
+        <Profile name="unBanDialogListItem" extends="listItem">
+            <Value name="size" value="705px 40px"/>
+
+            <Value name="imageColor" value="$preset_colorListRowBackground"/>
+            <Value name="imageFocusedColor" value="$preset_colorFocusBackgroundGradient"/>
+            <Value name="imageSelectedColor" value="$preset_colorFocusBackgroundGradient"/>
+        </Profile>
+
+        <Profile name="unBanDialogListText" extends="textDefault" with="anchorMiddleLeft">
+            <Value name="textAlignment" value="left"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="size" value="500px 32px"/>
+            <Value name="textSize" value="18px"/>
+        </Profile>
+
+        <Profile name="unBanDialogEmptyText" extends="textDefault" with="anchorMiddleCenter">
+            <Value name="textSize" value="20px" />
+            <Value name="textAlignment" value="center" />
+            <Value name="size" value="500px 50px" />
+        </Profile>
+    </GUIProfiles>
+</GUI>

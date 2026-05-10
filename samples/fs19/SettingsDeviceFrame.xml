@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="settingsDevice">
+    <GuiElement type="empty" profile="uiInGameMenuFrame">
+        <!-- Static page header -->
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel" position="130px -60px">
+            <GuiElement type="bitmap" profile="ingameMenuDeviceSettingsHeaderIcon" position="0px 0px"/>
+            <GuiElement type="text" profile="ingameMenuFrameHeaderText" position="80px 0px" text="$l10n_ui_ingameMenuGameSettingsGame" id="titleElement"/>
+        </GuiElement>
+
+        <!-- Layouted settings box -->
+        <GuiElement type="bitmap" profile="mainMenuSettingsBox" position="130px -124px" id="settingsContainer">
+            <GuiElement type="boxLayout" profile="ingameMenuSettingsLayout" position="50px -50px" id="boxLayout">
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickDeadzone" onCreate="onCreateDeadzone" id="deadzoneElement1">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickSensitivity" onCreate="onCreateSensitivity" id="sensitivityElement1">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickDeadzone" onCreate="onCreateDeadzone" id="deadzoneElement2">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickSensitivity" onCreate="onCreateSensitivity" id="sensitivityElement2">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickDeadzone" onCreate="onCreateDeadzone" id="deadzoneElement3">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickSensitivity" onCreate="onCreateSensitivity" id="sensitivityElement3">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickDeadzone" onCreate="onCreateDeadzone" id="deadzoneElement4">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickSensitivity" onCreate="onCreateSensitivity" id="sensitivityElement4">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickDeadzone" onCreate="onCreateDeadzone" id="deadzoneElement5">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickSensitivity" onCreate="onCreateSensitivity" id="sensitivityElement5">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickDeadzone" onCreate="onCreateDeadzone" id="deadzoneElement6">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickSensitivity" onCreate="onCreateSensitivity" id="sensitivityElement6">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickDeadzone" onCreate="onCreateDeadzone" id="deadzoneElement7">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickSensitivity" onCreate="onCreateSensitivity" id="sensitivityElement7">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickDeadzone" onCreate="onCreateDeadzone" id="deadzoneElement8">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickSensitivity" onCreate="onCreateSensitivity" id="sensitivityElement8">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickDeadzone" onCreate="onCreateDeadzone" id="deadzoneElement9">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickSensitivity" onCreate="onCreateSensitivity" id="sensitivityElement9">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickDeadzone" onCreate="onCreateDeadzone" id="deadzoneElement10">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickSensitivity" onCreate="onCreateSensitivity" id="sensitivityElement10">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickDeadzone" onCreate="onCreateDeadzone" id="deadzoneElement11">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickSensitivity" onCreate="onCreateSensitivity" id="sensitivityElement11">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickDeadzone" onCreate="onCreateDeadzone" id="deadzoneElement12">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickSensitivity" onCreate="onCreateSensitivity" id="sensitivityElement12">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickDeadzone" onCreate="onCreateDeadzone" id="deadzoneElement13">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickSensitivity" onCreate="onCreateSensitivity" id="sensitivityElement13">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickDeadzone" onCreate="onCreateDeadzone" id="deadzoneElement14">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickSensitivity" onCreate="onCreateSensitivity" id="sensitivityElement14">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickMouseSensitivity" onCreate="onCreateSensitivity" id="sensitivityMouseElement">
+                    <GuiElement type="button" profile="multiTextOptionLeft" />
+                    <GuiElement type="button" profile="multiTextOptionRight" />
+                    <GuiElement type="text"   profile="multiTextOptionText" />
+                    <GuiElement type="text"   profile="multiTextOptionTitle"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionBg" />
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+
+        <GuiElement type="text" profile="controllerSettingsAbuseText" position="0px -80px" text="$l10n_stadia_controller_disclaimer" id="disclaimerLabel" />
+    </GuiElement>
+</GUI>
+
+
+
+
+
+
+
+            <!-- Input sensitivity settings -->
+<!--            <GuiElement type="empty" profile="uiElementContainerFullScreen" name="settingsControls2" onCreate="onCreatePageController">-->
+<!--                <GuiElement type="multiTextOption" profile="multiTextOption" position="504px 480px" onClick="onClickMouseSensitivity" onCreate="onCreateMouseSensitivity">-->
+<!--                    <GuiElement type="button" profile="multiTextOptionLeft" />-->
+<!--                    <GuiElement type="button" profile="multiTextOptionRight" />-->
+<!--                    <GuiElement type="text"   profile="multiTextOptionText" />-->
+<!--                    <GuiElement type="text"   profile="multiTextOptionTitle" text="$l10n_setting_gamepadSensitivity"/>-->
+<!--                    <GuiElement type="bitmap" profile="multiTextOptionBg" />-->
+<!--                </GuiElement>-->
+<!--                <GuiElement type="text" profile="controls2Axis" position="165px 490px" text="$l10n_setting_mouseSettings" />-->
+
+<!--                <GuiElement type="multiTextOption" profile="multiTextOption" position="189px 405px" size="620px 36px" onClick="onClickController" id="controllerElement" >-->
+<!--                    <GuiElement type="button" profile="multiTextOptionLeft" />-->
+<!--                    <GuiElement type="button" profile="multiTextOptionRight" />-->
+<!--                    <GuiElement type="text"   profile="multiTextOptionText" />-->
+<!--                    <GuiElement type="bitmap" profile="multiTextOptionBg" size="546px 36px"/>-->
+<!--                </GuiElement>-->
+<!--                <GuiElement type="text" profile="controls2Axis" position="165px 415px" text="$l10n_setting_controllerSettings" />-->
+
+<!--                <GuiElement type="boxLayout" profile="settingsBox" position="20px 369px" size="850px 337px" flowDirection="horizontal" focusDirection="vertical" numFlows="8" fitFlowToElements="true" flowMargin="0px 0px 0px 4px">-->
+<!--                    <GuiElement type="text" profile="controls2Axis" onCreate="onCreateAxisText" onCreateArgs="1" positionOrigin="middleRight" />-->
+<!--                    <GuiElement type="multiTextOption" profile="multiTextOption" margin="0px 0px 10px 0px" onClick="onClickAxis1Deadzone" onCreate="onCreateAxisDeadzone" onCreateArgs="1" >-->
+<!--                        <GuiElement type="button" profile="multiTextOptionLeft" />-->
+<!--                        <GuiElement type="button" profile="multiTextOptionRight" />-->
+<!--                        <GuiElement type="text"   profile="multiTextOptionText" />-->
+<!--                        <GuiElement type="text"   profile="multiTextOptionTitle" text="$l10n_setting_gamepadDeadzone"/>-->
+<!--                        <GuiElement type="bitmap" profile="multiTextOptionBg" />-->
+<!--                    </GuiElement>-->
+<!--                    <GuiElement type="multiTextOption" profile="multiTextOption" onClick="onClickAxis1Sensitivity" onCreate="onCreateAxisSensitivity" onCreateArgs="1" >-->
+<!--                        <GuiElement type="button" profile="multiTextOptionLeft" />-->
+<!--                        <GuiElement type="button" profile="multiTextOptionRight" />-->
+<!--                        <GuiElement type="text"   profile="multiTextOptionText" />-->
+<!--                        <GuiElement type="text"   profile="multiTextOptionTitle" text="$l10n_setting_gamepadSensitivity"/>-->
+<!--                        <GuiElement type="bitmap" profile="multiTextOptionBg" />-->
+<!--                    </GuiElement>-->
+
+<!--                    <GuiElement type="text" profile="controls2Axis" onCreate="onCreateAxisText" onCreateArgs="2" positionOrigin="middleRight" />-->
+<!--                    <GuiElement type="multiTextOption" profile="multiTextOption" margin="0px 0px 10px 0px" onClick="onClickAxis2Deadzone" onCreate="onCreateAxisDeadzone" onCreateArgs="2" >-->
+<!--                        <GuiElement type="button" profile="multiTextOptionLeft" />-->
+<!--                        <GuiElement type="button" profile="multiTextOptionRight" />-->
+<!--                        <GuiElement type="text"   profile="multiTextOptionText" />-->
+<!--                        <GuiElement type="bitmap" profile="multiTextOptionBg" />-->
+<!--                    </GuiElement>-->
+<!--                    <GuiElement type="multiTextOption" profile="multiTextOption" onClick="onClickAxis2Sensitivity" onCreate="onCreateAxisSensitivity" onCreateArgs="2" focusId="306" >-->
+<!--                        <GuiElement type="button" profile="multiTextOptionLeft" />-->
+<!--                        <GuiElement type="button" profile="multiTextOptionRight" />-->
+<!--                        <GuiElement type="text"   profile="multiTextOptionText" />-->
+<!--                        <GuiElement type="bitmap" profile="multiTextOptionBg" />-->
+<!--                    </GuiElement>-->
+
+<!--                    <GuiElement type="text" profile="controls2Axis" onCreate="onCreateAxisText" onCreateArgs="3" positionOrigin="middleRight" />-->
+<!--                    <GuiElement type="multiTextOption" profile="multiTextOption" margin="0px 0px 10px 0px" onClick="onClickAxis3Deadzone" onCreate="onCreateAxisDeadzone" onCreateArgs="3" >-->
+<!--                        <GuiElement type="button" profile="multiTextOptionLeft" />-->
+<!--                        <GuiElement type="button" profile="multiTextOptionRight" />-->
+<!--                        <GuiElement type="text"   profile="multiTextOptionText" />-->
+<!--                        <GuiElement type="bitmap" profile="multiTextOptionBg" />-->
+<!--                    </GuiElement>-->
+<!--                    <GuiElement type="multiTextOption" profile="multiTextOption" onClick="onClickAxis3Sensitivity" onCreate="onCreateAxisSensitivity" onCreateArgs="3" >-->
+<!--                        <GuiElement type="button" profile="multiTextOptionLeft" />-->
+<!--                        <GuiElement type="button" profile="multiTextOptionRight" />-->
+<!--                        <GuiElement type="text"   profile="multiTextOptionText" />-->
+<!--                        <GuiElement type="bitmap" profile="multiTextOptionBg" />-->
+<!--                    </GuiElement>-->
+
+<!--                    <GuiElement type="text" profile="controls2Axis" onCreate="onCreateAxisText" onCreateArgs="4" positionOrigin="middleRight" />-->
+<!--                    <GuiElement type="multiTextOption" profile="multiTextOption" margin="0px 0px 10px 0px" onClick="onClickAxis4Deadzone" onCreate="onCreateAxisDeadzone" onCreateArgs="4" >-->
+<!--                        <GuiElement type="button" profile="multiTextOptionLeft" />-->
+<!--                        <GuiElement type="button" profile="multiTextOptionRight" />-->
+<!--                        <GuiElement type="text"   profile="multiTextOptionText" />-->
+<!--                        <GuiElement type="bitmap" profile="multiTextOptionBg" />-->
+<!--                    </GuiElement>-->
+<!--                    <GuiElement type="multiTextOption" profile="multiTextOption" onClick="onClickAxis4Sensitivity" onCreate="onCreateAxisSensitivity" onCreateArgs="4" >-->
+<!--                        <GuiElement type="button" profile="multiTextOptionLeft" />-->
+<!--                        <GuiElement type="button" profile="multiTextOptionRight" />-->
+<!--                        <GuiElement type="text"   profile="multiTextOptionText" />-->
+<!--                        <GuiElement type="bitmap" profile="multiTextOptionBg" />-->
+<!--                    </GuiElement>-->
+
+<!--                    <GuiElement type="text" profile="controls2Axis" onCreate="onCreateAxisText" onCreateArgs="5" positionOrigin="middleRight" />-->
+<!--                    <GuiElement type="multiTextOption" profile="multiTextOption" margin="0px 0px 10px 0px" onClick="onClickAxis5Deadzone" onCreate="onCreateAxisDeadzone" onCreateArgs="5" >-->
+<!--                        <GuiElement type="button" profile="multiTextOptionLeft" />-->
+<!--                        <GuiElement type="button" profile="multiTextOptionRight" />-->
+<!--                        <GuiElement type="text"   profile="multiTextOptionText" />-->
+<!--                        <GuiElement type="bitmap" profile="multiTextOptionBg" />-->
+<!--                    </GuiElement>-->
+<!--                    <GuiElement type="multiTextOption" profile="multiTextOption" onClick="onClickAxis5Sensitivity" onCreate="onCreateAxisSensitivity" onCreateArgs="5" >-->
+<!--                        <GuiElement type="button" profile="multiTextOptionLeft" />-->
+<!--                        <GuiElement type="button" profile="multiTextOptionRight" />-->
+<!--                        <GuiElement type="text"   profile="multiTextOptionText" />-->
+<!--                        <GuiElement type="bitmap" profile="multiTextOptionBg" />-->
+<!--                    </GuiElement>-->
+
+<!--                    <GuiElement type="text" profile="controls2Axis" onCreate="onCreateAxisText" onCreateArgs="6" positionOrigin="middleRight" />-->
+<!--                    <GuiElement type="multiTextOption" profile="multiTextOption" margin="0px 0px 10px 0px" onClick="onClickAxis6Deadzone" onCreate="onCreateAxisDeadzone" onCreateArgs="6" >-->
+<!--                        <GuiElement type="button" profile="multiTextOptionLeft" />-->
+<!--                        <GuiElement type="button" profile="multiTextOptionRight" />-->
+<!--                        <GuiElement type="text"   profile="multiTextOptionText" />-->
+<!--                        <GuiElement type="bitmap" profile="multiTextOptionBg" />-->
+<!--                    </GuiElement>-->
+<!--                    <GuiElement type="multiTextOption" profile="multiTextOption" onClick="onClickAxis6Sensitivity" onCreate="onCreateAxisSensitivity" onCreateArgs="6" >-->
+<!--                        <GuiElement type="button" profile="multiTextOptionLeft" />-->
+<!--                        <GuiElement type="button" profile="multiTextOptionRight" />-->
+<!--                        <GuiElement type="text"   profile="multiTextOptionText" />-->
+<!--                        <GuiElement type="bitmap" profile="multiTextOptionBg" />-->
+<!--                    </GuiElement>-->
+
+<!--                    <GuiElement type="text" profile="controls2Axis" onCreate="onCreateAxisText" onCreateArgs="7" positionOrigin="middleRight" />-->
+<!--                    <GuiElement type="multiTextOption" profile="multiTextOption" margin="0px 0px 10px 0px" onClick="onClickAxis7Deadzone" onCreate="onCreateAxisDeadzone" onCreateArgs="7" >-->
+<!--                        <GuiElement type="button" profile="multiTextOptionLeft" />-->
+<!--                        <GuiElement type="button" profile="multiTextOptionRight" />-->
+<!--                        <GuiElement type="text"   profile="multiTextOptionText" />-->
+<!--                        <GuiElement type="bitmap" profile="multiTextOptionBg" />-->
+<!--                    </GuiElement>-->
+<!--                    <GuiElement type="multiTextOption" profile="multiTextOption" onClick="onClickAxis7Sensitivity" onCreate="onCreateAxisSensitivity" onCreateArgs="7" >-->
+<!--                        <GuiElement type="button" profile="multiTextOptionLeft" />-->
+<!--                        <GuiElement type="button" profile="multiTextOptionRight" />-->
+<!--                        <GuiElement type="text"   profile="multiTextOptionText" />-->
+<!--                        <GuiElement type="bitmap" profile="multiTextOptionBg" />-->
+<!--                    </GuiElement>-->
+
+<!--                    <GuiElement type="text" profile="controls2Axis" onCreate="onCreateAxisText" onCreateArgs="8" positionOrigin="middleRight" />-->
+<!--                    <GuiElement type="multiTextOption" profile="multiTextOption" margin="0px 0px 10px 0px" onClick="onClickAxis8Deadzone" onCreate="onCreateAxisDeadzone" onCreateArgs="8" >-->
+<!--                        <GuiElement type="button" profile="multiTextOptionLeft" />-->
+<!--                        <GuiElement type="button" profile="multiTextOptionRight" />-->
+<!--                        <GuiElement type="text"   profile="multiTextOptionText" />-->
+<!--                        <GuiElement type="bitmap" profile="multiTextOptionBg" />-->
+<!--                    </GuiElement>-->
+<!--                    <GuiElement type="multiTextOption" profile="multiTextOption" onClick="onClickAxis8Sensitivity" onCreate="onCreateAxisSensitivity" onCreateArgs="8" >-->
+<!--                        <GuiElement type="button" profile="multiTextOptionLeft" />-->
+<!--                        <GuiElement type="button" profile="multiTextOptionRight" />-->
+<!--                        <GuiElement type="text"   profile="multiTextOptionText" />-->
+<!--                        <GuiElement type="bitmap" profile="multiTextOptionBg" />-->
+<!--                    </GuiElement>-->
+<!--                </GuiElement>-->
+<!--            </GuiElement>-->

@@ -1,0 +1,1330 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="inGameMenuMobileMap">
+    <GuiElement type="ingameMap" profile="inGameMenuMobileMapOverview" id="inGameMap" limitMapWidth="true" cursorId="mapCursor" onClickMap="onClickMap" onDrawPostIngameMap="onDrawPostIngameMap" onClickHotspot="onClickHotspot" />
+    <GuiElement type="bitmap" profile="inGameMenuMobileMapCursor" id="mapCursor" visible="false" />
+
+    <!-- button/header box -->
+    <GuiElement type="bitmap" profile="inGameMenuMobileMapPagingBoxBg" />
+    <GuiElement type="bitmap" profile="inGameMenuMobileMapPagingBox" id="pagingElement" >
+        <GuiElement type="button" profile="inGameMenuMobileMapPagingButtonStatus"  onClick="onClickPagingStatus" />
+        <GuiElement type="button" profile="inGameMenuMobileMapPagingButtonVehicles" onClick="onClickPagingVehicles" />
+        <GuiElement type="button" profile="inGameMenuMobileMapPagingButtonPoints"  onClick="onClickPagingPoints" />
+        <GuiElement type="button" profile="inGameMenuMobileMapPagingButtonFields"  onClick="onClickPagingFields" />
+        <GuiElement type="button" profile="inGameMenuMobileMapPagingButtonAI"  onClick="onClickPagingAI" />
+        <GuiElement type="inputGlyph" profile="inGameMenuMobileMapPagingBoxGlyph" />
+    </GuiElement>
+
+    <GuiElement type="empty" profile="inGameMenuMobileMapRoundedTopContainer" id="roundedTopContainer" >
+        <GuiElement type="bitmap" profile="inGameMenuMobileMapRoundedTopCenter" id="roundedTopCenter" />
+        <GuiElement type="bitmap" profile="inGameMenuMobileMapRoundedTopLeft" />
+        <GuiElement type="bitmap" profile="inGameMenuMobileMapRoundedTopRight" />
+    </GuiElement>
+
+    <GuiElement type="bitmap" profile="inGameMenuMobileMapFilterBoxContainerBg" id="filterBoxContainerBg" />
+    <GuiElement type="bitmap" profile="inGameMenuMobileMapFilterBoxContainer" id="filterBoxContainer" >
+        <!-- Status filter box -->
+        <GuiElement type="empty" profile="inGameMenuMobileMapFilterBox" id="filterBoxes[1]">
+            <GuiElement type="bitmap" profile="inGameMenuMobileMapFilterBoxCornerLeft" />
+            <GuiElement type="multiTextOption" profile="inGameMenuMobileMapSubPageSelector" id="statusSelector" onClick="onStatusSelected" handleFocus="false" />
+
+            <GuiElement type="bitmap" profile="inGameMenuMobileMapTopScrollClipper" id="statusListTopClipper" name="topClipper" />
+            <GuiElement type="bitmap" profile="bottomScrollClipper" id="statusListBottomClipper" name="bottomClipper" />
+
+            <GuiElement type="smoothList" profile="inGameMenuMobileMapStatusList" id="statusList" listDataSource="self" listDelegate="self" startClipperElementName="topClipper" endClipperElementName="bottomClipper" >
+                <GuiElement type="listItem" profile="inGameMenuMobileMapListItem" onClick="onClickStatusListItem" >
+                    <GuiElement type="bitmap" profile="inGameMenuMobileMapStatusListIconBg" name="iconBg" />
+                    <GuiElement type="bitmap" profile="inGameMenuMobileMapStatusListIcon" name="icon" />
+                    <GuiElement type="text" profile="inGameMenuMobileMapStatusListText" name="text" />
+                    <GuiElement type="inputGlyph" profile="inGameMenuMobileMapListGlyph" name="glyph" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="threePartBitmap" profile="inGameMenuMobileMapStatusListSlider" id="statusListSlider" >
+                <GuiElement type="slider" profile="inGameMenuMobileMapStatusListSliderBar" id="statusListSliderBar" dataElementId="statusList" handleFocus="false" />
+            </GuiElement>
+        </GuiElement>
+
+        <!-- Vehicles filter box -->
+        <GuiElement type="empty" profile="inGameMenuMobileMapFilterBox" id="filterBoxes[2]">
+            <GuiElement type="bitmap" profile="inGameMenuMobileMapTopScrollClipper" id="vehiclesListTopClipper" name="topClipper" />
+            <GuiElement type="bitmap" profile="bottomScrollClipper" id="vehiclesListBottomClipper" name="bottomClipper" />
+
+            <GuiElement type="smoothList" profile="inGameMenuMobileMapList" id="vehiclesList" listDataSource="self" listDelegate="self" listSectionHeader="section" startClipperElementName="topClipper" endClipperElementName="bottomClipper" >
+                <GuiElement type="listItem" profile="inGameMenuMobileMapListItem" onClick="onClickListItem" >
+                    <GuiElement type="bitmap" profile="inGameMenuMobileMapVehicleListIcon" name="icon" />
+                    <GuiElement type="text" profile="inGameMenuMobileMapListText" name="text" />
+                    <GuiElement type="inputGlyph" profile="inGameMenuMobileMapListGlyph" name="glyph" />
+                </GuiElement>
+
+                <GuiElement type="listItem" profile="inGameMenuMobileMapListSectionHeader" name="section">
+                    <GuiElement type="text" profile="inGameMenuMobileMapListSectionHeaderText" name="title" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="threePartBitmap" profile="inGameMenuMobileMapListSlider" id="vehiclesListSlider" >
+                <GuiElement type="slider" profile="inGameMenuMobileMapListSliderBar" id="vehiclesListSliderBar" dataElementId="vehiclesList" handleFocus="false" />
+            </GuiElement>
+
+            <!-- Vehicles details box -->
+            <GuiElement type="bitmap" profile="inGameMenuMobileMapDetailsBox" id="vehicleDetailsBox">
+                <GuiElement type="button" profile="inGameMenuMobileMapDetailsButtonBack" onClick="onDetailsButtonBack" >
+                    <GuiElement type="inputGlyph" profile="inGameMenuMobileMapDetailsButtonBackGlyph" />
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="inGameMenuMobileMapDetailsImage" id="vehicleDetailsImage" />
+                <GuiElement type="bitmap" profile="inGameMenuMobileMapVehicleBrand" id="vehicleDetailsBrand" />
+                <GuiElement type="text" profile="inGameMenuMobileMapDetailsName" id="vehicleDetailsName" />
+
+                <GuiElement type="boxLayout" profile="inGameMenuMobileMapVehicleAttachables" >
+                    <GuiElement type="empty" profile="inGameMenuMobileMapVehicleAttachableContainer" id="vehicleDetailsAttachables[1]" >
+                        <GuiElement type="bitmap" profile="inGameMenuMobileMapVehicleAttachableIcon" name="icon" />
+                        <GuiElement type="text" profile="inGameMenuMobileMapVehicleAttachableName" name="text" />
+                    </GuiElement>
+                    <GuiElement type="empty" profile="inGameMenuMobileMapVehicleAttachableContainer" id="vehicleDetailsAttachables[2]" >
+                        <GuiElement type="bitmap" profile="inGameMenuMobileMapVehicleAttachableIcon" name="icon" />
+                        <GuiElement type="text" profile="inGameMenuMobileMapVehicleAttachableName" name="text" />
+                    </GuiElement>
+                    <GuiElement type="empty" profile="inGameMenuMobileMapVehicleAttachableContainer" id="vehicleDetailsAttachables[3]" >
+                        <GuiElement type="bitmap" profile="inGameMenuMobileMapVehicleAttachableIcon" name="icon" />
+                        <GuiElement type="text" profile="inGameMenuMobileMapVehicleAttachableName" name="text" />
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="text" profile="inGameMenuMobileMapHorseDailyRiding" id="vehicleDetailsDailyRiding" />
+            </GuiElement>
+        </GuiElement>
+
+        <!-- Points of Interest filter box -->
+        <GuiElement type="empty" profile="inGameMenuMobileMapFilterBox" id="filterBoxes[3]">
+            <GuiElement type="flowLayout" profile="inGameMenuMobileMapPointsFilterButtonBox" id="pointsFilterButtonBox">
+                <GuiElement type="button" profile="inGameMenuMobileMapPointsFilterButtonLoading"  onClick="onClickFilterLoading" onFocus="onFilterButtonFocusEnter" onLeave="onFilterButtonFocusLeave" />
+                <GuiElement type="button" profile="inGameMenuMobileMapPointsFilterButtonProductions"  onClick="onClickFilterProductions" onFocus="onFilterButtonFocusEnter" onLeave="onFilterButtonFocusLeave" />
+                <GuiElement type="button" profile="inGameMenuMobileMapPointsFilterButtonAnimals"  onClick="onClickFilterAnimals" onFocus="onFilterButtonFocusEnter" onLeave="onFilterButtonFocusLeave" />
+                <GuiElement type="button" profile="inGameMenuMobileMapPointsFilterButtonOther"  onClick="onClickFilterOther" onFocus="onFilterButtonFocusEnter" onLeave="onFilterButtonFocusLeave" >
+                    <GuiElement type="inputGlyph" profile="inGameMenuMobileMapPointsFilterButtonGlyph" id="pointsFilterButtonGlyph" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="inGameMenuMobileMapTopScrollClipper" id="pointsListTopClipper" name="topClipper" />
+            <GuiElement type="bitmap" profile="bottomScrollClipper" id="pointsListBottomClipper" name="bottomClipper" />
+
+            <GuiElement type="smoothList" profile="inGameMenuMobileMapPointsList" id="pointsList" listDataSource="self" listDelegate="self" listSectionHeader="section" startClipperElementName="topClipper" endClipperElementName="bottomClipper" >
+                <GuiElement type="listItem" profile="inGameMenuMobileMapListItem" onClick="onClickListItem" >
+                    <GuiElement type="bitmap" profile="inGameMenuMobileMapPointsListIcon" name="icon" />
+                    <GuiElement type="text" profile="inGameMenuMobileMapListText" name="text" />
+                    <GuiElement type="inputGlyph" profile="inGameMenuMobileMapListGlyph" name="glyph" />
+                </GuiElement>
+
+                <GuiElement type="listItem" profile="inGameMenuMobileMapListSectionHeader" name="section">
+                    <GuiElement type="text" profile="inGameMenuMobileMapListSectionHeaderText" name="title" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="threePartBitmap" profile="inGameMenuMobileMapPointsListSlider" id="pointsListSlider" >
+                <GuiElement type="slider" profile="inGameMenuMobileMapPointsListSliderBar" id="pointsListSliderBar" dataElementId="pointsList" handleFocus="false" />
+            </GuiElement>
+
+            <!-- Points details box -->
+            <GuiElement type="bitmap" profile="inGameMenuMobileMapDetailsBox" id="pointDetailsBox">
+                <GuiElement type="button" profile="inGameMenuMobileMapDetailsButtonBack" onClick="onDetailsButtonBack" >
+                    <GuiElement type="inputGlyph" profile="inGameMenuMobileMapDetailsButtonBackGlyph" />
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="inGameMenuMobileMapDetailsImage" id="pointDetailsImage" />
+                <GuiElement type="text" profile="inGameMenuMobileMapDetailsName" id="pointDetailsName" />
+
+                <GuiElement type="boxLayout" profile="inGameMenuMobileMapPointDetailsBox" id="pointDetailsBox" >
+                    <GuiElement type="bitmap" profile="inGameMenuMobileMapDetailsIconTemplate" id="pointDetailsIconTemplate" visible="false" />
+
+                    <GuiElement type="flowLayout" profile="inGameMenuMobileMapDetailsLayout" id="pointDetailsLayout">
+                        <GuiElement type="bitmap" profile="inGameMenuMobileMapDetailsIcon" id="pointDetailsIcon[1]"/>
+                        <GuiElement type="text" profile="inGameMenuMobileMapDetailsText" text="Dummy" id="pointDetailsValue[1]"/>
+                        <GuiElement type="empty" profile="inGameMenuMobileMapDetailsIconsLayoutBox">
+                            <GuiElement type="flowLayout" profile="inGameMenuMobileMapDetailsIconsLayout" id="pointDetailsIconsLayout[1]"/>
+                        </GuiElement>
+
+                        <GuiElement type="bitmap" profile="inGameMenuMobileMapDetailsIcon" id="pointDetailsIcon[2]"/>
+                        <GuiElement type="text" profile="inGameMenuMobileMapDetailsText" text="Dummy" id="pointDetailsValue[2]"/>
+                        <GuiElement type="empty" profile="inGameMenuMobileMapDetailsIconsLayoutBox">
+                            <GuiElement type="flowLayout" profile="inGameMenuMobileMapDetailsIconsLayout" id="pointDetailsIconsLayout[2]"/>
+                        </GuiElement>
+
+                        <GuiElement type="bitmap" profile="inGameMenuMobileMapDetailsIcon" id="pointDetailsIcon[3]"/>
+                        <GuiElement type="text" profile="inGameMenuMobileMapDetailsText" text="Dummy" id="pointDetailsValue[3]"/>
+                        <GuiElement type="empty" profile="inGameMenuMobileMapDetailsIconsLayoutBox">
+                            <GuiElement type="flowLayout" profile="inGameMenuMobileMapDetailsIconsLayout" id="pointDetailsIconsLayout[3]"/>
+                        </GuiElement>
+
+                        <GuiElement type="bitmap" profile="inGameMenuMobileMapDetailsIcon" id="pointDetailsIcon[4]"/>
+                        <GuiElement type="text" profile="inGameMenuMobileMapDetailsText" text="Dummy" id="pointDetailsValue[4]"/>
+                        <GuiElement type="empty" profile="inGameMenuMobileMapDetailsIconsLayoutBox">
+                            <GuiElement type="flowLayout" profile="inGameMenuMobileMapDetailsIconsLayout" id="pointDetailsIconsLayout[4]"/>
+                        </GuiElement>
+
+                        <GuiElement type="bitmap" profile="inGameMenuMobileMapDetailsIcon" id="pointDetailsIcon[5]"/>
+                        <GuiElement type="text" profile="inGameMenuMobileMapDetailsText" text="Dummy" id="pointDetailsValue[5]"/>
+                        <GuiElement type="empty" profile="inGameMenuMobileMapDetailsIconsLayoutBox">
+                            <GuiElement type="flowLayout" profile="inGameMenuMobileMapDetailsIconsLayout" id="pointDetailsIconsLayout[5]"/>
+                        </GuiElement>
+
+                        <GuiElement type="bitmap" profile="inGameMenuMobileMapDetailsIcon" id="pointDetailsIcon[6]"/>
+                        <GuiElement type="text" profile="inGameMenuMobileMapDetailsText" text="Dummy" id="pointDetailsValue[6]"/>
+                        <GuiElement type="empty" profile="inGameMenuMobileMapDetailsIconsLayoutBox">
+                            <GuiElement type="flowLayout" profile="inGameMenuMobileMapDetailsIconsLayout" id="pointDetailsIconsLayout[6]"/>
+                        </GuiElement>
+                    </GuiElement>
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+
+        <!-- Fields filter box -->
+        <GuiElement type="empty" profile="inGameMenuMobileMapFilterBox" id="filterBoxes[4]">
+            <GuiElement type="bitmap" profile="inGameMenuMobileMapTopScrollClipper" id="fieldsListTopClipper" name="topClipper" />
+            <GuiElement type="bitmap" profile="bottomScrollClipper" id="fieldsListBottomClipper" name="bottomClipper" />
+
+            <GuiElement type="smoothList" profile="inGameMenuMobileMapFieldsList" id="fieldsList" listDataSource="self" listDelegate="self" listSectionHeader="section" startClipperElementName="topClipper" endClipperElementName="bottomClipper" >
+                <GuiElement type="listItem" profile="inGameMenuMobileMapFieldsListItem" >
+                    <GuiElement type="bitmap" profile="inGameMenuMobileMapFieldsListIcon" name="icon" />
+                    <GuiElement type="text" profile="inGameMenuMobileMapFieldsListText" name="text" />
+                    <GuiElement type="text" profile="inGameMenuMobileMapFieldsListSizeText" name="size" />
+                    <GuiElement type="text" profile="inGameMenuMobileMapFieldsListCostText" name="cost" />
+                </GuiElement>
+
+                <GuiElement type="listItem" profile="inGameMenuMobileMapListSectionHeader" name="section">
+                    <GuiElement type="text" profile="inGameMenuMobileMapListSectionHeaderText" name="title" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="threePartBitmap" profile="inGameMenuMobileMapListSlider" id="fieldsListSlider" >
+                <GuiElement type="slider" profile="inGameMenuMobileMapListSliderBar" id="fieldsListSliderBar" dataElementId="fieldsList" handleFocus="false" />
+            </GuiElement>
+        </GuiElement>
+
+        <!-- AI filter box -->
+        <GuiElement type="empty" profile="inGameMenuMobileMapFilterBox" id="filterBoxes[5]" >
+            <GuiElement type="bitmap" profile="inGameMenuMobileMapFilterBoxCornerRight" />
+            <GuiElement type="text" profile="inGameMenuMobileMapAIListTitle" text="$l10n_ui_activeAIJobs" id="aiWorkersListTitle" />
+
+            <GuiElement type="bitmap" profile="inGameMenuMobileMapTopScrollClipper" id="aiWorkersListTopClipper" name="topClipper" />
+            <GuiElement type="bitmap" profile="bottomScrollClipper" id="aiWorkersListBottomClipper" name="bottomClipper" />
+
+            <GuiElement type="smoothList" profile="inGameMenuMobileMapAIList" id="aiWorkersList" emptyIndicatorId="aiWorkersListEmpty" onSelectionChanged="onListSelectionChanged" listDelegate="self" listDataSource="self" startClipperElementName="topClipper" endClipperElementName="bottomClipper" >
+                <GuiElement type="listItem" profile="inGameMenuMobileMapListItem">
+                    <GuiElement type="bitmap" profile="inGameMenuMobileMapAIListIcon" />
+                    <GuiElement type="text" profile="inGameMenuMobileMapAIListHelperName" name="helper"/>
+                    <GuiElement type="text" profile="inGameMenuMobileMapAIListJobTitle" name="title"/>
+                    <GuiElement type="text" profile="inGameMenuMobileMapAIListJobDescription" name="text"/>
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="threePartBitmap" profile="inGameMenuMobileMapAIListSlider" id="aiWorkersListSlider" >
+                <GuiElement type="slider" profile="inGameMenuMobileMapAIListSliderBar" id="aiWorkersListSliderBar" dataElementId="aiWorkersList" handleFocus="false" />
+            </GuiElement>
+
+            <GuiElement type="text" profile="inGameMenuMobileMapAIListEmpty" text="$l10n_ui_inGameMenuNoActiveWorkers" id="aiWorkersListEmpty" />
+
+            <GuiElement type="bitmap" profile="inGameMenuMobileMapAISeparator" />
+
+            <!-- AI vehicle details, uses same layout as vehicle details frame-->
+            <GuiElement type="bitmap" profile="inGameMenuMobileMapAIDetailsBox" id="aiDetailsBox">
+                <GuiElement type="bitmap" profile="inGameMenuMobileMapDetailsImage" id="aiDetailsImage" />
+                <GuiElement type="bitmap" profile="inGameMenuMobileMapVehicleBrand" id="aiDetailsBrand" />
+                <GuiElement type="text" profile="inGameMenuMobileMapDetailsName" id="aiDetailsName" />
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="empty" profile="inGameMenuMobileMapButtonBackContainer" id="buttonCloseMapContainer" >
+        <GuiElement type="button" profile="inGameMenuMobileMapButtonBack" onClick="onClickCloseMap" text="$l10n_button_closeMap" id="buttonCloseMap" />
+    </GuiElement>
+
+    <GuiElement type="multiTextOption" profile="inGameMenuMobileMapPageSelector" onClick="onMapPageSelected" id="mapPageSelector" handleFocus="false" >
+        <GuiElement type="text" profile="inGameMenuMobileMapPageSelectorText" text="$l10n_ui_mapHotspotFilter_vehicles" name="text"/>
+    </GuiElement>
+
+    <!-- AI job menu, design is similar to a dialog -->
+    <GuiElement type="roundCorner" profile="inGameMenuMobileMapAIDialogBg" id="aiTaskDialog" visible="false">
+        <GuiElement type="text" profile="inGameMenuMobileMapAIDialogCreateJobTitle" text="$l10n_button_createJob" />
+
+        <GuiElement type="flowLayout" profile="inGameMenuMobileMapAIDialogCreateLayout" id="aiTaskDialogLayout">
+            <GuiElement type="multiTextOption" profile="inGameMenuMobileMapAIDialogJobTypeOption" id="aiTaskDialogJobTypeSelector" onClick="onJobTypeChanged" >
+                <GuiElement type="text" profile="inGameMenuMobileMapAIDialogJobTypeOptionTitle" text="$l10n_ai_parameterGroupJobType" name="label" />
+            </GuiElement>
+
+            <!-- MultiTextOption -->
+            <GuiElement type="optionToggle" profile="inGameMenuMobileMapAIDialogParameterOption" id="aiTaskDialogMultiOptionTemplate" onClick="onClickMultiTextOptionParameter" >
+                <GuiElement type="bitmap" profile="inGameMenuMobileMapAIDialogParameterInvalid" name="invalid" />
+                <GuiElement type="text" profile="inGameMenuMobileMapAIDialogParameterGroupTitle" name="label" />
+            </GuiElement>
+
+            <!-- Position -->
+           <GuiElement type="empty" profile="inGameMenuMobileMapAIDialogParameterPositionContainer" id="aiTaskDialogPositionTemplate" >
+                <GuiElement type="text" profile="inGameMenuMobileMapAIDialogParameterPositionGroupTitle" name="title"/>
+
+                <GuiElement type="button" profile="inGameMenuMobileMapAIDialogParameterPositionButton" name="button" onClick="onClickPositionParameter" >
+                    <GuiElement type="button" profile="inGameMenuMobileMapAIDialogParameterPositionIcon" />
+                    <GuiElement type="roundCorner" profile="inGameMenuMobileMapAIDialogParameterPositionBg" >
+                        <GuiElement type="text" profile="inGameMenuMobileMapAIDialogParameterPositionText" name="text" />
+                    </GuiElement>
+                    <GuiElement type="bitmap" profile="inGameMenuMobileMapAIDialogParameterInvalid" name="invalid" />
+                </GuiElement>
+            </GuiElement>
+
+            <!-- Position + Rotation -->
+           <GuiElement type="empty" profile="inGameMenuMobileMapAIDialogParameterPositionContainer" id="aiTaskDialogPositionRotationTemplate" >
+                <GuiElement type="text" profile="inGameMenuMobileMapAIDialogParameterPositionGroupTitle" name="title"/>
+
+                <GuiElement type="button" profile="inGameMenuMobileMapAIDialogParameterPositionButton" name="button" onClick="onClickPositionRotationParameter" >
+                    <GuiElement type="button" profile="inGameMenuMobileMapAIDialogParameterPositionIcon" />
+                    <GuiElement type="roundCorner" profile="inGameMenuMobileMapAIDialogParameterPositionBg" >
+                        <GuiElement type="text" profile="inGameMenuMobileMapAIDialogParameterPositionText" name="text" />
+                    </GuiElement>
+                    <GuiElement type="bitmap" profile="inGameMenuMobileMapAIDialogParameterInvalid" name="invalid" />
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+
+        <!-- Error message if parameters are not valid -->
+        <GuiElement type="roundCorner" profile="inGameMenuMobileMapAIErrorBg" id="aiTaskDialogErrorMessageBg" >
+            <GuiElement type="bitmap" profile="inGameMenuMobileMapMessageIconError" />
+            <GuiElement type="text" profile="inGameMenuMobileMapAIErrorText" id="aiTaskDialogErrorMessage" />
+        </GuiElement>
+    </GuiElement>
+
+    <!-- Status, Action and Error messages -->
+    <GuiElement type="roundCorner" profile="inGameMenuMobileMapDynamicLoadingBg" id="dynamicMapImageLoadingBg" >
+        <GuiElement type="bitmap" profile="inGameMenuMobileMapMessageIcon" />
+        <GuiElement type="text" profile="inGameMenuMobileMapDynamicLoadingText" id="dynamicMapImageLoading" text="$l10n_ui_loadingFruitMap"/>
+    </GuiElement>
+
+    <GuiElement type="roundCorner" profile="inGameMenuMobileMapAIActionBg" id="actionMessageBg" >
+        <GuiElement type="bitmap" profile="inGameMenuMobileMapMessageIcon" />
+        <GuiElement type="text" profile="inGameMenuMobileMapAIActionText" id="actionMessage" />
+    </GuiElement>
+
+    <GuiElement type="roundCorner" profile="inGameMenuMobileMapAIStatusBg" id="statusMessageBg" >
+        <GuiElement type="bitmap" profile="inGameMenuMobileMapMessageIcon" />
+        <GuiElement type="text" profile="inGameMenuMobileMapAIStatusText" id="statusMessage" />
+    </GuiElement>
+
+    <GuiElement type="roundCorner" profile="inGameMenuMobileMapAILimitReachedBg" id="limitReachedWarningBg" >
+        <GuiElement type="bitmap" profile="inGameMenuMobileMapAILimitReachedIcon" />
+        <GuiElement type="text" profile="inGameMenuMobileMapAILimitReached" text="$l10n_ai_warningLimitReached" id="limitReachedWarning" />
+    </GuiElement>
+
+    <!-- Button Box -->
+    <GuiElement type="flowLayout" profile="inGameMenuMobileMapButtonBox" id="buttonBox" >
+        <GuiElement type="button" profile="buttonSelectMap" text="$l10n_button_select" id="buttonSelectInGame" />
+
+        <GuiElement type="button" profile="buttonEnterVehicle" text="$l10n_button_enterVehicle" onClick="onClickEnterVehicle" id="buttonEnterVehicle" />
+        <GuiElement type="button" profile="buttonResetVehicle" text="$l10n_button_reset" onClick="onClickResetVehicle" id="buttonResetVehicle" />
+
+        <GuiElement type="button" profile="buttonSetMarker" text="$l10n_action_tag" onClick="onClickTagPlace" id="buttonSetMarker" />
+
+        <GuiElement type="button" profile="inGameMenuMobileMapButtonBuyField" text="$l10n_button_buy" onClick="onClickBuyField" id="buttonBuyField" />
+
+        <GuiElement type="button" profile="inGameMenuMobileMapButtonPlus" text="$l10n_button_createJob" onClick="onCreateJob" id="buttonCreateJob" />
+        <GuiElement type="button" profile="inGameMenuMobileMapButtonPosition" text="$l10n_button_gotoJob" onClick="onStartGoToJob" id="buttonGoToJob" />
+
+        <GuiElement type="button" profile="buttonActivate" text="$l10n_button_startJob" onClick="onStartJob" id="buttonStartJob" />
+        <GuiElement type="button" profile="inGameMenuMobileMapButtonCancel" text="$l10n_button_cancelJob" onClick="onCancelJob" id="buttonCancelJob" />
+        <GuiElement type="button" profile="inGameMenuMobileMapButtonPosition" text="$l10n_button_skipTask" onClick="onSkipJobTask" id="buttonSkipTask" />
+
+        <GuiElement type="button" profile="inGameMenuMobileMapButtonPosition" text="$l10n_button_confirmPosition" onClick="onConfirmAITarget" id="buttonConfirmAITarget" />
+
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="inGameMenuMobileMapOverview" extends="baseReference" with="anchorMiddleRight">
+            <Value name="size" value="1 1"/>
+            <Value name="position" value="0"/>
+            <Value name="mapAlpha" value="1"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapCursor" extends="baseReference" with="anchorMiddleCenter">
+            <Value name="size" value="128px 128px"/>
+            <Value name="position" value="0 0"/>
+            <Value name="imageUVs" value="482px 818px 124px 124px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPagingBox" extends="baseReference" with="anchorTopLeft">
+            <Value name="size" value="582px 138px"/>
+
+            <Value name="imageFilename" value="dataS/menu/hud/ui_menu_elements.png" />
+            <Value name="imageSize" value="2048 2048" />
+            <Value name="imageUVs" value="1px 1px 580px 137px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPagingBoxBg" extends="baseReference" with="anchorTopLeft">
+            <Value name="size" value="500px 138px"/>
+
+            <Value name="imageFilename" value="dataS/menu/hud/ui_menu_elements.png" />
+            <Value name="imageSize" value="2048 2048" />
+            <Value name="imageUVs" value="1px 1px 500px 137px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPagingButton" extends="buttonBase" with="anchorTopLeft">
+            <Value name="size" value="118px 118px"/>
+            <Value name="handleFocus" value="false"/>
+
+            <Value name="imageFilename" value="dataS/menu/hud/ui_menu_elements.png" />
+            <Value name="imageSize" value="2048 2048" />
+            <Value name="imageColor" value="$preset_colorTransparent"/>
+            <Value name="imageSelectedColor" value="$preset_colorWhite"/>
+            <Value name="imageUVs" value="583px 1px 116px 116px" />
+
+            <Value name="iconFilename" value="dataS/menu/hud/ui_menu_elements.png" />
+            <Value name="iconImageSize" value="2048 2048" />
+            <Value name="iconSize" value="80px 80px" />
+            <Value name="iconColor" value="$preset_colorWhite"/>
+            <Value name="iconSelectedColor" value="$preset_colorMainUI"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPagingButtonStatus" extends="inGameMenuMobileMapPagingButton">
+            <Value name="iconUVs" value="942px 0px 80px 80px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPagingButtonVehicles" extends="inGameMenuMobileMapPagingButton">
+            <Value name="position" value="116px 0px" />
+
+            <Value name="iconUVs" value="782px 0px 80px 80px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPagingButtonPoints" extends="inGameMenuMobileMapPagingButton">
+            <Value name="position" value="232px 0px" />
+
+            <Value name="iconUVs" value="862px 0px 80px 80px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPagingButtonFields" extends="inGameMenuMobileMapPagingButton">
+            <Value name="position" value="348px 0px" />
+
+            <Value name="iconUVs" value="1022px 0px 80px 80px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPagingButtonAI" extends="inGameMenuMobileMapPagingButton">
+            <Value name="position" value="464px 0px" />
+
+            <Value name="iconUVs" value="1102px 0px 80px 80px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPagingBoxGlyph" extends="baseReference" with="anchorMiddleRight" >
+            <Value name="size" value="19px 48px" />
+            <Value name="position" value="100px 15px" />
+
+            <Value name="isLeftAligned" value="true" />
+            <Value name="inputAction" value="MENU_PAGE_PREV" />
+            <Value name="inputAction2" value="MENU_PAGE_NEXT" />
+            <Value name="glyphColor" value="$preset_colorBlack" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPageSelector" extends="multiTextOption" with="anchorTopLeft">
+            <Value name="size" value="582px 50px" />
+            <Value name="position" value="0px -150px" />
+
+            <Value name="defaultProfileButtonLeft" value="inGameMenuMobileMapPageSelectorButtonLeft" />
+            <Value name="defaultProfileButtonRight" value="inGameMenuMobileMapPageSelectorButtonRight" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPageSelectorButtonLeft" extends="multiTextOptionLeft" with="anchorMiddleCenter">
+            <Value name="visible" value="false" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPageSelectorButtonRight" extends="multiTextOptionRight" with="anchorMiddleCenter">
+            <Value name="visible" value="false" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPageSelectorText" extends="textDefault" with="anchorMiddleCenter">
+            <Value name="size" value="370px 40px"/>
+
+            <Value name="textSize" value="40px"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textLayoutMode" value="resize"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapRoundedTopContainer" extends="baseReference" with="anchorTopLeft">
+            <Value name="size" value="582px 33px"/>
+            <Value name="position" value="0px -115px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapRoundedTopCenter" extends="baseReference" with="anchorTopCenter">
+            <Value name="size" value="540px 33px"/>
+
+            <Value name="imageFilename" value="dataS/menu/hud/ui_menu_elements.png" />
+            <Value name="imageSize" value="2048 2048" />
+            <Value name="imageUVs" value="41px 138px 520px 33px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapRoundedTopLeft" extends="baseReference" with="anchorTopLeft">
+            <Value name="size" value="150px 33px"/>
+
+            <Value name="imageFilename" value="dataS/menu/hud/ui_menu_elements.png" />
+            <Value name="imageSize" value="2048 2048" />
+            <Value name="imageUVs" value="1px 138px 150px 33px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapRoundedTopRight" extends="baseReference" with="anchorTopRight">
+            <Value name="size" value="150px 33px"/>
+
+            <Value name="imageFilename" value="dataS/menu/hud/ui_menu_elements.png" />
+            <Value name="imageSize" value="2048 2048" />
+            <Value name="imageUVs" value="430px 138px 150px 33px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapFilterBoxContainer" extends="baseReference" with="anchorTopLeft">
+            <Value name="size" value="582px 1"/>
+
+            <Value name="imageFilename" value="dataS/menu/uiMapBackground.png" />
+            <Value name="imageSize" value="2048 2048" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapFilterBoxContainerBg" extends="baseReference" with="anchorTopLeft">
+            <Value name="size" value="582px 1"/>
+
+            <Value name="imageFilename" value="dataS/menu/uiMapBackground.png" />
+            <Value name="imageSize" value="2048 2048" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapFilterBox" extends="baseReference" with="anchorTopLeft">
+            <Value name="size" value="582px 1"/>
+
+            <Value name="anchors" value="0 0 0 1"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapDetailsBox" extends="emptyPanel" with="anchorTopLeft">
+            <Value name="visible" value="false"/>
+
+            <Value name="size" value="582px 700px"/>
+            <Value name="position" value="0px -70px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapDetailsButtonBack" extends="wideButton" with="anchorTopLeft">
+            <Value name="size" value="80px 80px"/>
+            <Value name="position" value="5px 70px"/>
+            <Value name="fitToContent" value="false"/>
+
+            <Value name="iconFilename" value="dataS/menu/hud/ui_menu_elements.png" />
+            <Value name="iconImageSize" value="2048 2048" />
+            <Value name="iconSize" value="43px 31px" />
+            <Value name="iconUVs" value="610px 118px 43px 31px" />
+            <Value name="iconColor" value="1 1 1 1" />
+            <Value name="iconHighlightedColor" value="1 1 1 1" />
+            <Value name="iconFocusedColor" value="1 1 1 1" />
+            <Value name="textAlignment" value="center"/>
+
+            <Value name="imageColor" value="0 0 0 0" />
+            <Value name="imageHighlightedColor" value="0 0 0 0" />
+            <Value name="imageFocusedColor" value="0 0 0 0" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapDetailsButtonBackGlyph" extends="baseReference" >
+            <Value name="size" value="48px 48px" />
+            <Value name="position" value="110px 40px" />
+
+            <Value name="inputAction" value="MENU_ACCEPT" />
+            <Value name="glyphColor" value="$preset_colorBlack" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapDetailsImage" extends="baseReference" with="anchorTopCenter">
+            <Value name="size" value="280px 280px" />
+
+            <Value name="imageSize" value="512 512"/>
+            <Value name="imageUVs" value="2px 2px 508px 508px"/>
+            <Value name="imageColor" value="$preset_colorWhite"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapDetailsName" extends="textDefault" with="anchorTopCenter">
+            <Value name="size" value="400px 40px"/>
+            <Value name="position" value="0px -370px"/>
+
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textMaxNumLines" value="1"/>
+            <Value name="textSize" value="40px"/>
+            <Value name="textColor" value="$preset_colorWhite"/>
+            <Value name="textSelectedColor" value="$preset_colorWhite"/>
+            <Value name="textLayoutMode" value="resize"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapSubPageSelector" extends="multiTextOption" with="anchorTopCenter">
+            <Value name="size" value="570px 80px"/>
+            <Value name="position" value="0px -66px"/>
+
+            <Value name="wrap" value="false"/>
+            <Value name="hideButtonOnLimitReached" value="true"/>
+
+            <Value name="defaultProfileButtonLeft" value="inGameMenuMobileMapSupPageSelectorButtonLeft" />
+            <Value name="defaultProfileButtonRight" value="inGameMenuMobileMapSupPageSelectorButtonRight" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapSupPageSelectorButtonLeft" extends="multiTextOptionLeft">
+            <Value name="size" value="80px 80px"/>
+
+            <Value name="imageColor" value="$preset_colorTransparent" />
+            <Value name="imageFocusedColor" value="$preset_colorTransparent" />
+            <Value name="imageHighlightedColor" value="$preset_colorTransparent" />
+
+            <Value name="iconSize" value="30px 30px"/>
+            <Value name="iconHighlightedColor" value="$preset_colorWhite"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapSupPageSelectorButtonRight" extends="multiTextOptionRight">
+            <Value name="size" value="80px 80px"/>
+
+            <Value name="imageColor" value="$preset_colorTransparent" />
+            <Value name="imageFocusedColor" value="$preset_colorTransparent" />
+            <Value name="imageHighlightedColor" value="$preset_colorTransparent" />
+
+            <Value name="iconSize" value="30px 30px"/>
+            <Value name="iconHighlightedColor" value="$preset_colorWhite"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapTopScrollClipper" extends="topScrollClipper" >
+            <Value name="anchors" value="0 1 0 0" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapList" extends="list" with="anchorTopLeft" >
+            <Value name="size" value="560px 640px"/>
+            <Value name="listItemSpacing" value="4px"/>
+
+            <Value name="supportsTouchScrolling" value="true"/>
+            <Value name="keepSelectedInView" value="true"/>
+            <Value name="isHorizontalList" value="false"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapListItem" extends="listItem">
+            <Value name="size" value="560px 100px"/>
+
+            <Value name="imageColor" value="$preset_colorTransparent"/>
+            <Value name="imageSelectedColor" value="$preset_colorFocusBackgroundGradient_20"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapListGlyph" extends="baseReference" with="anchorMiddleRight" >
+            <Value name="size" value="48px 48px" />
+            <Value name="position" value="40px 0px" />
+
+            <Value name="inputAction" value="MENU_ACCEPT" />
+            <Value name="glyphColor" value="$preset_colorBlack" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapListIcon" extends="baseReference" with="anchorMiddleLeft" >
+            <Value name="size" value="82px 82px"/>
+            <Value name="position" value="19px 0px"/>
+
+            <Value name="imageColor" value="$preset_colorWhite"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapListText" extends="textDefault" with="anchorMiddleLeft" >
+            <Value name="size" value="380px 80px"/>
+            <Value name="position" value="120px 0px"/>
+
+            <Value name="textSize" value="35px"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textMaxWidth" value="380px"/>
+            <Value name="textMaxNumLines" value="2" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapListSectionHeader" extends="listItem" >
+            <Value name="size" value="400px 100px"/>
+
+            <Value name="imageFocusedColor" value="$preset_colorFocusBackgroundGradient"/>
+            <Value name="imageSelectedColor" value="$preset_colorFocusBackgroundGradient"/>
+            <Value name="imageColor" value="$preset_colorListHeaderBackground" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapListSectionHeaderText" extends="textDefault" with="anchorMiddleCenter">
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="textMaxWidth" value="380px"/>
+            <Value name="textMaxNumLines" value="2"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textSize" value="40px"/>
+            <Value name="textUpperCase" value="true"/>
+            <Value name="textLayoutMode" value="resize"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textColor" value="$preset_colorWhite"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapListSlider" extends="verticalListSliderRightDocked">
+            <Value name="position" value="0px 0px"/>
+            <Value name="size" value="12px 640px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapListSliderBar" extends="verticalListSliderBar">
+            <Value name="size" value="6px 632px"/>
+        </Profile>
+
+        <!-- Vehicles Page -->
+        <Profile name="inGameMenuMobileMapFilterBoxCornerLeft" extends="baseReference" with="anchorTopLeft">
+            <Value name="size" value="24px 24px"/>
+            <Value name="position" value="0px 23px"/>
+
+            <Value name="imageFilename" value="dataS/menu/uiMapBackground.png" />
+            <Value name="imageSize" value="2048 2048" />
+            <Value name="imageUVs" value="0px 0px 24px 24px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapVehicleListIcon" extends="inGameMenuMobileMapListIcon">
+            <Value name="imageFilename" value="dataS/menu/hud/mapHotspots.png" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapVehicleBrand" extends="baseReference" with="anchorTopCenter">
+            <Value name="size" value="180px 90px"/>
+            <Value name="position" value="0px -280px" />
+
+            <Value name="imageSize" value="512 512"/>
+            <Value name="imageUVs" value="2px 2px 508px 508px"/>
+            <Value name="imageColor" value="$preset_colorWhite"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapVehicleSeparator" extends="baseReference" with="anchorTopCenter">
+            <Value name="size" value="410px 3dp" />
+            <Value name="position" value="0px -440px" />
+            <Value name="imageColor" value="1 1 1 0.4" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapVehicleAttachables" extends="emptyPanel" with="anchorTopCenter">
+            <Value name="size" value="470px 290px" />
+            <Value name="position" value="0px -460px" />
+            <Value name="flowDirection" value="vertical" />
+            <Value name="alignmentY" value="top" />
+            <Value name="autoValidateLayout" value="true"/>
+            <Value name="textLayoutMode" value="resize"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapVehicleAttachableContainer" extends="baseReference" with="anchorTopCenter">
+            <Value name="size" value="470px 60px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapVehicleAttachableIcon" extends="baseIcon" with="anchorMiddleLeft">
+            <Value name="size" value="80px 80px" />
+            <Value name="position" value="10px 0px" />
+            <Value name="imageFilename" value="dataS/menu/hud/mapHotspots.png" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapVehicleAttachableName" extends="textDefault" with="anchorMiddleLeft">
+            <Value name="size" value="320px 250px" />
+            <Value name="position" value="90px 0px" />
+
+            <Value name="textSize" value="35px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapHorseDailyRiding" extends="textDefault" with="anchorTopCenter">
+            <Value name="size" value="320px 100px" />
+            <Value name="position" value="0px -420px" />
+
+            <Value name="textBold" value="true" />
+            <Value name="textSize" value="35px" />
+        </Profile>
+
+        <!-- Points Page -->
+        <Profile name="inGameMenuMobileMapPointsFilterButtonBox" extends="emptyPanel" with="anchorTopCenter">
+            <Value name="size" value="490px 110px" />
+            <Value name="position" value="25px -80px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPointsFilterButton" extends="buttonBase" >
+            <Value name="size" value="110px 110px"/>
+            <Value name="imageFilename" value="dataS/menu/hud/mapHotspots.png" />
+
+            <Value name="iconColor" value="$preset_colorTransparent"/>
+            <Value name="iconSize" value="110px 110px"/>
+            <Value name="iconFilename" value="dataS/menu/hud/mapHotspots.png" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPointsFilterButtonLoading" extends="inGameMenuMobileMapPointsFilterButton" >
+            <Value name="imageUVs" value="328px 435px 100px 100px" />
+            <Value name="imageSelectedUVs" value="4px 219px 100px 100px" />
+
+            <Value name="iconUVs" value="220px 543px 100px 100px" />
+            <Value name="iconSelectedUVs" value="4px 543px 100px 100px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPointsFilterButtonProductions" extends="inGameMenuMobileMapPointsFilterButton" >
+            <Value name="imageUVs" value="436px 435px 100px 100px" />
+            <Value name="imageSelectedUVs" value="220px 219px 100px 100px" />
+
+            <Value name="iconUVs" value="328px 543px 100px 100px" />
+            <Value name="iconSelectedUVs" value="112px 543px 100px 100px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPointsFilterButtonAnimals" extends="inGameMenuMobileMapPointsFilterButton" >
+            <Value name="imageUVs" value="544px 435px 100px 100px" />
+            <Value name="imageSelectedUVs" value="112px 435px 100px 100px" />
+
+            <Value name="iconUVs" value="436px 543px 100px 100px" />
+            <Value name="iconSelectedUVs" value="760px 435px 100px 100px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPointsFilterButtonOther" extends="inGameMenuMobileMapPointsFilterButton" >
+            <Value name="imageUVs" value="652px 435px 100px 100px" />
+            <Value name="imageSelectedUVs" value="220px 435px 100px 100px" />
+
+            <Value name="iconUVs" value="544px 543px 100px 100px" />
+            <Value name="iconSelectedUVs" value="868px 435px 100px 100px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPointsFilterButtonGlyph" extends="baseReference" with="anchorTopRight" >
+            <Value name="size" value="48px 48px" />
+            <Value name="position" value="41px 10px" />
+
+            <Value name="isLeftAligned" value="true" />
+            <Value name="inputAction" value="MENU_ACCEPT" />
+            <Value name="glyphColor" value="$preset_colorBlack" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPointsList" extends="inGameMenuMobileMapList">
+            <Value name="size" value="560px 520px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPointsListIcon" extends="inGameMenuMobileMapListIcon">
+            <Value name="imageFilename" value="dataS/menu/hud/mapHotspots.png" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPointsListSlider" extends="inGameMenuMobileMapListSlider">
+            <Value name="size" value="12px 520px"/>
+            <Value name="position" value="0px 0px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPointsListSliderBar" extends="inGameMenuMobileMapListSliderBar">
+            <Value name="size" value="6px 512px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapPointDetailsBox" extends="emptyPanel" with="anchorTopCenter">
+            <Value name="size" value="500px 200px" />
+            <Value name="position" value="0px -420px" />
+
+            <Value name="flowDirection" value="vertical" />
+            <Value name="alignmentY" value="top" />
+            <Value name="numFlows" value="2" />
+
+            <Value name="autoValidateLayout" value="true"/>
+            <Value name="textLayoutMode" value="resize"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapDetailsIconTemplate" extends="baseReference">
+            <Value name="size" value="70px 70px"/>
+            <Value name="margin" value="0 0 5px 0"/>
+
+            <Value name="imageColor" value="$preset_colorWhite"/>
+            <Value name="imageUVs" value="0 0 1 1"/>
+            <Value name="imageFilename" value="dataS/menu/hud/fillTypes/hud_fill_chaff.png"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapDetailsLayout" extends="emptyPanel" with="anchorTopCenter">
+            <Value name="position" value="0px 0px" />
+            <Value name="size" value="500px 200px" />
+            <Value name="flowDirection" value="horizontal"/>
+            <Value name="alignmentX" value="left"/>
+            <Value name="alignmentY" value="middle"/>
+            <Value name="numFlows" value="3"/>
+            <Value name="lateralFlowSize" value="60px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapDetailsIcon" extends="baseReference">
+            <Value name="imageColor" value="$preset_colorMainUI"/>
+        </Profile>
+
+        <!-- smaller icons for inGame map frame-->
+        <Profile name="inGameMenuMobileMapDetailsIconCapacity" extends="shopListAttributeIconCapacity" with="inGameMenuMapDetailsIconTrait" />
+        <Profile name="inGameMenuMobileMapDetailsIconCow" extends="shopListAttributeIconCow" with="inGameMenuMapDetailsIconTrait" />
+        <Profile name="inGameMenuMobileMapDetailsIconPig" extends="shopListAttributeIconPig" with="inGameMenuMapDetailsIconTrait" />
+        <Profile name="inGameMenuMobileMapDetailsIconSheep" extends="shopListAttributeIconSheep" with="inGameMenuMapDetailsIconTrait" />
+        <Profile name="inGameMenuMobileMapDetailsIconHorse" extends="shopListAttributeIconHorse" with="inGameMenuMapDetailsIconTrait" />
+        <Profile name="inGameMenuMobileMapDetailsIconChicken" extends="shopListAttributeIconChicken" with="inGameMenuMapDetailsIconTrait" />
+        <Profile name="inGameMenuMobileMapDetailsIconPlus" extends="shopListAttributeIconPlus" with="inGameMenuMapDetailsIconTrait" />
+        <Profile name="inGameMenuMobileMapDetailsIconValue" extends="shopListAttributeIconValue" with="inGameMenuMapDetailsIconTrait" />
+        <Profile name="inGameMenuMobileMapDetailsIconSlots" extends="shopListAttributeIconSlots" with="inGameMenuMapDetailsIconTrait" />
+        <Profile name="inGameMenuMobileMapDetailsIconIncomePerHour" extends="shopListAttributeIconIncomePerHour" with="inGameMenuMapDetailsIconTrait" />
+        <Profile name="inGameMenuMobileMapDetailsIconFillTypes" extends="shopListAttributeIconFillTypes" with="inGameMenuMapDetailsIconTrait" />
+        <Profile name="inGameMenuMobileMapDetailsIconInput" extends="shopListAttributeIconInput" with="inGameMenuMapDetailsIconTrait" />
+        <Profile name="inGameMenuMobileMapDetailsIconOutput" extends="shopListAttributeIconOutput" with="inGameMenuMapDetailsIconTrait" />
+
+        <Profile name="inGameMenuMobileMapDetailsText" extends="textDefault">
+            <Value name="size" value="400px 60px"/>
+            <Value name="position" value="65px 0px" />
+            <Value name="margin" value="0 15px 500px 15px"/>
+            <Value name="disallowFlowCut" value="true" />
+
+            <Value name="textSize" value="35px"/>
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="textMinWidth" value="35px" />
+            <Value name="textMaxWidth" value="400px"/>
+            <Value name="textColor" value="$preset_colorWhite"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapDetailsIconsLayoutBox" extends="emptyPanel">
+            <Value name="size" value="10px 60px" />
+            <Value name="visible" value="false" />
+            <Value name="disallowFlowCut" value="true" />
+            <Value name="clipping" value="true" />
+            <Value name="margin" value="0 15px 500px 15px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapDetailsIconsLayout" extends="emptyPanel">
+            <Value name="size" value="10px 60px" />
+            <Value name="alignmentY" value="middle" />
+            <Value name="flowDirection" value="horizontal" />
+            <Value name="numFlows" value="1" />
+        </Profile>
+
+        <!-- Status Page -->
+        <Profile name="inGameMenuMobileMapStatusListIcon" extends="inGameMenuMobileMapListIcon">
+            <Value name="size" value="64px 64px" />
+            <Value name="position" value="28px 0px"/>
+
+            <Value name="imageSize" value="256 256" />
+            <Value name="imageUVs" value="0 0 1 1" />
+            <Value name="imageColor" value="$preset_colorDisabled" />
+            <Value name="imageSelectedColor" value="$preset_colorWhite" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapStatusList" extends="inGameMenuMobileMapList">
+            <Value name="size" value="560px 590px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapStatusListIconBg" extends="inGameMenuMobileMapListIcon">
+            <Value name="imageFilename" value="dataS/menu/hud/ui_menu_elements.png" />
+            <Value name="imageSize" value="2048 2048" />
+            <Value name="imageUVs" value="700px 0px 82px 82px" />
+            <Value name="imageColor" value="$preset_colorDisabled" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapStatusListText" extends="inGameMenuMobileMapListText">
+            <Value name="textColor" value="$preset_colorDisabled" />
+            <Value name="textSelectedColor" value="$preset_colorWhite" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapStatusListSlider" extends="inGameMenuMobileMapListSlider">
+            <Value name="size" value="12px 590px"/>
+            <Value name="position" value="0px 0px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapStatusListSliderBar" extends="inGameMenuMobileMapListSliderBar">
+            <Value name="size" value="6px 582px"/>
+        </Profile>
+
+        <!-- Fields Page -->
+        <Profile name="inGameMenuMobileMapFieldsList" extends="inGameMenuMobileMapList" >
+            <Value name="size" value="560px 640px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapFieldsListItem" extends="inGameMenuMobileMapListItem" >
+            <Value name="size" value="550px 100px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapFieldsListIcon" extends="inGameMenuMobileMapListIcon" >
+            <Value name="size" value="60px 60px"/>
+            <Value name="position" value="31px 0px"/>
+
+            <Value name="imageFilename" value="dataS/menu/hud/ui_menu_elements.png" />
+            <Value name="imageSize" value="2048 2048" />
+            <Value name="imageUVs" value="1022px 0px 80px 80px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapFieldsListIconOwned" extends="inGameMenuMobileMapFieldsListIcon">
+            <Value name="imageUVs" value="1182px 0px 80px 80px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapFieldsListText" extends="inGameMenuMobileMapListText" with="anchorTopLeft">
+            <Value name="position" value="120px -10px"/>
+            <Value name="size" value="380px 40px"/>
+
+            <Value name="textMaxNumLines" value="1" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapFieldsListSizeText" extends="inGameMenuMobileMapListText" with="anchorBottomLeft">
+            <Value name="position" value="120px 10px"/>
+            <Value name="size" value="380px 40px"/>
+
+            <Value name="textBold" value="false"/>
+            <Value name="textMaxNumLines" value="1" />
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textAlignment" value="right" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapFieldsListCostText" extends="inGameMenuMobileMapFieldsListSizeText" with="anchorBottomRight" >
+            <Value name="position" value="-10px 10px"/>
+        </Profile>
+
+        <!-- AI Page -->
+        <Profile name="inGameMenuMobileMapFilterBoxCornerRight" extends="inGameMenuMobileMapFilterBoxCornerLeft" with="anchorTopRight" >
+            <Value name="position" value="0px 23px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIListTitle" extends="textDefault" with="anchorTopCenter">
+            <Value name="size" value="400px 40px" />
+            <Value name="position" value="0px -505px"/>
+
+            <Value name="textSize" value="30px" />
+            <Value name="textBold" value="true" />
+            <Value name="textUpperCase" value="true" />
+            <Value name="textAlignment" value="center" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIList" extends="inGameMenuMobileMapList" >
+            <Value name="size" value="560px 205px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIListIcon" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="size" value="80px 80px"/>
+            <Value name="position" value="0px 0px" />
+
+            <Value name="imageFilename" value="dataS/menu/hud/mapHotspots.png"/>
+            <Value name="imageUVs" value="446px 121px 80px 80px"/>
+            <Value name="imageSize" value="1024 1024"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIListHelperName" extends="textDefault" with="anchorMiddleLeft">
+            <Value name="size" value="25px 25px"/>
+            <Value name="position" value="27px 0px" />
+
+            <Value name="textSize" value="18px" />
+            <Value name="textBold" value="false" />
+            <Value name="textAlignment" value="center" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIListJobTitle" extends="inGameMenuMobileMapListText" with="anchorTopLeft">
+            <Value name="position" value="120px -10px"/>
+            <Value name="size" value="380px 40px"/>
+
+            <Value name="textMaxNumLines" value="1" />
+            <Value name="textLayoutMode" value="resize" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIListJobDescription" extends="inGameMenuMobileMapListText" with="anchorBottomLeft">
+            <Value name="position" value="120px 10px"/>
+            <Value name="size" value="380px 40px"/>
+
+            <Value name="textBold" value="false"/>
+            <Value name="textMaxNumLines" value="1" />
+            <Value name="textLayoutMode" value="resize" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIListSlider" extends="verticalListSliderRightDocked">
+            <Value name="position" value="0px 0px"/>
+            <Value name="size" value="12px 205px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIListSliderBar" extends="verticalListSliderBar">
+            <Value name="size" value="6px 197px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAISeparator" extends="baseReference" with="anchorTopCenter">
+            <Value name="size" value="410px 3dp" />
+            <Value name="position" value="0px -500px" />
+            <Value name="imageColor" value="1 1 1 0.4" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIListEmpty" extends="textDefault" with="anchorTopCenter">
+            <Value name="position" value="0px -625px" />
+
+            <Value name="textSize" value="30px" />
+            <Value name="textAlignment" value="center" />
+            <Value name="textMaxWidth" value="400px" />
+            <Value name="textMaxNumLines" value="2" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIListLimitReached" extends="baseReference" with="anchorBottomRight">
+            <Value name="size" value="720px 100px" />
+            <Value name="position" value="-40px 145px"/>
+            <Value name="alignmentX" value="right"/>
+            <Value name="alignmentY" value="middle"/>
+            <Value name="imageColor" value="0.0482 0.0482 0.0482 0.8"/>
+
+            <Value name="handleFocus" value="false"/>
+            <Value name="useFullVisibility" value="false"/>
+            <Value name="autoValidateLayout" value="true"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIDetailsBox" extends="inGameMenuMobileMapDetailsBox" >
+            <Value name="visible" value="true"/>
+        </Profile>
+
+        <!-- AI dialog -->
+        <Profile name="inGameMenuMobileMapAIDialog" extends="emptyPanel" with="anchorMiddleRight" >
+            <Value name="size" value="1100px 800px" />
+            <Value name="position" value="-100px 30px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIDialogBg" extends="dialogBg" with="anchorMiddleRight" >
+            <Value name="size" value="1200px 800px"/>
+            <Value name="position" value="-50px 70px" />
+            <Value name="color" value="0.0284 0.0284 0.0284 0.985"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIDialogCreateJobTitle" extends="textDefault" with="anchorTopLeft">
+            <Value name="size" value="550px 40px" />
+            <Value name="position" value="60px -50px"/>
+
+            <Value name="textSize" value="40px" />
+            <Value name="textBold" value="true" />
+            <Value name="textAlignment" value="left" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIDialogJobTypeOption" extends="multiTextOption" with="anchorBottomLeft">
+            <Value name="margin" value="0 10px 0 10px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIDialogJobTypeOptionTitle" extends="textDefault" with="anchorMiddleLeft" >
+            <Value name="size" value="440px 105px" />
+            <Value name="position" value="-470px 0px" />
+            <Value name="margin" value="0 10px 0 10px" />
+
+            <Value name="textSize" value="35px"/>
+            <Value name="textMaxNumLines" value="2"/>
+            <Value name="textMaxWidth" value="410px"/>
+            <Value name="textAlignment" value="right"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIDialogCreateLayout" extends="emptyPanel" with="anchorBottomCenter">
+            <Value name="size" value="1040px 720px"/>
+            <Value name="position" value="-10px -50px" />
+
+            <Value name="alignmentX" value="right" />
+            <Value name="alignmentY" value="top" />
+            <Value name="flowDirection" value="vertical" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIDialogParameterOption" extends="multiTextOption" with="anchorBottomLeft">
+            <Value name="margin" value="0 10px 0 10px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIDialogParameterInvalid" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="size" value="60px 60px"/>
+            <Value name="position" value="573px 0px" />
+
+            <Value name="imageUVs" value="940px 435px 65px 65px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIDialogParameterGroupTitle" extends="textDefault" with="anchorBottomLeft" >
+            <Value name="size" value="440px 105px" />
+            <Value name="position" value="-470px 0px" />
+            <Value name="margin" value="0 10px 30px 10px" />
+
+            <Value name="textSize" value="35px"/>
+            <Value name="textMaxNumLines" value="2"/>
+            <Value name="textMaxWidth" value="410px"/>
+            <Value name="textAlignment" value="right"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIDialogParameterPositionContainer" extends="baseReference" with="anchorBottomCenter" >
+            <Value name="size" value="1040px 105px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIDialogParameterPositionGroupTitle" extends="textDefault" with="anchorMiddleLeft" >
+            <Value name="size" value="440px 105px" />
+
+            <Value name="textSize" value="35px"/>
+            <Value name="textMaxNumLines" value="2"/>
+            <Value name="textMaxWidth" value="420px"/>
+            <Value name="textAlignment" value="right"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIDialogParameterPositionButton" extends="baseReference" with="anchorMiddleRight" >
+            <Value name="size" value="568px 105px"/>
+            <Value name="margin" value="0 4px 0 4px" />
+
+            <Value name="imageColor" value="$preset_colorTransparent"/>
+            <Value name="imageFocusedColor" value="$preset_colorTransparent"/>
+            <Value name="imageDisabledColor" value="$preset_colorTransparent"/>
+            <Value name="imageHighlightedColor" value="$preset_colorTransparent"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIDialogParameterPositionIcon" extends="buttonBase" with="anchorMiddleLeft">
+            <Value name="size" value="106px 106px"/>
+            <Value name="handleFocus" value="false"/>
+
+            <Value name="iconSize" value="60px 60px"/>
+            <Value name="iconUVs" value="288px 96px 48px 48px" />
+            <Value name="iconFilename" value="dataS/menu/hud/ui_elements.png" />
+            <Value name="iconColor" value="$preset_colorWhite"/>
+
+            <Value name="imageFilename" value="g_baseHUDFilename" />
+            <Value name="imageUVs" value="132px 908px 106px 106px"/>
+            <Value name="imageDisabledUVs" value="344px 908px 106px 106px"/>
+            <Value name="imageFocusedUVs" value="238px 908px 106px 106px"/>
+            <Value name="imageHighlightedUVs" value="238px 908px 106px 106px"/>
+            <Value name="imageColor" value="$preset_colorWhite"/>
+            <Value name="imageDisabledColor" value="$preset_colorWhite"/>
+            <Value name="imageFocusedColor" value="$preset_colorWhite"/>
+            <Value name="imageHighlightedColor" value="$preset_colorWhite"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIDialogParameterPositionBg" extends="buttonBase" with="anchorMiddleRight">
+            <Value name="size" value="450px 105px"/>
+            <Value name="color" value="$preset_colorBlack3_97"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIDialogParameterPositionText" extends="textDefault" with="anchorMiddleCenter">
+            <Value name="textSize" value="35px"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textMaxNumLines" value="1"/>
+            <Value name="textMaxWidth" value="400px"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textLayoutMode" value="resize"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+        </Profile>
+
+        <!-- Message Boxes -->
+        <Profile name="inGameMenuMobileMapMessageIcon" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="size" value="48px 48px"/>
+            <Value name="position" value="10px 0px" />
+
+            <Value name="imageFilename" value="dataS/menu/hud/hud_elements.png"/>
+            <Value name="imageUVs" value="354px 618px 48px 48px"/>
+            <Value name="imageColor" value="$preset_colorWhite"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapMessageIconError" extends="inGameMenuMobileMapMessageIcon" >
+            <Value name="imageUVs" value="96px 0px 48px 48px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIErrorBg" extends="baseReference" with="anchorBottomRight">
+            <Value name="size" value="700px 50px" />
+            <Value name="position" value="0px -135px" />
+            <Value name="color" value="0.5029 0.0152 0.0152 1.0"/>
+
+            <Value name="handleFocus" value="false"/>
+            <Value name="useFullVisibility" value="false"/>
+            <Value name="autoValidateLayout" value="true"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIErrorText"  extends="textDefault" with="anchorMiddleRight">
+            <Value name="size" value="600px 50px" />
+            <Value name="position" value="-20px 0px" />
+
+            <Value name="textSize" value="30px"/>
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textAlignment" value="center"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapDynamicLoadingBg" extends="baseReference" with="anchorBottomRight">
+            <Value name="size" value="450px 60px" />
+            <Value name="position" value="-50px 250px"/>
+            <Value name="alignmentX" value="right"/>
+            <Value name="alignmentY" value="middle"/>
+            <Value name="color" value="0.0482 0.0482 0.0482 0.8"/>
+
+            <Value name="handleFocus" value="false"/>
+            <Value name="useFullVisibility" value="false"/>
+            <Value name="autoValidateLayout" value="true"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapDynamicLoadingText" extends="textDefault" with="anchorMiddleRight">
+            <Value name="size" value="430px 50px"/>
+            <Value name="position" value="-20px 0px"/>
+
+            <Value name="textSize" value="35px"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textAlignment" value="center"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIActionBg" extends="baseReference" with="anchorBottomRight">
+            <Value name="size" value="720px 50px" />
+            <Value name="position" value="-40px 200px"/>
+            <Value name="alignmentX" value="right"/>
+            <Value name="alignmentY" value="middle"/>
+            <Value name="color" value="0.0482 0.0482 0.0482 0.8"/>
+
+            <Value name="handleFocus" value="false"/>
+            <Value name="useFullVisibility" value="false"/>
+            <Value name="autoValidateLayout" value="true"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIActionText" extends="textDefault" with="anchorMiddleRight">
+            <Value name="position" value="-20px 0px"/>
+
+            <Value name="textSize" value="35px"/>
+            <Value name="textBold" value="true" />
+            <Value name="textAutoWidth" value="true" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIStatusBg" extends="baseReference" with="anchorBottomRight">
+            <Value name="size" value="720px 50px" />
+            <Value name="position" value="-40px -250px"/>
+            <Value name="alignmentX" value="right"/>
+            <Value name="alignmentY" value="middle"/>
+            <Value name="color" value="0.0482 0.0482 0.0482 0.8"/>
+
+            <Value name="handleFocus" value="false"/>
+            <Value name="useFullVisibility" value="false"/>
+            <Value name="autoValidateLayout" value="true"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAIStatusText"  extends="textDefault" with="anchorMiddleRight">
+            <Value name="position" value="-20px 0px"/>
+
+            <Value name="textSize" value="35px"/>
+            <Value name="textBold" value="true" />
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textAlignment" value="right" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAILimitReachedBg" extends="baseReference" with="anchorBottomRight">
+            <Value name="size" value="800px 100px" />
+            <Value name="position" value="-40px 200px"/>
+            <Value name="alignmentX" value="right"/>
+            <Value name="alignmentY" value="middle"/>
+            <Value name="color" value="0.0482 0.0482 0.0482 0.8"/>
+
+            <Value name="handleFocus" value="false"/>
+            <Value name="useFullVisibility" value="false"/>
+            <Value name="autoValidateLayout" value="true"/>
+        </Profile>
+        <Profile name="inGameMenuMobileMapAILimitReachedIcon" extends="inGameMenuMobileMapMessageIconError" >
+            <Value name="size" value="60px 60px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapAILimitReached" extends="textDefault" with="anchorMiddleRight">
+            <Value name="position" value="-20px 0px" />
+
+            <Value name="textSize" value="35px"/>
+            <Value name="textBold" value="true" />
+            <Value name="textMaxNumLines" value="3"/>
+            <Value name="textMaxWidth" value="700px"/>
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textAlignment" value="right" />
+        </Profile>
+
+        <!-- Button -->
+        <Profile name="inGameMenuMobileMapButtonBackContainer" extends="emptyPanel" with="anchorBottomLeft">
+            <Value name="size" value="582px 200px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapButtonBack" extends="buttonBack" with="anchorMiddleCenter" >
+            <Value name="textMaxWidth" value="400px"/>
+            <Value name="textLayoutMode" value="resize"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapButtonBox" extends="buttonBoxDockedOnScreen" with="anchorBottomRight" >
+            <Value name="size" value="1300px 200px" />
+            <Value name="position" value="-10px 0px"/>
+            <Value name="elementSpacing" value="30px" />
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapButtonBuyField" extends="buttonActivate">
+            <Value name="touchIconUVs" value="835px 502px 36px 36px"/>
+            <Value name="touchIconSize" value="48px 48px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapButtonPosition" extends="buttonCancel" >
+            <Value name="touchIconUVs" value="432px 96px 48px 48px" />
+            <Value name="touchIconSize" value="48px 48px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapButtonPlus" extends="buttonActivate" >
+            <Value name="touchIconUVs" value="250px 347px 27px 27px"/>
+            <Value name="touchIconSize" value="36px 36px"/>
+        </Profile>
+
+        <Profile name="inGameMenuMobileMapButtonCancel" extends="buttonActivate" >
+            <Value name="touchIconUVs" value="615px 435px 65px 65px" />
+            <Value name="touchIconSize" value="36px 36px"/>
+        </Profile>
+    </GUIProfiles>
+</GUI>

@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="ingameMenuMultiplayerUsers">
+    <GuiElement type="empty" profile="uiInGameMenuFrame">
+        <!-- Static page header -->
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel">
+            <!-- <GuiElement type="bitmap" profile="ingameMenuMPUsersIcon"/> -->
+            <GuiElement type="text" profile="ingameMenuFrameHeaderText" text="$l10n_ui_accountManagement"/>
+
+            <!-- Current balance display in header -->
+            <GuiElement type="flowLayout" profile="shopMoneyBox">
+                <GuiElement type="text" profile="shopBalance" text="$l10n_ui_balance:" id="currentBalanceLabel" />
+                <GuiElement type="text" profile="shopMoney" text="0" position="0px 0px" id="currentBalanceText" />
+            </GuiElement>
+        </GuiElement>
+
+        <GuiElement type="empty" profile="ingameMenuCenterBox" id="container">
+            <GuiElement type="empty" profile="ingameMenuMPUsersListBox">
+                <GuiElement type="smoothList" profile="ingameMenuMPUsersList" id="userList" focusInit="onOpen" focusChangeBottom="nil" focusChangeTop="nil">
+                    <GuiElement type="listItem" profile="ingameMenuMPUsersListItem" name="user">
+                        <GuiElement type="platformIcon" profile="ingameMenuMPUsersListItemPlatform" name="platform" />
+                        <GuiElement type="text" profile="ingameMenuMPUsersListItemText" text="Nickname" name="playerName"/>
+
+                        <GuiElement type="flowLayout" profile="ingameMenuMPUsersListItemAttributeBox">
+                            <GuiElement type="bitmap" profile="ingameMenuMPUsersListItemNoMicrophone" name="noMicrophone" />
+                            <GuiElement type="bitmap" profile="ingameMenuMPUsersListItemMuted" name="muted" />
+                            <GuiElement type="bitmap" profile="ingameMenuMPUsersListItemFarmManager" name="farmManager" />
+                            <GuiElement type="bitmap" profile="ingameMenuMPUsersListItemAdmin" name="admin" />
+                        </GuiElement>
+                    </GuiElement>
+                    <GuiElement type="listItem" profile="ingameMenuMPUsersListFarm" name="farm">
+                        <GuiElement type="bitmap" profile="ingameMenuMPUsersListFarmDot" name="dot"/>
+                        <GuiElement type="text" profile="ingameMenuMPUsersListFarmName" text="My Farm" name="title"/>
+                        <GuiElement type="text" profile="ingameMenuMPUsersListFarmBalance" text="Info" name="farmBalance"/>
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="threePartBitmap" profile="verticalListSliderRightDocked">
+                    <GuiElement type="slider" profile="verticalListSliderBar" dataElementId="userList" handleFocus="false" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="empty" profile="ingameMenuMPUsersContentBox">
+                <GuiElement type="boxLayout" id="actionsBox" profile="ingameMenuMPActionsBox">
+                    <GuiElement type="button" profile="ingameMenuMPActionsListActionButton" text="$l10n_button_mp_transferMoney" onClick="onClickTransferButton" id="transferButton"/>
+                    <GuiElement type="button" profile="ingameMenuMPActionsListActionButton" text="$l10n_button_mp_removeFromFarm" onClick="onClickRemoveFromFarm" id="removeButton"/>
+                    <GuiElement type="button" profile="ingameMenuMPActionsListActionButton" text="$l10n_button_mp_promote" onClick="onClickPromote" id="promoteButton"/>
+                    <GuiElement type="button" profile="ingameMenuMPActionsListActionButton" text="$l10n_button_mp_grant" onClick="onClickContractor" id="contractorButton"/>
+                    <GuiElement type="button" profile="ingameMenuMPActionsListActionButton" text="$l10n_button_kick" onClick="onButtonKick" id="kickButton"/>
+                    <GuiElement type="button" profile="ingameMenuMPActionsListActionButton" text="$l10n_button_block" onClick="onButtonBlock" id="blockButton"/>
+                    <GuiElement type="button" profile="ingameMenuMPActionsListActionButton" text="$l10n_button_blockFromServer" onClick="onButtonBlockFromServer" id="blockFromServerButton"/>
+                    <GuiElement type="button" profile="ingameMenuMPActionsListActionButton" text="$l10n_button_report" onClick="onButtonReport" id="reportButton"/>
+                    <GuiElement type="button" profile="ingameMenuMPActionsListActionButton" text="$l10n_button_mute" onClick="onButtonMute" id="muteButton"/>
+                    <GuiElement type="button" profile="ingameMenuMPActionsListActionButton" text="$l10n_button_showProfile" onClick="onButtonShowProfile" id="showProfileButton"/>
+
+                    <GuiElement type="multiTextOption" profile="multiTextOption" id="peerVolumeOption" onClick="onPeerVolumeChanged" size="410px 48px">
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="boxLayout" id="permissionsBox" profile="ingameMenuMPPermissionsBox">
+                    <GuiElement type="empty" profile="ingameMenuMPActionsListItem" id="permissionRow[1]">
+                        <GuiElement type="button" profile="ingameMenuMPActionsListPermission" text="$l10n_ui_permission_buyVehicles" />
+                        <GuiElement type="toggleButton" profile="ingameMenuMPActionsListPermissionCheckbox"  onClick="onClickPermission" id="buyVehiclePermissionCheckbox">
+                            <GuiElement type="button" profile="ingameMenuMPActionsListPermissionCheckboxTick"/>
+                            <GuiElement type="button" profile="ingameMenuMPActionsListPermissionCheckboxUntick"/>
+                        </GuiElement>
+                    </GuiElement>
+                    <GuiElement type="empty" profile="ingameMenuMPActionsListItem" id="permissionRow[2]">
+                        <GuiElement type="button" profile="ingameMenuMPActionsListPermission" text="$l10n_ui_permission_sellVehicles" />
+                        <GuiElement type="toggleButton" profile="ingameMenuMPActionsListPermissionCheckbox"  onClick="onClickPermission" id="sellVehiclePermissionCheckbox">
+                            <GuiElement type="button" profile="ingameMenuMPActionsListPermissionCheckboxTick"/>
+                            <GuiElement type="button" profile="ingameMenuMPActionsListPermissionCheckboxUntick"/>
+                        </GuiElement>
+                    </GuiElement>
+                    <GuiElement type="empty" profile="ingameMenuMPActionsListItem" id="permissionRow[3]">
+                        <GuiElement type="button" profile="ingameMenuMPActionsListPermission" text="$l10n_ui_permissions_resetVehicles" />
+                        <GuiElement type="toggleButton" profile="ingameMenuMPActionsListPermissionCheckbox"  onClick="onClickPermission" id="resetVehiclePermissionCheckbox">
+                            <GuiElement type="button" profile="ingameMenuMPActionsListPermissionCheckboxTick"/>
+                            <GuiElement type="button" profile="ingameMenuMPActionsListPermissionCheckboxUntick"/>
+                        </GuiElement>
+                    </GuiElement>
+                    <GuiElement type="empty" profile="ingameMenuMPActionsListItem" id="permissionRow[4]">
+                        <GuiElement type="button" profile="ingameMenuMPActionsListPermission" text="$l10n_ui_permissions_buyPlaceable" />
+                        <GuiElement type="toggleButton" profile="ingameMenuMPActionsListPermissionCheckbox"  onClick="onClickPermission" id="buyPlaceablePermissionCheckbox">
+                            <GuiElement type="button" profile="ingameMenuMPActionsListPermissionCheckboxTick"/>
+                            <GuiElement type="button" profile="ingameMenuMPActionsListPermissionCheckboxUntick"/>
+                        </GuiElement>
+                    </GuiElement>
+                    <GuiElement type="empty" profile="ingameMenuMPActionsListItem" id="permissionRow[5]">
+                        <GuiElement type="button" profile="ingameMenuMPActionsListPermission" text="$l10n_ui_permissions_sellPlaceable" />
+                        <GuiElement type="toggleButton" profile="ingameMenuMPActionsListPermissionCheckbox"  onClick="onClickPermission" id="sellPlaceablePermissionCheckbox">
+                            <GuiElement type="button" profile="ingameMenuMPActionsListPermissionCheckboxTick"/>
+                            <GuiElement type="button" profile="ingameMenuMPActionsListPermissionCheckboxUntick"/>
+                        </GuiElement>
+                    </GuiElement>
+                    <GuiElement type="empty" profile="ingameMenuMPActionsListItem" id="permissionRow[6]">
+                        <GuiElement type="button" profile="ingameMenuMPActionsListPermission" text="$l10n_ui_permissions_hireAssistent" />
+                        <GuiElement type="toggleButton" profile="ingameMenuMPActionsListPermissionCheckbox" onClick="onClickPermission" id="hireAssistantPermissionCheckbox">
+                            <GuiElement type="button" profile="ingameMenuMPActionsListPermissionCheckboxTick"/>
+                            <GuiElement type="button" profile="ingameMenuMPActionsListPermissionCheckboxUntick"/>
+                        </GuiElement>
+                    </GuiElement>
+                    <GuiElement type="empty" profile="ingameMenuMPActionsListItem" id="permissionRow[7]">
+                        <GuiElement type="button" profile="ingameMenuMPActionsListPermission" text="$l10n_ui_permissions_manageMissions"/>
+                        <GuiElement type="toggleButton" profile="ingameMenuMPActionsListPermissionCheckbox" onClick="onClickPermission" id="manageMissionsPermissionCheckbox">
+                            <GuiElement type="button" profile="ingameMenuMPActionsListPermissionCheckboxTick"/>
+                            <GuiElement type="button" profile="ingameMenuMPActionsListPermissionCheckboxUntick"/>
+                        </GuiElement>
+                    </GuiElement>
+                    <GuiElement type="empty" profile="ingameMenuMPActionsListItem" id="permissionRow[8]">
+                        <GuiElement type="button" profile="ingameMenuMPActionsListPermission" text="$l10n_ui_permissions_tradeAnimals"/>
+                        <GuiElement type="toggleButton" profile="ingameMenuMPActionsListPermissionCheckbox" onClick="onClickPermission" id="tradeAnimalsPermissionCheckbox">
+                            <GuiElement type="button" profile="ingameMenuMPActionsListPermissionCheckboxTick"/>
+                            <GuiElement type="button" profile="ingameMenuMPActionsListPermissionCheckboxUntick"/>
+                        </GuiElement>
+                    </GuiElement>
+                    <GuiElement type="empty" profile="ingameMenuMPActionsListItem" id="permissionRow[9]">
+                        <GuiElement type="button" profile="ingameMenuMPActionsListPermission" text="$l10n_ui_permissions_createFields"/>
+                        <GuiElement type="toggleButton" profile="ingameMenuMPActionsListPermissionCheckbox" onClick="onClickPermission" id="createFieldsPermissionCheckbox">
+                            <GuiElement type="button" profile="ingameMenuMPActionsListPermissionCheckboxTick"/>
+                            <GuiElement type="button" profile="ingameMenuMPActionsListPermissionCheckboxUntick"/>
+                        </GuiElement>
+                    </GuiElement>
+                    <GuiElement type="empty" profile="ingameMenuMPActionsListItem" id="permissionRow[10]">
+                        <GuiElement type="button" profile="ingameMenuMPActionsListPermission" text="$l10n_ui_permissions_landscaping"/>
+                        <GuiElement type="toggleButton" profile="ingameMenuMPActionsListPermissionCheckbox" onClick="onClickPermission" id="landscapingPermissionCheckbox">
+                            <GuiElement type="button" profile="ingameMenuMPActionsListPermissionCheckboxTick"/>
+                            <GuiElement type="button" profile="ingameMenuMPActionsListPermissionCheckboxUntick"/>
+                        </GuiElement>
+                    </GuiElement>
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="ingameMenuMPUsersIcon" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="size" value="64px 64px"/>
+            <Value name="imageUVs" value="910px 144px 65px 65px"/>
+        </Profile>
+
+        <Profile name="ingameMenuMPUsersListBox" extends="emptyPanel" with="anchorTopLeft">
+            <Value name="size" value="500px 756px"/>
+
+                <Variant name="mobile" >
+                    <Value name="size" value="530px 650px" />
+                    <Value name="hasFrame" value="false" />
+                </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuMPUsersList" extends="list" with="alternating">
+            <Value name="size" value="500px 708px"/>
+            <Value name="isHorizontalList" value="false"/>
+
+            <Value name="rowBackgroundProfile" value="ingameMenuHelpListItem"/>
+            <Value name="rowBackgroundProfileAlternate" value="helpLineListItemAlternate"/>
+
+            <Variant name="mobile" with="lightFrame">
+                <Value name="position" value="0px 0px" />
+                <Value name="size" value="530px 650px" />
+                <Value name="listItemHeight" value="90px"/>
+                <Value name="listItemWidth" value="530px"/>
+                <Value name="itemsPerCol" value="5"/>
+                <Value name="keepSelectedInView" value="true" />
+                <Value name="supportsTouchScrolling" value="true" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuMPUsersListItem" extends="listItem" with="alternating">
+            <Value name="size" value="500px 47px"/>
+
+            <Value name="imageColor" value="$preset_colorListRowBackground"/>
+            <Value name="imageFocusedColor" value="$preset_colorFocusBackgroundGradient"/>
+            <Value name="imageSelectedColor" value="$preset_colorFocusBackgroundGradient"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="530px 90px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuMPUsersListItemAlternate" extends="ingameMenuMPUsersListItem" with="alternateRow" />
+
+        <Profile name="ingameMenuMPUsersListItemPlatform" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="size" value="32px 32px" />
+            <Value name="position" value="8px 0" />
+
+            <Value name="imageColor" value="$preset_colorWhite"/>
+            <Value name="imageFocusedColor" value="$preset_colorWhite"/>
+            <Value name="imageSelectedColor" value="$preset_colorWhite"/>
+        </Profile>
+
+        <Profile name="ingameMenuMPUsersListItemText" extends="textDefault" with="anchorMiddleLeft">
+            <Value name="position" value="48px 0px"/>
+            <Value name="size" value="350px 46px" />
+            <Value name="textMaxWidth" value="350px" />
+            <Value name="textLayoutMode" value="resize" />
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="textBold" value="true"/>
+        </Profile>
+
+        <Profile name="ingameMenuMPUsersListItemAttributeBox" extends="baseReference" with="anchorMiddleRight">
+            <Value name="imageColor" value="$preset_colorTransparent" />
+
+            <Value name="size" value="100px 48px" />
+            <Value name="position" value="-8px 0" />
+            <Value name="alignmentX" value="right" />
+            <Value name="alignmentY" value="middle" />
+            <Value name="flowDirection" value="horizontal" />
+
+            <Variant name="mobile">
+                <Value name="size" value="442px 45px" />
+                <Value name="position" value="0 -340px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuMPUsersListItemAttribute" extends="baseReference">
+            <Value name="position" value="0" />
+
+            <Value name="size" value="30px 30px" />
+            <Value name="margin" value="2px 0 2px 0" />
+        </Profile>
+
+        <Profile name="ingameMenuMPUsersListItemNoMicrophone" extends="ingameMenuMPUsersListItemAttribute">
+            <Value name="size" value="24px 24px" />
+            <Value name="imageUVs" value="678px 63px 31px 30px" />
+        </Profile>
+        <Profile name="ingameMenuMPUsersListItemMuted" extends="ingameMenuMPUsersListItemAttribute">
+            <Value name="size" value="24px 24px" />
+            <Value name="imageUVs" value="630px 6px 30px 30px" />
+        </Profile>
+        <Profile name="ingameMenuMPUsersListItemFarmManager" extends="ingameMenuMPUsersListItemAttribute">
+            <Value name="size" value="28px 28px" />
+            <Value name="imageUVs" value="960px 243px 42px 42px" />
+        </Profile>
+        <Profile name="ingameMenuMPUsersListItemAdmin" extends="ingameMenuMPUsersListItemAttribute">
+            <Value name="size" value="28px 28px" />
+            <Value name="imageUVs" value="910px 243px 42px 42px" />
+        </Profile>
+
+        <Profile name="ingameMenuMPUsersListFarm" extends="ingameMenuMPUsersListItem">
+            <Value name="imageColor" value="$preset_colorListHeaderBackground" />
+            <Value name="allowFocus" value="false" />
+        </Profile>
+
+        <Profile name="ingameMenuMPUsersListFarmDot" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="position" value="10px 0" />
+            <Value name="size" value="12px 12px" />
+            <Value name="imageUVs" value="534px 390px 49px 49px" />
+        </Profile>
+
+        <Profile name="ingameMenuMPUsersListFarmName" extends="textDefault" with="anchorMiddleLeft">
+            <Value name="size" value="426px 42px" />
+            <Value name="textMaxWidth" value="270px" />
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textResizeWidth" value="270px"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textOffset" value="30px 0px"/>
+            <Value name="textFocusedOffset" value="30px 0px"/>
+            <Value name="textSize" value="20px"/>
+            <Value name="textUpperCase" value="true"/>
+            <Value name="textColor" value="$preset_colorHeaderText"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="530px 90px" />
+                <Value name="textMaxWidth" value="700px" />
+                <Value name="textResizeWidth" value="480px" />
+                <Value name="textSize" value="33px"/>
+                <Value name="textFocusedColor" value="$preset_colorWhite"/>
+                <Value name="textSelectedColor" value="$preset_colorWhite"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuMPUsersListFarmBalance" extends="textDefault" with="anchorMiddleRight">
+            <Value name="textAlignment" value="right" />
+            <Value name="size" value="150px 46px" />
+            <Value name="position" value="-8px 0" />
+            <Value name="textMaxWidth" value="160px" />
+            <Value name="textBold" value="false"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="format" value="currency"/>
+        </Profile>
+
+        <Profile name="ingameMenuMPUsersContentBox" extends="emptyPanel" with="anchorTopRight">
+            <Value name="size" value="860px 756px" />
+        </Profile>
+
+        <Profile name="ingameMenuMPActionsBox" extends="emptyPanel" with="anchorTopLeft">
+            <Value name="size" value="410px 756px" />
+        </Profile>
+
+        <Profile name="ingameMenuMPActionsListActionButton" extends="wideButton">
+            <Value name="size" value="410px 48px"/>
+            <Value name="handleFocus" value="true"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textUpperCase" value="false"/>
+            <Value name="margin" value="0 0 0 4px"/>
+
+            <Value name="textSize" value="18px"/>
+            <Value name="textBold" value="false"/>
+
+            <Value name="fitToContent" value="false"/>
+            <Value name="iconSize" value="0"/>
+
+            <Value name="imageColor" value="$preset_colorListRowAlternateBackground"/>
+            <Value name="imageDisabledColor" value="$preset_colorGlass"/>
+            <Value name="imageFocusedColor" value="$preset_colorMainUI"/>
+            <Value name="imageHighlightedColor" value="$preset_colorMainUI_30"/>
+
+            <Value name="textColor" value="$preset_colorWhite"/>
+            <Value name="textFocusedColor" value="$preset_colorWhite"/>
+            <Value name="textSelectedColor" value="$preset_colorWhite"/>
+            <Value name="textHighlightedColor" value="$preset_colorWhite"/>
+        </Profile>
+
+        <Profile name="ingameMenuMPPermissionsBox" extends="emptyPanel" with="anchorTopRight">
+            <Value name="size" value="410px 756px" />
+        </Profile>
+
+        <Profile name="ingameMenuMPActionsListItem" extends="emptyPanel">
+            <Value name="handleFocus" value="false"/>
+            <Value name="allowSelected" value="false"/>
+            <Value name="autoSelectChildren" value="true"/>
+            <Value name="size" value="410px 48px"/>
+
+            <Value name="margin" value="0 0 0 4px"/>
+        </Profile>
+
+        <Profile name="ingameMenuMPActionsListPermission" extends="ingameMenuMPActionsListActionButton" with="anchorMiddleLeft">
+            <Value name="handleFocus" value="false"/>
+            <Value name="size" value="360px 48px"/>
+            <Value name="textAlignment" value="left"/>
+            <Value name="textOffset" value="20px 0px"/>
+        </Profile>
+
+        <Profile name="ingameMenuMPActionsListPermissionCheckbox" extends="wideButton" with="anchorMiddleRight">
+            <Value name="fitToContent" value="false"/>
+            <Value name="position" value="0"/>
+            <Value name="iconSize" value="0"/>
+            <Value name="handleFocus" value="true"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textUpperCase" value="false"/>
+
+            <Value name="size" value="48px 48px"/>
+            <Value name="imageFocusedColor" value="$preset_colorMainUI"/>
+            <Value name="imageHighlightedColor" value="$preset_colorGlassVeryLight"/>
+
+
+            <Value name="imageColor" value="$preset_colorGlassMedium"/>
+            <Value name="imageDisabledColor" value="$preset_colorGlassMedium"/>
+            <Value name="imageFocusedColor" value="$preset_colorMainUI"/>
+            <Value name="imageHighlightedColor" value="$preset_colorTransparent"/>
+
+            <Value name="frameThickness" value="0 1dp 1dp 1dp" />
+        </Profile>
+
+        <Profile name="ingameMenuMPActionsListPermissionCheckboxTick" extends="baseReference" with="anchorMiddleCenter">
+            <Value name="handleFocus" value="false"/>
+            <Value name="size" value="24px 24px"/>
+            <Value name="hotspot" value="-12px -12px 12px 12px"/>
+            <Value name="imageUVs" value="341px 725px 44px 44px"/>
+            <Value name="imageColor" value="$preset_colorMainUI"/>
+            <Value name="imageFocusedColor" value="$preset_colorWhite"/>
+            <Value name="imageDisabledColor" value="$preset_colorGlassLight_75"/>
+            <Value name="textOffset" value="-8px 0px" />
+        </Profile>
+
+        <Profile name="ingameMenuMPActionsListPermissionCheckboxUntick" extends="ingameMenuMPActionsListPermissionCheckboxTick">
+            <Value name="imageUVs" value="$preset_colorUVs"/>
+            <Value name="imageColor" value="$preset_colorTransparent"/>
+            <Value name="imageFocusedColor" value="$preset_colorTransparent"/>
+            <Value name="imageDisabledColor" value="$preset_colorTransparent"/>
+        </Profile>
+    </GUIProfiles>
+</GUI>

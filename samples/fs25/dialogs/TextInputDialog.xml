@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" id="dialogBg" />
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="roundCorner" profile="inputDialogBg" id="dialogElement">
+        <GuiElement type="text" profile="inputDialogTextPassword" text="$l10n_ui_enterPassword" id="dialogTextElement" />
+
+        <GuiElement type="textInput" profile="inputDialogTextInput" id="textElement" onEnterPressed="onEnterPressed" onEscPressed="onEscPressed" onFocus="onInputFocus" onLeave="onInputLeave" imeKeyboardType="normal" imeTitle="" imeDescription="" imePlaceholder="" enterWhenClickOutside="false" />
+
+        <GuiElement type="flowLayout" profile="textInputButtonBoxDialog" id="buttonsPC" >
+            <GuiElement type="button" profile="buttonOK" text="$l10n_button_start" onClick="onClickOk" id="yesButton" />
+            <GuiElement type="button" profile="buttonBack" text="$l10n_button_back"  onClick="onClickBack" id="noButton" />
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="inputDialogBg" extends="dialogBg">
+            <Value name="size" value="490px 200px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="1200px 350px" />
+            </Variant>
+        </Profile>
+        <Profile name="textInputButtonBoxDialog" extends="buttonBoxDialog">
+            <Variant name="mobile">
+                <Value name="size" value="1200px 200px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="inputDialogTextPassword" extends="dialogText">
+            <Value name="position" value="0px -45px"/>
+            <Value name="textSize" value="15px"/>
+            <Value name="textWrapWidth" value="370px"/>
+
+            <Variant name="mobile">
+                <Value name="position" value="0px -70px"/>
+                <Value name="size" value="1100px 30px"/>
+                <Value name="textSize" value="35px" />
+
+                <Value name="textMaxWidth" value="1100px" />
+                <Value name="textMaxNumLines" value="2" />
+            </Variant>
+        </Profile>
+
+        <Profile name="inputDialogTextInput" extends="dialogTextInput">
+
+            <Variant name="mobile">
+                <Value name="position" value="0px 70px"/>
+                <Value name="size" value="600px 105px"/>
+                <Value name="textSize" value="35px"/>
+                <Value name="cursorSize" value="2px 35px"/>
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

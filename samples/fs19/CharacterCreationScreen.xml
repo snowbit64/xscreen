@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="bitmap" profile="uiCharacterCreationBlurBG"/>
+
+    <GuiElement type="bitmap" profile="uiElementBaseHeader" />
+
+    <GuiElement type="bitmap" profile="uiElementContainerFullScreen">
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel" position="260px 0px">
+            <GuiElement type="bitmap" profile="characterHeaderIcon" position="0px 0px" id="headerIcon"/>
+            <GuiElement type="text" profile="characterHeaderText" position="80px 0px" id="headerText" text="$l10n_ui_characterSelection"/>
+        </GuiElement>
+
+        <GuiElement type="textInput" profile="characterSelectionNameInput" id="characterNameInput" onEscPressed="onEscPressedCharacterName" onEnterPressed="onEnterPressedCharacterName" maxCharacters="30" onFocus="onNameInputFocus" onLeave="onNameInputLeave" imeKeyboardType="normal" imeTitle="$l10n_ui_characterName" imeDescription="$l10n_ui_characterName" imePlaceholder="$l10n_ui_savegameName" needExternalClick="true">
+            <GuiElement type="text" profile="multiTextOptionSettingsTitle" text="$l10n_ui_characterName"/>
+        </GuiElement>
+
+        <GuiElement type="boxLayout" profile="characterSettingsBoxOptions" id="characterSettingsLayout">
+            <GuiElement type="multiTextOption" profile="characterSelectionMultiTextOption" onClick="onChangeBody" id="bodyOption" focusInit="onOpen">
+                <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_character_option_body"/>
+                <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+            </GuiElement>
+
+            <GuiElement type="multiTextOption" profile="characterSelectionMultiTextOption" onClick="onChangeHairStyle" id="hairOption">
+                <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_character_option_hairStyle"/>
+                <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+            </GuiElement>
+
+            <GuiElement type="multiTextOption" profile="characterSelectionMultiTextOption" onClick="onChangeHat" id="hatOption">
+                <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_character_option_hat"/>
+                <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+            </GuiElement>
+
+            <GuiElement type="multiTextOption" profile="characterSelectionMultiTextOption" onClick="onChangeJacket" id="jacketOption">
+                <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_character_option_jacket"/>
+                <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+            </GuiElement>
+
+            <GuiElement type="multiTextOption" profile="characterSelectionMultiTextOption" onClick="onChangeAccessory" id="accessoryOption">
+                <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_character_option_accessory"/>
+                <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+            </GuiElement>
+        </GuiElement>
+
+        <GuiElement type="boxLayout" profile="characterSettingsBoxColors">
+            <GuiElement type="text"   profile="characterSettingsBoxColorsTitle" text="$l10n_character_option_shirtColor"/>
+
+            <GuiElement type="button" profile="characterSelectionColorButton" id="colorButtonTemplate" visible="false" onClick="onClickColorButton" handleFocus="true" onFocus="onFocusColor" onLeave="onLeaveColor">
+                <GuiElement type="bitmap" profile="characterSelectionColorButtonPicked" name="colorImage"/>
+            </GuiElement>
+
+            <GuiElement type="boxLayout" profile="characterSelectionColors" id="colorButtonLayout" handleFocus="false">
+                <!-- <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="Shirt color"/> -->
+            </GuiElement>
+        </GuiElement>
+
+        <GuiElement type="render" profile="characterSelectionRender" filename="dataS/menu/characterCreation/creationBox.i3d" cameraNode="2|1" superSamplingFactor="2" id="sceneRender" onRenderLoad="onRenderLoad" />
+
+        <GuiElement type="flowLayout" profile="buttonBoxDocked" id="buttonsPC" screenAlign="bottomLeft" positionOrigin="bottomLeft" position="260px 20px">
+            <GuiElement type="button" profile="buttonOK" text="$l10n_button_continue" onClick="onClickOk" id="continueButton" />
+            <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" id="backButton" />
+            <GuiElement type="button" profile="buttonActivate" text="$l10n_button_changeName" onClick="onClickActivate" visible="false" id="changeNameButton" />
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="bitmap" profile="uiElementBaseFooter" />
+</GUI>

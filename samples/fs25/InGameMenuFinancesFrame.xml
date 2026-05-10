@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="ingameMenuFinances">
+    <GuiElement type="empty" profile="uiInGameMenuFrame">
+        <!-- Static page header -->
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel">
+            <GuiElement type="bitmap" profile="ingameMenuFinancesHeaderIcon" />
+            <GuiElement type="text" profile="ingameMenuFrameHeaderText" text="$l10n_ui_ingameMenuFinances"/>
+        </GuiElement>
+
+        <GuiElement type="empty" profile="ingameMenuFinancesBox" id="mainBox" >
+            <GuiElement type="bitmap" profile="topScrollClipper" name="topClipper" position="0 -98px"/>
+
+            <!-- Finances table header -->
+            <GuiElement type="bitmap" profile="ingameMenuFinancesHeaderBox">
+                <GuiElement type="text" profile="ingameMenuFinancesHeaderName" text="$l10n_ui_incomeExpenditure" />
+                <GuiElement type="text" profile="ingameMenuFinancesHeaderTodayMinusFour" id="pastDayHeader[4]"/>
+                <GuiElement type="text" profile="ingameMenuFinancesHeaderTodayMinusThree" id="pastDayHeader[3]"/>
+                <GuiElement type="text" profile="ingameMenuFinancesHeaderTodayMinusTwo" id="pastDayHeader[2]"/>
+                <GuiElement type="text" profile="ingameMenuFinancesHeaderTodayMinusOne" id="pastDayHeader[1]"/>
+                <GuiElement type="text" profile="ingameMenuFinancesHeaderToday" id="pastDayHeader[0]" text="$l10n_ui_today"/>
+            </GuiElement>
+
+            <!-- Finances list -->
+            <GuiElement type="smoothList" profile="ingameMenuFinancesList" id="financesList" listDataSource="self" listDelegate="self" startClipperElementName="topClipper">
+                <GuiElement type="listItem" profile="ingameMenuFinancesListItem" name="rowTemplate" autoSelectChildren="false">
+                    <GuiElement type="text" profile="ingameMenuFinancesListItemName" name="name" />
+                    <GuiElement type="text" profile="ingameMenuFinancesListItemTodayMinusFour" name="todayMinusFour" />
+                    <GuiElement type="text" profile="ingameMenuFinancesListItemTodayMinusThree" name="todayMinusThree" />
+                    <GuiElement type="text" profile="ingameMenuFinancesListItemTodayMinusTwo" name="todayMinusTwo" />
+                    <GuiElement type="text" profile="ingameMenuFinancesListItemTodayMinusOne" name="todayMinusOne" />
+                    <GuiElement type="text" profile="ingameMenuFinancesListItemToday" name="today" />
+                </GuiElement>
+            </GuiElement>
+
+            <!-- Finances slider -->
+            <GuiElement type="threePartBitmap" profile="ingameMenuFinancesSlider" >
+                <GuiElement type="slider" profile="ingameMenuFinancesSliderBar" dataElementId="financesList" />
+            </GuiElement>
+
+            <!-- Finances footer (no scrolling) -->
+            <GuiElement type="empty" profile="ingameMenuFinancesFooterBox" >
+                <GuiElement type="bitmap" profile="ingameMenuFinancesSeparator" />
+
+                <!-- Total expenditures / incomes of days -->
+                <GuiElement type="bitmap" profile="ingameMenuFinancesTotal">
+                    <GuiElement type="text" profile="ingameMenuFinancesTotalName" text="$l10n_ui_total" />
+                    <GuiElement type="text" profile="ingameMenuFinancesTotalTodayMinusFour"  id="totalText[5]" />
+                    <GuiElement type="text" profile="ingameMenuFinancesTotalTodayMinusThree" id="totalText[4]" />
+                    <GuiElement type="text" profile="ingameMenuFinancesTotalTodayMinusTwo"   id="totalText[3]" />
+                    <GuiElement type="text" profile="ingameMenuFinancesTotalTodayMinusOne"   id="totalText[2]" />
+                    <GuiElement type="text" profile="ingameMenuFinancesTotalToday"           id="totalText[1]" />
+                </GuiElement>
+
+                <!-- Balance -->
+                <GuiElement type="bitmap" profile="ingameMenuFinancesBalance">
+                    <GuiElement type="text" profile="ingameMenuFinancesBalanceName" text="$l10n_ui_balance" />
+                    <GuiElement type="text" profile="ingameMenuFinancesBalanceValue" id="balanceText"/>
+                </GuiElement>
+
+                <!-- Balance -->
+                <GuiElement type="bitmap" profile="ingameMenuFinancesLoan">
+                    <GuiElement type="text" profile="ingameMenuFinancesLoanName" text="$l10n_ui_loan" />
+                    <GuiElement type="text" profile="ingameMenuFinancesLoanValue" id="loanText"/>
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="ingameMenuFinancesSeparator" extends="baseReference" with="anchorTopCenter">
+            <Value name="size" value="1768px 2dp" />
+            <Value name="position" value="0px -10px" />
+
+            <Value name="imageColor" value="$preset_colorMainUI" />
+            <Value name="imageUVs" value="$preset_imageDoublesidedGradient" />
+
+            <Variant name="mobile">
+                <Value name="position" value="0px -0px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesBox" with="ingameMenuBox">
+            <Variant name="mobile" with="ingameMenuBoxMobile">
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesHeaderBox" with="ingameMenuHeaderBox">
+            <Variant name="mobile" with="ingameMenuHeaderBoxMobile">
+                <Value name="imageColor" value="0 0 0 0" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesHeaderName" extends="textDefault" with="anchorBottomLeft">
+            <Value name="textAlignment" value="left"/>
+            <Value name="textOffset" value="30px 0px"/>
+            <Value name="size" value="420px 104px"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textSize" value="20px"/>
+            <Value name="textUpperCase" value="true"/>
+            <Value name="textColor" value="$preset_colorHeaderText"/>
+
+            <Variant name="mobile" with="">
+                <Value name="position" value="0px 0px" />
+                <Value name="size" value="748px 104px"/>
+                <Value name="textSize" value="33px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesHeaderToday" extends="textDefault" with="anchorBottomRight">
+            <Value name="size" value="200px 100px"/>
+            <Value name="textOffset" value="-30px 0px"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textAlignment" value="right"/>
+            <Value name="textUpperCase" value="true"/>
+            <Value name="textSize" value="20px"/>
+            <Value name="textColor" value="$preset_colorHeaderText"/>
+            <Value name="position" value="0px 0px" />
+
+            <Variant name="mobile">
+                <Value name="position" value="0px 0px" />
+                <Value name="textOffset" value="-30px 0px"/>
+                <Value name="textSize" value="33px"/>
+                <Value name="size" value="300px 100px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesHeaderTodayMinusOne" extends="ingameMenuFinancesHeaderToday">
+            <Value name="position" value="-200px 0px" />
+            <Variant name="mobile" >
+                <Value name="position" value="-300px 0px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesHeaderTodayMinusTwo" extends="ingameMenuFinancesHeaderToday">
+            <Value name="position" value="-400px 0px" />
+            <Variant name="mobile" >
+                <Value name="position" value="-600px 0px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesHeaderTodayMinusThree" extends="ingameMenuFinancesHeaderToday">
+            <Value name="position" value="-600px 0px" />
+            <Variant name="mobile" >
+                <Value name="position" value="-900px 0px" />
+            </Variant>
+        </Profile>
+        <Profile name="ingameMenuFinancesHeaderTodayMinusFour" extends="ingameMenuFinancesHeaderToday">
+            <Value name="position" value="-800px 0px" />
+            <Variant name="mobile" >
+                <Value name="visible" value="false"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesList" extends="list" with="anchorTopLeft">
+            <Value name="size" value="1400px 530px"/>
+            <Value name="position" value="0px -100px"/>
+            <Value name="isHorizontalList" value="false"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="1768px 400px"/>
+                <Value name="position" value="0px -100px"/>
+                <Value name="supportsMouseScrolling" value="true" />
+                <Value name="supportsTouchScrolling" value="true" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesListItem" extends="listItem" with="alternating">
+            <Value name="size" value="1400px 40px"/>
+            <Value name="handleFocus" value="false"/>
+            <Value name="imageColor" value="$preset_colorGlassMedium"/>
+            <Value name="imageHighlightedColor" value="$preset_colorMainUI_50"/>
+            <Value name="imageSelectedColor" value="$preset_colorMainUI_50"/>
+            <Value name="imageFocusedColor" value="$preset_colorMainUI_50"/>
+
+            <Variant name="mobile" with="">
+                <Value name="size" value="1768px 70px"/>
+                <Value name="imageColor" value="0 0 0 0"/>
+                <Value name="imageFocusedColor" value="$preset_colorListRowAlternateBackground"/>
+                <Value name="imageSelectedColor" value="$preset_colorListRowAlternateBackground"/>
+                <Value name="alternateBackgroundColor" value="0 0 0 0" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesListItemName" extends="textDefault" >
+            <Value name="size" value="420px 40px"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textAlignment" value="left"/>
+            <Value name="textColor" value="$preset_colorWhite"/>
+            <Value name="textOffset" value="30px 0px"/>
+            <Value name="textMaxWidth" value="380px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="596px 70px"/>
+                <Value name="textSize" value="33px"/>
+                <Value name="textMaxWidth" value="560px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesListItemToday" extends="ingameMenuFinancesListItemName" with="anchorBottomRight" >
+            <Value name="position" value="0px 0px"/>
+            <Value name="textAlignment" value="right"/>
+            <Value name="textBold" value="false"/>
+            <Value name="textMaxWidth" value="140px"/>
+            <Value name="size" value="200px 40px"/>
+            <Value name="textOffset" value="-30px 0px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="300px 70px"/>
+                <Value name="position" value="0px 0px"/>
+                <Value name="textMaxWidth" value="240px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesListItemTodayMinusOne" extends="ingameMenuFinancesListItemToday">
+            <Value name="position" value="-200px 0px"/>
+            <Variant name="mobile">
+                <Value name="position" value="-300px 0px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesListItemTodayMinusTwo" extends="ingameMenuFinancesListItemToday">
+            <Value name="position" value="-400px 0px"/>
+            <Variant name="mobile">
+                <Value name="position" value="-600px 0px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesListItemTodayMinusThree" extends="ingameMenuFinancesListItemToday">
+            <Value name="position" value="-600px 0px"/>
+            <Variant name="mobile">
+                <Value name="position" value="-900px 0px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesListItemTodayMinusFour" extends="ingameMenuFinancesListItemToday">
+            <Value name="position" value="-800px 0px"/>
+            <Variant name="mobile">
+                <Value name="visible" value="false"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesSlider" extends="verticalListSliderRightDocked">
+            <Value name="size" value="12px 530px" />
+            <Value name="position" value="28px -104px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="12px 380px" />
+                <Value name="position" value="28px -100px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesSliderBar" extends="verticalListSliderBar">
+            <Value name="size" value="6px 522px" />
+                <Value name="handleFocus" value="false" />
+
+            <Variant name="mobile">
+                <Value name="size" value="6px 382px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesFooterBox" extends="baseReference" with="anchorTopLeft">
+            <Value name="size" value="1400px 122px"/>
+            <Value name="position" value="0px -630px"/>
+            <Value name="hasFrame" value="true"/>
+            <Value name="frameThickness" value="0px 2px 0px 0px"/>
+            <Value name="frameTopColor" value="$preset_colorMainUI"/>
+
+            <Variant name="mobile">
+                <Value name="hasFrame" value="false"/>
+                <Value name="size" value="1768px 180px"/>
+                <Value name="position" value="0px -500px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesTotal" extends="ingameMenuFinancesListItem" with="anchorTopLeft">
+            <Variant name="mobile">
+                <Value name="position" value="0px -20px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesTotalName" extends="ingameMenuFinancesListItemName">
+            <Value name="textUpperCase" value="true"/>
+            <Value name="textColor" value="$preset_colorMainUI"/>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesTotalToday" extends="ingameMenuFinancesListItemToday">
+            <Value name="position" value="0px 0px"/>
+            <Variant name="mobile">
+                <Value name="position" value="0px 0px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesTotalTodayMinusOne" extends="ingameMenuFinancesTotalToday">
+            <Value name="position" value="-200px 0px"/>
+            <Variant name="mobile">
+                <Value name="position" value="-300px 0px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesTotalTodayMinusTwo" extends="ingameMenuFinancesTotalToday">
+            <Value name="position" value="-400px 0px"/>
+            <Variant name="mobile">
+                <Value name="position" value="-600px 0px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesTotalTodayMinusThree" extends="ingameMenuFinancesTotalToday">
+            <Value name="position" value="-600px 0px"/>
+            <Variant name="mobile">
+                <Value name="position" value="-900px 0px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesTotalTodayMinusFour" extends="ingameMenuFinancesTotalToday">
+            <Value name="position" value="-800px 0px"/>
+            <Variant name="mobile">
+                <Value name="position" value="-1200px 0px"/>
+            </Variant>
+        </Profile>
+
+
+        <Profile name="ingameMenuFinancesBalance" extends="ingameMenuFinancesTotal">
+            <Value name="imageColor" value="$preset_colorListRowAlternateBackground"/>
+            <Value name="position" value="0px -40px"/>
+            <Variant name="mobile">
+                <Value name="position" value="0px -90px"/>
+                <Value name="imageColor" value="0 0 0 0"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesBalanceName" extends="ingameMenuFinancesTotalName" />
+
+        <Profile name="ingameMenuFinancesBalanceValue" extends="ingameMenuFinancesTotalToday" />
+
+        <Profile name="ingameMenuFinancesLoan" extends="ingameMenuFinancesTotal">
+            <Value name="position" value="0px -80px"/>
+            <Variant name="mobile">
+                <Value name="visible" value="false"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesLoanName" extends="ingameMenuFinancesTotalName" />
+
+        <Profile name="ingameMenuFinancesLoanValue" extends="ingameMenuFinancesTotalToday" />
+
+        <Profile name="ingameMenuFinancesListItemDay">
+            <Value name="textColor" value="$preset_colorWhite"/>
+            <Value name="textFocusedColor" value="$preset_colorWhite"/>
+            <Value name="textSelectedColor" value="$preset_colorWhite"/>
+            <Value name="textHighlightedColor" value="$preset_colorWhite"/>
+        </Profile>
+
+        <Profile name="ingameMenuFinancesListItemDayNegative" extends="ingameMenuFinancesListItemDay">
+            <Value name="textColor" value="$preset_colorRed"/>
+            <Value name="textFocusedColor" value="$preset_colorRed"/>
+            <Value name="textSelectedColor" value="$preset_colorRed"/>
+            <Value name="textHighlightedColor" value="$preset_colorRed"/>
+        </Profile>
+    </GUIProfiles>
+</GUI>

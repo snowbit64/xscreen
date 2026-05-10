@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="ingameMenuPrices">
+    <GuiElement type="empty" profile="uiInGameMenuFrame">
+        <!-- Static page header -->
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel" position="130px -60px">
+            <GuiElement type="bitmap" profile="ingameMenuPriceHeaderIcon" position="0px 0px"/>
+            <GuiElement type="text" profile="ingameMenuFrameHeaderText" position="80px 0px" text="$l10n_ui_ingameMenuPrices"/>
+        </GuiElement>
+
+        <GuiElement type="empty" profile="ingameMenuSettingsBox" position="130px -124px" id="mainBox">
+            <!-- Prices table header -->
+            <GuiElement type="boxLayout" profile="ingameMenuPriceTableHeaderBox" position="1px 0px" id="tableHeaderBox">
+                <GuiElement type="tableHeader" profile="ingameMenuPriceTableHeaderSellingPoint" text="$l10n_ui_sellingPoints" targetTableId="pricesTable" columnName="sellingPoint" onClick="onClickSellingPointHeader">
+                    <GuiElement type="bitmap" profile="ingameMenuPriceTableHeaderSortAscending" position="400px 0px" name="iconAscending"/>
+                    <GuiElement type="bitmap" profile="ingameMenuPriceTableHeaderSortDescending" position="400px 0px" name="iconDescending"/>
+                </GuiElement>
+                <GuiElement type="tableHeader" profile="ingameMenuPriceTableHeader" targetTableId="pricesTable" columnName="price1" id="priceHeader[1]" onClick="onClickPriceHeader">
+                    <GuiElement type="bitmap" profile="ingameMenuPriceTableHeaderSortAscending" name="iconAscending"/>
+                    <GuiElement type="bitmap" profile="ingameMenuPriceTableHeaderSortDescending" name="iconDescending"/>
+                </GuiElement>
+                <GuiElement type="tableHeader" profile="ingameMenuPriceTableHeader" targetTableId="pricesTable" columnName="price2" id="priceHeader[2]" onClick="onClickPriceHeader">
+                    <GuiElement type="bitmap" profile="ingameMenuPriceTableHeaderSortAscending" name="iconAscending"/>
+                    <GuiElement type="bitmap" profile="ingameMenuPriceTableHeaderSortDescending" name="iconDescending"/>
+                </GuiElement>
+                <GuiElement type="tableHeader" profile="ingameMenuPriceTableHeader" targetTableId="pricesTable" columnName="price3" id="priceHeader[3]" onClick="onClickPriceHeader">
+                    <GuiElement type="bitmap" profile="ingameMenuPriceTableHeaderSortAscending" name="iconAscending"/>
+                    <GuiElement type="bitmap" profile="ingameMenuPriceTableHeaderSortDescending" name="iconDescending"/>
+                </GuiElement>
+                <GuiElement type="tableHeader" profile="ingameMenuPriceTableHeader" targetTableId="pricesTable" columnName="price4" id="priceHeader[4]" onClick="onClickPriceHeader">
+                    <GuiElement type="bitmap" profile="ingameMenuPriceTableHeaderSortAscending" name="iconAscending"/>
+                    <GuiElement type="bitmap" profile="ingameMenuPriceTableHeaderSortDescending" name="iconDescending"/>
+                </GuiElement>
+                <GuiElement type="tableHeader" profile="ingameMenuPriceTableHeader" targetTableId="pricesTable" columnName="price5" id="priceHeader[5]" onClick="onClickPriceHeader">
+                    <GuiElement type="bitmap" profile="ingameMenuPriceTableHeaderSortAscending" name="iconAscending"/>
+                    <GuiElement type="bitmap" profile="ingameMenuPriceTableHeaderSortDescending" name="iconDescending"/>
+                </GuiElement>
+                <GuiElement type="tableHeader" profile="ingameMenuPriceTableHeader" targetTableId="pricesTable" columnName="price6" id="priceHeader[6]" onClick="onClickPriceHeader">
+                    <GuiElement type="bitmap" profile="ingameMenuPriceTableHeaderSortAscending" name="iconAscending"/>
+                    <GuiElement type="bitmap" profile="ingameMenuPriceTableHeaderSortDescending" name="iconDescending"/>
+                </GuiElement>
+                <GuiElement type="tableHeader" profile="ingameMenuPriceTableHeader" targetTableId="pricesTable" columnName="price7" id="priceHeader[7]" onClick="onClickPriceHeader">
+                    <GuiElement type="bitmap" profile="ingameMenuPriceTableHeaderSortAscending" name="iconAscending"/>
+                    <GuiElement type="bitmap" profile="ingameMenuPriceTableHeaderSortDescending" name="iconDescending"/>
+                </GuiElement>
+            </GuiElement>
+
+            <!-- Prices table -->
+            <GuiElement type="table" profile="ingameMenuPriceTable" position="1px -104px" rowTemplateName="pricesRowTemplate" updateChildrenOverlayState="false" columnNames="sellingPoint price1 price2 price3 price4 price5 price6 price7" periodicUpdate="true" updateInterval="0.5" onUpdate="updatePriceTable" onClick="onClickPrices" onDoubleClick="onDoubleClickPrices" onSelectionChanged="onSelectionChanged" id="pricesTable" focusId="focus_prices_table" focusChangeLeft="focus_header" focusChangeRight="focus_header" focusChangeTop="focus_header" focusChangeBottom="focus_header" focusInit="onOpen">
+
+                <GuiElement type="listItem" profile="ingameMenuPriceRow" name="pricesRowTemplate" handleFocus="false">
+                    <GuiElement type="bitmap" profile="ingameMenuPriceRowBackground">
+                        <GuiElement type="button" profile="ingameMenuPriceRowSellingPointCell" name="sellingPoint" onCreate="onDataBindSellingPoint">
+                            <GuiElement type="text" profile="ingameMenuPriceRowSiloCapacity" name="siloCapacityLabel" onCreate="onDataBindSiloCapacityLabel"/>
+                        </GuiElement>
+
+                        <GuiElement type="button" profile="ingameMenuPriceRowPriceCell" position="512px 0px" name="price1" onCreate="onDataBindPrice" onCreateArgs="1">
+                            <GuiElement type="text" profile="ingameMenuPriceRowSiloCapacityValue" name="capacity1" onCreate="onDataBindSiloCapacityValue" onCreateArgs="1"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuPriceRowPriceCell" position="672px 0px" name="price2" onCreate="onDataBindPrice" onCreateArgs="2">
+                            <GuiElement type="text" profile="ingameMenuPriceRowSiloCapacityValue" name="capacity2" onCreate="onDataBindSiloCapacityValue" onCreateArgs="2"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuPriceRowPriceCell" position="832px 0px" name="price3" onCreate="onDataBindPrice" onCreateArgs="3">
+                            <GuiElement type="text" profile="ingameMenuPriceRowSiloCapacityValue" name="capacity3" onCreate="onDataBindSiloCapacityValue" onCreateArgs="3"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuPriceRowPriceCell" position="992px 0px" name="price4" onCreate="onDataBindPrice" onCreateArgs="4">
+                            <GuiElement type="text" profile="ingameMenuPriceRowSiloCapacityValue" name="capacity4" onCreate="onDataBindSiloCapacityValue" onCreateArgs="4"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuPriceRowPriceCell" position="1152px 0px" name="price5" onCreate="onDataBindPrice" onCreateArgs="5">
+                            <GuiElement type="text" profile="ingameMenuPriceRowSiloCapacityValue" name="capacity5" onCreate="onDataBindSiloCapacityValue" onCreateArgs="5"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuPriceRowPriceCell" position="1312px 0px" name="price6" onCreate="onDataBindPrice" onCreateArgs="6">
+                            <GuiElement type="text" profile="ingameMenuPriceRowSiloCapacityValue" name="capacity6" onCreate="onDataBindSiloCapacityValue" onCreateArgs="6"/>
+                        </GuiElement>
+                        <GuiElement type="button" profile="ingameMenuPriceRowPriceCell" position="1472px 0px" name="price7" onCreate="onDataBindPrice" onCreateArgs="7">
+                            <GuiElement type="text" profile="ingameMenuPriceRowSiloCapacityValue" name="capacity7" onCreate="onDataBindSiloCapacityValue" onCreateArgs="7"/>
+                        </GuiElement>
+                    </GuiElement>
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="verticalGlassListSliderBackground" position="-1px -104px" size="28px 572px">
+                <GuiElement type="slider" profile="verticalGlassListSlider" size="16px 560px" id="pricesListSlider" dataElementId="pricesTable" />
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="horizontalGlassListSliderBackground" position="1px 4px" size="1630px 28px"> <!-- 28px filler for the bottom right corner -->
+                <GuiElement type="slider" profile="horizontalGlassListSlider" size="1618px 16px" onChanged="onChangedPriceSlider" id="pricesListSliderHorizontal" />
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="ingameMenuPriceCornerFill" />
+
+        </GuiElement>
+
+    </GuiElement>
+</GUI>
+
+<!--
+    <Profile name="priceSliderVertical" parent="sliderVertical">
+        <Value name="handleFocus" value="false"/>
+        <Value name="screenAlign" value="topLeft"/>
+        <Value name="positionOrigin" value="topLeft"/>
+        <Value name="hasButtons" value="false"/>
+        <Value name="size" value="16px 600px"/>
+    </Profile>
+    <Profile name="priceSliderHorizontal" parent="sliderHorizontal">
+        <Value name="handleFocus" value="false"/>
+        <Value name="screenAlign" value="bottomLeft"/>
+        <Value name="positionOrigin" value="bottomLeft"/>
+        <Value name="hasButtons" value="false"/>
+        <Value name="size" value="1660px 16px"/>
+    </Profile> -->

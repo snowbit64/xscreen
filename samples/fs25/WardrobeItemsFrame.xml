@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="wardrobeItems">
+    <GuiElement type="empty" profile="wardrobeFrame">
+
+        <GuiElement type="text" profile="wardrobeFrameTitle" id="title" />
+        <GuiElement type="text" profile="wardrobeFrameInfoText" id="infoText" />
+
+        <GuiElement type="empty" profile="wardrobeListFrame">
+            <GuiElement type="bitmap" profile="topScrollClipper" name="topClipper" />
+            <GuiElement type="bitmap" profile="bottomScrollClipper" name="bottomClipper" />
+
+            <GuiElement type="smoothList" profile="wardrobeItemList" id="itemList" onClick="onClickSelect" onDoubleClick="onClickSelect" focusInit="onOpen" listSectionHeader="section" startClipperElementName="topClipper" endClipperElementName="bottomClipper" showHighlights="true">
+                <GuiElement type="listItem" profile="wardrobeItemListItem">
+                    <GuiElement type="bitmap" profile="wardrobeItemIcon" name="icon" />
+
+                    <GuiElement type="bitmap" profile="wardrobeItemSelection" name="selected">
+                        <GuiElement type="bitmap" profile="wardrobeItemSelectionTick" />
+                    </GuiElement>
+
+                    <GuiElement type="bitmap" profile="wardrobeItemMoreIndicator" name="hasColors">
+                        <GuiElement type="bitmap" profile="wardrobeItemMoreIndicatorIcon" />
+                    </GuiElement>
+
+                    <GuiElement type="bitmap" profile="listItemSelector"/>
+                </GuiElement>
+
+                <GuiElement type="listItem" profile="listSectionHeader" name="section">
+                    <GuiElement type="text" profile="listSectionHeaderTitle" name="title" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="threePartBitmap" profile="verticalListSliderRightDocked" id="itemListSlider" size="12px 740px">
+                <GuiElement type="slider" profile="verticalListSliderBar" dataElementId="itemList" handleFocus="false" size="6px 732px" />
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="wardrobeItemList" extends="list">
+            <Value name="size" value="590px 740px" />
+
+            <Value name="numLateralItems" value="4" />
+            <Value name="isHorizontalList" value="false" />
+
+            <Value name="listItemSpacing" value="10px"/>
+            <Value name="listItemLateralSpacing" value="10px"/>
+        </Profile>
+
+        <Profile name="wardrobeItemListItem" extends="listItem">
+            <Value name="size" value="140px 140px" />
+
+            <Value name="imageColor" value="$preset_colorItemBgNormal"/>
+            <Value name="imageFocusedColor" value="$preset_colorItemBgSelected"/>
+            <Value name="imageSelectedColor" value="$preset_colorItemBgSelected"/>
+        </Profile>
+
+        <Profile name="wardrobeItemIcon" extends="baseReference" with="anchorMiddleCenter">
+            <Value name="size" value="140px 140px" />
+        </Profile>
+
+        <Profile name="wardrobeItemMoreIndicator" extends="baseReference" with="anchorTopRight">
+            <Value name="position" value="-5px -5px"/>
+            <Value name="size" value="20px 20px"/>
+            <Value name="imageUVs" value="294px 390px 100px 100px"/>
+            <Value name="imageColor" value="0 0 0 0"/>
+        </Profile>
+
+        <Profile name="wardrobeItemMoreIndicatorIcon" extends="baseReference" with="anchorMiddleCenter">
+            <Value name="size" value="14px 14px" />
+            <Value name="imageUVs" value="966px 294px 36px 36px"/>
+            <Value name="imageColor" value="1 1 1 0.7"/>
+        </Profile>
+    </GUIProfiles>
+</GUI>

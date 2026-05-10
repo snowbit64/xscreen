@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose">
+    <!-- Background FullScreen Relative -->
+    <GuiElement type="bitmap" profile="uiFullBlurBG"/>
+
+    <!-- Header - Top 120 px-->
+    <GuiElement type="bitmap" profile="uiElementBaseHeader" />
+
+    <!-- Body - Central -->
+    <GuiElement type="bitmap" profile="uiElementContainerFullScreen">
+        <GuiElement type="bitmap" profile="uiElementCenter">
+
+            <GuiElement type="bitmap" profile="headerBoxDocked" >
+                <GuiElement type="bitmap" profile="achievementsIcon"/>
+                <GuiElement type="text" profile="headerText" text="$l10n_button_achievements" />
+            </GuiElement>
+
+            <GuiElement type="flowLayout" profile="achievementStatsBox">
+                <GuiElement type="text"   profile="achievementTotalText" text="$l10n_achievement_stats"/>
+                <GuiElement type="text"   profile="achievementTotalValue" id="statsValue"/>
+            </GuiElement>
+
+            <GuiElement type="slider" profile="sliderInvisible" id="listSlider" dataElementId="achievementList" handleFocus="false">
+                <GuiElement type="button" profile="largeSelectorRight" />
+                <GuiElement type="button" profile="largeSelectorLeft" />
+            </GuiElement>
+
+            <GuiElement type="list" profile="achievementList" onCreate="onCreateList" onSelectionChanged="onListSelectionChanged" onDoubleClick="onDoubleClick" focusInit="onOpen" id="achievementList">
+                <GuiElement type="listItem" profile="achievementItem" id="listTemplate">
+                    <GuiElement type="bitmap" profile="achievementItemCircle">
+                        <GuiElement type="bitmap" profile="achievementItemIcon" onCreate="onCreateAchievementBitmap"/>
+                        <GuiElement type="bitmap" profile="achievementItemCircleChecked" onCreate="onCreateAchievementSuccess">
+                            <GuiElement type="bitmap" profile="achievementItemTick"/>
+                        </GuiElement>
+                    </GuiElement>
+                    <GuiElement type="text" profile="achievementItemTitle" onCreate="onCreateAchievementTitle" onCreateArgs="1"/>
+                    <GuiElement type="bitmap" profile="achievementItemTextDivider"/>
+                    <GuiElement type="text" profile="achievementItemText" onCreate="onCreateAchievementDesc"/>
+
+                    <GuiElement type="bitmap" profile="listItemSelector"/>
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="flowLayout" profile="buttonBoxDocked" id="buttonsPC">
+                <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" />
+            </GuiElement>
+
+        </GuiElement>
+    </GuiElement>
+
+    <!-- Footer - Bottom 120px -->
+    <GuiElement type="bitmap" profile="uiElementBaseFooter" />
+</GUI>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" id="dialogBg" />
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="roundCorner" profile="denyAcceptDialogBg" id="dialogElement">
+
+        <GuiElement type="bitmap" profile="dialogCircle" id="dialogCircle">
+            <GuiElement type="bitmap"  profile="dialogUser"/>
+        </GuiElement>
+
+        <GuiElement type="boxLayout" profile="denyAcceptDialogNameLayout">
+            <GuiElement type="platformIcon" profile="denyAcceptDialogNamePlatformIcon" id="platformIcon" />
+            <GuiElement type="text" profile="denyAcceptDialogNameText" id="dialogTitleElement" />
+        </GuiElement>
+        <GuiElement type="text" profile="dialogTextWithTitle" id="dialogTextElement" text="$l10n_ui_playerWantsToJoinGame" />
+        <GuiElement type="text" profile="dialogTextWarning" id="dialogWarning" text="$l10n_ui_splitShapeWarning" />
+
+        <GuiElement type="flowLayout" profile="buttonBoxDialog">
+            <GuiElement type="button" profile="buttonOK" text="$l10n_button_accept" onClick="onClickAccept" id="yesButton" />
+            <GuiElement type="button" profile="buttonBlock" text="$l10n_button_denyAlways" onClick="onClickDenyAlways" />
+            <GuiElement type="button" profile="buttonRefuse" text="$l10n_button_deny" onClick="onClickRefuse" id="noButton" />
+        </GuiElement>
+
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="denyAcceptDialogBg" extends="dialogBg">
+            <Value name="size" value="630px 235px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="1400px 380px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="denyAcceptDialogNameLayout" extends="emptyPanel" with="anchorTopCenter">
+            <Value name="size" value="500px 30px" />
+            <Value name="position" value="0px -130px"/>
+
+            <Value name="alignmentX" value="center" />
+            <Value name="alignmentY" value="bottom" />
+            <Value name="flowDirection" value="horizontal" />
+
+            <Variant name="mobile">
+                <Value name="position" value="0px -170px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="denyAcceptDialogNamePlatformIcon" extends="baseReference">
+            <Value name="size" value="30px 30px" />
+            <Value name="margin" value="0 0 6px 0" />
+        </Profile>
+
+        <Profile name="denyAcceptDialogNameText" extends="dialogTitle">
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textMaxWidth" value="450px" />
+            <Value name="size" value="20px 30px" />
+            <Value name="position" value="0" />
+            <Value name="textAlignment" value="left" />
+            <Value name="textMaxNumLines" value="1" />
+        </Profile>
+    </GUIProfiles>
+</GUI>

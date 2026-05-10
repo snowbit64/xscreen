@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" />
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="roundCorner" profile="serverSettingsDialogBg" id="dialogElement">
+        <GuiElement type="bitmap" profile="dialogHeaderDocked">
+            <GuiElement type="text" profile="dialogHeaderText" text="$l10n_ui_serverSettings" id="headerText" />
+        </GuiElement>
+
+        <GuiElement type="boxLayout" profile="serverSettingsBoxLayout" id="boxLayout">
+            <GuiElement type="empty" profile="serverSettingsTextInputWrapper">
+                <GuiElement type="textInput" profile="serverSettingsTextInput" id="serverNameElement" maxCharacters="30" needExternalClick="true" onFocus="onFocus" onLeave="onLeave" onEnterPressed="onEnterPressed" imeKeyboardType="normal" imeTitle="$l10n_ui_serverName" imeDescription="$l10n_ui_serverName" imePlaceholder="$l10n_ui_serverName" focusInit="onOpen" />
+                <GuiElement type="text" profile="serverSettingsMultiTextTitle" text="$l10n_ui_serverName"/>
+            </GuiElement>
+
+            <GuiElement type="empty" profile="serverSettingsTextInputWrapper">
+                <GuiElement type="textInput" profile="serverSettingsTextInput" id="passwordElement" isPassword="true" maxCharacters="16" needExternalClick="true" onEnter="onEnter" onFocus="onFocus" onLeave="onLeave" onEscPressed="onEscPressed" onEnterPressed="onEnterPressed" imeKeyboardType="password" imeTitle="$l10n_ui_password" imeDescription="$l10n_ui_password" imePlaceholder="$l10n_ui_password" />
+                <GuiElement type="text" profile="serverSettingsMultiTextTitle" text="$l10n_ui_password"/>
+            </GuiElement>
+
+            <GuiElement type="empty" profile="serverSettingsMultiTextOptionSettings">
+                <GuiElement type="multiTextOption" profile="serverSettingsMultiTextOption" onCreate="onCreateNumPlayer" />
+                <GuiElement type="text"   profile="serverSettingsMultiTextTitle" text="$l10n_ui_maxNumPlayers"/>
+            </GuiElement>
+
+            <GuiElement type="empty" profile="serverSettingsMultiTextOptionSettings" id="autoAcceptElement" >
+                <GuiElement type="multiTextOption" profile="serverSettingsMultiTextOption" />
+                <GuiElement type="text"   profile="serverSettingsMultiTextTitle" text="$l10n_ui_autoAccept"/>
+            </GuiElement>
+
+            <GuiElement type="empty" profile="serverSettingsMultiTextOptionSettings" id="allowOnlyFriendsElement" >
+                <GuiElement type="multiTextOption" profile="serverSettingsMultiTextOption" />
+                <GuiElement type="text"   profile="serverSettingsMultiTextTitle" text="$l10n_ui_allowOnlyFriends"/>
+            </GuiElement>
+        </GuiElement>
+
+        <GuiElement type="flowLayout" profile="buttonBoxDialog">
+            <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" />
+            <GuiElement type="button" profile="buttonOK" text="$l10n_button_save" onClick="onClickOk" id="saveButton" />
+            <GuiElement type="button" profile="buttonActivate" text="$l10n_button_change" onClick="onClickActivate" id="changeButton" visible="false" />
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="serverSettingsDialogBg" extends="dialogBg">
+            <Value name="size" value="780px 420px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="1100px 700px" />
+                <Value name="position" value="0px 50px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="serverSettingsBoxLayout" extends="baseReference" with="anchorBottomCenter">
+            <Value name="size" value="720px 420px" />
+            <Value name="position" value="0 -25px" />
+
+            <Value name="flowMargin" value="0"/>
+            <Value name="numFlows" value="1"/>
+            <Value name="lateralFlowSize" value="305px"/>
+            <Value name="flowDirection" value="vertical"/>
+            <Value name="fitFlowToElements" value="true"/>
+
+            <Value name="alignmentX" value="left"/>
+            <Value name="alignmentY" value="top"/>
+            <Value name="imageColor" value="$preset_colorTransparent"/>
+            <Value name="useFullVisibility" value="false"/>
+            <Value name="autoValidateLayout" value="true"/>
+
+            <Variant name="mobile" with="anchorMiddleCenter">
+                <Value name="size" value="850px 680px" />
+                <Value name="position" value="0px 0px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="serverSettingsTextInputWrapper" extends="baseReference">
+            <Value name="size" value="1400px 48px"/>
+            <Value name="margin" value="0 12px 0 12px"/>
+            <Value name="focusFallthrough" value="true"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="1400px 105px" />
+            </Variant>
+        </Profile>
+        <Profile name="serverSettingsTextInput" extends="textInput" with="anchorMiddleLeft">
+            <Value name="handleFocus" value="true"/>
+            <Value name="position" value="400px 0"/>
+            <Value name="size" value="316px 48px"/>
+            <Value name="margin" value="30px 28px 49px 16px"/>
+            <Value name="maxInputTextWidth" value="290px"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="textBold" value="false"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="enterWhenClickOutside" value="true"/>
+
+            <Variant name="mobile">
+                <Value name="textSize" value="35px"/>
+                <Value name="cursorSize" value="2px 35px"/>
+                <Value name="size" value="420px 105px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="serverSettingsMultiTextTitle" extends="textDefault" with="anchorMiddleLeft">
+            <Value name="textSize" value="20px" />
+            <Value name="textAlignment" value="left" />
+            <Value name="position" value="0 0" />
+            <Value name="textMaxWidth" value="400px" />
+            <Value name="size" value="0 48px" />
+            <Value name="textMaxNumLines" value="2" />
+            <Value name="textVerticalAlignment" value="middle" />
+            <Value name="textAutoWidth" value="true" />
+
+            <Variant name="mobile">
+                <Value name="textSize" value="35px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="serverSettingsMultiTextOptionSettings" extends="baseReference">
+            <Value name="margin" value="0 12px 0 12px"/>
+            <Value name="size" value="717px 48px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="820px 105px" />
+                <Value name="margin" value="0px 15px 0px 15px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="serverSettingsMultiTextOption" extends="multiTextOption" with="anchorMiddleRight" >
+
+            <Variant name="mobile">
+                <Value name="size" value="420px 105px" />
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

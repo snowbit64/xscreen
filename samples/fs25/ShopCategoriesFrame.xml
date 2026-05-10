@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="shopCategories">
+    <GuiElement type="empty" profile="uiInGameMenuFrame">
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel">
+            <GuiElement type="bitmap" profile="ingameMenuFinancesHeaderIcon" id="categoryHeaderIcon"/>
+            <GuiElement type="text" profile="ingameMenuFrameHeaderText" id="categoryHeaderText"/>
+        </GuiElement>
+
+        <GuiElement type="bitmap" profile="shopStartScrollClipper" name="topClipper" />
+        <GuiElement type="bitmap" profile="shopEndScrollClipper" name="bottomClipper" />
+
+        <GuiElement type="smoothList" profile="shopCategoryList" id="categoryList" onClick="onOpenCategory" startClipperElementName="topClipper" endClipperElementName="bottomClipper" listSectionHeader="section">
+            <GuiElement type="listItem" profile="shopCategoryItem">
+                <GuiElement type="bitmap" profile="shopCategoryItemCoinBackground" name="coinBg"/>
+                <GuiElement type="empty" profile="shopCategoryItemImagePanel">
+                    <GuiElement type="picture" profile="shopCategoryItemImageVehicle" name="icon"/>
+                </GuiElement>
+
+                <GuiElement type="text" profile="shopCategoryItemText" name="title"/>
+
+                <GuiElement type="bitmap" profile="listItemSelector"/>
+            </GuiElement>
+
+            <GuiElement type="listItem" profile="listSectionHeader" name="section">
+                <GuiElement type="text" profile="listSectionHeaderTitle" name="title" />
+            </GuiElement>
+        </GuiElement>
+
+        <GuiElement type="threePartBitmap" profile="shopCategorySlider">
+            <GuiElement type="slider" profile="shopCategorySliderBar" dataElementId="categoryList"/>
+        </GuiElement>
+
+        <GuiElement type="text" profile="ingameMenuNoContentText" text="$l10n_ui_noShopItems" id="noItemsText" />
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="shopStartScrollClipper" extends="topScrollClipper">
+            <Variant name="mobile" with="anchorMiddleCenter">
+                <Value name="position" value="-884px 40px" />
+                <Value name="imageUVRotation" value="90" />
+                <Value name="size" value="2dp 644px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="shopEndScrollClipper" extends="bottomScrollClipper">
+            <Variant name="mobile" with="anchorMiddleCenter">
+                <Value name="position" value="884px 40px" />
+                <Value name="imageUVRotation" value="90" />
+                <Value name="size" value="2dp 644px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="shopCategoryList" extends="emptyPanel" with="anchorMiddleCenter">
+            <Value name="handleFocus" value="true"/>
+            <Value name="selectOnClick" value="true"/>
+            <Value name="size" value="1400px 780px"/>
+
+            <Value name="numLateralItems" value="7" />
+            <Value name="listItemSpacing" value="9px" />
+            <Value name="listItemLateralSpacing" value="9px" />
+
+            <Variant name="mobile" >
+                <Value name="size" value="1760px 700px"/>
+                <Value name="position" value="0px 40px" />
+                <Value name="selectOnClick" value="false"/>
+
+                <Value name="listItemWidth" value="279px"/>
+                <Value name="listItemHeight" value="340px"/>
+                <Value name="listItemPadding" value="17px"/>
+                <Value name="listItemSpacing" value="17px"/>
+
+                <Value name="numLateralItems" value="2"/>
+                <Value name="isHorizontalList" value="true"/>
+                <Value name="supportsTouchScrolling" value="true" />
+            </Variant>
+        </Profile>
+
+        <Profile name="shopCategoryItem" extends="emptyPanel" with="anchorBottomLeft">
+            <Value name="handleFocus" value="false"/>
+            <Value name="size" value="192px 246px"/>
+
+            <Value name="imageColor" value="$preset_colorItemBgNormal"/>
+            <Value name="imageFocusedColor" value="$preset_colorItemBgSelected"/>
+            <Value name="imageSelectedColor" value="$preset_colorItemBgSelected"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="279px 340px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="shopCategoryItemCoinBackground" extends="baseReference" with="anchorBottomLeft">
+            <Value name="size" value="192px 246px"/>
+            <Value name="imageUVs" value="0 0 1 1" />
+            <Value name="imageFilename" value="dataS/menu/iap_background.png" />
+            <Value name="imageColor" value="0.9 0.9 0 0.7" />
+            <Value name="imageFocusedColor" value="0.9 0.9 0 0.7"/>
+            <Value name="imageSelectedColor" value="0.9 0.9 0 0.7"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="279px 340px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="shopCategoryItemImagePanel" extends="emptyPanel" with="anchorTopCenter">
+            <Value name="size" value="144px 144px"/>
+            <Value name="position" value="0px -10px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="215px 210px"/>
+                <Value name="position" value="0px 0px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="shopCategoryItemImageVehicle" extends="baseReference" with="anchorMiddleCenter">
+            <Value name="position" value="0"/>
+            <Value name="imageUVs" value="0 0 1 1"/>
+            <Value name="size" value="144px 144px"/>
+
+            <Variant name="mobile" >
+                <Value name="size" value="260px 260px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="shopCategoryItemImageBrand" extends="shopCategoryItemImageVehicle" >
+
+            <Variant name="mobile" >
+                <Value name="size" value="260px 130px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="shopCategoryItemText" extends="textDefault" with="anchorTopCenter">
+            <Value name="size" value="0 54px"/>
+
+            <Value name="textMaxWidth" value="170px"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textMaxNumLines" value="3"/>
+            <Value name="position" value="0px -175px" />
+
+            <Value name="textColor" value="$preset_colorWhite_50"/>
+            <Value name="textSelectedColor" value="$preset_colorMainUI"/>
+
+            <Variant name="mobile" with="anchorBottomCenter">
+                <Value name="size" value="270px 64px"/>
+                <Value name="position" value="0px 20px" />
+                <Value name="textSize" value="33px"/>
+                <Value name="textMaxWidth" value="250px"/>
+                <Value name="textMaxNumLines" value="2"/>
+                <Value name="textLayoutMode" value="resize" />
+                <Value name="textResizeLines" value="2"/>
+                <Value name="textResizeWidth" value="250px"/>
+                <Value name="textBold" value="false"/>
+                <Value name="textColor" value="$preset_colorWhite"/>
+                <Value name="textSelectedColor" value="$preset_colorWhite"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="shopCategorySlider" extends="verticalListSliderRightDocked">
+            <Variant name="mobile" extends="horizontalListSliderRightDocked" with="anchorMiddleCenter" >
+                <Value name="position" value="0px -320px" />
+                <Value name="size" value="1760px 12px" />
+                <Value name="isHorizontal" value="true" />
+            </Variant>
+        </Profile>
+
+        <Profile name="shopCategorySliderBar" extends="verticalListSliderBar">
+            <Variant name="mobile">
+                <Value name="direction" value="x"/>
+                <Value name="sliderSize" value="100px 6px"/>
+                <Value name="hideParentWhenEmpty" value="true"/>
+
+                <Value name="midImageSize" value="1px 6px" />
+                <Value name="sliderImageUVRotation" value="-90" />
+
+                <Value name="startImageSize" value="3px 6px" />
+                <Value name="startImageUVRotation" value="-90" />
+
+                <Value name="endImageSize" value="3px 6px" />
+                <Value name="endImageUVRotation" value="-90" />
+                <Value name="size" value="1752px 6px" />
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

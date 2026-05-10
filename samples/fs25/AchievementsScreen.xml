@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <!-- Background FullScreen Relative -->
+    <GuiElement type="dynamicFadedBitmap" profile="uiFullBlurBG"/>
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlow" />
+
+    <GuiElement type="empty" id="sidebar" profile="achievementSidebar">
+        <GuiElement type="bitmap" id="glassEdgeOverlay" profile="mainScreenSidebarGlassEdge" />
+        <GuiElement type="bitmap" id="logo" profile="mainScreenLogo" />
+
+        <!-- Main Button Container -->
+        <GuiElement id="buttonBox" type="boxLayout" profile="mainScreenButtonBox">
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_career" onClick="onCareerClick" />
+            <GuiElement type="button" profile="mainMenuButtonActive" text="$l10n_button_achievements" id="achievementsButton" focusId="menu" />
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_credits" onClick="onCreditsClick" />
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_settings" onClick="onChangeMobileSettingsClick" id="changeLanguageButton" visible="false" />
+        </GuiElement>
+    </GuiElement>
+
+    <!-- Body - Central -->
+    <GuiElement type="empty" profile="baseReference" id="contentBox" >
+        <GuiElement type="empty" profile="achievementContainerFullScreen" id="mainContainer">
+            <GuiElement type="empty" profile="achievementElementCenter" id="contentContainer">
+
+                <GuiElement type="bitmap" profile="achievementHeaderBoxDocked" >
+                    <GuiElement type="bitmap" profile="achievementsIcon"/>
+                    <GuiElement type="text" profile="headerText" text="$l10n_button_achievements" />
+                </GuiElement>
+
+                <GuiElement type="flowLayout" profile="achievementStatsBox">
+                    <GuiElement type="text"   profile="achievementTotalText" text="$l10n_achievement_stats"/>
+                    <GuiElement type="text"   profile="achievementTotalValue" id="statsValue"/>
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="achievementStartScrollClipper" name="startClipper" />
+                <GuiElement type="bitmap" profile="achievementStopScrollClipper" name="stopClipper" />
+
+                <GuiElement type="smoothList" profile="achievementList" onSelectionChanged="onListSelectionChanged" focusInit="onOpen" id="achievementList" startClipperElementName="startClipper"
+                    endClipperElementName="stopClipper" focusId="list" focusChangeLeft="menu" focusChangeTop="nil" focusChangeBottom="nil" listDelegate="self" listDataSource="self">
+
+                    <GuiElement type="listItem" profile="achievementItem">
+                        <GuiElement type="bitmap" profile="achievementItemIcon" name="icon" />
+                        <GuiElement type="bitmap" profile="achievementTextBox">
+                            <GuiElement type="text" profile="achievementItemTitle" name="title" />
+                            <GuiElement type="text" profile="achievementItemText" name="description" />
+                        </GuiElement>
+                        <GuiElement type="bitmap" profile="achievementListItemSelector"/>
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="threePartBitmap" profile="achievementListSliderBox" id="sliderBox">
+                    <GuiElement type="slider" profile="achievementListSlider" dataElementId="achievementList" id="listSlider">
+                        <GuiElement type="button" profile="achievementSelectorRight" />
+                        <GuiElement type="button" profile="achievementSelectorLeft" />
+                    </GuiElement>
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="flowLayout" profile="achievementButtonBox" id="buttonsPC">
+        <GuiElement type="button" profile="achievementBackButton" text="$l10n_button_back" onClick="onClickBack"/>
+    </GuiElement>
+
+    <GUIProfiles>
+        <Profile name="achievementSidebar" extends="baseReference" with="anchorBottomLeft">
+            <Value name="visible" value="false" />
+
+            <Variant name="mobile">
+                <Value name="visible" value="true" />
+
+                <Value name="position" value="0" />
+                <Value name="size" value="763px 1" />
+                <Value name="anchors" value="0 0 0 1" />
+            </Variant>
+        </Profile>
+
+        <Profile name="achievementContainerFullScreen" extends="uiElementContainerFullScreen">
+
+            <Variant name="mobile" with="anchorBottomRight">
+                <Value name="imageColor" value="$preset_colorGlass" />
+            </Variant>
+        </Profile>
+
+        <Profile name="achievementElementCenter" extends="uiElementCenter" >
+
+            <Variant name="mobile" >
+                <Value name="position" value="0px -50px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="achievementHeaderBoxDocked" extends="headerBoxDocked">
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="achievementsIcon" extends="baseIcon">
+            <Value name="imageUVs" value="$preset_achievementIconUVs"/>
+        </Profile>
+
+        <Profile name="achievementStatsBox" extends="headerBoxDocked" with="anchorTopRight">
+            <Value name="alignmentX" value="right"/>
+        </Profile>
+
+        <Profile name="achievementTotalText" extends="textDefault">
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="textAlignment" value="right"/>
+            <Value name="textUpperCase" value="true"/>
+            <Value name="textBold" value="false"/>
+            <Value name="textColor" value="$preset_colorWhite"/>
+            <Value name="margin" value="0 0 6px 0" />
+            <Value name="size" value="400px 20px" />
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="achievementTotalValue" extends="achievementTotalText">
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textColor" value="$preset_colorMainUI"/>
+            <Value name="margin" value="5px 0 2px 0" />
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="achievementStartScrollClipper" extends="leftScrollClipper">
+            <Variant name="mobile" extends="topScrollClipper">
+            </Variant>
+        </Profile>
+
+        <Profile name="achievementStopScrollClipper" extends="rightScrollClipper">
+
+            <Variant name="mobile" extends="bottomScrollClipper">
+            </Variant>
+        </Profile>
+
+        <Profile name="achievementList" extends="list">
+            <Value name="size" value="1258px 698px"/>
+            <Value name="position" value="0"/>
+
+            <Value name="listItemSpacing" value="14px"/>
+            <Value name="itemizedScrollDelta" value="true"/>
+            <Value name="imageColor" value="$preset_colorTransparent" />
+
+            <Variant name="mobile" >
+                <Value name="anchors" value="0 1 0 1"/>
+                <Value name="supportsTouchScrolling" value="true"/>
+                <Value name="itemsPerCol" value="3"/>
+                <Value name="itemsPerRow" value="1"/>
+                <Value name="listItemWidth" value="1036px"/>
+                <Value name="listItemHeight" value="180px"/>
+                <Value name="listItemSpacing" value="13px"/>
+                <Value name="useSelectionOnLeave" value="true" />
+                <Value name="keepSelectedInView" value="true" />
+                <Value name="isHorizontalList" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="achievementItem" extends="listItem">
+            <Value name="imageColor" value="$preset_colorMainUI_6"/>
+            <Value name="imageDisabledColor" value="$preset_colorMainUI_6"/>
+            <Value name="imageFocusedColor" value="$preset_colorMainUI_6"/>
+            <Value name="imageSelectedColor" value="$preset_colorMainUI_6"/>
+            <Value name="size" value="410px 698px"/>
+
+            <Variant name="mobile" with="anchorTopCenter">
+                <Value name="imageColor" value="$preset_colorGlassMedium"/>
+                <Value name="imageFocusedColor" value="$preset_colorGlassMedium"/>
+                <Value name="imageSelectedColor" value="$preset_colorGlassMedium"/>
+                <Value name="size" value="1036px 180px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="achievementItemLocked" extends="achievementItem">
+            <Value name="imageColor" value="$preset_colorGlassMedium"/>
+            <Value name="imageDisabledColor" value="$preset_colorGlassMedium"/>
+            <Value name="imageFocusedColor" value="$preset_colorGlassMedium"/>
+            <Value name="imageSelectedColor" value="$preset_colorGlassMedium"/>
+        </Profile>
+
+        <Profile name="achievementItemIcon" extends="baseReference" with="anchorTopCenter">
+            <Value name="position" value="0 -108px"/>
+            <Value name="size" value="256px 256px"/>
+
+            <Value name="imageFilename" value="dataS/menu/hud/achievements.png" />
+            <Value name="imageUVs" value="0px 0px 255px 255px"/>
+            <Value name="imageSize" value="2048 2048"/>
+            <Value name="imageColor" value="$preset_colorWhite"/>
+
+            <Variant name="mobile" with="anchorTopLeft">
+                <Value name="size" value="140px 140px"/>
+                <Value name="position" value="20px -20px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="achievementTextBox" extends="baseReference" with="anchorBottomCenter">
+            <Value name="size" value="410px 232px" />
+            <Value name="imageColor" value="$preset_colorItemBgSelected" />
+
+            <Variant name="mobile" with="anchorBottomLeft">
+                <Value name="size" value="1036px 180px"/>
+                <Value name="imageColor" value="$preset_colorTransparent" />
+                <Value name="position" value="0px 0px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="achievementItemTitle" extends="textDefault" with="anchorBottomCenter">
+            <Value name="pivot" value="0.5 1" />
+            <Value name="position" value="0px 190px"/>
+            <Value name="size" value="390px 56px"/>
+
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="top" />
+            <Value name="textSize" value="28px"/>
+            <Value name="textBold" value="false"/>
+            <Value name="textColor" value="$preset_colorTextOnDark"/>
+            <Value name="textSelectedColor" value="$preset_colorWhite"/>
+            <Value name="textMaxNumLines" value="2" />
+
+            <Variant name="mobile" with="anchorTopLeft">
+                <Value name="textSize" value="33px"/>
+                <Value name="position" value="560px -20px"/>
+                <Value name="size" value="690px 52px"/>
+
+                <Value name="textAlignment" value="left"/>
+                <Value name="textVerticalAlignment" value="middle" />
+                <Value name="textMaxNumLines" value="1" />
+                <Value name="textUpperCase" value="true" />
+                <Value name="textLayoutMode" value="resize" />
+            </Variant>
+        </Profile>
+
+        <Profile name="achievementItemText" extends="achievementItemTitle">
+            <Value name="position" value="0px 120px"/>
+            <Value name="size" value="330px 110px"/>
+
+            <Value name="textVerticalAlignment" value="top" />
+            <Value name="textSize" value="20px"/>
+            <Value name="textBold" value="false"/>
+            <Value name="textColor" value="$preset_colorDescriptionText"/>
+            <Value name="textSelectedColor" value="$preset_colorDescriptionText"/>
+            <Value name="textDisabledColor" value="0.4 0.4 0.4 0.7"/>
+            <Value name="textMaxNumLines" value="10" />
+            <Value name="textLineHeightScale" value="1.2"/>
+
+            <Variant name="mobile">
+                <Value name="position" value="560px -74px"/>
+                <Value name="size" value="690px 90px"/>
+
+                <Value name="textSize" value="33px"/>
+                <Value name="textUpperCase" value="false" />
+                <Value name="textMaxNumLines" value="2" />
+                <Value name="textLayoutMode" value="resize" />
+            </Variant>
+        </Profile>
+
+        <Profile name="achievementListItemSelector" extends="listItemSelector">
+
+            <Variant name="mobile">
+                <Value name="size" value="15px 180px"/>
+                <Value name="imageColor" value="$preset_colorWhite"/>
+                <Value name="anchors" value="0 0 0 0"/>
+                <Value name="imageDisabledColor" value="$preset_colorWhite"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="achievementListSliderBox" extends="verticalListSliderRightDocked">
+            <Value name="visible" value="false" />
+
+            <Variant name="mobile">
+                <Value name="visible" value="true" />
+                <Value name="size" value="12px 1" />
+                <Value name="anchors" value="1 1 0 1" />
+                <Value name="position" value="15px 0px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="achievementListSlider" extends="sliderInvisible">
+            <Value name="handleFocus" value="false" />
+            <Value name="position" value="0px 0px" />
+
+            <Variant name="mobile" extends="verticalListSliderBar">
+                <Value name="anchors" value="0.5 0.5 0 1" />
+            </Variant>
+        </Profile>
+
+        <Profile name="achievementSelectorRight" extends="largeSelectorRight">
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="achievementSelectorLeft" extends="largeSelectorLeft">
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="achievementButtonBox" extends="buttonBoxDockedOnScreen">
+
+            <Variant name="mobile" with="anchorBottomRight">
+                <Value name="size" value="1030px 60px" />
+                <Value name="position" value="-65px 70px" />
+                <Value name="alignmentX" value="right"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="achievementBackButton" extends="wideButton" with="touchButton">
+            <Value name="position" value="0 -95px" />
+            <Value name="inputAction" value="MENU_BACK"/>
+            <Value name="clickSound" value="BACK"/>
+
+            <Value name="touchIconUVs" value="342px 342px 24px 36px" />
+            <Value name="touchIconSize" value="24px 36px"/>
+            <Value name="touchIconRotation" value="180" />
+
+            <Variant name="mobile">
+                <Value name="visible" value="true" />
+                <Value name="margin" value="32px 0px 0px 0px" />
+                <Value name="fitExtraWidth" value="0px" />
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

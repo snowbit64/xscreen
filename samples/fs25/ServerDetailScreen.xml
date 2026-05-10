@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="dynamicFadedBitmap" profile="uiFullBlurBG"/>
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlow" />
+
+    <GuiElement type="empty" profile="uiElementContainerFullScreen">
+        <GuiElement type="empty" profile="uiElementCenter">
+            <GuiElement type="empty" profile="headerBoxDocked" >
+                <GuiElement type="bitmap" profile="multiplayerIcon"/>
+                <GuiElement type="text" profile="headerText" text="$l10n_ui_joinMultiplayerGame" id="headerText" />
+            </GuiElement>
+
+            <GuiElement type="text" profile="serverDetailInfoText" id="notAllModsOnSystemLabel" text="$l10n_ui_notAllModsOnSystem" />
+
+            <GuiElement type="empty" profile="serverDetailDetailsBox">
+                <GuiElement type="empty" profile="serverDetailMapPreviewClipper">
+                    <GuiElement type="bitmap" profile="serverDetailMapPreview" id="mapIconElement" />
+                </GuiElement>
+
+                <GuiElement type="boxLayout" profile="serverDetailDetailsLayout">
+                    <GuiElement type="text" profile="serverDetailInfoKey" text="$l10n_ui_serverName" />
+                    <GuiElement type="text" profile="serverDetailInfoValueGameName" id="serverNameElement" />
+
+                    <GuiElement type="text" profile="serverDetailInfoKey" text="$l10n_ui_map" />
+                    <GuiElement type="text" profile="serverDetailInfoValue" id="mapElement" />
+
+                    <GuiElement type="text" profile="serverDetailInfoKey" text="$l10n_ui_platform" />
+                    <GuiElement type="platformIcon" profile="serverDetailInfoPlatformIcon" id="platformElement" />
+
+                    <GuiElement type="text" profile="serverDetailInfoKey" text="$l10n_ui_allowsCrossPlay" />
+                    <GuiElement type="text" profile="serverDetailInfoValue" id="crossPlayElement" />
+
+                    <GuiElement type="text" profile="serverDetailInfoKey" text="$l10n_setting_language" />
+                    <GuiElement type="text" profile="serverDetailInfoValue" id="languageElement" />
+
+                    <GuiElement type="text" profile="serverDetailInfoKey" text="$l10n_ui_password" />
+                    <GuiElement type="text" profile="serverDetailInfoValue" id="passwordElement" />
+
+                    <GuiElement type="text" profile="serverDetailInfoKey" text="$l10n_ui_mpPlayers" />
+                    <GuiElement type="text" profile="serverDetailInfoValue" id="numPlayersElement" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="serverDetailWarningOk" id="warningElement" visible="false" >
+                <GuiElement type="text" profile="serverDetailWarningTextOk" id="warningTextElement" text="$l10n_ui_allModsDLCsInstalled" />
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="topScrollClipper" name="topClipper" anchors="1 1 1 1" size="818px 2dp" positon="0 2dp" />
+            <GuiElement type="bitmap" profile="bottomScrollClipper" name="bottomClipper"  anchors="1 1 0 0"  size="818px 2dp" position="0 -2dp" />
+
+            <GuiElement type="smoothList" profile="serverDetailList" onDoubleClick="onDoubleClick" id="modList" focusInit="onOpen" startClipperElementName="topClipper" endClipperElementName="bottomClipper">
+                <GuiElement type="listItem" profile="serverDetailListItem">
+                    <GuiElement type="bitmap" profile="serverDetailModIcon" name="icon" />
+                    <GuiElement type="text" profile="serverDetailModTitle" name="title" />
+
+                    <GuiElement type="flowLayout" profile="serverDetailModVersionBox">
+                        <GuiElement type="text" profile="serverDetailModVersionTitle" text="$l10n_ui_modVersion:" />
+                        <GuiElement type="text" profile="serverDetailModVersion" name="version" />
+                    </GuiElement>
+
+                    <GuiElement type="text" profile="serverDetailModHashUnavailable" name="hash" />
+                    <GuiElement type="text" profile="serverDetailModAuthorUnavailable" name="author" />
+
+                    <GuiElement type="text" profile="serverDetailModAvailability" name="availability" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="text" profile="serverDetailNoModsDLCs" text="$l10n_ui_noModsDLCsUsed" id="noModsDLCsElement" />
+
+            <GuiElement type="threePartBitmap" profile="verticalListSliderRightDocked" size="12px 698px">
+                <GuiElement type="slider" profile="verticalListSliderBar" dataElementId="modList" handleFocus="false" size="6px 690px"/>
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="flowLayout" profile="buttonBoxDockedOnScreen">
+        <GuiElement type="button" profile="buttonOK" text="$l10n_button_start" onClick="onClickOk"  id="startElement" />
+        <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" />
+        <GuiElement type="button" profile="buttonDownloadMods" text="$l10n_button_getModsDlc" onClick="onClickDownload" id="getModsButton" />
+        <GuiElement type="button" profile="buttonCancel" text="$l10n_button_block" onClick="onClickBlockOrShowInfo" id="blockOrShowButton"/>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="serverDetailInfoText" extends="textDefault" with="anchorTopRight">
+            <Value name="size" value="700px 50px" />
+            <Value name="position" value="0 50px" />
+            <Value name="textMaxNumLines" value="3" />
+            <Value name="textAlignment" value="right" />
+            <Value name="textLayoutMode" value="resize" />
+            <Value name="textColor" value="1 1 1 0.5" />
+        </Profile>
+
+        <Profile name="serverDetailDetailsBox" extends="baseReference">
+            <Value name="size" value="420px 698px" />
+        </Profile>
+
+        <Profile name="serverDetailMapPreviewClipper" extends="emptyPanel" with="anchorTopLeft">
+            <Value name="size" value="420px 210px"/>
+            <Value name="clipping" value="true"/>
+        </Profile>
+
+        <Profile name="serverDetailMapPreview" extends="mapPreview" with="anchorBottomLeft">
+            <Value name="size" value="420px 420px"/>
+        </Profile>
+
+        <Profile name="serverDetailDetailsLayout" extends="baseReference" with="anchorBottomLeft">
+            <Value name="size" value="420px 468px" />
+
+            <Value name="autoValidateLayout" value="true"/>
+            <Value name="alignmentX" value="left"/>
+            <Value name="alignmentY" value="top"/>
+
+            <Value name="imageColor" value="$preset_colorDetailBackground"/>
+        </Profile>
+
+        <Profile name="serverDetailInfoValue" extends="textDefault">
+            <Value name="textSize" value="21px"/>
+            <Value name="textOffset" value="8px 0"/>
+            <Value name="size" value="420px 21px"/>
+        </Profile>
+
+        <Profile name="serverDetailInfoKey" extends="serverDetailInfoValue">
+            <Value name="textSize" value="18px"/>
+            <Value name="size" value="420px 18px"/>
+            <Value name="textColor" value="$preset_colorWhite_50"/>
+            <Value name="margin" value="0 10px 0 2px"/>
+        </Profile>
+        <Profile name="serverDetailInfoValueGameName" extends="serverDetailInfoValue">
+            <Value name="textColor" value="$preset_colorMainUI" />
+        </Profile>
+        <Profile name="serverDetailInfoValueDanger" extends="serverDetailInfoValue">
+            <Value name="textColor" value="$preset_colorRed" />
+        </Profile>
+
+        <Profile name="serverDetailInfoPlatformIcon" extends="baseReference">
+            <Value name="size" value="26px 26px"/>
+            <Value name="margin" value="8px 0 0 0"/>
+        </Profile>
+
+        <Profile name="serverDetailWarningOk" extends="baseReference">
+            <Value name="position" value="0"/>
+            <Value name="size" value="1398px 30px"/>
+            <Value name="imageColor" value="$preset_colorMainUI"/>
+        </Profile>
+
+        <Profile name="serverDetailWarningTextOk" extends="textDefault" with="anchorBottomCenter">
+            <Value name="size" value="1398px 30px"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="textColor" value="$preset_colorBlack"/>
+            <Value name="textAlignment" value="center"/>
+        </Profile>
+
+        <Profile name="serverDetailList" extends="list" with="anchorTopRight">
+            <Value name="size" value="818px 698px"/>
+
+            <Value name="numLateralItems" value="5"/>
+            <Value name="listItemLateralSpacing" value="16px"/>
+            <Value name="listItemSpacing" value="16px"/>
+            <Value name="isHorizontalList" value="false"/>
+        </Profile>
+
+        <Profile name="serverDetailListItem" extends="listItem">
+            <Value name="size" value="150.8px 222px"/>
+
+            <Value name="imageColor" value="$preset_colorItemBgNormal"/>
+            <Value name="imageFocusedColor" value="$preset_colorItemBgNormal"/>
+            <Value name="imageSelectedColor" value="$preset_colorItemBgNormal"/>
+        </Profile>
+
+        <Profile name="serverDetailModIcon" extends="baseReference" with="anchorTopCenter">
+            <Value name="position" value="0 -15px" />
+            <Value name="size" value="110px 110px" />
+            <Value name="imageColor" value="$preset_colorWhite"/>
+            <Value name="imageUVs" value="0 0 1 1"/>
+        </Profile>
+
+        <Profile name="serverDetailModTitle" extends="textDefault" with="anchorTopCenter">
+            <Value name="position" value="0 -130px"/>
+            <Value name="size" value="145px 32px"/>
+
+            <Value name="textLayoutMode" value="resize"/>
+            <Value name="textSize" value="16px"/>
+            <Value name="textMinSize" value="10px"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textMaxNumLines" value="2"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+
+            <Value name="textColor" value="$preset_colorWhite" />
+            <Value name="textSelectedColor" value="$preset_colorMainUI" />
+        </Profile>
+
+        <Profile name="serverDetailModVersionBox" extends="emptyPanel" with="anchorTopCenter">
+            <Value name="position" value="0 -165px"/>
+            <Value name="size" value="145px 16px"/>
+            <Value name="alignmentX" value="center"/>
+        </Profile>
+
+        <Profile name="serverDetailModVersionTitle" extends="textDefault" with="anchorBottomLeft">
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="textSize" value="14px"/>
+            <Value name="margin" value="0px 0px 5px 0px"/>
+        </Profile>
+
+        <Profile name="serverDetailModVersion" extends="textDefault" with="anchorBottomLeft">
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="textSize" value="14px"/>
+            <Value name="textColor" value="0.1321 0.2090 0.2270 1"/>
+            <Value name="textSelectedColor" value="0.1321 0.2090 0.2270 1"/>
+        </Profile>
+
+        <Profile name="serverDetailModHashUnavailable" extends="textDefault" with="anchorTopCenter">
+            <Value name="size" value="140px 24px"/>
+            <Value name="position" value="0 -160px"/>
+
+            <Value name="textSize" value="12px" />
+            <Value name="textColor" value="$preset_colorWhite_50" />
+            <Value name="textAlignment" value="center" />
+            <Value name="textMaxNumLines" value="2" />
+            <Value name="textVerticalAlignment" value="bottom" />
+        </Profile>
+
+        <Profile name="serverDetailModAuthorUnavailable" extends="textDefault" with="anchorTopCenter">
+            <Value name="position" value="0 -90px" />
+            <Value name="size" value="145px 28px" />
+
+            <Value name="textSize" value="14px"/>
+            <Value name="textColor" value="1 1 1 0.5"/>
+            <Value name="textLayoutMode" value="resize"/>
+            <Value name="textMinSize" value="10px"/>
+            <Value name="textMaxNumLines" value="2"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="top"/>
+        </Profile>
+
+        <Profile name="serverDetailModAvailability" extends="textDefault" with="anchorBottomCenter">
+            <Value name="size" value="140px 24px" />
+            <Value name="position" value="0 7px" />
+
+            <Value name="textSize" value="12px" />
+            <Value name="textColor" value="$preset_colorWhite_50" />
+            <Value name="textAlignment" value="center" />
+            <Value name="textMaxNumLines" value="2" />
+            <Value name="textVerticalAlignment" value="bottom" />
+        </Profile>
+
+        <Profile name="buttonDownloadMods" extends="wideButton">
+            <Value name="inputAction" value="MENU_ACTIVATE"/>
+        </Profile>
+
+        <Profile name="serverDetailModAvailabilityUnavailable" extends="serverDetailModAvailability" >
+            <Value name="textColor" value="$preset_colorRed_50" />
+        </Profile>
+
+        <Profile name="serverDetailModTitleUnavailable" extends="serverDetailModTitle">
+            <Value name="position" value="0 -50px" />
+            <Value name="textVerticalAlignment" value="bottom"/>
+        </Profile>
+
+        <Profile name="serverDetailModVersionBoxUnavailable" extends="serverDetailModVersionBox">
+            <Value name="position" value="0 -130px" />
+        </Profile>
+    </GUIProfiles>
+</GUI>

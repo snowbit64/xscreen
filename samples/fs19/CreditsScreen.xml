@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="bitmap" profile="uiFullBlurBG"/>
+
+    <GuiElement type="bitmap" profile="uiElementBaseHeader" />
+
+    <GuiElement type="bitmap" profile="uiElementContainerFullScreen">
+        <GuiElement type="bitmap" profile="uiElementCenterBg">
+
+            <GuiElement type="bitmap" profile="headerBoxDocked" >
+                <GuiElement type="bitmap" profile="creditsIcon"/>
+                <GuiElement type="text" profile="headerText" text="$l10n_ui_credits" />
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="creditsLogo" id="logo" />
+
+            <!-- scroller -->
+            <GuiElement type="empty" profile="baseReference" id="creditsVisibilityBox" screenAlign="middleRight" positionOrigin="middleRight" position="-120px 0px" size="640px 650px">
+                <GuiElement type="boxLayout" profile="baseReference" id="creditsPlaceholder" handleFocus="false" flowDirection="vertical" alignmentX="right" alignmentY="top" screenAlign="bottomLeft" positionOrigin="bottomLeft" position="0px -550px" size="640px 550px" imageColor="1 1 1 0" useFullVisibility="false" autoValidateLayout="true">
+                    <GuiElement type="text"   profile="creditsTitle"     id="creditsTitleElement" />
+                    <GuiElement type="text"   profile="creditsText"      id="creditsTextElement" />
+                    <GuiElement type="bitmap" profile="creditsSeparator" id="creditsSeparatorElement"/>
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="flowLayout" profile="buttonBoxDocked" id="buttonsPC">
+                <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" />
+            </GuiElement>
+
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="bitmap" profile="uiElementBaseFooter" />
+</GUI>

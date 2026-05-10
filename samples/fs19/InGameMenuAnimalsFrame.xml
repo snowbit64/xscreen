@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="ingameMenuAnimals">
+    <GuiElement type="empty" profile="uiInGameMenuFrame">
+        <!-- Static page header -->
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel" position="130px -60px">
+            <GuiElement type="bitmap" profile="ingameMenuAnimalsHeaderIcon" position="0px 0px"/>
+            <GuiElement type="text" profile="ingameMenuFrameHeaderText" position="80px 0px" text="$l10n_ui_ingameMenuAnimals"/>
+        </GuiElement>
+
+        <GuiElement type="empty" profile="emptyPanel" position="0px -50px" size="1660px 708px" screenAlign="middleCenter" positionOrigin="middleCenter" id="animalsContainer">
+            <!-- Animal Type List -->
+            <GuiElement type="bitmap" profile="ingameMenuAnimalsListBox" id="animalsListBox">
+                <GuiElement type="stableList" profile="ingameMenuAnimalsList" position="1px -1px" itemTemplateId="animalListItemTemplate" onSelectionChanged="onListSelectionChanged" id="animalList">
+                    <GuiElement type="listItem" profile="ingameMenuAnimalsListItem" id="animalListItemTemplate" >
+                        <GuiElement type="bitmap" profile="ingameMenuAnimalsListItemTypeIcon" position="8px 0px" name="animalTypeIcon"/>
+                        <GuiElement type="text" profile="ingameMenuAnimalsListItemTypeName" position="64px -6px" text="ANIMAL" name="animalName"/>
+                        <GuiElement type="text" profile="ingameMenuAnimalsListItemTypeCount" position="-8px -6px" text="" name="animalCount"/>
+                        <GuiElement type="text" profile="ingameMenuAnimalsListItemStatusLabel" position="64px 6px" text="Status" name="animalStatusLabel"/>
+                        <GuiElement type="text" profile="ingameMenuAnimalsListItemStatusValue" position="-8px 6px" text="50%" name="animalStatusValue"/>
+
+                        <GuiElement type="text" profile="ingameMenuAnimalsListItemTypeName" position="20px -18px" text="HUSBANDRY" name="husbandryName"/>
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="verticalGlassListSliderBackground" size="28px 703px" position="-1px -1px">
+                    <GuiElement type="slider" profile="verticalGlassListSlider" size="16px 691px" dataElementId="animalList" handleFocus="false"/>
+                </GuiElement>
+            </GuiElement>
+
+            <!-- Animal (Husbandry) Detail Information -->
+            <GuiElement type="bitmap" profile="ingameMenuAnimalsDetailsBox" id="detailsBox">
+                <!-- Animal Output / Value Information -->
+                <GuiElement type="empty" profile="ingameMenuAnimalsDetailOutputBox" id="detailOutputBox">
+                    <GuiElement type="text" profile="ingameMenuAnimalsDetailTypeName" position="40px -32px" id="animalDetailTypeNameText" text="Animal Type"/>
+
+                    <GuiElement type="text" profile="ingameMenuAnimalsDetailTypeCount" position="-40px -32px" id="animalDetailTypeCountText" text="123"/>
+                    <GuiElement type="text" profile="ingameMenuAnimalsDetailTypeValue" position="-40px -32px" id="animalDetailTypeValueText" text="$ 45'123"/>
+
+                    <GuiElement type="bitmap" profile="ingameMenuAnimalsDetailTypeImage" position="0px -75px" id="animalDetailTypeImage"/>
+
+                    <!-- Livestock Attributes -->
+                    <GuiElement type="empty" profile="ingameMenuAnimalsDetailAttributesBox" position="1px 0px" visible="false" id="animalDetailLivestockBox">
+
+                        <GuiElement type="boxLayout" profile="ingameMenuAnimalsProductivityLayout" position="40px 0px" id="livestockAttributesLayout">
+                            <GuiElement type="text" profile="ingameMenuAnimalsProductivityHeader" text="$l10n_statistic_productivity">
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="productivityValueText" position="-120px 0" />
+                                <GuiElement type="bitmap" profile="ingameMenuAnimalsSmallStatusBarBackground" id="productivityStatusBarElement">
+                                    <GuiElement type="bitmap" profile="ingameMenuAnimalsSmallStatusBar" id="productivityStatusBar"/>
+                                </GuiElement>
+                            </GuiElement>
+
+                            <GuiElement type="empty" profile="ingameMenuAnimalsProductivityRow">
+                                <GuiElement type="empty" profile="ingameMenuAnimalsProductivityRowTextPanel">
+                                    <GuiElement type="text" profile="ingameMenuAnimalsProductivityLabel" text="$l10n_statistic_reproductionRate" />
+                                    <GuiElement type="text" profile="ingameMenuAnimalsProductivityValue" id="animalReproductionRateText"/>
+                                </GuiElement>
+                            </GuiElement>
+                            <GuiElement type="empty" profile="ingameMenuAnimalsProductivityRow">
+                                <GuiElement type="empty" profile="ingameMenuAnimalsProductivityRowTextPanel">
+                                    <GuiElement type="text" profile="ingameMenuAnimalsProductivityLabel" text="$l10n_statistic_timeTillNextAnimal" />
+                                    <GuiElement type="text" profile="ingameMenuAnimalsProductivityValue" id="animalTimeTillNextAnimalText"/>
+                                </GuiElement>
+                            </GuiElement>
+
+                            <GuiElement type="empty" profile="ingameMenuAnimalsProductivityRow" id="animalProductAttribute[1]">
+                                <GuiElement type="empty" profile="ingameMenuAnimalsProductivityRowTextPanel">
+                                    <GuiElement type="text" profile="ingameMenuAnimalsProductivityLabel" id="animalProductLabel[1]"/>
+                                    <GuiElement type="text" profile="ingameMenuAnimalsProductivityValue" id="animalProductText[1]"/>
+                                </GuiElement>
+                            </GuiElement>
+                            <GuiElement type="empty" profile="ingameMenuAnimalsProductivityRow" id="animalProductAttribute[2]">
+                                <GuiElement type="empty" profile="ingameMenuAnimalsProductivityRowTextPanel">
+                                    <GuiElement type="text" profile="ingameMenuAnimalsProductivityLabel" id="animalProductLabel[2]"/>
+                                    <GuiElement type="text" profile="ingameMenuAnimalsProductivityValue" id="animalProductText[2]"/>
+                                </GuiElement>
+                            </GuiElement>
+                            <GuiElement type="empty" profile="ingameMenuAnimalsProductivityRow" id="animalProductAttribute[3]">
+                                <GuiElement type="empty" profile="ingameMenuAnimalsProductivityRowTextPanel">
+                                    <GuiElement type="text" profile="ingameMenuAnimalsProductivityLabel" id="animalProductLabel[3]"/>
+                                    <GuiElement type="text" profile="ingameMenuAnimalsProductivityValue" id="animalProductText[3]"/>
+                                </GuiElement>
+                            </GuiElement>
+                        </GuiElement>
+                    </GuiElement>
+
+                    <!-- Horse Attributes -->
+                    <GuiElement type="empty" profile="ingameMenuAnimalsDetailAttributesBox" position="1px 0px" visible="true" id="animalDetailHorseBox">
+                        <GuiElement type="empty" profile="ingameMenuAnimalsHorseAttribute" position="0px 0px">
+                            <GuiElement type="bitmap" profile="ingameMenuAnimalsHorseAttributeIconFitness" position="0px 0px"/>
+                            <GuiElement type="bitmap" profile="ingameMenuAnimalsLargeStatusBarBackground" screenAlign="middleCenter" positionOrigin="middleCenter" position="0px 0px">
+                                <GuiElement type="bitmap" profile="ingameMenuAnimalsLargeStatusBar" id="fitnessStatusBar"/>
+                            </GuiElement>
+                            <GuiElement type="text" profile="ingameMenuAnimalsListItemStatusValue" screenAlign="middleRight" positionOrigin="middleRight" position="0px 0px" id="fitnessValueText" text="88%"/>
+                        </GuiElement>
+
+                        <GuiElement type="empty" profile="ingameMenuAnimalsHorseAttribute" position="0px -60px">
+                            <GuiElement type="bitmap" profile="ingameMenuAnimalsHorseAttributeIconHealth" position="0px 0px"/>
+                            <GuiElement type="bitmap" profile="ingameMenuAnimalsLargeStatusBarBackground" screenAlign="middleCenter" positionOrigin="middleCenter" position="0px 0px">
+                                <GuiElement type="bitmap" profile="ingameMenuAnimalsLargeStatusBar" id="healthStatusBar"/>
+                            </GuiElement>
+                            <GuiElement type="text" profile="ingameMenuAnimalsListItemStatusValue" screenAlign="middleRight" positionOrigin="middleRight" position="0px 0px" id="healthValueText" text="88%"/>
+                        </GuiElement>
+
+                        <GuiElement type="empty" profile="ingameMenuAnimalsHorseAttribute" position="0px -120px">
+                            <GuiElement type="bitmap" profile="ingameMenuAnimalsHorseAttributeIconCleanliness" position="0px 0px"/>
+                            <GuiElement type="bitmap" profile="ingameMenuAnimalsLargeStatusBarBackground" screenAlign="middleCenter" positionOrigin="middleCenter" position="0px 0px">
+                                <GuiElement type="bitmap" profile="ingameMenuAnimalsLargeStatusBar" id="cleanlinessStatusBar"/>
+                            </GuiElement>
+                            <GuiElement type="text" profile="ingameMenuAnimalsListItemStatusValue" screenAlign="middleRight" positionOrigin="middleRight" position="0px 0px" id="cleanlinessValueText" text="88%"/>
+                        </GuiElement>
+                    </GuiElement>
+
+                    <!-- Vertical separator -->
+                    <GuiElement type="bitmap" profile="lineSeparator" screenAlign="middleRight" positionOrigin="middleRight" position="1px 0px" size="1px 520px"/>
+                </GuiElement>
+
+                <!-- Animal Conditions and Requirements -->
+                <GuiElement type="empty" profile="ingameMenuAnimalsDetailInputBox" position="544px 0px" id="detailInputBox">
+                    <GuiElement type="text" profile="ingameMenuAnimalsDetailTypeName" position="40px -32px" text="$l10n_ui_husbandryInformation"/>
+
+                    <GuiElement type="boxLayout" profile="ingameMenuAnimalsRequirementsLayout" position="40px -80px" id="requirementsLayout">
+                        <!-- Conditions -->
+                        <GuiElement type="text" profile="ingameMenuAnimalsRequirementsHeader" id="conditionsHeader" text="$l10n_ui_animalConditions"/>
+
+                        <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRow" id="conditionRow[1]">
+                            <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRowTextPanel">
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsLabel" id="conditionLabel[1]"/>
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="conditionValue[1]"/>
+                            </GuiElement>
+                            <GuiElement type="bitmap" profile="ingameMenuAnimalsSmallStatusBarBackground">
+                                <GuiElement type="bitmap" profile="ingameMenuAnimalsSmallStatusBar" id="conditionStatusBar[1]"/>
+                            </GuiElement>
+                        </GuiElement>
+                        <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRow" id="conditionRow[2]">
+                            <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRowTextPanel">
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsLabel" id="conditionLabel[2]"/>
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="conditionValue[2]"/>
+                            </GuiElement>
+                            <GuiElement type="bitmap" profile="ingameMenuAnimalsSmallStatusBarBackground">
+                                <GuiElement type="bitmap" profile="ingameMenuAnimalsSmallStatusBar" id="conditionStatusBar[2]"/>
+                            </GuiElement>
+                        </GuiElement>
+                        <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRow" id="conditionRow[3]">
+                            <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRowTextPanel">
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsLabel" id="conditionLabel[3]"/>
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="conditionValue[3]"/>
+                            </GuiElement>
+                            <GuiElement type="bitmap" profile="ingameMenuAnimalsSmallStatusBarBackground">
+                                <GuiElement type="bitmap" profile="ingameMenuAnimalsSmallStatusBar" id="conditionStatusBar[3]"/>
+                            </GuiElement>
+                        </GuiElement>
+                        <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRow" id="conditionRow[4]">
+                            <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRowTextPanel">
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsLabel" id="conditionLabel[4]"/>
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="conditionValue[4]"/>
+                            </GuiElement>
+                            <GuiElement type="bitmap" profile="ingameMenuAnimalsSmallStatusBarBackground">
+                                <GuiElement type="bitmap" profile="ingameMenuAnimalsSmallStatusBar" id="conditionStatusBar[4]"/>
+                            </GuiElement>
+                        </GuiElement>
+
+                        <!-- Requirements (Food) -->
+                        <GuiElement type="text" profile="ingameMenuAnimalsRequirementsHeader" id="foodHeader" text="$l10n_ui_animalFood">
+                        </GuiElement>
+
+                        <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRow" id="requirementRow[1]">
+                            <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRowTextPanel">
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsLabel" id="requirementLabel[1]"/>
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="requirementValue[1]"/>
+                            </GuiElement>
+                            <GuiElement type="bitmap" profile="ingameMenuAnimalsSmallStatusBarBackground">
+                                <GuiElement type="bitmap" profile="ingameMenuAnimalsSmallStatusBar" id="requirementStatusBar[1]"/>
+                            </GuiElement>
+                        </GuiElement>
+                        <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRow" id="requirementRow[2]">
+                            <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRowTextPanel">
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsLabel" id="requirementLabel[2]"/>
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="requirementValue[2]"/>
+                            </GuiElement>
+                            <GuiElement type="bitmap" profile="ingameMenuAnimalsSmallStatusBarBackground">
+                                <GuiElement type="bitmap" profile="ingameMenuAnimalsSmallStatusBar" id="requirementStatusBar[2]"/>
+                            </GuiElement>
+                        </GuiElement>
+                        <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRow" id="requirementRow[3]">
+                            <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRowTextPanel">
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsLabel" id="requirementLabel[3]"/>
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="requirementValue[3]"/>
+                            </GuiElement>
+                            <GuiElement type="bitmap" profile="ingameMenuAnimalsSmallStatusBarBackground">
+                                <GuiElement type="bitmap" profile="ingameMenuAnimalsSmallStatusBar" id="requirementStatusBar[3]"/>
+                            </GuiElement>
+                        </GuiElement>
+                        <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRow" id="requirementRow[4]">
+                            <GuiElement type="empty" profile="ingameMenuAnimalsRequirementsRowTextPanel">
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsLabel" id="requirementLabel[4]"/>
+                                <GuiElement type="text" profile="ingameMenuAnimalsRequirementsValue" id="requirementValue[4]"/>
+                            </GuiElement>
+                            <GuiElement type="bitmap" profile="ingameMenuAnimalsSmallStatusBarBackground">
+                                <GuiElement type="bitmap" profile="ingameMenuAnimalsSmallStatusBar" id="requirementStatusBar[4]"/>
+                            </GuiElement>
+                        </GuiElement>
+                    </GuiElement>
+                </GuiElement>
+
+                <!-- Animal Description -->
+                <GuiElement type="empty" profile="ingameMenuAnimalsDetailDescriptionBox" position="1px 4px" id="detailDescriptionBox">
+                    <GuiElement type="bitmap" profile="ingameMenuAnimalsDetailDescriptionIcon" position="24px 0px"/>
+                    <GuiElement type="text" profile="ingameMenuAnimalsDetailDescriptionText" position="80px 0px" id="detailDescriptionText"/>
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="ingameMenuContractsEmptyBox" id="noHusbandriesBox">
+                <GuiElement type="text" profile="ingameMenuContractsEmptyText" text="$l10n_ui_noHusbandriesPlaced" />
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+</GUI>

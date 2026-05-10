@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" id="dialogBg" />
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="roundCorner" profile="transferMoneyDialogBg" id="dialogElement">
+        <GuiElement type="bitmap" profile="dialogHeaderDocked">
+            <GuiElement type="text" profile="dialogHeaderText" text="$l10n_button_transfer" id="headerText" />
+        </GuiElement>
+
+        <GuiElement type="empty" size="352px 300px" profile="emptyPanel">
+            <GuiElement type="text" profile="transferMoneyDialogAmountConsole" id="consoleAmountText" />
+        </GuiElement>
+
+        <GuiElement type="boxLayout" profile="transferMoneyDialogOptionBox">
+            <GuiElement type="empty" profile="transferMoneyDialogMultiTextOption" onCreate="onCreateScroller" onCreateArgs="100">
+                <GuiElement type="button" profile="transferMoneyDialogMultiTextOptionLeft" text="-" onClick="onClickLeft" focusId="100_left" focusChangeTop="100000_left" focusChangeBottom="1000_left" />
+                <GuiElement type="button" profile="transferMoneyDialogMultiTextOptionRight" text="+" onClick="onClickRight" focusId="100_right" focusChangeTop="100000_right" focusChangeBottom="1000_right" focusInit="onOpen" />
+                <GuiElement type="text"   profile="transferMoneyDialogMultiTextOptionText" text="100" />
+                <GuiElement type="bitmap" profile="transferMoneyDialogMultiTextOptionBg" />
+            </GuiElement>
+
+            <GuiElement type="empty" profile="transferMoneyDialogMultiTextOption" onCreate="onCreateScroller" onCreateArgs="1000">
+                <GuiElement type="button" profile="transferMoneyDialogMultiTextOptionLeft" text="-" onClick="onClickLeft" focusId="1000_left" focusChangeTop="100_left" focusChangeBottom="10000_left" />
+                <GuiElement type="button" profile="transferMoneyDialogMultiTextOptionRight" text="+" onClick="onClickRight" focusId="1000_right" focusChangeTop="100_right" focusChangeBottom="10000_right" />
+                <GuiElement type="text"   profile="transferMoneyDialogMultiTextOptionText" text="1000" />
+                <GuiElement type="bitmap" profile="transferMoneyDialogMultiTextOptionBg" />
+            </GuiElement>
+
+            <GuiElement type="empty" profile="transferMoneyDialogMultiTextOption" onCreate="onCreateScroller" onCreateArgs="10000">
+                <GuiElement type="button" profile="transferMoneyDialogMultiTextOptionLeft" text="-" onClick="onClickLeft" focusId="10000_left" focusChangeTop="1000_left" focusChangeBottom="100000_left" />
+                <GuiElement type="button" profile="transferMoneyDialogMultiTextOptionRight" text="+" onClick="onClickRight" focusId="10000_right" focusChangeTop="1000_right" focusChangeBottom="100000_right" />
+                <GuiElement type="text"   profile="transferMoneyDialogMultiTextOptionText" text="10000"/>
+                <GuiElement type="bitmap" profile="transferMoneyDialogMultiTextOptionBg" />
+            </GuiElement>
+
+            <GuiElement type="empty" profile="transferMoneyDialogMultiTextOption" onCreate="onCreateScroller" onCreateArgs="100000">
+                <GuiElement type="button" profile="transferMoneyDialogMultiTextOptionLeft" text="-" onClick="onClickLeft" focusId="100000_left" focusChangeTop="10000_left" focusChangeBottom="100_left" />
+                <GuiElement type="button" profile="transferMoneyDialogMultiTextOptionRight" text="+" onClick="onClickRight" focusId="100000_right" focusChangeTop="10000_right" focusChangeBottom="100_right" />
+                <GuiElement type="text"   profile="transferMoneyDialogMultiTextOptionText" text="100000" />
+                <GuiElement type="bitmap" profile="transferMoneyDialogMultiTextOptionBg" />
+            </GuiElement>
+        </GuiElement>
+
+        <GuiElement type="flowLayout" profile="buttonBoxDialog">
+            <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" />
+            <GuiElement type="button" profile="buttonActivate" text="$l10n_button_transfer" onClick="onClickActivate" id="transferButton" />
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="transferMoneyDialogBg" extends="dialogBg">
+            <Value name="size" value="750px 300px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="1100px 550px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="transferMoneyDialogAmountConsole" extends="textDefault" with="anchorMiddleCenter">
+            <Value name="textSize" value="22px" />
+            <Value name="textAlignment" value="center" />
+            <Value name="textAutoWidth" value="true" />
+
+            <Variant name="mobile" with="anchorTopCenter">
+                <Value name="textSize" value="40px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="transferMoneyDialogOptionBox" extends="baseReference" with="anchorTopRight">
+            <Value name="imageColor" value="$preset_colorTransparent" />
+            <Value name="size" value="372px 234px" />
+            <Value name="position" value="-20px -14px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="500px 500px" />
+                <Value name="position" value="-150px 0px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="transferMoneyDialogMultiTextOption" extends="multiTextOption">
+            <Value name="margin" value="28px 25px 28px 0" />
+        </Profile>
+
+        <Profile name="transferMoneyDialogMultiTextOptionLeft" extends="multiTextOptionLeft">
+            <Value name="iconUVs" value="0 0 0 0"/>
+
+            <Value name="textHighlightedColor" value="$preset_colorWhite"/>
+            <Value name="textAlignment" value="left"/>
+            <Value name="textSize" value="30px"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="clickSound" value="CLICK"/>
+
+            <Variant name="mobile">
+                <Value name="textSize" value="50px" />
+                <Value name="textOffset" value="-5px 5px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="transferMoneyDialogMultiTextOptionRight" extends="transferMoneyDialogMultiTextOptionLeft" with="anchorBottomRight">
+        </Profile>
+
+        <Profile name="transferMoneyDialogMultiTextOptionText" extends="multiTextOptionText">
+
+            <Variant name="mobile">
+                <Value name="position" value="0px 0px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="transferMoneyDialogMultiTextOptionBg" extends="multiTextOptionBg">
+
+            <Variant name="mobile">
+                <Value name="position" value="0px 0px" />
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" />
+
+    <GuiElement type="bitmap" profile="yesNoDialogBg" id="dialogElement">
+
+        <GuiElement type="bitmap" profile="dialogCircle" id="dialogCircle">
+            <GuiElement type="bitmap"  profile="dialogUser"/>
+        </GuiElement>
+
+        <GuiElement type="text" profile="dialogTitle"         id="dialogTitleElement" />
+        <GuiElement type="text" profile="dialogTextWithTitle" id="dialogTextElement" />
+
+        <GuiElement type="flowLayout" profile="buttonBoxDialog">
+            <GuiElement type="button" profile="buttonOK" text="$l10n_button_accept" onClick="onClickOk" id="yesButton" />
+            <GuiElement type="button" profile="buttonBlock" text="$l10n_button_denyAlways" onClick="onClickActivate" />
+            <GuiElement type="button" profile="buttonRefuse" text="$l10n_button_deny" onClick="onClickCancel" id="noButton" />
+        </GuiElement>
+
+    </GuiElement>
+</GUI>

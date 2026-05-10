@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <!-- Background FullScreen Relative -->
+    <GuiElement type="dynamicFadedBitmap" profile="uiFullBlurBG"/>
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlow" />
+
+    <GuiElement type="empty" profile="careerScreenSidebar" id="sidebar">
+        <GuiElement type="bitmap" profile="mainScreenSidebarGlassEdge" />
+        <GuiElement type="bitmap" profile="mainScreenLogo" id="logo" />
+
+        <!-- Main Button Container -->
+        <GuiElement id="buttonBox" type="boxLayout" profile="mainScreenButtonBox">
+            <GuiElement type="button" profile="mainMenuButtonActive" text="$l10n_button_career" focusId="menu" />
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_achievements" onClick="onAchievementsClick" id="achievementsButton" />
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_credits" onClick="onCreditsClick" />
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_settings" onClick="onChangeMobileSettingsClick" id="changeLanguageButton" visible="false" />
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="empty" profile="baseReference" id="contentBox" >
+        <GuiElement type="empty" profile="careerMainContainer" id="mainContainer" >
+            <GuiElement type="empty" profile="careerMainContentContainer" id="contentContainer">
+
+                <GuiElement type="bitmap" profile="careerHeaderBoxDocked">
+                    <GuiElement type="bitmap" profile="savegameIcon"/>
+                    <GuiElement type="text" profile="headerText" text="$l10n_ui_savegames" />
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="careerStartClipper" name="startClipper" />
+                <GuiElement type="bitmap" profile="careerStopClipper" name="stopClipper" />
+
+                <GuiElement type="smoothList" profile="savegameList"  onDoubleClick="onStartAction" onPressed="onPressed" id="savegameList" ignoreFocusActivate="true" focusInit="onOpen" focusId="list" focusChangeLeft="menu" focusChangeTop="nil"
+                    focusChangeBottom="nil" listDelegate="self" listDataSource="self" startClipperElementName="startClipper" endClipperElementName="stopClipper">
+
+                    <GuiElement type="listItem" profile="savegameListItem">
+                        <GuiElement type="bitmap" profile="savegameListItemImage" name="gameIcon" />
+                        <GuiElement type="text" profile="savegameListItemHeaderText" name="title" />
+
+                        <!-- mobile list item -->
+                        <GuiElement type="empty" profile="savegameListItemDataBoxMobile" name="dataBox" id="dataBoxMobile" >
+                            <GuiElement type="bitmap" profile="savegameListItemTextIcon" position="20px 145px" imageUVs="810px 435px 65px 65px" />
+                            <GuiElement type="text" profile="savegameListItemText" name="money"         position="100px 162px" />
+
+                            <GuiElement type="bitmap" profile="savegameListItemTextIcon" position="20px 40px" imageUVs="745px 435px 65px 65px" />
+                            <GuiElement type="text" profile="savegameListItemText" name="timePlayed"    position="100px 57px"/>
+
+                            <GuiElement type="bitmap" profile="savegameListItemTextIcon" position="370px 40px" imageUVs="680px 435px 65px 65px" name="statusIcon"/>
+                            <GuiElement type="text" profile="savegameListItemText" name="status"        position="448px 162px"/>
+
+                            <GuiElement type="bitmap" profile="savegameListItemTextIcon" name="statusIcon" position="370px 145px" imageUVs="875px 435px 65px 65px" />
+                            <GuiElement type="text" profile="savegameListItemText" name="createDate"    position="448px 57px"/>
+
+                            <GuiElement type="text" profile="savegameListItemText" name="gameName" visible="false" />
+                            <GuiElement type="text" profile="savegameListItemText" name="mapName" visible="false" />
+                            <GuiElement type="text" profile="savegameListItemText" name="difficulty" visible="false"/>
+                        </GuiElement>
+
+                        <!-- non mobile versions list item -->
+                        <GuiElement type="empty" profile="savegameListItemDataBoxStandard" name="dataBox"  id="dataBoxStandard" >
+                            <GuiElement type="bitmap" profile="savegameListSeparator" position="0px 356px" />
+                            <GuiElement type="bitmap" profile="savegameListSeparator" position="0px 315px" />
+                            <GuiElement type="bitmap" profile="savegameListSeparator" position="0px 276px" />
+                            <GuiElement type="bitmap" profile="savegameListSeparator" position="0px 236px" />
+                            <GuiElement type="bitmap" profile="savegameListSeparator" position="0px 198px" />
+                            <GuiElement type="bitmap" profile="savegameListSeparator" position="0px 159px" />
+                            <GuiElement type="bitmap" profile="savegameListSeparator" position="0px 120px" />
+
+                            <GuiElement type="text" profile="savegameListItemTitle" position="0px 315px"   text="$l10n_ui_savegameName:" />
+                            <GuiElement type="text" profile="savegameListItemTitle" position="0px 276px"   text="$l10n_ui_map:" />
+                            <GuiElement type="text" profile="savegameListItemTitle" position="0px 236px"   text="$l10n_ui_money:" />
+                            <GuiElement type="text" profile="savegameListItemTitle" position="0px 198px"   text="$l10n_ui_difficulty:" />
+                            <GuiElement type="text" profile="savegameListItemTitle" position="0px 159px"   text="$l10n_ui_duration:" />
+                            <GuiElement type="text" profile="savegameListItemTitle" position="0px 120px"    text="$l10n_ui_saveDate:" />
+
+                            <GuiElement type="text" profile="savegameListItemText" name="gameName"      position="0px 315px" textMaxWidth="200px" />
+                            <GuiElement type="text" profile="savegameListItemText" name="mapName"       position="0px 276px" textMaxWidth="200px" />
+                            <GuiElement type="text" profile="savegameListItemText" name="money"         position="0px 236px" textMaxWidth="200px" />
+                            <GuiElement type="text" profile="savegameListItemText" name="difficulty"    position="0px 198px"                      />
+                            <GuiElement type="text" profile="savegameListItemText" name="timePlayed"    position="0px 159px"                      />
+                            <GuiElement type="text" profile="savegameListItemText" name="createDate"    position="0px 120px"                       />
+                        </GuiElement>
+
+
+                        <GuiElement type="empty" profile="savegameListItemEmpty" name="textBox" visible="false">
+                            <GuiElement type="text" profile="savegameListItemUnused" name="infoText"/>
+                        </GuiElement>
+
+                        <GuiElement type="bitmap" profile="savegameListSelector"/>
+
+                    </GuiElement>
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="flowLayout" profile="careerButtonBoxMobile" id="buttonsMobile">
+        <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" id="buttonBackMobile" onClick="onClickBack" />
+        <GuiElement type="button" profile="buttonDelete" text="$l10n_button_delete" id="buttonDeleteMobile" onClick="onDeleteAction" />
+        <GuiElement type="button" profile="buttonOK" text="$l10n_button_continue" id="buttonStartMobile" onClick="onStartAction" isTriggerableByGlobalAction="false" />
+    </GuiElement>
+
+    <GuiElement type="flowLayout" profile="careerButtonBoxStandard">
+        <GuiElement type="button" profile="buttonOK" text="$l10n_button_continue" onClick="onStartAction" id="buttonStart"/>
+        <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onBackAction" />
+        <GuiElement type="button" profile="buttonDelete" text="$l10n_button_delete" onClick="onDeleteAction" id="buttonDelete"/>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="careerScreenSidebar" extends="baseReference" with="anchorBottomLeft">
+            <Value name="visible" value="false" />
+
+            <Variant name="mobile">
+                <Value name="visible" value="true" />
+
+                <Value name="position" value="0" />
+                <Value name="size" value="763px 1" />
+                <Value name="anchors" value="0 0 0 1" />
+            </Variant>
+        </Profile>
+
+        <Profile name="careerMainContainer" extends="uiElementContainerFullScreen" >
+
+            <Variant name="mobile" extends="baseReference" with="anchorBottomRight">
+                <Value name="imageColor" value="$preset_colorGlass" />
+            </Variant>
+        </Profile>
+
+        <Profile name="careerMainContentContainer" extends="uiElementCenter">
+        </Profile>
+
+        <Profile name="careerHeaderBoxDocked" extends="headerBoxDocked">
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="savegameIcon" extends="baseIcon">
+            <Value name="imageUVs" value="$preset_diskIconUVs"/>
+        </Profile>
+
+        <Profile name="careerStartClipper" extends="leftScrollClipper">
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="careerStopClipper" extends="rightScrollClipper">
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="savegameList" extends="list" >
+            <Value name="size" value="1258px 698px"/>
+            <Value name="position" value="0"/>
+
+            <Value name="listItemSpacing" value="14px"/>
+            <Value name="itemizedScrollDelta" value="true"/>
+
+            <Variant name="mobile" >
+                <Value name="anchors" value="0 1 0 1"/>
+                <Value name="position" value="0px -50px"/>
+                <Value name="itemsPerCol" value="3"/>
+                <Value name="itemsPerRow" value="1"/>
+                <Value name="listItemWidth" value="1036px"/>
+                <Value name="listItemHeight" value="180px"/>
+                <Value name="listItemSpacing" value="20px"/>
+                <Value name="useSelectionOnLeave" value="true" />
+                <Value name="keepSelectedInView" value="true" />
+                <Value name="isHorizontalList" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="savegameListItem" extends="listItem">
+            <Value name="size" value="410px 698px"/>
+            <Value name="clipping" value="false" />
+
+            <Value name="imageColor" value="$preset_colorItemBgNormal"/>
+            <Value name="imageFocusedColor" value="$preset_colorItemBgSelected"/>
+            <Value name="imageSelectedColor" value="$preset_colorItemBgSelected"/>
+
+            <Variant name="mobile" >
+                <Value name="size" value="1036px 250px"/>
+                <Value name="position" value="0 200px"/>
+
+                <Value name="imageColor" value="$preset_colorGlassMedium"/>
+                <Value name="imageFocusedColor" value="$preset_colorGlassMedium"/>
+                <Value name="imageSelectedColor" value="$preset_colorGlassDark"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="savegameListItemImage" extends="baseReference" with="anchorTopCenter">
+            <Value name="position" value="0px 180px"/>
+            <Value name="size" value="410px 410px"/>
+            <Value name="imageFilename" value="dataS/menu/black.png"/>
+            <Value name="imageColor" value="$preset_colorWhite"/>
+            <Value name="imageUVs" value="4px 4px 2040px 1016px"/>
+            <Value name="imageSize" value="2048 1024"/>
+
+            <Variant name="mobile" with="anchorMiddleLeft">
+                <Value name="position" value="15px 0px" />
+                <Value name="size" value="500px 250px"/>
+                <Value name="imageSize" value="2048 2048"/>
+                <Value name="imageUVs" value="4px 1020px 1640px 820px"/>
+                <Value name="imageMaskFilename" value="dataS/menu/mask_fadeOut.png"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="savegameListItemIcon" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="visble" value="false" />
+
+            <Variant name="mobile">
+                <Value name="position" value="50px 0px" />
+                <Value name="size" value="123px 128px" />
+                <Value name="imageUVs" value="294px 534px 124px 130px" />
+                <Value name="imageColor" value="$preset_colorWhite" />
+                <Value name="imageUVs" value="708px 501px 124px 130px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="savegameListItemHeaderText" extends="textDefault" with="anchorBottomLeft">
+            <Value name="size" value="307px 32px"/>
+            <Value name="textSize" value="32px"/>
+            <Value name="textBold" value="false"/>
+            <Value name="position" value="50px 390px"/>
+            <Value name="textColor" value="$preset_colorWhite"/>
+        </Profile>
+
+        <Profile name="savegameListItemDataBox" extends="baseReference" with="anchorBottomCenter">
+            <Value name="size" value="310px 364px"/>
+            <Value name="position" value="0px 4px"/>
+
+            <Variant name="mobile" with="anchorBottomLeft">
+                <Value name="size" value="700px 250px"/>
+                <Value name="position" value="0px 0px"/>
+                <Value name="imageColor" value="$preset_colorTransparent"/>
+                <Value name="imageHighlightedColor" value="$preset_colorTransparent"/>
+                <Value name="iconHighlightedColor" value="$preset_colorTransparent"/>
+                <Value name="textHighlightedColor" value="$preset_colorTransparent"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="savegameListItemDataBoxMobile" extends="savegameListItemDataBox">
+            <Value name="visible" value="false" />
+
+            <Variant name="mobile" with="anchorMiddleRight">
+                <Value name="visible" value="true" />
+            </Variant>
+        </Profile>
+
+        <Profile name="savegameListItemTextIcon" extends="baseReference" with="anchorBottomLeft">
+            <Value name="size" value="75px 75px" />
+            <Value name="imageColor" value="$preset_colorWhite" />
+        </Profile>
+
+        <Profile name="savegameListItemText" extends="savegameListItemTitle" with="anchorBottomRight">
+            <Value name="textAlignment" value="right"/>
+            <Value name="textColor" value="$preset_colorDescriptionText2"/>
+            <Value name="textSelectedColor" value="$preset_colorDescriptionText2"/>
+            <Value name="textBold" value="false"/>
+
+            <Variant name="mobile" with="anchorBottomLeft">
+                <Value name="textAlignment" value="left"/>
+                <Value name="textColor" value="$preset_colorWhite"/>
+                <Value name="textSelectedColor" value="$preset_colorWhite"/>
+                <Value name="textSize" value="38px"/>
+                <Value name="textBold" value="true"/>
+                <Value name="textMaxWidth" value="300px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="savegameListItemDataBoxStandard" extends="savegameListItemDataBox">
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="savegameListSeparator" extends="baseReference" with="anchorBottomLeft">
+            <Value name="size" value="310px 1dp"/>
+            <Value name="imageColor" value="$preset_colorSeparator"/>
+        </Profile>
+
+        <Profile name="savegameListItemTitle" extends="textDefault" with="anchorBottomLeft">
+            <Value name="textSize" value="18px"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textColor" value="$preset_colorWhite"/>
+            <Value name="textSelectedColor" value="$preset_colorWhite"/>
+            <Value name="textMaxWidth" value="155px"/>
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="size" value="0 40px"/>
+        </Profile>
+
+        <Profile name="savegameListItemEmpty" extends="baseReference" with="anchorMiddleCenter">
+            <Value name="size" value="230px 230px" />
+
+            <Variant name="mobile" extends="savegameListItemDataBox">
+            </Variant>
+        </Profile>
+
+        <Profile name="savegameListItemUnused" extends="textDefault" with="anchorMiddleCenter">
+            <Value name="size" value="300px 70px"/>
+
+            <Value name="textMaxNumLines" value="2"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textSize" value="32px"/>
+            <Value name="textBold" value="false"/>
+            <Value name="textWrapWidth" value="160px"/>
+            <Value name="textColor" value="$preset_colorWhite_50"/>
+            <Value name="textSelectedColor" value="$preset_colorWhite"/>
+            <Value name="textUpperCase" value="true"/>
+            <Value name="textLayoutMode" value="resize"/>
+
+            <Variant name="mobile" with="anchorMiddleLeft">
+                <Value name="position" value="30px -60px"/>
+                <Value name="textAlignment" value="left"/>
+                <Value name="textSize" value="50px"/>
+                <Value name="textBold" value="true"/>
+                <Value name="textColor" value="0.7 0.7 0.7 1"/>
+                <Value name="textSelectedColor" value="0.7 0.7 0.7 1"/>
+                <Value name="size" value="790px 300px"/>
+                <Value name="textUpperCase" value="true"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="savegameListSelector" extends="listItemSelector">
+
+            <Variant name="mobile" extends="mainMenuListItemSelector">
+                <Value name="size" value="15px 250px"/>
+                <Value name="imageColor" value="$preset_colorWhite"/>
+                <Value name="anchors" value="0 0 0 0"/>
+                <Value name="imageDisabledColor" value="$preset_colorWhite"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="mainMenuListItemSelector" extends="baseReference">
+            <Value name="position" value="0"/>
+            <Value name="size" value="15px 180px"/>
+            <Value name="imageColor" value="$preset_colorWhite"/>
+            <Value name="imageSelectedColor" value="$preset_colorMainUI"/>
+            <Value name="imageFocusedColor" value="$preset_colorMainUI"/>
+            <Value name="imageHighlightedColor" value="$preset_colorMainUI"/>
+        </Profile>
+
+        <Profile name="careerButtonBoxMobile" extends="buttonBoxDocked">
+            <Value name="visible" value="false" />
+
+            <Variant name="mobile" with="anchorBottomRight">
+                <Value name="visible" value="true" />
+                <Value name="size" value="1050px 60px" />
+                <Value name="position" value="-65px 70px"/>
+                <Value name="alignmentX" value="right"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="careerButtonBoxStandard" extends="buttonBoxDockedOnScreen">
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

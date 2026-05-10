@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="ingameMenuCalendar">
+    <GuiElement type="empty" profile="uiInGameMenuFrame">
+        <!-- Static page header -->
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel">
+            <GuiElement type="bitmap" profile="ingameMenuCalendarHeaderIcon" />
+            <GuiElement type="text" profile="ingameMenuFrameHeaderText" text="$l10n_ui_cropCalendar"/>
+        </GuiElement>
+
+        <GuiElement type="empty" profile="ingameCalendarSettingsBox" id="container">
+            <!-- Header with season icons -->
+            <GuiElement type="boxLayout" profile="ingameCalendarHeaderBox" id="tableHeaderBox">
+                <GuiElement type="text" profile="ingameCalendarHeader" size="45px 50px" />
+                <GuiElement type="text" profile="ingameCalendarHeaderText"/>
+                <GuiElement type="text" profile="ingameCalendarHeader" size="80px 50px"  />
+                <GuiElement type="text" profile="ingameCalendarHeaderMonth">
+                    <GuiElement type="text" text="1-3" profile="ingameCalendarHeaderPeriod" id="calendarHeader[1]" />
+                </GuiElement>
+                <GuiElement type="text" profile="ingameCalendarHeaderMonth">
+                    <GuiElement type="text" text="4-6" profile="ingameCalendarHeaderPeriod" id="calendarHeader[2]" />
+                </GuiElement>
+                <GuiElement type="text" profile="ingameCalendarHeaderMonth">
+                    <GuiElement type="text" text="7-9" profile="ingameCalendarHeaderPeriod" id="calendarHeader[3]" />
+                </GuiElement>
+                <GuiElement type="text" profile="ingameCalendarHeaderMonth">
+                    <GuiElement type="text" text="7-9" profile="ingameCalendarHeaderPeriod" id="calendarHeader[4]" />
+                </GuiElement>
+                <GuiElement type="text" profile="ingameCalendarHeaderMonth">
+                    <GuiElement type="text" text="7-9" profile="ingameCalendarHeaderPeriod" id="calendarHeader[5]" />
+                </GuiElement>
+                <GuiElement type="text" profile="ingameCalendarHeaderMonth">
+                    <GuiElement type="text" text="7-9" profile="ingameCalendarHeaderPeriod" id="calendarHeader[6]" />
+                </GuiElement>
+                <GuiElement type="text" profile="ingameCalendarHeaderMonth">
+                    <GuiElement type="text" text="7-9" profile="ingameCalendarHeaderPeriod" id="calendarHeader[7]" />
+                </GuiElement>
+                <GuiElement type="text" profile="ingameCalendarHeaderMonth">
+                    <GuiElement type="text" text="7-9" profile="ingameCalendarHeaderPeriod" id="calendarHeader[8]" />
+                </GuiElement>
+                <GuiElement type="text" profile="ingameCalendarHeaderMonth">
+                    <GuiElement type="text" text="7-9" profile="ingameCalendarHeaderPeriod" id="calendarHeader[9]" />
+                </GuiElement>
+                <GuiElement type="text" profile="ingameCalendarHeaderMonth">
+                    <GuiElement type="text" text="7-9" profile="ingameCalendarHeaderPeriod" id="calendarHeader[10]" />
+                </GuiElement>
+                <GuiElement type="text" profile="ingameCalendarHeaderMonth">
+                    <GuiElement type="text" text="7-9" profile="ingameCalendarHeaderPeriod" id="calendarHeader[11]" />
+                </GuiElement>
+                <GuiElement type="text" profile="ingameCalendarHeaderMonth">
+                    <GuiElement type="text" text="7-9" profile="ingameCalendarHeaderPeriod" id="calendarHeader[12]" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="ingameCalendarHeaderSeasonSpring" />
+            <GuiElement type="bitmap" profile="ingameCalendarHeaderSeasonSummer" />
+            <GuiElement type="bitmap" profile="ingameCalendarHeaderSeasonFall" />
+            <GuiElement type="bitmap" profile="ingameCalendarHeaderSeasonWinter" />
+
+
+            <GuiElement type="smoothList" profile="ingameCalendarList" id="calendar">
+                <GuiElement type="listItem" profile="ingameCalendarFruitRow" handleFocus="false">
+                    <GuiElement type="flowLayout" profile="ingameCalendarFruitRowLayout">
+
+                        <GuiElement type="bitmap" profile="ingameCalendarFruitIconCell" name="fruitIcon" />
+                        <GuiElement type="text" profile="ingameCalendarFruitNameCell" name="fruitName" />
+                        <GuiElement type="text" profile="ingameCalendarGerminationCell" name="germination" />
+
+                        <GuiElement type="bitmap" profile="ingameCalendarPeriodCell" name="period1">
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellPlant" />
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellHarvest" />
+                        </GuiElement>
+                        <GuiElement type="empty" profile="ingameCalendarPeriodCell" name="period2">
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellPlant" />
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellHarvest" />
+                        </GuiElement>
+                        <GuiElement type="bitmap" profile="ingameCalendarPeriodCell" name="period3">
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellPlant" />
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellHarvest" />
+                        </GuiElement>
+                        <GuiElement type="empty" profile="ingameCalendarPeriodCell" name="period4">
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellPlant" />
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellHarvest" />
+                        </GuiElement>
+                        <GuiElement type="bitmap" profile="ingameCalendarPeriodCell" name="period5">
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellPlant" />
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellHarvest" />
+                        </GuiElement>
+                        <GuiElement type="empty" profile="ingameCalendarPeriodCell" name="period6">
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellPlant" />
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellHarvest" />
+                        </GuiElement>
+                        <GuiElement type="bitmap" profile="ingameCalendarPeriodCell" name="period7">
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellPlant" />
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellHarvest" />
+                        </GuiElement>
+                        <GuiElement type="empty" profile="ingameCalendarPeriodCell" name="period8">
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellPlant" />
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellHarvest" />
+                        </GuiElement>
+                        <GuiElement type="bitmap" profile="ingameCalendarPeriodCell" name="period9">
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellPlant" />
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellHarvest" />
+                        </GuiElement>
+                        <GuiElement type="empty" profile="ingameCalendarPeriodCell" name="period10">
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellPlant" />
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellHarvest" />
+                        </GuiElement>
+                        <GuiElement type="bitmap" profile="ingameCalendarPeriodCell" name="period11">
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellPlant" />
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellHarvest" />
+                        </GuiElement>
+                        <GuiElement type="empty" profile="ingameCalendarPeriodCell" name="period12">
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellPlant" />
+                            <GuiElement type="bitmap" profile="ingameCalendarPeriodCellHarvest" />
+                        </GuiElement>
+
+                    </GuiElement>
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="empty" profile="ingameCalendarTodayBarBox">
+                <GuiElement type="bitmap" profile="ingameCalendarTodayBar" id="todayBar" />
+            </GuiElement>
+
+            <GuiElement type="threePartBitmap" profile="ingameCalendarVerticalListSlider" >
+                <GuiElement type="slider" profile="ingameCalendarVerticalListSliderBar" dataElementId="calendar" id="calendarSlider" focusInit="onOpen" />
+            </GuiElement>
+
+            <GuiElement type="flowLayout" profile="ingameCalendarLegendBox">
+                <GuiElement type="text" profile="ingameCalendarLegendText" text="$l10n_ui_plantingSeason" />
+                <GuiElement type="bitmap" profile="ingameCalendarLegendIcon" id="legendPlantingSeason" />
+                <GuiElement type="text" profile="ingameCalendarLegendText" text="$l10n_ui_harvestSeason" />
+                <GuiElement type="bitmap" profile="ingameCalendarLegendIcon" id="legendHarvestSeason" />
+            </GuiElement>
+
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="ingameMenuCalendarHeaderIcon" extends="menuHeaderIcon">
+            <Value name="size" value="64px 64px"/>
+            <Value name="imageUVs" value="65px 0px 65px 65px"/>
+        </Profile>
+
+        <Profile name="ingameCalendarSettingsBox" extends="emptyPanel" with="anchorTopLeft">
+            <Value name="size" value="1400px 756px"/>
+            <Value name="position" value="0" />
+
+            <Variant name="mobile" with="anchorMiddleCenter">
+                <Value name="size" value="1768px 652px"/>
+                <Value name="position" value="0px 90px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarHeaderBox" extends="baseReference" with="anchorTopLeft">
+            <Value name="size" value="1400px 104px"/>
+            <Value name="alignmentX" value="left"/>
+            <Value name="alignmentY" value="bottom"/>
+            <Value name="imageColor" value="$preset_colorListHeaderBackground"/>
+            <Value name="flowDirection" value="horizontal"/>
+            <Value name="wrapAround" value="true"/>
+            <Value name="lateralFlowSize" value="104px"/>
+            <Value name="autoValidateLayout" value="true"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="1768px 124px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarHeader" extends="textDefault">
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textSize" value="20px" />
+        </Profile>
+
+        <Profile name="ingameCalendarHeaderText" extends="ingameCalendarHeader">
+            <Value name="size" value="255px 50px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="346px 50px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarHeaderMonth" extends="ingameCalendarHeader">
+            <Value name="size" value="85px 50px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="108px 50px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarHeaderPeriod" extends="textDefault">
+            <Value name="textAlignment" value="center" />
+            <Value name="textVerticalAlignment" value="middle" />
+            <Value name="size" value="85px 28px" />
+            <Value name="textSize" value="16px" />
+
+            <Variant name="mobile">
+                <Value name="textSize" value="30px" />
+                <Value name="size" value="108px 40px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarHeaderSeason" extends="baseReference" with="anchorTopLeft">
+            <Value name="pivot" value="0.5 1" />
+            <Value name="size" value="48px 48px" />
+            <Value name="imageColor" value="$preset_colorMainUI" />
+            <Value name="imageFilename" value="dataS/menu/hud/hud_elements.png" />
+
+            <Variant name="mobile">
+                <Value name="size" value="60px 60px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarHeaderSeasonSpring" extends="ingameCalendarHeaderSeason">
+            <Value name="imageUVs" value="384px 240px 48px 48px" />
+            <Value name="position" value="507.5px -16px" />
+
+            <Variant name="mobile">
+                <Value name="position" value="634px -20px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarHeaderSeasonSummer" extends="ingameCalendarHeaderSeason">
+            <Value name="imageUVs" value="432px 240px 48px 48px" />
+            <Value name="position" value="762.5px -16px" />
+
+            <Variant name="mobile">
+                <Value name="position" value="958px -20px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarHeaderSeasonFall" extends="ingameCalendarHeaderSeason">
+            <Value name="imageUVs" value="480px 240px 48px 48px" />
+            <Value name="position" value="1017.5px -16px" />
+
+            <Variant name="mobile">
+                <Value name="position" value="1282px -20px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarHeaderSeasonWinter" extends="ingameCalendarHeaderSeason">
+            <Value name="imageUVs" value="336px 240px 48px 48px" />
+            <Value name="position" value="1272.5px -16px" />
+
+            <Variant name="mobile">
+                <Value name="position" value="1606px -20px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarList" extends="list" with="anchorTopLeft">
+            <Value name="size" value="1400px 652px"/>
+            <Value name="position" value="0 -104px"/>
+            <Value name="isHorizontalList" value="false" />
+
+            <Variant name="mobile">
+                <Value name="size" value="1768px 610px"/>
+                <Value name="position" value="0 -124px"/>
+                <Value name="supportsTouchScrolling" value="true" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarFruitRow" extends="listItem" with="alternating">
+            <Value name="size" value="1400px 50px" />
+
+            <Value name="imageColor" value="$preset_colorListRowBackground"/>
+            <Value name="imageSelectedColor" value="$preset_colorListRowBackground"/>
+
+            <Value name="hideSelection" value="true"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="1768px 108px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarFruitRowLayout" with="anchorTopLeft">
+            <Value name="size" value="1400px 50px"/>
+            <Value name="flowDirection" value="horizontal"/>
+            <Value name="alignmentY" value="middle"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="1768px 108px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarFruitIconCell" extends="baseReference">
+            <Value name="imageColor" value="$preset_colorWhite" />
+            <Value name="imageUVs" value="0 0 1 1" />
+            <Value name="size" value="34px 34px" />
+            <Value name="margin" value="5.5px 4.3px 5.5px 4.3px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="68px 68px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarFruitNameCell" extends="textDefault">
+            <Value name="size" value="255px 50px" />
+            <Value name="textMaxWidth" value="250px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="300px 108px" />
+                <Value name="textMaxWidth" value="295px" />
+                <Value name="textSize" value="35px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarGerminationCell" extends="textDefault">
+            <Value name="size" value="80px 50px" />
+            <Value name="textAlignment" value="center" />
+            <Value name="formatDecimalPlaces" value="0" />
+            <Value name="format" value="temperature" />
+
+            <Variant name="mobile">
+                <Value name="size" value="92px 108px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarPeriodCell" extends="baseReference">
+            <Value name="size" value="85px 50px" />
+            <Value name="imageColor" value="$preset_colorListRowAlternateBackground" />
+
+            <Variant name="mobile">
+                <Value name="size" value="108px 108px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarPeriodCellPlant" extends="baseReference">
+            <Value name="imageColor" value="$preset_colorGreen" />
+            <Value name="size" value="85px 25px" />
+            <Value name="position" value="0px 25px" />
+
+            <Variant name="mobile">
+                <Value name="position" value="0px 54px" />
+                <Value name="size" value="108px 54px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarPeriodCellHarvest" extends="baseReference">
+            <Value name="imageColor" value="$preset_colorRed" />
+            <Value name="size" value="85px 25px" />
+            <Value name="position" value="0px 0px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="108px 54px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarTodayBarBox" extends="baseReference">
+            <Value name="size" value="1020px 652px" />
+            <Value name="anchors" value="1 1 0 0" />
+
+            <Variant name="mobile">
+                <Value name="size" value="1296px 630px" />
+                <Value name="position" value="85px -82px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarTodayBar" extends="baseReference">
+            <Value name="imageColor" value="$preset_colorMainUI" />
+            <Value name="size" value="2dp 652px" />
+
+            <Variant name="mobile">
+            <Value name="size" value="6px 610px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarVerticalListSlider" extends="verticalListSliderRightDocked">
+            <Value name="size" value="12px 652px" />
+            <Value name="position" value="28px -104px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="12px 610px" />
+                <Value name="position" value="28px -124px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarVerticalListSliderBar" extends="verticalListSliderBar">
+            <Value name="size" value="6px 644px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="6px 602px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarLegendBox" extends="baseReference" with="anchorBottomRight">
+            <Value name="size" value="1000px 30px" />
+            <Value name="position" value="0 -60px" />
+            <Value name="flowDirection" value="horizontal" />
+            <Value name="alignmentX" value="right" />
+            <Value name="imageColor" value="$preset_colorTransparent" />
+
+            <Variant name="mobile">
+                <Value name="size" value="1200px 60px" />
+                <Value name="position" value="0px -180px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarLegendText" extends="textDefault">
+            <Value name="size" value="0px 30px" />
+            <Value name="textAutoWidth" value="true" />
+            <Value name="margin" value="16px 0 0 0" />
+
+            <Variant name="mobile">
+                <Value name="size" value="0px 60px" />
+                <Value name="textSize" value="35px" />
+                <Value name="textAlignment" value="right" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameCalendarLegendIcon" extends="baseReference">
+            <Value name="size" value="30px 30px" />
+            <Value name="margin" value="8px 0 0 0" />
+
+            <Variant name="mobile">
+                <Value name="size" value="60px 60px" />
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="bitmap" profile="bgBlack" />
+    <GuiElement type="picture" profile="mapPreview" id="mapSelectionPreview" />
+    <GuiElement type="bitmap" profile="bgVignette" />
+
+    <GuiElement type="bitmap" profile="mpLoadingBackground">
+        <GuiElement type="animation" profile="mpLoadingAnimation" id="mpLoadingAnimation"/>
+        <GuiElement type="bitmap" profile="mpLoadingAnimationDone" id="mpLoadingAnimationDone" />
+
+        <!-- move to LOADING text -->
+        <GuiElement type="text" profile="mpLoadingBarPercentage" id="loadingBarPercentage" text="10%" />
+
+
+        <GuiElement type="text" profile="headerText" id="loadingStatusText" text="$l10n_ui_gameIsLoadingPleaseWait" />
+
+        <GuiElement type="text" profile="mpLoadingMapTitle" id="mapNameText" text="Map-Name" />
+
+        <!-- hint -->
+        <GuiElement type="text" profile="mpLoadingHint" id="gameplayHintText" text="" />
+
+        <!-- Hint index -->
+        <GuiElement type="indexState" profile="mpLoadingSelectionStateBox" id="tipStateBox" stateElementTemplateId="tipTemplate">
+            <GuiElement type="bitmap" profile="mpLoadingSelectionState" id="tipTemplate"/>
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="bitmap" profile="mpLoadingBarBg">
+        <GuiElement type="bitmap" profile="mpLoadingBar" id="loadingBar" />
+    </GuiElement>
+
+    <GuiElement type="bitmap" profile="buttonBoxDockedOnScreen">
+        <GuiElement type="button" profile="buttonOK" text="$l10n_button_start" id="buttonOkPC" onClick="onClickOk" />
+        <GuiElement type="button" profile="buttonCancelLoadingScreen" text="$l10n_button_cancel" id="buttonDeletePC" onClick="onClickCancel" visible="false"/>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="mpLoadingBackground" extends="baseReference" with="anchorBottomLeft">
+            <Value name="anchors" value="0 1 0 0" />
+            <Value name="size" value="1920px 243px" />
+            <Value name="position" value="0 6px" />
+            <Value name="imageColor" value="0.0036 0.0042 0.0044 0.5" />
+        </Profile>
+
+        <Profile name="mpLoadingAnimation" extends="baseReference" with="anchorBottomRight">
+            <Value name="size" value="127px 127px" />
+            <Value name="pivot" value="0.5 0.5" />
+            <Value name="position" value="-125px 125px" />
+            <Value name="imageUVs" value="293px 495px 127px 127px" />
+            <Value name="imageColor" value="$preset_colorMainUI" />
+
+            <Value name="animationMode" value="rotate" />
+            <Value name="animationSpeed" value="1000"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="180px 180px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="mpLoadingAnimationDone" extends="baseReference" with="anchorBottomRight">
+            <Value name="size" value="127px 127px" />
+            <Value name="pivot" value="0.5 0.5" />
+            <Value name="position" value="-125px 125px" />
+            <Value name="imageUVs" value="437px 495px 127px 127px" />
+            <Value name="imageColor" value="$preset_colorMainUI" />
+
+            <Variant name="mobile">
+                <Value name="size" value="130px 130px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="mpLoadingBarPercentage" extends="baseReference" with="anchorBottomRight">
+            <Value name="pivot" value="0.5 0.5" />
+            <Value name="size" value="0 18px" />
+            <Value name="position" value="-125px 125px" />
+            <Value name="textSize" value="18px" />
+            <Value name="textBold" value="true" />
+            <Value name="textColor" value="$preset_colorMainUI" />
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textAlignment" value="center" />
+            <Value name="textVerticalAlignment" value="middle" />
+
+            <Variant name="mobile">
+                <Value name="textSize" value="50px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="mpLoadingMapTitle" extends="textDefault" with="anchorBottomRight">
+            <Value name="position" value="-250px 155px" />
+            <Value name="size" value="0px 43px" />
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textMaxNumLines" value="1" />
+            <Value name="textMaxWidth" value="1500px" />
+            <Value name="textAlignment" value="right" />
+            <Value name="textSize" value="56px" />
+            <Value name="textBold" value="true" />
+        </Profile>
+
+        <Profile name="mpLoadingHint" extends="textDefault" with="anchorBottomRight">
+            <Value name="position" value="-250px 90px" />
+            <Value name="size" value="0px 50px" />
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textMaxNumLines" value="3" />
+            <Value name="textMaxWidth" value="900px" />
+            <Value name="textAlignment" value="right" />
+            <Value name="textSize" value="16px" />
+        </Profile>
+
+        <Profile name="mpLoadingSelectionStateBox" extends="baseReference" with="anchorBottomRight">
+            <Value name="size" value="440px 14px"/>
+            <Value name="position" value="-250px 55px"/>
+
+            <Value name="imageColor" value="$preset_colorTransparent"/>
+            <Value name="alignmentX" value="right"/>
+            <Value name="alignmentY" value="middle"/>
+            <Value name="useFullVisibility" value="false"/>
+            <Value name="flowDirection" value="horizontal"/>
+            <Value name="reverseElements" value="true" />
+
+            <Variant name="mobile">
+                <Value name="position" value="2000px 2000px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="mpLoadingSelectionState" extends="baseReference" with="anchorBottomLeft">
+            <Value name="size" value="14px 14px"/>
+            <Value name="margin" value="7px 0px 7px 0px"/>
+            <Value name="pivot" value="0.5 0.5"/>
+
+            <Value name="imageUVs" value="534px 390px 48px 48px"/>
+            <Value name="imageColor" value="$preset_colorMainUI_50"/>
+            <Value name="imageSelectedColor" value="$preset_colorWhite"/>
+        </Profile>
+
+        <Profile name="mpLoadingBarBg" extends="baseReference">
+            <Value name="anchors" value="0 1 0 0" />
+            <Value name="size" value="1920px 6px" />
+            <Value name="position" value="0 0" />
+            <Value name="imageColor" value="$preset_colorMainUI_50" />
+
+            <Variant name="mobile">
+                <Value name="size" value="1920px 20px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="mpLoadingBar" extends="baseReference" with="anchorBottomLeft">
+            <Value name="size" value="1920px 6px" />
+            <Value name="imageColor" value="$preset_colorMainUI" />
+
+            <Variant name="mobile">
+                <Value name="size" value="1920px 20px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="buttonCancelLoadingScreen" extends="buttonBack">
+
+            <Variant name="mobile" with="anchorBottomRight">
+                <Value name="position" value="-200px 50px" />
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

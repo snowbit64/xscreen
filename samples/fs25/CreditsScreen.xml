@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="dynamicFadedBitmap" profile="uiFullBlurBG"/>
+    <GuiElement type="bitmap" profile="bgVignette" />
+    <GuiElement type="bitmap" profile="bgGlow" position="0.33 0" />
+
+    <!-- sidebar for the normal version -->
+    <GuiElement type="empty" profile="creditsSidebarNormal">
+        <GuiElement type="bitmap" profile="creditsIcon"/>
+        <GuiElement type="text" profile="headerText" text="$l10n_ui_credits" />
+    </GuiElement>
+
+    <GuiElement type="empty" profile="creditsBoxLeft">
+        <GuiElement type="bitmap" profile="creditsLogo" id="logo" />
+    </GuiElement>
+
+    <!-- sidebar for the mobile version -->
+    <GuiElement type="empty" id="sidebar" profile="creditsSidebarMobile">
+        <GuiElement type="bitmap" id="glassEdgeOverlay" profile="mainScreenSidebarGlassEdge" />
+        <GuiElement type="bitmap" id="logo" profile="mainScreenLogo" />
+
+        <!-- Main Button Container -->
+        <GuiElement id="buttonBox" type="boxLayout" profile="mainScreenButtonBox">
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_career" onClick="onCareerClick" />
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_achievements" onClick="onAchievementsClick" id="achievementsButton" />
+            <GuiElement type="button" profile="mainMenuButtonActive" text="$l10n_button_credits" id="creditsButton" focusInit="onOpen" />
+            <GuiElement type="button" profile="mainMenuButton" text="$l10n_button_settings" onClick="onChangeMobileSettingsClick" id="changeLanguageButton" visible="false" />
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="empty" profile="creditsBoxRight" id="mainContainer">
+        <!-- scroller -->
+        <GuiElement type="empty" profile="creditsScrollBox" id="creditsVisibilityBox" >
+            <GuiElement type="boxLayout" profile="creditsScrollLayout" id="creditsPlaceholder">
+                <GuiElement type="text"   profile="creditsTitle"     id="creditsTitleElement" />
+                <GuiElement type="text"   profile="creditsText"      id="creditsTextElement" />
+                <GuiElement type="text"   profile="creditsDisclaimer" id="creditsDisclaimerElement" />
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="flowLayout" profile="creditsButtonBox" id="buttonsPC">
+        <GuiElement type="button" profile="creditsBackButton" text="$l10n_button_back" onClick="onClickBack"/>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="creditsSidebarNormal" extends="baseReference" with="anchorTopLeft">
+            <Value name="alignmentX" value="Left"/>
+            <Value name="alignmentY" value="middle"/>
+            <Value name="size" value="540px 60px"/>
+            <Value name="position" value="40px -40px"/>
+            <Value name="imageColor" value="$preset_colorTransparent"/>
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="creditsIcon" extends="baseIcon">
+            <Value name="imageUVs" value="624px 96px 48px 48px" />
+        </Profile>
+
+        <Profile name="creditsBoxLeft" extends="baseReference">
+            <Value name="size" value="1280px 1" />
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="creditsLogo" extends="baseReference" with="anchorMiddleCenter">
+            <Value name="position" value="0px 0px"/>
+            <Value name="size" value="700px 350px"/>
+            <Value name="imageUVs" value="0 0 1 1"/>
+            <Value name="imageFilename" value="dataS/menu/main_logo_en.png"/>
+
+            <Variant name="mobile">
+                <Value name="imageFilename" value="dataS/menu/blank.png"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="creditsSidebarMobile" extends="baseReference" with="anchorBottomLeft">
+            <Value name="visible" value="false" />
+
+            <Variant name="mobile">
+                <Value name="visible" value="true" />
+
+                <Value name="position" value="0" />
+                <Value name="size" value="763px 1" />
+                <Value name="anchors" value="0 0 0 1" />
+            </Variant>
+        </Profile>
+
+        <Profile name="creditsBoxRight" extends="baseReference">
+            <Value name="size" value="640px 1" />
+            <Value name="anchors" value="0.666 1 0 1" />
+            <Value name="imageColor" value="0.0037 0.0056 0.0065 0.95" />
+
+            <Variant name="mobile" with="anchorBottomRight">
+                <Value name="imageColor" value="$preset_colorGlass" />
+            </Variant>
+        </Profile>
+
+        <Profile name="creditsScrollBox" extends="baseReference" with="anchorMiddleRight">
+            <Value name="position" value="-185px 0px" />
+            <Value name="size" value="430px 980px" />
+
+            <Variant name="mobile">
+                <Value name="position" value="150px 0px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="creditsScrollLayout" extends="baseReference" with="anchorBottomLeft">
+            <Value name="handleFocus" value="false" />
+            <Value name="flowDirection" value="vertical" />
+            <Value name="alignmentX" value="right" />
+            <Value name="alignmentY" value="top" />
+            <Value name="position" value="0px -1000px" />
+            <Value name="size" value="430px 980px" />
+            <Value name="imageColor" value="$preset_colorTransparent" />
+            <Value name="useFullVisibility" value="false" />
+            <Value name="autoValidateLayout" value="false"/>
+
+            <Variant name="mobile">
+                <Value name="alignmentX" value="left" />
+                <Value name="position" value="0px -800px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="creditsTitle" extends="textDefault">
+            <Value name="textBold" value="false"/>
+            <Value name="textSize" value="16px"/>
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="textColor" value="$preset_colorMainUI"/>
+            <Value name="textMaxNumLines" value="1" />
+            <Value name="textAlignment" value="right"/>
+
+            <Value name="position" value="0"/>
+            <Value name="margin" value="0px 35px 0px 2px"/>
+            <Value name="size" value="400px 16px" />
+            <Value name="pivot" value="1 0 0 1"/>
+
+            <Value name="fadeInTime" value="6"/>
+            <Value name="fadeOutTime" value="6"/>
+
+            <Variant name="mobile" with="anchorBottomLeft">
+                <Value name="pivot" value="0 0 1 1"/>
+                <Value name="textSize" value="35px"/>
+                <Value name="margin" value="0px 60px 0px 20px"/>
+                <Value name="textAlignment" value="left"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="creditsText" extends="creditsTitle">
+            <Value name="textColor" value="$preset_colorWhite"/>
+            <Value name="margin" value="0px 2px 0px 4px"/>
+            <Value name="textSize" value="26px"/>
+            <Value name="size" value="400px 26px" />
+
+            <Variant name="mobile" with="anchorBottomLeft">
+                <Value name="margin" value="0px 6px 0px 10px"/>
+                <Value name="textSize" value="45px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="creditsDisclaimer" extends="creditsTitle">
+            <Value name="textColor" value="$preset_colorWhite"/>
+            <Value name="margin" value="0px 2px 0px 4px"/>
+
+            <Variant name="mobile" >
+                <Value name="margin" value="0px 8px 0px 4px"/>
+                <Value name="textSize" value="30px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="creditsButtonBox" extends="baseReference" with="anchorBottomLeft">
+            <Value name="alignmentX" value="left"/>
+            <Value name="alignmentY" value="middle"/>
+            <Value name="size" value="1400px 40px"/>
+            <Value name="position" value="40px 40px"/>
+            <Value name="imageColor" value="$preset_colorTransparent"/>
+            <Value name="handleFocus" value="false"/>
+            <Value name="useFullVisibility" value="false"/>
+            <Value name="autoValidateLayout" value="true"/>
+
+            <Variant name="mobile" with="anchorBottomRight">
+                <Value name="size" value="740px 60px" />
+                <Value name="position" value="-65px 70px" />
+                <Value name="alignmentX" value="right"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="creditsBackButton" extends="wideButton" with="touchButton">
+            <Value name="position" value="0 -95px" />
+
+            <Value name="inputAction" value="MENU_BACK"/>
+            <Value name="clickSound" value="BACK"/>
+
+            <Value name="touchIconUVs" value="342px 342px 24px 36px" />
+            <Value name="touchIconSize" value="24px 36px"/>
+            <Value name="touchIconRotation" value="180" />
+
+            <Variant name="mobile">
+                <Value name="visible" value="true" />
+                <Value name="margin" value="32px 0px 0px 0px" />
+                <Value name="fitExtraWidth" value="0px" />
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" />
+
+    <GuiElement type="bitmap" profile="editFarmDialogBg" id="dialogElement">
+            <GuiElement type="bitmap" profile="dialogHeaderDocked">
+                <GuiElement type="text" profile="dialogHeaderText" text="$l10n_ui_createNewFarm" id="titleText"/>
+            </GuiElement>
+
+            <GuiElement type="boxLayout" profile="editFarmDialogLayout">
+                <!-- Farm Color -->
+                <GuiElement type="bitmap" profile="editFarmDialogFarmIcon" id="farmColorPreview" />
+
+                <!-- Farm Name -->
+                <GuiElement type="textInput" profile="editFarmDialogTextInput" position="0px -72px" id="farmNameInput" imeKeyboardType="normal" imeTitle="$l10n_ui_farmName" imeDescription="$l10n_ui_farmName" imePlaceholder="$l10n_ui_farmName" focusInit="onOpen">
+                    <GuiElement type="text" profile="multiTextOptionSettingsTitle" text="$l10n_ui_farmName"/>
+                </GuiElement>
+
+                <!-- Farm Password -->
+                <GuiElement type="textInput" profile="editFarmDialogPasswordTextInput" position="0px -140px" id="farmPasswordInput" imeKeyboardType="password" imeTitle="$l10n_ui_password" imeDescription="$l10n_ui_password" imePlaceholder="$l10n_ui_password">
+                    <GuiElement type="text" profile="multiTextOptionSettingsTitle" text="$l10n_ui_password"/>
+                </GuiElement>
+
+                <!-- Button Layout -->
+                <GuiElement type="text" profile="editFarmDialogColorsTitle" text="$l10n_ui_farmColor" />
+
+                <GuiElement type="boxLayout" profile="editFarmDialogColorsLayout" id="colorButtonLayout" />
+
+                <!-- Color Button Template -->
+                <GuiElement type="button" profile="shopColorButton" screenAlign="topCenter" positionOrigin="topCenter" handleFocus="true" size="48px 48px" id="buttonTemplate" margin="2px 2px 2px 2px" onClick="onClickColorButton">
+                    <GuiElement type="bitmap" profile="shopColorButtonPicked" name="colorImage"/>
+                </GuiElement>
+            </GuiElement>
+
+            <!-- Dialog Buttons -->
+            <GuiElement type="flowLayout" profile="buttonBoxDialog" id="dialogButtonLayout" >
+                <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack"/>
+                <GuiElement type="button" profile="buttonActivate" text="$l10n_button_mp_createFarm" onClick="onClickActivate" id="okButton" />
+            </GuiElement>
+    </GuiElement>
+</GUI>

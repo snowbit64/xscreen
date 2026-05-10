@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" />
+
+    <GuiElement type="bitmap" profile="directSellDialogBg" id="dialogElement">
+        <GuiElement type="bitmap" profile="dialogHeaderDocked">
+            <GuiElement type="text" profile="dialogHeaderText" text="$l10n_ui_sellItem" id="headerText" />
+        </GuiElement>
+
+        <GuiElement type="empty" id="vehicleInfoBox" profile="directSellDialogInfoBox">
+            <GuiElement type="bitmap" profile="directSellDialogImage" id="dialogImage" />
+
+            <GuiElement type="text"   profile="directSellDialogName" id="dialogName" />
+            <GuiElement type="bitmap" profile="directSellDialogNameSeparator" id="dialogSeparator" />
+
+            <GuiElement type="text"   profile="directSellDialogText" text="$l10n_ui_sellValue:" position="300px -100px" />
+            <GuiElement type="text"   profile="directSellDialogValue" id="priceText" position="300px -125px" />
+
+            <!-- age -->
+            <GuiElement type="text"   profile="directSellDialogText" text="$l10n_ui_age:" position="300px -160px" />
+            <GuiElement type="text"   profile="directSellDialogValue" id="ageText" position="300px -185px" />
+
+            <!-- working hours -->
+            <GuiElement type="text"   profile="directSellDialogText" text="$l10n_ui_operatingHours:" position="550px -100px" />
+            <GuiElement type="text"   profile="directSellDialogValue" id="operatingHoursText" position="550px -125px" />
+
+            <!-- CONDITION (wear) -->
+            <GuiElement type="text"   profile="directSellDialogText" text="$l10n_ui_condition:" position="550px -160px" />
+            <GuiElement type="bitmap" profile="directSellDialogProgressBarBackground" position="550px -185px" id="conditionBarBg">
+                <GuiElement type="bitmap" profile="directSellDialogProgressBar" id="conditionBar"/>
+            </GuiElement>
+        </GuiElement>
+
+        <GuiElement type="text"   profile="directSellDialogInfo" text="$l10n_ui_sellOrCustomizeVehicleText" id="dialogInfo" />
+
+        <GuiElement type="flowLayout" profile="buttonBoxDialog">
+            <GuiElement type="button" profile="buttonSell" text="$l10n_button_sell" onClick="onClickOk" id="sellButton" />
+            <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" />
+            <GuiElement type="button" profile="buttonActivate" text="$l10n_button_configurate" onClick="onClickActivate" id="configButton" />
+            <GuiElement type="button" profile="buttonRepair" text="$l10n_button_repair" onClick="onClickCancel" id="repairButton" />
+        </GuiElement>
+    </GuiElement>
+</GUI>

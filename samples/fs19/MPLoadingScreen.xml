@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+
+    <!-- Background FullScreen Relative -->
+    <GuiElement type="bitmap" profile="uiFullBlurBG"/>
+
+    <!-- Header - Top 120 px-->
+    <GuiElement type="bitmap" profile="uiElementBaseHeader">
+
+    </GuiElement>
+
+    <!-- Body - Central -->
+    <GuiElement type="bitmap" profile="uiElementContainerFullScreen">
+        <GuiElement type="bitmap" profile="mapPreview" id="mapSelectionPreview">
+
+            <GuiElement type="bitmap" profile="headerBoxDocked">
+                <GuiElement type="animation" profile="mpLoadingAnimation" id="mpLoadingAnimation"/>
+
+                <GuiElement type="text" profile="loadingStatus" id="loadingStatusText" text="$l10n_ui_gameIsLoadingPleaseWait" />
+            </GuiElement>
+
+            <!-- hint -->
+            <GuiElement type="text" profile="mpLoadingHint" id="gameplayHintText" text="" />
+
+            <!-- Hint index -->
+            <GuiElement type="indexState" profile="selectionStateBoxDocked" id="tipStateBox" stateElementTemplateId="tipTemplate">
+                <GuiElement type="bitmap" profile="selectionStateDocked" id="tipTemplate"/>
+            </GuiElement>
+
+            <GuiElement type="text" profile="mpLoadingMapTitle" id="mapNameText" text="Map-Name" />
+
+            <GuiElement type="empty" profile="mpLoadingBarBg" id="loadingBarBg" visible="false">
+                <GuiElement type="empty" profile="mpLoadingSize"> <!-- full size, so we can easily calculate new child size with a percentage -->
+                    <GuiElement type="bitmap" profile="mpLoadingBar" id="loadingBar" />
+                    <GuiElement type="text" profile="mpLoadingBarPercentage" id="loadingBarPercentage" text="10%" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="buttonBoxDocked" id="buttonsPC" newLayer="true">
+                <GuiElement type="button" profile="buttonOK"     text="$l10n_button_start"  id="buttonOkPC"     onClick="onClickOk" focusId="1" />
+                <GuiElement type="button" profile="buttonCancel" text="$l10n_button_cancel" id="buttonDeletePC" onClick="onClickCancel" focusId="2" visible="false"/>
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+</GUI>

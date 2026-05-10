@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" />
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="bitmap" profile="objectStorageDialogBg" id="dialogElement">
+        <GuiElement type="bitmap" profile="dialogHeaderDocked">
+            <GuiElement type="text" profile="dialogHeaderText" text="" id="dialogTitleElement"/>
+        </GuiElement>
+
+        <GuiElement type="text" profile="siloDialogText" text="$l10n_ui_objectStorageDescription:" id="dialogTextElement" />
+
+        <GuiElement type="multiTextOption" profile="multiTextOptionObjectStorageObject" onClick="onClickItems" id="itemsElement" focusInit="onOpen" handleFocus="true">
+            <GuiElement type="button" profile="multiTextOptionLeft" />
+            <GuiElement type="button" profile="multiTextOptionRight" />
+            <GuiElement type="text"   profile="multiTextOptionTextSilo" id="itemText"/>
+            <GuiElement type="bitmap" profile="multiTextOptionBgSilo" />
+        </GuiElement>
+
+        <GuiElement type="multiTextOption" profile="multiTextOptionObjectStorageAmount" onClick="onClickAmount" id="amountElement" handleFocus="true">
+            <GuiElement type="button" profile="multiTextOptionLeft" />
+            <GuiElement type="button" profile="multiTextOptionRight" />
+            <GuiElement type="text"   profile="multiTextOptionTextSilo" id="itemTextAmount"/>
+            <GuiElement type="bitmap" profile="multiTextOptionBgSilo" />
+        </GuiElement>
+
+        <GuiElement type="flowLayout" profile="buttonBoxDialog" id="buttonsPC">
+            <GuiElement type="button" profile="buttonOK" text="$l10n_button_start" onClick="onClickOk" id="yesButton" />
+            <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" id="noButton" />
+        </GuiElement>
+    </GuiElement>
+</GUI>

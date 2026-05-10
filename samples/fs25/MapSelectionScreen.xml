@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="bitmap" profile="bgBlack" />
+
+    <!-- List of maps with 1 visible item -->
+    <GuiElement type="smoothList" profile="mapPreviewList" id="mapList" handleFocus="false">
+        <GuiElement type="listItem" profile="mapPreviewListItem">
+            <GuiElement type="picture" profile="mapPreview" name="image" />
+
+            <!-- Overlayed map info -->
+            <GuiElement type="bitmap" profile="mapSelectionBG">
+                <GuiElement type="text" profile="mapSelectTitle" name="title"/>
+                <GuiElement type="text" profile="mapSelectText" name="text"/>
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="bitmap" profile="bgVignette"/>
+
+    <GuiElement type="slider" profile="sliderInvisible" onChanged="onClickMapSelection" dataElementId="mapList" id="mapSelector" handleFocus="false">
+        <GuiElement type="button" profile="largeSelectorRight" id="selectorRight"/>
+        <GuiElement type="button" profile="largeSelectorLeft" id="selectorLeft"/>
+
+        <GuiElement type="button" profile="largeSelectorRightGamepad" id="selectorRightGamepad" />
+        <GuiElement type="button" profile="largeSelectorLeftGamepad" id="selectorLeftGamepad" />
+    </GuiElement>
+
+    <GuiElement type="flowLayout" profile="mapSelectionHeader">
+        <GuiElement type="bitmap" profile="mapSelectionHeaderIcon" />
+        <GuiElement type="text" profile="mapSelectionHeaderText" text="$l10n_ui_selectAMap" />
+    </GuiElement>
+
+    <!-- Dots -->
+    <GuiElement type="indexState" profile="mapSelectionSelectionStateBox" stateElementTemplateId="selectStateIconTemplate" indexableElementId="mapList">
+        <GuiElement type="bitmap" profile="mapSelectionSelectionState" id="selectStateIconTemplate"/>
+    </GuiElement>
+
+    <GuiElement type="bitmap" profile="mapSelectionScreenLoadingBarBg" />
+
+    <GuiElement type="flowLayout" profile="buttonBoxDockedOnScreen">
+        <GuiElement type="button" profile="mapSelectionScreenButtonBack" text="$l10n_button_back"     onClick="onClickBack" />
+    </GuiElement>
+    <GuiElement type="flowLayout" profile="mapSelectionButtonBox">
+        <GuiElement type="button" profile="mapSelectionScreenButtonOK"   text="$l10n_button_continue" onClick="onClickOk" />
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="mapPreviewList" extends="baseReference" with="anchorMiddleCenter">
+            <Value name="size" value="1 1"/>
+            <Value name="anchors" value="0 1 0 1" />
+
+            <Value name="isHorizontalList" value="true"/>
+            <Value name="selectOnScroll" value="true"/>
+            <Value name="itemizedScrollDelta" value="true" />
+            <Value name="listSmoothingDisabled" value="true" />
+
+            <Variant name="mobile">
+                <Value name="supportsTouchScrolling" value="true" />
+                <Value name="listSmoothingDisabled" value="false" />
+                <Value name="listSnappingEnabled" value="true" />
+            </Variant>
+        </Profile>
+
+        <Profile name="mapPreviewListItem" extends="baseReference">
+            <Value name="size" value="1 1"/>
+            <Value name="anchors" value="0 1 0 1" />
+        </Profile>
+
+        <Profile name="mapSelectionBG" extends="baseReference" with="anchorBottomLeft">
+            <Value name="anchors" value="0 1 0 0" />
+            <Value name="size" value="1920px 243px" />
+            <Value name="position" value="0 6px" />
+            <Value name="imageColor" value="0.0036 0.0042 0.0044 0.5" />
+
+            <Variant name="mobile">
+                <Value name="size" value="1920px 370px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="mapSelectTitle" extends="textDefault" with="anchorBottomCenter">
+            <Value name="textAlignment" value="right"/>
+            <Value name="position" value="0px 135px"/>
+            <Value name="size" value="1800px 68px"/>
+            <Value name="textSize" value="68px" />
+            <Value name="textMaxNumLines" value="1"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textUpperCase" value="true"/>
+
+            <Variant name="mobile">
+                <Value name="position" value="0px 230px"/>
+                <Value name="text2Size" value="64px"/>
+                <Value name="text2Offset" value="2px -2px"/>
+                <Value name="textSize" value="64px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="mapSelectText" extends="textDefault" with="anchorBottomCenter">
+            <Value name="textAlignment" value="center"/>
+            <Value name="position" value="0 70px"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="size" value="1000px 65px"/>
+            <Value name="textMaxNumLines" value="3"/>
+            <Value name="textVerticalAlignment" value="top"/>
+            <Value name="textAlignment" value="center"/>
+
+            <Variant name="mobile">
+                <Value name="visible" value="false"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="mapSelectionHeader" extends="baseReference" with="anchorBottomCenter">
+            <Value name="imageColor" value="$preset_colorTransparent" />
+            <Value name="size" value="1920px 40px" />
+            <Value name="position" value="0 205px" />
+            <Value name="flowDirection" value="horizontal" />
+            <Value name="alignmentX" value="center" />
+
+            <Variant name="mobile">
+                <Value name="position" value="0 100px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="mapSelectionHeaderIcon" extends="baseIcon">
+            <Value name="imageUVs" value="432px 96px 48px 48px"/>
+            <Value name="margin" value="0 0 5px 0"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="54px 54px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="mapSelectionHeaderText" extends="textDefault">
+            <Value name="textSize" value="29px" />
+            <Value name="textUpperCase" value="true" />
+            <Value name="textAutoWidth" value="true" />
+            <Value name="size" value="0 40px" />
+
+            <Variant name="mobile">
+                <Value name="textSize" value="40px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="mapSelectionSelectionStateBox" extends="baseReference" with="anchorBottomCenter">
+            <Value name="imageColor" value="$preset_colorTransparent"/>
+
+            <Value name="size" value="440px 14px"/>
+            <Value name="position" value="0 40px"/>
+            <Value name="alignmentX" value="center"/>
+            <Value name="alignmentY" value="middle"/>
+            <Value name="useFullVisibility" value="false"/>
+            <Value name="flowDirection" value="horizontal"/>
+            <Value name="reverseElements" value="false" />
+
+            <Variant name="mobile">
+                <Value name="size" value="440px 25px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="mapSelectionSelectionState" extends="baseReference" with="anchorBottomLeft">
+            <Value name="size" value="14px 14px"/>
+            <Value name="margin" value="7px 0px 7px 0px"/>
+            <Value name="pivot" value="0.5 0.5"/>
+
+            <Value name="imageUVs" value="533px 389px 50px 50px"/>
+            <Value name="imageColor" value="$preset_colorMainUI_50"/>
+            <Value name="imageSelectedColor" value="$preset_colorWhite"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="25px 25px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="mapSelectionScreenLoadingBarBg" extends="baseReference">
+            <Value name="anchors" value="0 1 0 0" />
+            <Value name="size" value="1920px 6px" />
+            <Value name="position" value="0 0" />
+            <Value name="imageColor" value="$preset_colorMainUI_50" />
+
+            <Variant name="mobile">
+                <Value name="size" value="1920px 20px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="mapSelectionButtonBox" extends="buttonBoxDockedOnScreen">
+
+            <Variant name="mobile" with="anchorBottomRight">
+                <Value name="alignmentX" value="right"/>
+                <Value name="position" value="-80px 0px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="mapSelectionScreenButtonOK" extends="buttonOK" with="touchButtonWithBg gamepadUsesTouchButton">
+
+            <Variant name="mobile">
+                <Value name="margin" value="0px 0px 0px 0px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="mapSelectionScreenButtonBack" extends="buttonBack" with="touchButtonWithBg gamepadUsesTouchButton" />
+    </GUIProfiles>
+</GUI>

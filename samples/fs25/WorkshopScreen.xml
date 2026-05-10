@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="bitmap" profile="uiFullInGameBackground"/>
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlow" />
+
+    <GuiElement type="bitmap" profile="uiElementContainerFullScreen">
+        <GuiElement type="empty" profile="workshopCenterBox" >
+            <GuiElement type="bitmap" profile="dialogHeaderDocked">
+                <GuiElement type="text" profile="dialogHeaderText" text="$l10n_ui_sellItem" id="headerText" />
+            </GuiElement>
+
+            <GuiElement type="flowLayout" profile="workshopMoneyBox">
+                <GuiElement type="text" profile="shopBalance" text="$l10n_ui_balance:" />
+                <GuiElement type="text" profile="shopMoney" text="0" position="0px 0px" id="balanceElement" />
+            </GuiElement>
+
+            <GuiElement type="empty" profile="workshopListBoxLeft">
+
+                <GuiElement type="smoothList" profile="workshopList" id="list" listDelegate="self" listDataSource="self" focusInit="onOpen">
+                    <GuiElement type="listItem" profile="workshopListItem">
+                        <GuiElement type="bitmap" profile="workshopItemIcon" name="icon"/>
+                        <GuiElement type="text" profile="workshopItemName"  name="name" />
+                        <GuiElement type="text" profile="workshopItemBrand" name="brand" />
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="threePartBitmap" profile="verticalListSliderRightDocked" size="12px 583px">
+                    <GuiElement type="slider" profile="verticalListSliderBar" dataElementId="list" handleFocus="false" size="6px 575px" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="workshopDetailsBox" id="detailBox">
+                <GuiElement type="bitmap" profile="workshopVehicleImage" id="vehicleImage" />
+                <GuiElement type="text" profile="workshopVehicleName" id="vehicleName" />
+
+                <GuiElement type="flowLayout" profile="workshopDetailsLayout">
+                    <GuiElement type="empty" profile="workshopDetailRow">
+                        <GuiElement type="text" profile="workshopDetailRowLabel" text="$l10n_ui_sellValue" />
+                        <GuiElement type="text" profile="workshopDetailRowValue" id="priceText"/>
+                    </GuiElement>
+
+                    <GuiElement type="empty" profile="workshopDetailRow">
+                        <GuiElement type="text" profile="workshopDetailRowLabel" text="$l10n_ui_age" />
+                        <GuiElement type="text" profile="workshopDetailRowValue" id="ageText"/>
+                    </GuiElement>
+
+                    <GuiElement type="empty" profile="workshopDetailRow">
+                        <GuiElement type="text" profile="workshopDetailRowLabel" text="$l10n_ui_operatingHours" />
+                        <GuiElement type="text" profile="workshopDetailRowValue" id="operatingHoursText"/>
+                    </GuiElement>
+
+                    <GuiElement type="empty" profile="workshopDetailRowWithBar">
+                        <GuiElement type="empty" profile="workshopDetailRowTextPanel">
+                            <GuiElement type="text" profile="workshopDetailRowLabel" text="$l10n_ui_condition" />
+                            <GuiElement type="text" profile="workshopDetailRowValue"/>
+                        </GuiElement>
+                        <GuiElement type="threePartBitmap" profile="ingameMenuWorkshopStatusBarBackground">
+                            <GuiElement type="threePartBitmap" profile="workshopStatusBar" id="conditionBar"/>
+                        </GuiElement>
+                    </GuiElement>
+
+                    <GuiElement type="empty" profile="workshopDetailRowWithBar">
+                        <GuiElement type="empty" profile="workshopDetailRowTextPanel">
+                            <GuiElement type="text" profile="workshopDetailRowLabel" text="$l10n_ui_paintCondition" />
+                            <GuiElement type="text" profile="workshopDetailRowValue"/>
+                        </GuiElement>
+                        <GuiElement type="threePartBitmap" profile="ingameMenuWorkshopStatusBarBackground">
+                            <GuiElement type="threePartBitmap" profile="workshopStatusBar" id="paintConditionBar"/>
+                        </GuiElement>
+                    </GuiElement>
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="workshopDetailsBox" id="dialogInfo">
+                <GuiElement type="text" profile="directSellDialogInfo" text="$l10n_shop_noVehicles" />
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="flowLayout" profile="buttonBoxDockedOnScreen">
+        <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" />
+        <GuiElement type="button" profile="buttonSell" text="$l10n_button_sell" onClick="onClickSell" id="sellButton" />
+        <GuiElement type="button" profile="buttonActivate" text="$l10n_button_configurate" onClick="onClickConfigure" id="configButton" />
+        <GuiElement type="button" profile="buttonRepair" text="$l10n_button_repair" onClick="onClickRepair" id="repairButton" />
+        <GuiElement type="button" profile="buttonRepaint" text="$l10n_button_repaint" onClick="onClickRepaint" id="repaintButton" />
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="workshopCenterBox" extends="ingameMenuCenterBox" >
+            <Value name="size" value="1080px 583px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="1300px 583px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="workshopListBoxLeft" extends="emptyPanel" with="anchorTopLeft">
+            <Value name="size" value="400px 583px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="600px 600px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="workshopMoneyBox" extends="shopMoneyBox"  with="anchorTopRight">
+            <Value name="position" value="0 40px" />
+
+            <Variant name="mobile">
+                <Value name="position" value="0 45px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="workshopList" extends="list" with="anchorTopLeft">
+            <Value name="selectedWithoutFocus" value="false" />
+
+            <Value name="size" value="400px 583px"/>
+            <Value name="selectOnScroll" value="true"/>
+            <Value name="isHorizontalList" value="false"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="600px 600px" />
+                <Value name="listItemHeight" value="150px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="workshopListItem" extends="listItem" with="alternating">
+            <Value name="imageColor" value="$preset_colorListRowBackground"/>
+            <Value name="imageFocusedColor" value="$preset_colorFocusBackgroundGradient"/>
+            <Value name="imageSelectedColor" value="$preset_colorFocusBackgroundGradient"/>
+
+            <Value name="size" value="400px 68px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="600px 150px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="workshopItemIcon" extends="textDefault" with="anchorTopLeft">
+            <Value name="size" value="60px 60px"/>
+            <Value name="position" value="4px 4px" />
+            <Value name="imageUVs" value="0 0 1 1"/>
+            <Value name="imageColor" value="$preset_colorWhite"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="150px 150px" />
+                <Value name="position" value="10px 10px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="workshopItemName" extends="textDefault" with="anchorTopLeft">
+            <Value name="position" value="75px -13px" />
+            <Value name="textBold" value="true"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="size" value="310px 20px"/>
+            <Value name="textLayoutMode" value="resize" />
+
+            <Variant name="mobile">
+                <Value name="position" value="175px -35px" />
+                <Value name="size" value="400px 40px" />
+                <Value name="textSize" value="35px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="workshopItemBrand" extends="textDefault" with="anchorBottomLeft">
+            <Value name="position" value="75px 13px" />
+            <Value name="textBold" value="false"/>
+            <Value name="textSize" value="16px"/>
+            <Value name="size" value="310px 18px"/>
+            <Value name="textLayoutMode" value="resize" />
+
+            <Variant name="mobile">
+                <Value name="position" value="175px 35px" />
+                <Value name="size" value="400px 40px" />
+                <Value name="textSize" value="30px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="workshopDetailsBox" extends="baseReference" with="anchorTopRight">
+            <Value name="size" value="640px 610px"/>
+            <Value name="imageColor" value="$preset_colorDetailBackground"/>
+        </Profile>
+
+        <Profile name="workshopVehicleImage" extends="baseReference" with="anchorTopCenter">
+            <Value name="size" value="200px 200px"/>
+            <Value name="position" value="0 0"/>
+            <Value name="imageUVs" value="0 0 1 1"/>
+
+            <Variant name="mobile">
+                <Value name="position" value="0 10px"/>
+                <Value name="size" value="250px 250px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="workshopVehicleName" extends="textDefault" with="anchorTopCenter">
+            <Value name="position" value="0 -250px"/>
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textSize" value="22px"/>
+
+            <Variant name="mobile">
+                <Value name="position" value="0 -260px"/>
+                <Value name="textSize" value="35px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="workshopDetailsLayout" extends="emptyPanel" with="anchorTopCenter">
+            <Value name="size" value="442px 240px" />
+            <Value name="position" value="0 -290px" />
+            <Value name="alignmentY" value="top" />
+
+            <Variant name="mobile">
+                <Value name="position" value="0 -340px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="workshopDetailRow"  extends="emptyPanel">
+            <Value name="size" value="442px 24px"/>
+            <Value name="margin" value="0px 0px 0px 14px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="442px 40px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="workshopDetailRowLabel"  extends="textDefault" with="anchorTopLeft">
+            <Value name="position" value="0 0"/>
+
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textSize" value="18px"/>
+            <Value name="textMaxWidth" value="280px"/>
+            <Value name="textResizeWidth" value="280px"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+
+            <Variant name="mobile" with="anchorTopLeft">
+                <Value name="size" value="350px 30px"/>
+                <Value name="textSize" value="30px" />
+                <Value name="textAlignment" value="left"/>
+                <Value name="textMaxWidth" value="300px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="workshopDetailRowValue" extends="textDefault" with="anchorTopRight">
+            <Value name="position" value="0 0"/>
+
+            <Value name="format" value="percentage" />
+            <Value name="formatDecimalPlaces" value="0" />
+
+            <Value name="textBold" value="false"/>
+            <Value name="textAlignment" value="right"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textSize" value="18px"/>
+            <Value name="textMaxWidth" value="280px"/>
+            <Value name="textResizeWidth" value="280px"/>
+
+            <Variant name="mobile" with="anchorTopRight">
+                <Value name="size" value="450px 30px"/>
+                <Value name="textSize" value="30px" />
+                <Value name="textAlignment" value="right"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="workshopDetailRowWithBar" extends="workshopDetailRow">
+            <Value name="size" value="442px 28px"/>
+        </Profile>
+
+        <Profile name="workshopDetailRowTextPanel" extends="emptyPanel" with="anchorTopLeft">
+            <Value name="size" value="442px 18px"/>
+
+            <Variant name="mobile" with="anchorTopCenter">
+                <Value name="size" value="550px 30px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWorkshopStatusBarBackground" extends="emptyPanel" with="anchorBottomLeft">
+            <Value name="size" value="442px 6px"/>
+
+            <Value name="imageColor" value="0 0 0 0.4" />
+            <Value name="imageUVs" value="593px 427px 20px 6px" />
+            <Value name="midImageSize" value="1px 6px" />
+
+            <Value name="startImageColor" value="0 0 0 0.4" />
+            <Value name="startImageFilename" value="g_baseUIFilename" />
+            <Value name="startImageSize" value="4px 6px" />
+            <Value name="startImageUVs" value="586px 427px 3px 6px" />
+
+            <Value name="endImageColor" value="0 0 0 0.4" />
+            <Value name="endImageFilename" value="g_baseUIFilename" />
+            <Value name="endImageSize" value="4px 6px" />
+            <Value name="endImageUVs" value="633px 427px 3px 6px" />
+
+            <Value name="isHorizontal" value="true" />
+
+            <Variant name="mobile" with="anchorBottomCenter">
+                <Value name="size" value="550px 12px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="workshopStatusBar" extends="emptyPanel" with="anchorMiddleLeft">
+            <Value name="size" value="442px 6px"/>
+
+            <Value name="imageColor" value="0 0 0 0.4" />
+            <Value name="imageUVs" value="593px 427px 20px 6px" />
+            <Value name="midImageSize" value="1px 6px" />
+
+            <Value name="imageColor" value="$preset_colorGreen" />
+            <Value name="startImageColor" value="$preset_colorGreen" />
+            <Value name="endImageColor" value="$preset_colorGreen" />
+
+            <Value name="startImageFilename" value="g_baseUIFilename" />
+            <Value name="startImageSize" value="4px 6px" />
+            <Value name="startImageUVs" value="586px 427px 3px 6px" />
+
+            <Value name="imageDisabledColor" value="$preset_colorDisabled" />
+            <Value name="startImageDisabledColor" value="$preset_colorDisabled" />
+            <Value name="endImageDisabledColor" value="$preset_colorDisabled" />
+
+            <Variant name="mobile" with="anchorBottomCenter">
+                <Value name="size" value="550px 6px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="workshopStatusBarWarning" extends="ingameMenuAnimalsSmallStatusBar">
+            <Value name="size" value="442px 6px"/>
+
+            <Value name="imageColor" value="$preset_colorOrange" />
+            <Value name="startImageColor" value="$preset_colorOrange" />
+            <Value name="endImageColor" value="$preset_colorOrange" />
+        </Profile>
+
+        <Profile name="workshopStatusBarDanger" extends="ingameMenuAnimalsSmallStatusBar">
+            <Value name="size" value="442px 6px"/>
+
+            <Value name="imageColor" value="$preset_colorRed" />
+            <Value name="startImageColor" value="$preset_colorRed" />
+            <Value name="endImageColor" value="$preset_colorRed" />
+        </Profile>
+
+        <Profile name="directSellDialogInfo" extends="textDefault" with="anchorMiddleCenter">
+            <Value name="position" value="0px 20px"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="textColor" value="$preset_colorDescriptionText2"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value=",odd;e"/>
+            <Value name="textWrapWidth" value="400px"/>
+            <Value name="textAutoWidth" value="true"/>
+        </Profile>
+
+        <Profile name="buttonRepair" extends="wideButton" with="touchButton">
+            <Value name="inputAction" value="MENU_CANCEL"/>
+            <Value name="touchIconUVs" value="822px 246px 36px 36px"/>
+            <Value name="touchIconSize" value="36px 36px"/>
+        </Profile>
+
+        <Profile name="buttonRepaint" extends="wideButton" with="touchButton">
+            <Value name="inputAction" value="MENU_EXTRA_1"/>
+            <Value name="touchIconUVs" value="966px 294px 36px 36px"/>
+            <Value name="touchIconSize" value="36px 36px"/>
+        </Profile>
+    </GUIProfiles>
+</GUI>

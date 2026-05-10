@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="ingameMenuHelpLine">
+    <GuiElement type="empty" profile="uiInGameMenuFrame">
+        <!-- Static page header -->
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel">
+            <GuiElement type="bitmap" profile="ingameMenuHelpHeaderIcon" />
+            <GuiElement type="text" profile="ingameMenuFrameHeaderText" text="$l10n_ui_ingameMenuHelpLine"/>
+        </GuiElement>
+
+        <GuiElement type="empty" profile="helpContainer" id="helpContainer">
+            <!-- Navigation Box -->
+            <GuiElement type="empty" profile="ingameMenuHelpNavigationBox">
+
+                <GuiElement type="bitmap" profile="ingameMenuHelpTopScrollClipper" name="topClipper" position="0 2dp" />
+                <GuiElement type="bitmap" profile="ingameMenuHelpBottomScrollClipper" name="bottomClipper" />
+
+                <GuiElement type="smoothList" profile="ingameMenuHelpList" id="helpLineList" focusInit="onOpen" listSectionHeader="section" startClipperElementName="topClipper" endClipperElementName="bottomClipper">
+                    <GuiElement type="listItem" profile="ingameMenuHelpListItem">
+                        <GuiElement type="text" profile="helpLineListItemText" text="Help Line Title" name="title"/>
+                    </GuiElement>
+
+                    <GuiElement type="listItem" profile="ingameMenuHelpListCategory" name="section">
+                        <GuiElement type="text" profile="ingameMenuHelpListCategoryTitle" text="Help Line Title" name="title"/>
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="threePartBitmap" profile="helpSlider">
+                    <GuiElement type="slider" profile="helpSliderBar" dataElementId="helpLineList" handleFocus="false" />
+                </GuiElement>
+            </GuiElement>
+
+            <!-- Content Box -->
+            <GuiElement type="empty" profile="ingameMenuHelpContentBox">
+                <GuiElement type="text" profile="helpLineTitle" id="helpLineTitleElement" />
+
+                <GuiElement type="bitmap" profile="helpStartScrollClipper" name="topClipper" />
+                <GuiElement type="bitmap" profile="helpEndScrollClipper" name="bottomClipper" />
+
+                <GuiElement type="scrollingLayout" profile="helpLineContentBox" id="helpLineContentBox" topClipperElementName="topClipper" bottomClipperElementName="bottomClipper">
+                    <GuiElement type="text"   profile="helpLineItemTitle"  id="helpLineContentItemTitle" />
+                    <GuiElement type="flowLayout" profile="helpLineContentItem" id="helpLineContentItem">
+                        <GuiElement type="bitmap" profile="helpLineImage" name="image" />
+                        <GuiElement type="text"   profile="helpLineText"  name="text" />
+                        <GuiElement type="text"   profile="helpLineTextFullWith"  name="textFullWidth"  />
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="threePartBitmap" profile="helpSlider">
+                    <GuiElement type="slider" profile="helpSliderBar" dataElementId="helpLineContentBox" handleFocus="false" />
+                </GuiElement>
+
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="ingameMenuHelpTopScrollClipper" extends="topScrollClipper" with="anchorTopCenter">
+            <Value name="position" value="0 -77dp" />
+            <Value name="size" value="490px 2dp" />
+        </Profile>
+        <Profile name="ingameMenuHelpBottomScrollClipper" extends="ingameMenuHelpTopScrollClipper" with="anchorBottomCenter">
+            <Value name="position" value="0 -2dp" />
+        </Profile>
+
+        <Profile name="ingameMenuHelpHeaderIcon" extends="menuHeaderIcon">
+            <Value name="imageUVs" value="0px 65px 65px 65px"/>
+        </Profile>
+
+        <Profile name="helpContainer" extends="emptyPanel" >
+            <Value name="size" value="1400px 756px" />
+            <Value name="anchors" value="0 0 1 1" />
+
+            <Variant name="mobile" with="anchorMiddleCenter">
+
+                <Value name="anchors" value="0.5 0.5 0.5 0.5" />
+                <Value name="position" value="0px 50px" />
+                <Value name="size" value="1768px 650px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuHelpNavigationBox" extends="emptyPanel" with="anchorTopLeft">
+            <Value name="size" value="426px 756px"/>
+
+            <Variant name="mobile" >
+                <Value name="size" value="530px 650px" />
+                <Value name="hasFrame" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuHelpList" extends="list" with="anchorTopLeft">
+            <Value name="size" value="426px 756px"/>
+            <Value name="isHorizontalList" value="false"/>
+
+            <Value name="rowBackgroundProfile" value="ingameMenuHelpListItem"/>
+            <Value name="rowBackgroundProfileAlternate" value="helpLineListItemAlternate"/>
+
+            <Variant name="mobile" with="lightFrame">
+                <Value name="position" value="0px 0px" />
+                <Value name="size" value="530px 650px" />
+                <Value name="listItemHeight" value="90px"/>
+                <Value name="listItemWidth" value="530px"/>
+                <Value name="itemsPerCol" value="5"/>
+                <Value name="keepSelectedInView" value="true" />
+                <Value name="supportsTouchScrolling" value="true" />
+                <Value name="hasFrame" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuHelpListItem" extends="listItem" with="alternating">
+            <Value name="size" value="426px 42px"/>
+
+            <Value name="imageColor" value="$preset_colorListRowBackground"/>
+            <Value name="imageFocusedColor" value="$preset_colorFocusBackgroundGradient"/>
+            <Value name="imageSelectedColor" value="$preset_colorFocusBackgroundGradient"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="530px 90px" />
+                <Value name="imageColor" value="0 0 0 0"/>
+                <Value name="imageFocusedColor" value="$preset_colorListRowAlternateBackground"/>
+                <Value name="imageSelectedColor" value="$preset_colorListRowAlternateBackground"/>
+                <Value name="alternateBackgroundColor" value="0 0 0 0" />
+            </Variant>
+        </Profile>
+
+        <Profile name="helpLineListItemText" extends="textDefault">
+            <Value name="size" value="426px 42px" />
+            <Value name="textMaxWidth" value="360px" />
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textOffset" value="40px 0px"/>
+            <Value name="textFocusedOffset" value="40px 0px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="530px 90px" />
+                <Value name="textMaxWidth" value="480px" />
+                <Value name="textLayoutMode" value="resize" />
+                <Value name="textSize" value="33px"/>
+                <Value name="textFocusedColor" value="$preset_colorWhite"/>
+                <Value name="textSelectedColor" value="$preset_colorWhite"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuHelpListCategory" extends="ingameMenuHelpListItem">
+            <Value name="imageColor" value="$preset_colorListHeaderBackground" />
+            <Variant name="mobile">
+                <Value name="imageColor" value="0 0 0 0"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuHelpListCategoryTitle" extends="helpLineListItemText">
+            <Value name="textBold" value="true"/>
+            <Value name="textOffset" value="30px 0px"/>
+            <Value name="textFocusedOffset" value="30px 0px"/>
+            <Value name="textSize" value="20px"/>
+            <Value name="textUpperCase" value="true"/>
+            <Value name="textColor" value="$preset_colorHeaderText"/>
+
+            <Variant name="mobile">
+                <Value name="textSize" value="33px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="helpSlider" extends="verticalListSliderRightDocked">
+
+            <Variant name="mobile" >
+                <Value name="size" value="12px 650px" />
+            </Variant>
+        </Profile>
+        <Profile name="helpSliderBar" extends="verticalListSliderBar">
+
+           <Variant name="mobile">
+                <Value name="size" value="6px 642px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuHelpContentBox" extends="ingameMenuHelpNavigationBox" with="anchorTopRight">
+            <Value name="size" value="934px 756px"/>
+            <Value name="position" value="0 0"/>
+
+            <Variant name="mobile" >
+                <Value name="size" value="1200px 650px" />
+                <Value name="position" value="0px 0px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="helpLineTitle" extends="textDefault" with="anchorTopLeft">
+            <Value name="position" value="40px 0px"/>
+            <Value name="size" value="854px 30px"/>
+            <Value name="textVerticalAlignment" value="bottom"/>
+            <Value name="textOffset" value="0"/>
+            <Value name="textSize" value="24px"/>
+            <Value name="textBold" value="true"/>
+
+            <Variant name="mobile">
+                <Value name="position" value="40px -20px"/>
+                <Value name="textSize" value="40px"/>
+                <Value name="textBold" value="true"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="helpStartScrollClipper" extends="topScrollClipper">
+            <Value name="position" value="0 -51px" />
+
+            <Variant name="mobile" >
+                <Value name="position" value="0 -80px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="helpEndScrollClipper" extends="bottomScrollClipper">
+            <Variant name="mobile">
+            </Variant>
+        </Profile>
+
+        <Profile name="helpLineContentBox" extends="baseReference">
+            <Value name="size" value="854px 703px"/>
+            <Value name="position" value="40px 0px"/>
+            <Value name="imageColor" value="$preset_colorTransparent"/>
+            <Value name="autoValidateLayout" value="true"/>
+
+            <Variant name="mobile" with="">
+                <Value name="size" value="1145px 566px"/>
+                <Value name="position" value="40px 0px"/>
+                <Value name="supportsTouchScrolling" value="true" />
+            </Variant>
+        </Profile>
+
+        <Profile name="helpLineContentItem" extends="baseReference">
+            <Value name="size" value="854px 200px"/>
+            <Value name="imageColor" value="$preset_colorTransparent"/>
+
+            <Value name="margin" value="0px 0px 0px 25px"/>
+
+            <Value name="flowDirection" value="horizontal" />
+            <Value name="alignmentX" value="left" />
+            <Value name="alignmentY" value="top" />
+
+            <Variant name="mobile" with="">
+                <Value name="size" value="1100px 200px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="helpLineImage" extends="baseReference">
+            <Value name="size" value="278px 200px"/>
+            <Value name="imageUVs" value="0 0 1 1"/>
+            <Value name="margin" value="0px 0px 10px 0"/>
+        </Profile>
+
+        <Profile name="helpLineText" extends="textDefault">
+            <Value name="size" value="566px 200px"/>
+
+            <Value name="textVerticalAlignment" value="top"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="textBold" value="false"/>
+            <Value name="textMaxWidth" value="566px"/>
+            <Value name="textMaxNumLines" value="100"/>
+            <Value name="textColor" value="$preset_colorWhite_50"/>
+
+            <Variant name="mobile" with="">
+                <Value name="size" value="802px 100px"/>
+                <Value name="textMaxWidth" value="802px"/>
+                <Value name="textSize" value="33px"/>
+                <Value name="textColor" value="$preset_colorWhite"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="helpLineItemTitle" extends="helpLineText">
+            <Value name="size" value="854px 30px"/>
+            <Value name="margin" value="0px 20px 0px 0px"/>
+            <Value name="textMaxWidth" value="854px"/>
+            <Value name="textSize" value="20px"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textColor" value="1 1 1 0.8"/>
+
+            <Variant name="mobile">
+                <Value name="textSize" value="40px"/>
+                <Value name="size" value="1100px 50px"/>
+                <Value name="textMaxWidth" value="1100px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="helpLineTextFullWith" extends="helpLineText">
+            <Value name="size" value="854px 200px"/>
+            <Value name="textMaxWidth" value="854px"/>
+            <Value name="margin" value="0 0 0 0"/>
+
+            <Variant name="mobile" with="">
+                <Value name="size" value="1100px 100px"/>
+                <Value name="textMaxWidth" value="1100px"/>
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="dynamicFadedBitmap" profile="uiFullBlurBG"/>
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="bitmap" profile="connectDialogBg" id="mainBox">
+        <GuiElement type="animation" profile="connectDialogLoading" />
+
+        <GuiElement type="text" profile="connectDialogText" text="$l10n_ui_connectingToMasterServer" />
+
+        <GuiElement type="flowLayout" profile="buttonBoxDialog" id="buttonsPC" >
+            <GuiElement type="button" profile="buttonCancel" text="$l10n_button_cancel" onClick="onClickCancel" />
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="connectDialogBg" extends="dialogBg">
+
+            <Variant name="mobile">
+                <Value name="size" value="1100px 380px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="connectDialogLoading" extends="dialogLoading">
+
+            <Variant name="mobile">
+                <Value name="position" value="0px -140px" />
+                <Value name="size" value="150px 150px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="connectDialogText" extends="dialogText">
+
+            <Variant name="mobile" with="anchorMiddleCenter">
+                <Value name="position" value="0px -80px" />
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

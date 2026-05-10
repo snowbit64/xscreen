@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="dynamicFadedBitmap" profile="uiFullBlurBG"/>
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlow" />
+
+    <GuiElement type="bitmap" profile="uiElementContainerFullScreen" id="mainBox">
+        <GuiElement type="bitmap" profile="uiElementCenter">
+            <GuiElement type="bitmap" profile="joinGameScreenBoxLeft">
+                <GuiElement type="bitmap" profile="headerBoxDocked" >
+                    <GuiElement type="bitmap" profile="joinGameScreenMultiplayerIcon"/>
+                    <GuiElement type="text" profile="headerText" text="$l10n_ui_joinMultiplayerGame" />
+                </GuiElement>
+
+                <GuiElement type="flowLayout" profile="joinGameScreenStatsBox">
+                    <GuiElement type="text" profile="joinGameScreenNumServers" id="numServersText" size="300px 50px" textAlignment="right" />
+                </GuiElement>
+
+                <GuiElement type="boxLayout" profile="joinGameScreenListHeader" focusId="focus_header">
+                    <GuiElement type="tableHeader" profile="joinGameScreenListHeaderButton" text="$l10n_ui_serverName" allowSortingAsc="true" allowSortingDesc="true" onClick="onClickHeader" onFocus="onFocusHeader" onLeave="onLeaveHeader" size="440px 70px" textAlignment="left" textOffset="135px 0" textFocusedOffset="135px 0" columnName="name" focusId="leftHeaderButton" focusChangeLeft="focus_name_input">
+                        <GuiElement type="bitmap" profile="joinGameScreenListHeaderSortAscending" name="iconAscending"/>
+                        <GuiElement type="bitmap" profile="joinGameScreenListHeaderSortDescending" name="iconDescending"/>
+                    </GuiElement>
+                    <GuiElement type="tableHeader" profile="joinGameScreenListHeaderButton" text="$l10n_ui_map" allowSortingAsc="true" allowSortingDesc="true" onClick="onClickHeader" onFocus="onFocusHeader" onLeave="onLeaveHeader" size="290px 70px" columnName="mapName">
+                        <GuiElement type="bitmap" profile="joinGameScreenListHeaderSortAscending" name="iconAscending"/>
+                        <GuiElement type="bitmap" profile="joinGameScreenListHeaderSortDescending" name="iconDescending"/>
+                    </GuiElement>
+                    <GuiElement type="tableHeader" profile="joinGameScreenListHeaderButton" text="$l10n_ui_players" allowSortingAsc="true" allowSortingDesc="true" onClick="onClickHeader" onFocus="onFocusHeader" onLeave="onLeaveHeader" size="128px 70px" columnName="fullness">
+                        <GuiElement type="bitmap" profile="joinGameScreenListHeaderSortAscending" name="iconAscending"/>
+                        <GuiElement type="bitmap" profile="joinGameScreenListHeaderSortDescending" name="iconDescending"/>
+                    </GuiElement>
+                    <GuiElement type="tableHeader" profile="joinGameScreenListHeaderButton" text="" allowSortingAsc="true" allowSortingDesc="true" onClick="onClickHeader" onFocus="onFocusHeader" onLeave="onLeaveHeader" size="80px 70px" columnName="language" focusId="rightHeaderButton">
+                        <GuiElement type="bitmap" profile="joinGameScreenListHeaderSortAscending" name="iconAscending"/>
+                        <GuiElement type="bitmap" profile="joinGameScreenListHeaderSortDescending" name="iconDescending"/>
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="smoothList" profile="joinGameScreenList" id="serverList" focusChangeBottom="nil" focusChangeTop="nil" listDataSource="self" listDelegate="self" onDoubleClick="onDoubleClick" focusChangeLeft="leftHeaderButton" focusChangeRight="focus_name_input">
+                    <GuiElement type="listItem" profile="joinGameScreenListItem" name="rowTemplate" autoSelectChildren="false">
+
+                        <GuiElement type="bitmap" profile="iconModsMissing" name="iconModsMissing" />
+
+                        <GuiElement type="bitmap" profile="iconServerPassword" name="iconServerPassword" />
+                        <GuiElement type="bitmap" profile="iconServerInternet" name="iconServerInternet" />
+                        <GuiElement type="bitmap" profile="iconServerLan" name="iconServerLan" />
+                        <GuiElement type="bitmap" profile="iconFriends" name="iconFriends" />
+                        <GuiElement type="platformIcon" profile="joinGameScreenIconPlatform" name="iconPlatform" />
+
+                        <GuiElement type="text"   profile="joinGameScreenNameText" name="gameName" />
+                        <GuiElement type="text"   profile="joinGameScreenMapText" name="mapName" />
+                        <GuiElement type="text"   profile="joinGameScreenPlayersText" name="players" />
+
+                        <GuiElement type="bitmap" profile="iconSlotsFullBg" name="iconSlotsFull">
+                            <GuiElement type="bitmap" profile="iconSlotsFull" />
+                        </GuiElement>
+                        <GuiElement type="bitmap" profile="iconSlotsAvailBg" name="iconSlotsAvailable">
+                            <GuiElement type="bitmap" profile="iconSlotsAvail" />
+                        </GuiElement>
+
+                        <GuiElement type="text"   profile="joinGameScreenLangText" name="language" />
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="threePartBitmap" profile="verticalListSliderRightDocked" size="12px 698px">
+                    <GuiElement type="slider" profile="verticalListSliderBar" dataElementId="serverList" handleFocus="false" size="6px 690px"/>
+                </GuiElement>
+                <GuiElement type="text" text="$l10n_ui_loading" profile="joinGameScreenLoading" id="loadingText"/>
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="joinGameScreenBoxRight">
+                <GuiElement type="text" text="$l10n_ui_filters" profile="joinGameScreenFiltersTitle" />
+
+                <GuiElement type="boxLayout" profile="joinGameScreenFilters" id="settingsBox">
+
+                    <GuiElement type="empty" profile="joinGameScreenFilterServername" focusFallthrough="true">
+                        <GuiElement type="textInput" profile="joinGameScreenNameFilter" id="serverNameElement" onTextChanged="onServerNameChanged" focusId="focus_name_input" imeKeyboardType="normal" imeTitle="$l10n_ui_serverName" imeDescription="$l10n_ui_serverName" imePlaceholder="$l10n_ui_serverName" onFocus="onFocusGameName" onLeave="onLeaveGameName"  focusChangeLeft="rightHeaderButton" focusChangeRight="leftHeaderButton" />
+                        <GuiElement type="text" profile="joinGameScreenMultiTextOptionTitle" text="$l10n_ui_serverName"/>
+                    </GuiElement>
+
+                    <GuiElement type="empty" profile="multiTextOptionWithTitle">
+                        <GuiElement type="multiTextOption" profile="multiTextOption" onClick="onClickMap" id="mapSelectionElement" />
+                        <GuiElement type="text"   profile="joinGameScreenMultiTextOptionTitle" text="$l10n_ui_map" />
+                    </GuiElement>
+
+                    <GuiElement type="empty" profile="multiTextOptionWithTitle">
+                        <GuiElement type="multiTextOption" profile="multiTextOption" onClick="onClickLanguage" onCreate="onCreateLanguage" id="languageElement" />
+                        <GuiElement type="text"   profile="joinGameScreenMultiTextOptionTitle" text="$l10n_setting_language" />
+                    </GuiElement>
+
+                    <GuiElement type="empty" profile="multiTextOptionWithTitle">
+                        <GuiElement type="multiTextOption" profile="multiTextOption" onClick="onClickMaxNumPlayers" id="maxNumPlayersElement" onCreate="onCreateMaxNumPlayers" />
+                        <GuiElement type="text"   profile="joinGameScreenMultiTextOptionTitle" text="$l10n_ui_maxNumPlayers" />
+                    </GuiElement>
+
+                    <GuiElement type="empty" profile="multiTextOptionWithTitle">
+                        <GuiElement type="checkedOption" profile="multiTextOption" onClick="onClickPassword" id="passwordElement" />
+                        <GuiElement type="text"   profile="joinGameScreenMultiTextOptionTitle" text="$l10n_ui_noPassword" />
+                    </GuiElement>
+
+                    <GuiElement type="empty" profile="multiTextOptionWithTitle">
+                        <GuiElement type="checkedOption" profile="multiTextOption" onClick="onClickCapacity" id="capacityElement" />
+                        <GuiElement type="text"   profile="joinGameScreenMultiTextOptionTitle" text="$l10n_ui_noFullGames" />
+                    </GuiElement>
+
+                    <GuiElement type="empty" profile="multiTextOptionWithTitle">
+                        <GuiElement type="checkedOption" profile="multiTextOption" onClick="onClickModsDlcs" id="modDlcElement" />
+                        <GuiElement type="text"   profile="joinGameScreenMultiTextOptionTitle" text="$l10n_ui_onlyAvailableMods" />
+                    </GuiElement>
+
+                    <GuiElement type="empty" profile="multiTextOptionWithTitle">
+                        <GuiElement type="checkedOption" profile="multiTextOption" onClick="onClickAllowCrossPlay" id="allowCrossPlayElement" focusChangeBottom="focus_name_input" />
+                        <GuiElement type="text"   profile="joinGameScreenMultiTextOptionTitle" text="$l10n_ui_allowCrossPlay" />
+                    </GuiElement>
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="flowLayout" profile="buttonBoxDockedOnScreen" id="buttonBox">
+        <GuiElement type="button" profile="buttonOK" text="$l10n_button_start" onClick="onClickOk" id="startButtonElement" />
+        <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" />
+        <GuiElement type="button" profile="buttonServerDetails" text="$l10n_button_detail" onClick="onClickActivate" id="detailButtonElement" />
+        <GuiElement type="button" profile="buttonSortTable" text="$l10n_button_sortTable" onClick="onClickSort" id="sortButton" />
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="joinGameScreenBoxLeft" extends="uiElementCenter" with="anchorMiddleLeft">
+            <Value name="size" value="938px 698px"/>
+        </Profile>
+
+        <Profile name="joinGameScreenMultiplayerIcon" extends="baseIcon">
+            <Value name="imageUVs" value="336px 96px 48px 48px" />
+        </Profile>
+
+        <Profile name="joinGameScreenStatsBox" extends="headerBoxDocked" with="anchorTopRight">
+            <Value name="alignmentX" value="right"/>
+        </Profile>
+
+        <Profile name="joinGameScreenNumServers" extends="textDefault">
+            <Value name="textAutoWidth" value="true"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="textAlignment" value="right"/>
+            <Value name="textUpperCase" value="true"/>
+            <Value name="textBold" value="false"/>
+            <Value name="textColor" value="$preset_colorMainUI"/>
+
+            <Value name="size" value="400px 20px" />
+            <Value name="margin" value="5px 0 2px 0" />
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="joinGameScreenListHeader" extends="emptyPanel" with="anchorTopLeft">
+            <Value name="size" value="938px 70px"/>
+
+            <Value name="alignmentX" value="left"/>
+            <Value name="alignmentY" value="bottom"/>
+            <Value name="flowDirection" value="horizontal"/>
+            <Value name="wrapAround" value="false"/>
+            <Value name="lateralFlowSize" value="70px"/>
+            <Value name="fitToElements" value="true"/>
+            <Value name="autoValidateLayout" value="true"/>
+        </Profile>
+
+        <Profile name="joinGameScreenListHeaderButton" extends="buttonBase">
+            <Value name="size" value="265px 70px"/>
+            <Value name="position" value="0"/>
+
+            <Value name="textSize" value="18px"/>
+            <Value name="textUpperCase" value="true"/>
+            <Value name="textColor" value="$preset_colorHeaderText"/>
+
+            <Value name="imageColor" value="$preset_colorListHeaderBackground"/>
+            <Value name="imageFocusedColor" value="$preset_colorMainUI"/>
+            <Value name="imageSelectedColor" value="$preset_colorMainUI"/>
+            <Value name="imageHighlightedColor" value="$preset_colorMainUI"/>
+        </Profile>
+
+        <Profile name="joinGameScreenListHeaderSortAscending" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="imageColor" value="$preset_colorWhite"/>
+            <Value name="imageUVs" value="678px 390px 36px 36px"/>
+            <Value name="visible" value="false"/>
+            <Value name="imageRotation" value="-180"/>
+            <Value name="position" value="6px 0px"/>
+            <Value name="size" value="12px 12px"/>
+        </Profile>
+
+        <Profile name="joinGameScreenListHeaderSortDescending" extends="joinGameScreenListHeaderSortAscending">
+            <Value name="imageRotation" value="0"/>
+        </Profile>
+
+        <Profile name="joinGameScreenList" extends="list" with="anchorTopLeft">
+            <Value name="position" value="0 -70px"/>
+            <Value name="size" value="938px 628px"/>
+
+            <Value name="isHorizontalList" value="false"/>
+        </Profile>
+
+        <Profile name="joinGameScreenListItem" extends="listItem" with="alternating">
+            <Value name="imageColor" value="$preset_colorGlassMedium"/>
+            <Value name="imageFocusedColor" value="$preset_colorMainUI"/>
+            <Value name="imageSelectedColor" value="$preset_colorMainUI"/>
+            <Value name="imageHighlightedColor" value="$preset_colorMainUI"/>
+
+            <Value name="position" value="0"/>
+            <Value name="size" value="938px 40px"/>
+        </Profile>
+
+        <Profile name="joinGameBaseIcon" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="imageColor" value="$preset_colorWhite"/>
+            <Value name="imageFocusedColor" value="$preset_colorWhite"/>
+            <Value name="imageSelectedColor" value="$preset_colorWhite"/>
+        </Profile>
+
+        <Profile name="iconModsMissing" extends="joinGameBaseIcon">
+            <Value name="size" value="30px 30px"/>
+            <Value name="position" value="4px 0px"/>
+            <Value name="imageUVs" value="960px 96px 48px 48px"/>
+            <Value name="imageColor" value="$preset_colorRed" />
+        </Profile>
+
+        <Profile name="iconServerPassword" extends="joinGameBaseIcon" >
+            <Value name="size" value="18.7px 26px"/>
+            <Value name="position" value="40px 0px"/>
+            <Value name="imageUVs" value="726px 6px 20px 27px"/>
+        </Profile>
+
+        <Profile name="iconServerInternet" extends="joinGameBaseIcon">
+            <Value name="size" value="26px 26px"/>
+            <Value name="position" value="64px 0px"/>
+            <Value name="imageUVs" value="774px 6px 27px 27px"/>
+        </Profile>
+
+        <Profile name="iconServerLan" extends="joinGameBaseIcon">
+            <Value name="size" value="26px 26px"/>
+            <Value name="position" value="64px 0px"/>
+            <Value name="imageUVs" value="822px 6px 27px 27px"/>
+        </Profile>
+
+        <Profile name="iconFriends" extends="joinGameBaseIcon">
+            <Value name="size" value="26px 26px"/>
+            <Value name="position" value="64px 0px"/>
+            <Value name="imageUVs" value="870px 6px 27px 27px"/>
+        </Profile>
+
+        <Profile name="iconSlotsFull" extends="joinGameBaseIcon" with="anchorMiddleCenter">
+            <Value name="size" value="12px 12px"/>
+            <Value name="position" value="0"/>
+            <Value name="imageUVs" value="106px 347px 27px 27px"/>
+            <Value name="imageColor" value="$preset_colorWhite"/>
+            <Value name="imageFocusedColor" value="$preset_colorMainUI"/>
+            <Value name="imageSelectedColor" value="$preset_colorMainUI"/>
+        </Profile>
+
+        <Profile name="iconSlotsAvail" extends="iconSlotsFull">
+            <Value name="imageUVs" value="154px 347px 27px 27px"/>
+        </Profile>
+
+        <Profile name="iconSlotsFullBg" extends="joinGameBaseIcon">
+            <Value name="size" value="22px 22px"/>
+            <Value name="imageUVs" value="534px 390px 48px 48px" />
+            <Value name="position" value="820px 0px"/>
+            <Value name="imageColor" value="$preset_colorRed"/>
+            <Value name="imageFocusedColor" value="$preset_colorWhite"/>
+            <Value name="imageSelectedColor" value="$preset_colorWhite"/>
+        </Profile>
+
+        <Profile name="iconSlotsAvailBg" extends="iconSlotsFullBg">
+            <Value name="imageColor" value="$preset_colorGreen"/>
+        </Profile>
+
+        <Profile name="joinGameScreenIconPlatform" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="imageColor" value="$preset_colorWhite"/>
+            <Value name="imageFocusedColor" value="$preset_colorWhite"/>
+            <Value name="imageSelectedColor" value="$preset_colorWhite"/>
+
+            <Value name="size" value="34px 34px"/>
+            <Value name="position" value="92px 0px"/>
+        </Profile>
+
+        <Profile name="joinGameScreenPlayersText" extends="textDefault" with="anchorTopLeft">
+            <Value name="size" value="128px 40px" />
+            <Value name="position" value="730px 0px"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="textBold" value="false"/>
+            <Value name="textOffset" value="-10px 0"/>
+            <Value name="textAlignment" value="center"/>
+        </Profile>
+
+        <Profile name="joinGameScreenNameText" extends="joinGameScreenPlayersText">
+            <Value name="position" value="135px 0px"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textMaxWidth" value="305px"/>
+            <Value name="textAlignment" value="left"/>
+            <Value name="textOffset" value="0 0"/>
+            <Value name="size" value="305px 40px"/> <!-- 485 -->
+        </Profile>
+
+        <Profile name="joinGameScreenMapText" extends="joinGameScreenPlayersText">
+            <Value name="position" value="440px 0px"/>
+            <Value name="textMaxWidth" value="285px"/>
+            <Value name="size" value="290px 40px"/>
+            <Value name="textOffset" value="0 0"/>
+        </Profile>
+
+        <Profile name="joinGameScreenLangText" extends="joinGameScreenPlayersText">
+            <Value name="position" value="858px 0px"/>
+            <Value name="size" value="80px 40px"/>
+            <Value name="textOffset" value="0 0"/>
+        </Profile>
+
+        <Profile name="joinGameScreenLoading" extends="headerText" with="anchorMiddleCenter">
+            <Value name="position" value="0px 0px" />
+            <Value name="textAlignment" value="center" />
+        </Profile>
+
+        <Profile name="joinGameScreenBoxRight" extends="uiElementCenter" with="anchorMiddleRight">
+            <Value name="size" value="280px 698px"/>
+        </Profile>
+
+        <Profile name="joinGameScreenFiltersTitle" extends="textDefault" with="anchorTopLeft">
+            <Value name="size" value="316px 20px" />
+            <Value name="textSize" value="20px" />
+            <Value name="textBold" value="true" />
+            <Value name="textUpperCase" value="true" />
+            <Value name="textAlignment" value="center" />
+        </Profile>
+
+        <Profile name="joinGameScreenFilters" extends="emptyPanel" with="anchorBottomLeft">
+            <Value name="size" value="316px 668px"/>
+            <Value name="wrapAround" value="false"/>
+        </Profile>
+
+        <Profile name="joinGameScreenFilterServername" extends="baseReference">
+            <Value name="size" value="316px 48px" />
+            <Value name="margin" value="0px 25px 0px 12px"/>
+        </Profile>
+
+        <Profile name="joinGameScreenNameFilter" extends="textInput" with="anchorTopCenter">
+            <Value name="size" value="316px 48px"/>
+
+            <Value name="handleFocus" value="true"/>
+            <Value name="maxInputTextWidth" value="280px"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="textBold" value="false"/>
+            <Value name="textAlignment" value="left"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+
+            <Value name="imageColor" value="$preset_colorGlassMedium" />
+        </Profile>
+
+        <Profile name="multiTextOptionWithTitle" extends="multiTextOptionWithTitleText">
+            <Value name="size" value="316px 48px"/>
+            <Value name="margin" value="0px 25px 0px 12px"/>
+        </Profile>
+
+        <Profile name="joinGameScreenMultiTextOptionTitle" extends="multiTextOptionTitle">
+            <Value name="position" value="0px 40px" />
+            <Value name="textMaxWidth" value="280px" />
+        </Profile>
+
+        <Profile name="buttonServerDetails" extends="wideButton">
+            <Value name="inputAction" value="MENU_ACTIVATE"/>
+        </Profile>
+
+        <Profile name="buttonSortTable" extends="buttonCancel">
+            <Value name="text" value="$l10n_button_sortTable"/>
+        </Profile>
+    </GUIProfiles>
+</GUI>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="dynamicFadedBitmap" profile="uiFullBlurBG"/>
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlow" />
+
+    <GuiElement type="bitmap" profile="uiElementContainerFullScreen">
+        <GuiElement type="bitmap" profile="uiElementCenter">
+
+            <GuiElement type="bitmap" profile="headerBoxDocked">
+                <GuiElement type="bitmap" profile="scenarioIcon"/>
+                <GuiElement type="text" profile="headerText" text="$l10n_button_scenarios" />
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="leftScrollClipper" name="leftClipper" />
+            <GuiElement type="bitmap" profile="rightScrollClipper" name="rightClipper" />
+
+            <GuiElement type="smoothList" profile="scenarioList" onDoubleClick="onStartAction" focusInit="onOpen" id="list" startClipperElementName="leftClipper" endClipperElementName="rightClipper" listDelegate="self" listDataSource="self">
+                <GuiElement type="listItem" profile="scenarioListItem">
+                    <GuiElement type="bitmap" profile="scenarioListItemImage" name="gameIcon"/>
+
+                    <GuiElement type="text" profile="scenarioListItemHeaderText" name="title" />
+
+                    <GuiElement type="empty" profile="scenarioListItemDataBox" name="dataBox" visible="true">
+
+                    </GuiElement>
+
+                    <GuiElement type="bitmap" profile="listItemSelector"/>
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="slider" profile="sliderInvisible" id="listSlider" dataElementId="list" handleFocus="false">
+        <GuiElement type="button" profile="largeSelectorRight" />
+        <GuiElement type="button" profile="largeSelectorLeft" />
+    </GuiElement>
+
+    <GuiElement type="flowLayout" profile="buttonBoxDockedOnScreen">
+        <GuiElement type="button" profile="buttonOK" text="$l10n_button_continue" onClick="onStartAction" id="buttonStart"/>
+        <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" />
+    </GuiElement>
+
+    <GUIProfiles>
+        <Profile name="scenarioIcon" extends="baseIcon">
+            <Value name="imageUVs" value="$preset_diskIconUVs"/>
+        </Profile>
+
+        <Profile name="scenarioList" extends="list">
+            <Value name="size" value="1258px 698px"/>
+            <Value name="position" value="0"/>
+
+            <Value name="listItemSpacing" value="14px"/>
+            <Value name="itemizedScrollDelta" value="true"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="1036px 572px"/>
+                <Value name="position" value="0px 130px"/>
+                <Value name="itemsPerCol" value="3"/>
+                <Value name="itemsPerRow" value="1"/>
+                <Value name="listItemWidth" value="1036px"/>
+                <Value name="listItemHeight" value="180px"/>
+                <Value name="listItemSpacing" value="13px"/>
+                <Value name="useSelectionOnLeave" value="true" />
+                <Value name="keepSelectedInView" value="true" />
+                <Value name="isHorizontalList" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="scenarioListItem" extends="listItem">
+            <Value name="size" value="410px 698px"/>
+            <Value name="clipping" value="true" />
+
+            <Value name="imageColor" value="$preset_colorItemBgNormal"/>
+            <Value name="imageFocusedColor" value="$preset_colorItemBgSelected"/>
+            <Value name="imageSelectedColor" value="$preset_colorItemBgSelected"/>
+
+            <Variant name="mobile" >
+                <Value name="imageColor" value="$preset_colorGlassMedium"/>
+                <Value name="imageFocusedColor" value="$preset_colorGlassMedium"/>
+                <Value name="imageSelectedColor" value="$preset_colorGlassMedium"/>
+                <Value name="size" value="1036px 180px"/>
+                <Value name="position" value="0 200px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="scenarioListItemImage" extends="baseReference" with="anchorTopCenter">
+            <Value name="position" value="0px 180px"/>
+            <Value name="size" value="410px 410px"/>
+            <Value name="imageFilename" value="dataS/menu/black.png"/>
+            <Value name="imageColor" value="$preset_colorWhite"/>
+            <Value name="imageUVs" value="4px 4px 2040px 1016px"/>
+            <Value name="imageSize" value="2048 1024"/>
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="scenarioListItemHeaderText" extends="textDefault" with="anchorBottomLeft">
+            <Value name="size" value="307px 32px"/>
+            <Value name="textSize" value="32px"/>
+            <Value name="textBold" value="false"/>
+            <Value name="position" value="50px 390px"/>
+            <Value name="textColor" value="$preset_colorWhite"/>
+        </Profile>
+
+        <Profile name="scenarioListItemDataBox" extends="baseReference" with="anchorBottomCenter">
+            <Value name="size" value="310px 364px"/>
+            <Value name="position" value="0px 4px"/>
+
+            <Variant name="mobile" with="anchorBottomLeft">
+                <Value name="size" value="1025px 180px"/>
+                <Value name="position" value="15px 0px"/>
+                <Value name="imageColor" value="$preset_colorTransparent"/>
+                <Value name="imageHighlightedColor" value="$preset_colorTransparent"/>
+                <Value name="iconHighlightedColor" value="$preset_colorTransparent"/>
+                <Value name="textHighlightedColor" value="$preset_colorTransparent"/>
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

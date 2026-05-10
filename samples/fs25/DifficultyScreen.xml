@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="dynamicFadedBitmap" profile="uiFullBlurBG"/>
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlow" />
+
+    <GuiElement type="bitmap" profile="uiElementContainerFullScreen">
+        <GuiElement type="bitmap" profile="uiElementCenter">
+
+            <GuiElement type="bitmap" profile="headerBoxDocked" >
+                <GuiElement type="bitmap" profile="difficultyIcon"/>
+                <GuiElement type="text"   profile="headerText" text="$l10n_ui_difficulty"/>
+            </GuiElement>
+
+            <GuiElement type="slider" profile="sliderInvisible" id="listSlider" dataElementId="difficultyList" handleFocus="false" />
+
+            <GuiElement type="bitmap" profile="leftScrollClipper" name="leftClipper" />
+            <GuiElement type="bitmap" profile="rightScrollClipper" name="rightClipper" />
+
+            <GuiElement type="smoothList" profile="difficultyList" onDoubleClick="onClickOk" focusInit="onOpen" id="difficultyList" startClipperElementName="leftClipper" endClipperElementName="rightClipper" listDelegate="self" listDataSource="self">
+                <GuiElement type="listItem" profile="difficultyItem">
+                    <GuiElement type="bitmap" profile="difficultyItemIcon" name="icon" />
+
+                    <GuiElement type="text" profile="difficultyItemTitle" name="title" />
+                    <GuiElement type="text" profile="difficultyItemSubtitle" name="subtitle" />
+                    <GuiElement type="text" profile="difficultyItemText" name="description" />
+
+                    <GuiElement type="bitmap" profile="listItemSelector"/>
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="flowLayout" profile="buttonBoxDockedOnScreen">
+        <GuiElement type="button" profile="buttonOK"   text="$l10n_button_continue" onClick="onClickOk" />
+        <GuiElement type="button" profile="buttonBack" text="$l10n_button_back"     onClick="onClickBack" />
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="difficultyIcon" extends="baseIcon">
+            <Value name="imageUVs" value="384px 96px 48px 48px" />
+        </Profile>
+
+        <Profile name="difficultyList" extends="list">
+            <Value name="size" value="1258px 698px"/>
+            <Value name="position" value="0"/>
+
+            <Value name="listItemSpacing" value="14px"/>
+            <Value name="itemizedScrollDelta" value="true"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="1036px 572px"/>
+                <Value name="position" value="0px 130px"/>
+                <Value name="itemsPerCol" value="3"/>
+                <Value name="itemsPerRow" value="1"/>
+                <Value name="listItemWidth" value="1036px"/>
+                <Value name="listItemHeight" value="180px"/>
+                <Value name="listItemSpacing" value="13px"/>
+                <Value name="useSelectionOnLeave" value="true" />
+                <Value name="keepSelectedInView" value="true" />
+                <Value name="isHorizontalList" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="difficultyItem" extends="listItem">
+            <Value name="size" value="410px 698px"/>
+            <Value name="clipping" value="true" />
+
+            <Value name="imageColor" value="$preset_colorItemBgNormal"/>
+            <Value name="imageFocusedColor" value="$preset_colorItemBgSelected"/>
+            <Value name="imageSelectedColor" value="$preset_colorItemBgSelected"/>
+
+            <Variant name="mobile" >
+                <Value name="imageColor" value="$preset_colorGlassMedium"/>
+                <Value name="imageFocusedColor" value="$preset_colorGlassMedium"/>
+                <Value name="imageSelectedColor" value="$preset_colorGlassMedium"/>
+                <Value name="size" value="1036px 180px"/>
+                <Value name="position" value="0 200px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="difficultyItemIcon" extends="baseReference" with="anchorTopCenter">
+            <Value name="size" value="256px 256px"/>
+            <Value name="position" value="0 -20px"/>
+
+            <Value name="imageFilename" value="dataS/menu/hud/achievements.png" />
+            <Value name="imageUVs" value="0 0 1 1"/>
+            <Value name="imageSize" value="2048 2048"/>
+            <Value name="imageColor" value="$preset_colorWhite"/>
+
+            <Variant name="mobile" with="anchorTopLeft">
+                <Value name="size" value="140px 140px"/>
+                <Value name="position" value="20px -20px"/>
+            </Variant>
+        </Profile>
+        <Profile name="difficultyItemTitle" extends="textDefault" with="anchorBottomCenter">
+            <Value name="textSize" value="40px"/>
+            <Value name="textColor" value="$preset_colorTextOnDark"/>
+            <Value name="position" value="0px 345px"/>
+            <Value name="size" value="330px 80px"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textMaxNumLines" value="2" />
+            <Value name="textBold" value="false"/>
+            <Value name="textVerticalAlignment" value="top" />
+        </Profile>
+
+        <Profile name="difficultyItemSubtitle" extends="textDefault" with="anchorBottomCenter">
+            <Value name="textSize" value="20px" />
+            <Value name="textMaxNumLines" value="1" />
+            <Value name="size" value="330px 20px" />
+            <Value name="position" value="0px 317px" />
+            <Value name="textAlignment" value="center" />
+            <Value name="textVerticalAlignment" value="top" />
+            <Value name="textColor" value="$preset_colorMainUI" />
+            <Value name="textSelectedColor" value="$preset_colorMainUI" />
+        </Profile>
+
+        <Profile name="difficultyItemText" extends="textDefault" with="anchorBottomCenter">
+            <Value name="textSize" value="18px" />
+            <Value name="textMaxNumLines" value="10" />
+            <Value name="size" value="330px 300px" />
+            <Value name="position" value="0px 4px" />
+            <Value name="textAlignment" value="center" />
+            <Value name="textVerticalAlignment" value="top" />
+            <Value name="textColor" value="$preset_colorDescriptionText2" />
+            <Value name="textSelectedColor" value="$preset_colorDescriptionText2" />
+        </Profile>
+    </GUIProfiles>
+</GUI>

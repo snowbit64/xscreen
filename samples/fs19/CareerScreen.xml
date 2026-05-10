@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <!-- Background FullScreen Relative -->
+    <GuiElement type="bitmap" profile="uiFullBlurBG"/>
+
+    <!-- Header - Top 120 px-->
+    <GuiElement type="bitmap" profile="uiElementBaseHeader" />
+
+    <!-- Body - Central -->
+    <GuiElement type="bitmap" profile="uiElementContainerFullScreen">
+
+        <GuiElement type="bitmap" profile="uiElementCenter">
+
+            <GuiElement type="bitmap" profile="headerBoxDocked" >
+                <GuiElement type="bitmap" profile="savegameIcon"/>
+                <GuiElement type="text" profile="headerText" text="$l10n_ui_savegames" />
+            </GuiElement>
+
+            <GuiElement type="slider" profile="sliderInvisible" id="listSlider" dataElementId="savegameList" handleFocus="false">
+                <GuiElement type="button" profile="largeSelectorRight" />
+                <GuiElement type="button" profile="largeSelectorLeft" />
+            </GuiElement>
+
+            <GuiElement type="list" profile="savegameList" onCreate="onCreateList" onSelectionChanged="onListSelectionChanged" onDoubleClick="onDoubleClick" focusInit="onOpen" id="savegameList" >
+                <GuiElement type="listItem" profile="savegameListItem" id="listItemTemplate">
+                    <GuiElement type="text" profile="savegameListItemHeaderText" name="title" />
+                    <GuiElement type="bitmap" profile="savegameListItemDataBox" name="dataBox" visible="true">
+
+                        <GuiElement type="bitmap" profile="savegameListSeparator" position="60px 356px" />
+                        <GuiElement type="bitmap" profile="savegameListSeparator" position="60px 315px" />
+                        <GuiElement type="bitmap" profile="savegameListSeparator" position="60px 276px" />
+                        <GuiElement type="bitmap" profile="savegameListSeparator" position="60px 236px" /> <!-- off by 1px for aliasing -->
+                        <GuiElement type="bitmap" profile="savegameListSeparator" position="60px 198px" />
+                        <GuiElement type="bitmap" profile="savegameListSeparator" position="60px 159px" />
+
+                        <GuiElement type="text" profile="savegameListItemTitle" position="60px 329px" text="$l10n_ui_savegameName:"/>
+                        <GuiElement type="text" profile="savegameListItemTitle" position="60px 290px" text="$l10n_ui_map:"/>
+                        <GuiElement type="text" profile="savegameListItemTitle" position="60px 251px" text="$l10n_ui_money:"/>
+                        <GuiElement type="text" profile="savegameListItemTitle" position="60px 212px"  text="$l10n_ui_difficulty:"/>
+                        <GuiElement type="text" profile="savegameListItemTitle" position="60px 173px" text="$l10n_ui_duration:"/>
+                        <GuiElement type="text" profile="savegameListItemTitle" position="60px 134px"  text="$l10n_ui_saveDate:"/>
+
+                        <GuiElement type="text" profile="savegameListItemText" name="gameName"      position="396px 329px" textMaxWidth="250px"/>
+                        <GuiElement type="text" profile="savegameListItemText" name="mapName"       position="396px 290px" textMaxWidth="250px"/>
+                        <GuiElement type="text" profile="savegameListItemText" name="money"         position="396px 251px" textMaxWidth="250px"/>
+                        <GuiElement type="text" profile="savegameListItemText" name="difficulty"    position="396px 212px"/>
+                        <GuiElement type="text" profile="savegameListItemText" name="timePlayed"    position="396px 173px"/>
+                        <GuiElement type="text" profile="savegameListItemText" name="createDate"    position="396px 134px"/>
+                    </GuiElement>
+
+                    <GuiElement type="bitmap" profile="savegameListItemDataBox" name="textBox" visible="false">
+                        <GuiElement type="text" profile="savegameListItemUnused" name="infoText"/>
+                    </GuiElement>
+
+                    <GuiElement type="bitmap" profile="savegameListItemImage" name="gameIcon"/>
+                    <GuiElement type="bitmap" profile="listItemSelector"/>
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="flowLayout" profile="buttonBoxDocked" id="buttonsPC">
+                <GuiElement type="button" profile="buttonOK" text="$l10n_button_continue" onClick="onClickOk" id="buttonStartPC"/>
+                <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" />
+                <GuiElement type="button" profile="buttonDelete" text="$l10n_button_delete" onClick="onClickCancel" id="buttonDeletePC"/>
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+    <!-- Footer - Bottom 120px -->
+    <GuiElement type="bitmap" profile="uiElementBaseFooter" />
+</GUI>
+

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onCreate="onCreate" onOpen="onOpen" onClose="onClose">
+     <GuiElement type="bitmap" profile="backgroundImage" /> <!-- Background Image Box Art -->
+
+     <GuiElement type="bitmap" profile="baseReference" screenAlign="bottomLeft" positionOrigin="bottomLeft" position="0px 0px" size="576px 1920px" fixedWidth="true" imageUVs="0 0 0.3 1" imageFilename="shared/splashBlur.png" /> <!-- Blurred Version of Background Image Box Art -->
+
+     <GuiElement type="bitmap" profile="baseReference" screenAlign="bottomCenter" positionOrigin="bottomCenter" position="130px 32px" size="640px 640px" fixedWidth="true" imageUVs="0 0 1 1" imageFilename="dataS2/menu/menuTractors/menuTractor_01.png" id="backgroundTractor"/> <!-- Random Tractor -->
+
+     <GuiElement type="bitmap" profile="baseReference" screenAlign="middleLeft" positionOrigin="middleCenter" position="274px 120px" size="400px 200px" imageUVs="0 0 1 1" imageFilename="dataS2/menu/main_logo_en.png" id="logo"/> <!-- Title Logo -->
+
+     <GuiElement type="text" profile="signInText" text="$l10n_ui_consolePressStart" id="startText" />
+</GUI>

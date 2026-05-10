@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="modHubDetails">
+    <GuiElement type="empty" profile="modHubFrame">
+        <!-- Navigation header -->
+        <GuiElement type="breadcrumbs" profile="modHubNavLayout" id="breadcrumbs">
+            <GuiElement type="text" profile="modHubNavCategoryText" />
+            <GuiElement type="bitmap" profile="modHubNavCategoryArrow" />
+        </GuiElement>
+
+        <GuiElement type="empty" profile="modHubDetailBox" id="pageInformation" >
+            <GuiElement type="bitmap" profile="modHubDetailPreviewBox" position="0px 364px">
+                <GuiElement type="bitmap" profile="modHubDetailPreview" id="modPreviewImage1" />
+            </GuiElement>
+            <GuiElement type="bitmap" profile="modHubDetailPreviewBox" position="0px 0px">
+                <GuiElement type="bitmap" profile="modHubDetailPreview" id="modPreviewImage2" />
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="modHubDetailTitleBox">
+                <GuiElement type="text" profile="modHubDetailAuthor" id="modAuthor" />
+                <GuiElement type="flowLayout" profile="modHubDetailInfoBox" id="modInfoBox">
+                    <GuiElement type="text" profile="modHubDetailInfo" id="modInfoHash" textAlignment="right" />
+                    <GuiElement type="text" profile="modHubDetailInfoSeperator" text="  |  " id="modInfoHashSpace" />
+                    <GuiElement type="text" profile="modHubDetailInfo" id="modInfoVersion" />
+                    <GuiElement type="text" profile="modHubDetailInfoSeperator" text="  |  " id="modInfoBoxSpace" />
+                    <GuiElement type="text" profile="modHubDetailInfo" id="modInfoSize" />
+                </GuiElement>
+            </GuiElement>
+            <GuiElement type="bitmap" profile="modHubDetailDescriptionBox">
+                <GuiElement type="text" profile="modHubDetailDescription" id="modDescription" />
+
+                <GuiElement type="bitmap" profile="verticalGlassListSliderBackground" position="-1px -1px" size="28px 643px">
+                    <GuiElement type="slider" profile="verticalGlassListSlider" size="16px 631px" id="textSlider" onChanged="onDescriptionSliderChanged" focusInit="onOpen" />
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+</GUI>

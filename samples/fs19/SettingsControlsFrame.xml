@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="settingsControls">
+    <GuiElement type="empty" profile="uiInGameMenuFrame">
+        <!-- Page header, includes context message -->
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel" position="130px -60px">
+            <GuiElement type="button" profile="ingameMenuSettingsControlsHeaderHiddenButton" onClick="onClickKeyboardHeader" id="keyboardHiddenButton" handleFocus="false">
+                <GuiElement type="bitmap" profile="ingameMenuSettingsControlsHeaderIconKeyboard" position="0px 0px" id="keyboardHeaderIcon"/>
+                <GuiElement type="text" profile="ingameMenuFrameHeaderText" position="80px 0px" text="$l10n_ui_inGameMenuControlsKeyboard" id="keyboardHeaderText"/>
+            </GuiElement>
+
+            <GuiElement type="button" profile="ingameMenuSettingsControlsHeaderHiddenButton" position="830px 0px" onClick="onClickGamepadHeader" id="gamepadHiddenButton" handleFocus="false">
+                <GuiElement type="bitmap" profile="ingameMenuSettingsControlsHeaderIconGamepad" position="0px 0px" id="gamepadHeaderIcon"/>
+                <GuiElement type="text" profile="ingameMenuFrameHeaderText" position="80px 0px" text="$l10n_ui_inGameMenuControlsController" id="gamepadHeaderText"/>
+            </GuiElement>
+        </GuiElement>
+
+        <!-- Paging element used to switch between device tables -->
+        <GuiElement type="paging" profile="ingameMenuSettingsBox" position="130px -124px" id="pagingElement">
+            <!-- Controls binding tables for keyboard/mouse -->
+            <GuiElement type="bitmap" profile="settingsControlsPage" id="keyboardMousePage">
+                <GuiElement type="boxLayout" profile="settingsControlsTableHeaderBox">
+                    <GuiElement type="tableHeader" profile="settingsControlsTableActionHeader" text="$l10n_ui_action"/>
+                    <GuiElement type="tableHeader" profile="settingsControlsTableKeyboardHeader" position="550px 0px" text="$l10n_ui_key1" />
+                    <GuiElement type="tableHeader" profile="settingsControlsTableKeyboardHeader" position="910px 0px" text="$l10n_ui_key2" />
+                    <GuiElement type="tableHeader" profile="settingsControlsTableKeyboardHeader" position="1270px 0px" text="$l10n_ui_mouse"/>
+                </GuiElement>
+
+                <GuiElement type="table" profile="settingsControlsTable" position="1px -104px" id="keyboardMouseTable" lateInitialization="true" columnNames="kbMouseAction key1 key2 mouseButton" rowTemplateName="kbMouseActionsTemplate">
+                    <GuiElement type="listItem" profile="settingsControlsTableRow" name="kbMouseActionsTemplate" >
+                        <GuiElement type="bitmap" profile="settingsControlsTableBackground">
+                            <GuiElement type="bitmap" profile="settingsControlsTableActionNameCell" handleFocus="false" >
+                                <GuiElement type="text" profile="settingsControlsTableActionText" name="action" id="kbMouseActionText"/>
+                            </GuiElement>
+                            <GuiElement type="button" profile="settingsControlsTableBindingCell" position="550px 0px" onClick="onClickKey1">
+                                <GuiElement type="text" profile="settingsControlsTableText" name="key1" id="kbMouseActionKey1" />
+                            </GuiElement>
+                            <GuiElement type="button" profile="settingsControlsTableBindingCell" position="910px 0px" onClick="onClickKey2" >
+                                <GuiElement type="text" profile="settingsControlsTableText" name="key2" id="kbMouseActionKey2" />
+                            </GuiElement>
+                            <GuiElement type="button" profile="settingsControlsTableBindingCell" position="1270px 0px" onClick="onClickMouse" >
+                                <GuiElement type="text" profile="settingsControlsTableText" name="mouseButton" id="kbMouseActionMouseButton" />
+                            </GuiElement>
+                        </GuiElement>
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="verticalGlassListSliderBackground" position="-1px -104px" size="28px 600px">
+                    <GuiElement type="slider" profile="verticalGlassListSlider" size="16px 588px" dataElementId="keyboardMouseTable" />
+                </GuiElement>
+            </GuiElement>
+
+            <!-- Controls binding tables for gamepads / controllers -->
+            <GuiElement type="bitmap" profile="settingsControlsPage" id="gamepadPage">
+                <GuiElement type="boxLayout" profile="settingsControlsTableHeaderBox">
+                    <GuiElement type="tableHeader" profile="settingsControlsTableActionHeader" text="$l10n_ui_action"/>
+                    <GuiElement type="tableHeader" profile="settingsControlsTableGamepadHeader" position="412px 0px" text="$l10n_ui_gamepad"/>
+                    <GuiElement type="tableHeader" profile="settingsControlsTableGamepadHeader" position="892px 0px" text="$l10n_ui_gamepad"/>
+                </GuiElement>
+
+                <GuiElement type="table" profile="settingsControlsTable" position="1px -104px" id="gamepadTable" lateInitialization="true" columnNames="gamepadAction gamepadButton1 gamepadButton2" rowTemplateName="gamepadActionsTemplate" >
+                    <GuiElement type="listItem" profile="settingsControlsTableRow" name="gamepadActionsTemplate">
+                        <GuiElement type="bitmap" profile="settingsControlsTableBackground">
+                            <GuiElement type="bitmap" profile="settingsControlsTableActionNameCell" handleFocus="false">
+                                <GuiElement type="text" profile="settingsControlsTableActionText" name="gamepadAction" id="gamepadActionText" />
+                            </GuiElement>
+                            <GuiElement type="button" profile="settingsControlsTableBindingGamepadCell" position="412px 0px" onClick="onClickGamepadButton1" >
+                                <GuiElement type="text" profile="settingsControlsTableText" name="gamepadButton1" id="gamepadActionButton1" />
+                            </GuiElement>
+                            <GuiElement type="button" profile="settingsControlsTableBindingGamepadCell" position="892px 0px" onClick="onClickGamepadButton2" >
+                                <GuiElement type="text" profile="settingsControlsTableText" name="gamepadButton2" id="gamepadActionButton2" />
+                            </GuiElement>
+                        </GuiElement>
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="verticalGlassListSliderBackground" position="-1px -104px" size="28px 600px">
+                    <GuiElement type="slider" profile="verticalGlassListSlider" size="16px 588px" dataElementId="gamepadTable" />
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+
+        <GuiElement type="empty" profile="emptyPanel" position="-138px -44px" screenAlign="bottomRight" positionOrigin="bottomRight" size="680px 64px">
+            <GuiElement type="text" profile="settingsControlsMessageText" position="-44px 0px" text="" id="controlsMessage"/>
+            <GuiElement type="bitmap" profile="settingsControlsMessageWarningIcon" position="-0px 0px" visible="false" id="controlsMessageWarningIcon"/>
+        </GuiElement>
+
+        <GuiElement type="text" profile="controllerSettingsAbuseText" position="0px -80px" text="$l10n_stadia_controller_disclaimer" id="disclaimerLabel" />
+    </GuiElement>
+</GUI>

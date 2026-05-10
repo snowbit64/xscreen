@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <!-- Background FullScreen Relative -->
+    <GuiElement type="bitmap" profile="uiFullBlurBG"/>
+
+    <!-- Header - Top 120 px-->
+    <GuiElement type="bitmap" profile="uiElementBaseHeader" />
+
+    <!-- Body - Central -->
+    <GuiElement type="bitmap" profile="uiElementContainerFullScreen">
+
+        <GuiElement type="bitmap" profile="uiElementCenter">
+
+            <GuiElement type="bitmap" profile="headerBoxDocked">
+                <GuiElement type="bitmap" profile="mapSelectionIcon"/>
+                <GuiElement type="text" profile="headerText" text="$l10n_ui_selectAMap" />
+            </GuiElement>
+
+            <!-- Left and right clickable indicators -->
+            <GuiElement type="slider" profile="sliderInvisible" onChanged="onClickMapSelection" dataElementId="mapList" id="mapSelector" handleFocus="false">
+                <GuiElement type="button" profile="largeSelectorRight" />
+                <GuiElement type="button" profile="largeSelectorLeft" />
+
+                <GuiElement type="button" profile="largeSelectorRightGamepad" id="selectorRightGamepad" />
+                <GuiElement type="button" profile="largeSelectorLeftGamepad" id="selectorLeftGamepad" />
+            </GuiElement>
+
+            <!-- The list of maps, switches the map image -->
+            <GuiElement type="list" profile="mapPreviewList" id="mapList" onSelectionChanged="onSelectionChanged" handleFocus="false">
+                <GuiElement type="listItem" profile="mapPreviewListItem" id="listItemTemplate" visible="false">
+                    <GuiElement type="bitmap" profile="mapPreview" onCreate="onCreateMapImage"/>
+                </GuiElement>
+            </GuiElement>
+
+            <!-- Overlayed map info -->
+            <GuiElement type="bitmap" profile="mapSelectionBG">
+                <GuiElement type="text" profile="mapSelectTitle" id="mapSelectionTitle"/>
+                <GuiElement type="text" profile="mapSelectText" id="mapSelectionText"/>
+            </GuiElement>
+
+            <!-- Dots -->
+            <GuiElement type="indexState" profile="selectionStateBoxDocked" stateElementTemplateId="selectStateIconTemplate" indexableElementId="mapList">
+                <GuiElement type="bitmap" profile="selectionStateDocked" id="selectStateIconTemplate"/>
+            </GuiElement>
+
+            <GuiElement type="flowLayout" profile="buttonBoxDocked" id="buttonsPC">
+                <GuiElement type="button" profile="buttonOK"   text="$l10n_button_continue" onClick="onClickOk" />
+                <GuiElement type="button" profile="buttonBack" text="$l10n_button_back"     onClick="onClickBack" />
+            </GuiElement>
+
+        </GuiElement>
+    </GuiElement>
+
+    <!-- Footer - Bottom 120px -->
+    <GuiElement type="bitmap" profile="uiElementBaseFooter" />
+</GUI>

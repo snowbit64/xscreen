@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GuiSoundSamples>
+    <click file="$data/sounds/ui/uiClick.wav">
+        <volume indoor="0.7" outdoor="0.7" />
+        <pitch indoor="1.00" outdoor="1.00" />
+    </click>
+    <back file="$data/sounds/ui/uiBack.wav">
+        <volume indoor="0.7" outdoor="0.7" />
+        <pitch indoor="1.00" outdoor="1.00" />
+    </back>
+    <hover file="$data/sounds/ui/uiHover.wav">
+        <volume indoor="0.5" outdoor="0.5" />
+        <pitch indoor="1.00" outdoor="1.00" />
+    </hover>
+    <error file="$data/sounds/ui/uiError.wav">
+        <volume indoor="0.7" outdoor="0.7" />
+        <pitch indoor="1.00" outdoor="1.00" />
+    </error>
+    <slider file="$data/sounds/ui/uiSlider.wav">
+        <volume indoor="0.7" outdoor="0.7" />
+        <pitch indoor="1.00" outdoor="1.00" />
+    </slider>
+    <paging file="$data/sounds/ui/uiPaging.wav">
+        <volume indoor="0.7" outdoor="0.7" />
+        <pitch indoor="1.00" outdoor="1.00" />
+    </paging>
+    <transaction file="$data/sounds/ui/uiTransaction.wav">
+        <volume indoor="0.3" outdoor="0.3" />
+        <pitch indoor="1.00" outdoor="1.00" />
+    </transaction>
+    <success file="$data/sounds/ui/uiSuccess.wav">
+        <volume indoor="0.7" outdoor="0.7" />
+        <pitch indoor="1.00" outdoor="1.00" />
+    </success>
+    <fail file="$data/sounds/ui/uiFail.wav">
+        <volume indoor="0.7" outdoor="0.7" />
+        <pitch indoor="1.00" outdoor="1.00" />
+    </fail>
+    <achievement file="$data/sounds/ui/uiAchievement.wav">
+        <volume indoor="0.7" outdoor="0.7" />
+        <pitch indoor="1.00" outdoor="1.00" />
+    </achievement>
+
+    <configSpray file="$data/sounds/ui/uiConfigSpray.wav">
+        <volume indoor="0.7" outdoor="0.7" />
+        <pitch indoor="1.00" outdoor="1.00" />
+    </configSpray>
+    <configWrench file="$data/sounds/ui/uiConfigWrench.wav">
+        <volume indoor="0.7" outdoor="0.7" />
+        <pitch indoor="1.00" outdoor="1.00" />
+    </configWrench>
+</GuiSoundSamples>

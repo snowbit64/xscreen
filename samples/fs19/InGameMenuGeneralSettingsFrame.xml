@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="ingameMenuGameSettingsGeneral">
+    <GuiElement type="empty" profile="uiInGameMenuFrame">
+        <!-- Static page header -->
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel" position="130px -60px">
+            <GuiElement type="bitmap" profile="ingameMenuGeneralSettingsHeaderIcon" position="0px 0px"/>
+            <GuiElement type="text" profile="ingameMenuFrameHeaderText" position="80px 0px" text="$l10n_ui_ingameMenuGameSettingsGeneral"/>
+        </GuiElement>
+
+        <!-- Layouted settings box -->
+        <GuiElement type="empty" profile="ingameMenuSettingsBox" position="130px -124px" id="settingsContainer">
+            <GuiElement type="boxLayout" profile="ingameMenuSettingsLayout" position="50px -50px" id="boxLayout">
+                <GuiElement type="checkedOption" profile="multiTextOptionSettings" onClick="onClickCheckbox" id="checkAutoHelp" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_autoHelp" focusInit="onOpen">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_helpWindow"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="checkedOption" profile="multiTextOptionSettings" onClick="onClickCheckbox" id="checkHelpIcons" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_helpIcons">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_helpIconsOnMap"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="checkedOption" profile="multiTextOptionSettings" onClick="onClickCheckbox" id="checkColorBlindMode" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_colorBlindMode">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_colorBlindMode"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickMultiOption" id="multiMoneyUnit" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_moneyUnit">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_moneyUnit"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="checkedOption" profile="multiTextOptionSettings" onClick="onClickCheckbox" id="checkUseMiles" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_useMiles">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_measuringUnit"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+<!--                <GuiElement type="checkedOption" profile="multiTextOptionSettings" onClick="onClickCheckbox" id="checkUseFahrenheit" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_useFahrenheit">-->
+<!--                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />-->
+<!--                    <GuiElement type="button" profile="multiTextOptionSettingsRight" />-->
+<!--                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />-->
+<!--                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_temperatureUnit"/>-->
+<!--                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />-->
+<!--                </GuiElement>-->
+                <GuiElement type="checkedOption" profile="multiTextOptionSettings" onClick="onClickCheckbox" id="checkUseAcre" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_useAcre">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_areaUnit"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="checkedOption" profile="multiTextOptionSettings" onClick="onClickCheckbox" id="checkShowTriggerMarker" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_showTriggerMarker">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_triggerMarker"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="checkedOption" profile="multiTextOptionSettings" onClick="onClickCheckbox" id="checkShowFieldInfo" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_showFieldInfo">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_ui_fieldInfo"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="checkedOption" profile="multiTextOptionSettings" onClick="onClickCheckbox" id="checkIsRadioActive" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_radioIsActive">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_radio"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="checkedOption" profile="multiTextOptionSettings" onClick="onClickCheckbox" id="checkIsRadioVehicleOnly" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_radioState">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_radioRange"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="checkedOption" profile="multiTextOptionSettings" onClick="onClickCheckbox" id="checkResetCamera" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_resetCamera">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_resetCamera"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="checkedOption" profile="multiTextOptionSettings" onClick="onClickCheckbox" id="checkUseWorldCamera" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_useWorldCamera">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_useWorldCamera"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="checkedOption" profile="multiTextOptionSettings" onClick="onClickCheckbox" id="checkInvertYLook" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_invertYLook">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_invertYLook"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="checkedOption" profile="multiTextOptionSettings" onClick="onClickCheckbox" id="checkUseEasyArmControl" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_easyArmControl">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_easyArmControl"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickMultiOption" id="multiCameraSensitivity" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_cameraSensitivity">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_cameraSensitivity"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickMultiOption" id="multiVehicleArmSensitivity" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_vehicleArmSensitivity">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_vehicleArmSensitivity"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickMultiOption" id="multiSteeringBackSpeed" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_steeringBackSpeed">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_steeringBackSpeed"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickMultiOption" id="multiSteeringSensitivity" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_steeringSensitivity">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_steeringSensitivity"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="checkedOption" profile="multiTextOptionSettings" onClick="onClickCheckbox" id="checkIsTrainTabbable" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_isTrainTabbable">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_isTrainTabbable"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickMultiOption" id="multiMasterVolume" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_volumeMaster">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_volumeMaster"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickMultiOption" id="multiVehicleVolume" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_volumeVehicle">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_volumeVehicles"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickMultiOption" id="multiEnvironmentVolume" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_volumeEnvironment">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_volumeEnvironment"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickMultiOption" id="multiRadioVolume" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_volumeRadio">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_volumeRadio"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickMultiOption" id="multiVolumeGUI" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_volumeGUI">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_volumeGUI"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+                <GuiElement type="multiTextOption" profile="multiTextOptionSettings" onClick="onClickMultiOption" id="multiInputHelpMode" toolTipElementId="generalSettingsHelpBoxText" toolTipText="$l10n_toolTip_inputHelpMode">
+                    <GuiElement type="button" profile="multiTextOptionSettingsLeft" />
+                    <GuiElement type="button" profile="multiTextOptionSettingsRight"/>
+                    <GuiElement type="text"   profile="multiTextOptionSettingsText" />
+                    <GuiElement type="text"   profile="multiTextOptionSettingsTitle" text="$l10n_setting_inputHelpMode"/>
+                    <GuiElement type="bitmap" profile="multiTextOptionSettingsBg" />
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+
+        <GuiElement type="bitmap" profile="ingameMenuHelpRowBg" position="210px 64px" id="generalSettingsHelpBox" visible="false">
+            <GuiElement type="bitmap" profile="ingameMenuHelpRowIcon" />
+            <GuiElement type="text" profile="ingameMenuHelpRowText" id="generalSettingsHelpBoxText" text="" onTextChanged="onToolTipBoxTextChanged"/>
+        </GuiElement>
+
+        <!-- XBOX-only native help button -->
+        <GuiElement type="button" profile="ingameMenuSettingsNativeHelpButton" position="-210px 64px" text="$l10n_button_help" id="buttonNativeHelp" onClick="onClickNativeHelp"/>
+    </GuiElement>
+</GUI>

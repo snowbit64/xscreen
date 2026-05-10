@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose">
+    <GuiElement type="text" profile="textDefault" screenAlign="bottomCenter" positionOrigin="bottomCenter" position="0px 120px" id="messageText" textAlignment="center" />
+    <GuiElement type="bitmap" profile="placementCrosshair" id="crossHairElement" />
+
+    <!-- Mode selection at top -->
+    <GuiElement type="bitmap" profile="landscapingModeBox" position="0px -25px">
+        <GuiElement type="list" profile="landscapingModeList" position="0px 0px" id="modeList">
+            <GuiElement type="listItem" profile="landscapingModeItem" id="sculptModeListItem">
+                <GuiElement type="bitmap" profile="landscapingModeFrame" id="sculptModeIconFrame">
+                    <GuiElement type="bitmap" profile="landscapingModeIconSculpting" id="sculptModeIcon"/>
+                </GuiElement>
+                <GuiElement type="text" profile="landscapingModeLabel" text="$l10n_ui_landscaping_sculptingMode"/>
+            </GuiElement>
+            <GuiElement type="listItem" profile="landscapingModeItem" id="paintModeListItem">
+                <GuiElement type="bitmap" profile="landscapingModeFrame" id="paintModeIconFrame">
+                    <GuiElement type="bitmap" profile="landscapingModeIconPainting" id="paintModeIcon"/>
+                </GuiElement>
+                <GuiElement type="text" profile="landscapingModeLabel" text="$l10n_ui_landscaping_paintingMode"/>
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="boxLayout" profile="landscapingSettingsDisplayBox" position="-25px 25px" id="settingsBox">
+        <!-- Settings display -->
+        <GuiElement type="bitmap" profile="landscapingSettingsItem" position="30px 0px" id="brushSizeItem">
+            <GuiElement type="text" profile="landscapingSettingsLabel" position="0px 0px" text="$l10n_ui_landscaping_brushSize"/>
+            <GuiElement type="text" profile="landscapingSettingsValue" position="0px 0px" text="1" id="brushSizeValue"/>
+            <GuiElement type="bitmap" profile="lineSeparator" size="280px 1dp" screenAlign="bottomCenter" positionOrigin="bottomCenter"/>
+        </GuiElement>
+        <GuiElement type="bitmap" profile="landscapingSettingsItem" position="30px 0px" id="brushStrengthItem">
+            <GuiElement type="text" profile="landscapingSettingsLabel" position="0px 0px" text="$l10n_ui_landscaping_brushStrength"/>
+            <GuiElement type="text" profile="landscapingSettingsValue" position="0px 0px" text="1" id="brushStrengthValue"/>
+        </GuiElement>
+
+        <!-- Texture display -->
+        <GuiElement type="bitmap" profile="landscapingPaintTextureBox" position="30px 0px" id="paintMaterialItem">
+            <GuiElement type="text" profile="landscapingPaintTextureLabel" position="0px 0px" text="$l10n_ui_landscaping_groundMaterial" id="paintTextureLabel"/>
+            <GuiElement type="bitmap" profile="landscapingPaintTextureFrame" position="0px 0px">
+                <GuiElement type="bitmap" profile="landscapingPaintTextureImage" position="0px 0px" id="paintTextureImage"/>
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+</GUI>

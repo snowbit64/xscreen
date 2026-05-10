@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose">
+    <GuiElement type="textInput" profile="chatTextInput" onEnterPressed="onEnterPressed" onEscPressed="onEscPressed" focusId="1" imeKeyboardType="normal" imeTitle="$l10n_ui_chat"
+        imeDescription="$l10n_ui_chat" imePlaceholder="$l10n_ui_chat" id="textElement" />
+
+
+    <GUIProfiles>
+        <Profile name="chatTextInput" extends="textInput">
+            <Value name="size" value="560px 36px"/>
+            <Value name="maxInputTextWidth" value="540px"/>
+            <Value name="maxCharacters" value="150"/>
+            <Value name="position" value="25px 264px"/>
+            <Value name="textAlignment" value="left"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="cursorSize" value="1px 20px"/>
+            <Value name="cursorOffset" value="4px -2px"/>
+        </Profile>
+    </GUIProfiles>
+</GUI>
+

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" id="dialogBg" />
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="roundCorner" profile="refillDialogBg" id="dialogElement">
+        <GuiElement type="bitmap" profile="dialogHeaderDocked">
+            <GuiElement type="text" profile="dialogHeaderText" text="" id="dialogTitleElement"/>
+        </GuiElement>
+
+        <GuiElement type="text" profile="refillDialogText" text="$l10n_ui_siloRefillingDescription:" id="dialogTextElement" />
+
+        <GuiElement type="multiTextOption" profile="refillDialogMultiTextOption1" onClick="onClickFillTypes" id="fillTypesElement" focusInit="onOpen">
+            <GuiElement type="text"   profile="refillDialogMultiTextOptionText" id="fillTypeText" name="text" />
+            <GuiElement type="bitmap" profile="refillDialogMultiTextOptionIcon" id="fillTypeIcon" name="icon" />
+        </GuiElement>
+
+        <GuiElement type="multiTextOption" profile="refillDialogMultiTextOption2" onClick="onClickFillAmount" id="fillAmountsElement">
+            <GuiElement type="text"   profile="refillDialogMultiTextOptionText" id="fillAmountText" name="text" />
+        </GuiElement>
+
+        <GuiElement type="bitmap" profile="refillDialogMessageBg" id="messageBackground">
+            <GuiElement type="text" profile="refillDialogMessage" text="$l10n_message_noSpaceForFillType" />
+        </GuiElement>
+
+        <GuiElement type="flowLayout" profile="buttonBoxDialog" id="buttonsPC">
+            <GuiElement type="button" profile="buttonOK" text="$l10n_button_buy" onClick="onClickOk" id="yesButton" />
+            <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" id="noButton" />
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="refillDialogBg" extends="dialogBg">
+            <Value name="size" value="498px 260px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="1200px 500px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="refillDialogText" extends="dialogTextWithTitle">
+            <Value name="position" value="0px -35px"/>
+            <Value name="textWrapWidth" value="420px"/>
+
+            <Variant name="mobile">
+                <Value name="textMaxWidth" value="1000px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="refillDialogMultiTextOption1" extends="multiTextOption" with="anchorTopCenter">
+            <Value name="size" value="408px 48px"/>
+            <Value name="position" value="0px -80px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="800px 105px"/>
+                <Value name="position" value="0px -150px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="refillDialogMultiTextOption2" extends="multiTextOption" with="anchorTopCenter">
+            <Value name="size" value="408px 48px"/>
+            <Value name="position" value="0px -145px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="800px 105px"/>
+                <Value name="position" value="0px -270px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="refillDialogMultiTextOptionText" extends="multiTextOptionText">
+            <!-- offset for icon -->
+            <Value name="position" value="15px 0"/>
+
+            <Variant name="mobile">
+                <Value name="position" value="0px 0px"/>
+                <Value name="textResizeWidth" value="420px"/>
+                <Value name="textMaxWidth" value="550px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="refillDialogMultiTextOptionBg" extends="multiTextOptionBg">
+            <Value name="size" value="312px 48px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="586px 105px"/>
+                <Value name="position" value="0px 0px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="refillDialogMultiTextOptionIcon" extends="baseReference" with="anchorMiddleCenter">
+            <Value name="imageUVs" value="0 0 1 1"/>
+            <Value name="size" value="40px 40px"/>
+            <Value name="position" value="0"/>
+            <Value name="margin" value="0px 0px 20px 0px"/>
+
+            <Variant name="mobile" with="anchorMiddleLeft">
+                <Value name="size" value="80px 80px"/>
+                <Value name="margin" value="0px 0px -120px 0px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="refillDialogMessageBg" extends="baseReference" with="anchorBottomCenter">
+            <Value name="imageColor" value="$preset_colorDarkRed"/>
+            <Value name="size" value="498px 40px"/>
+            <Value name="position" value="0 2px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="1200px 80px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="refillDialogMessage" extends="textDefault" with="anchorMiddleCenter">
+            <Value name="textMaxWidth" value="420px"/>
+            <Value name="size" value="498px 40px"/>
+            <Value name="textSize" value="16px"/>
+            <Value name="textColor" value="$preset_colorWhite"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+
+            <Variant name="mobile">
+                <Value name="textMaxWidth" value="900px"/>
+                <Value name="textSize" value="33px"/>
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" id="dialogBg" />
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="roundCorner" profile="siloDialogBg" id="dialogElement">
+        <GuiElement type="bitmap" profile="dialogHeaderDocked">
+            <GuiElement type="text" profile="dialogHeaderText" text="" id="dialogTitleElement"/>
+        </GuiElement>
+
+        <GuiElement type="text" profile="siloDialogText" text="$l10n_ui_siloFillingDescription:" id="dialogTextElement" />
+
+        <GuiElement type="multiTextOption" profile="multiTextOptionSilo" onClick="onClickFillTypes" id="fillTypesElement" focusInit="onOpen" handleFocus="true">
+            <GuiElement type="text"   profile="multiTextOptionSiloText" id="siloText" name="text" />
+            <GuiElement type="bitmap" profile="multiTextOptionSiloIcon" id="siloIcon" name="icon"/>
+        </GuiElement>
+
+        <GuiElement type="roundCorner" profile="siloDialogMessageBg" id="messageBackground">
+            <GuiElement type="text" profile="siloDialogMessage" text="$l10n_message_selectedSiloIsEmpty" />
+        </GuiElement>
+
+        <GuiElement type="flowLayout" profile="buttonBoxDialogSilo" id="buttonsPC">
+            <GuiElement type="button" profile="buttonOK" text="$l10n_button_start" onClick="onClickOk" id="yesButton" />
+            <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" id="noButton" />
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="siloDialogBg" extends="dialogBg">
+            <Value name="size" value="498px 234px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="1200px 400px"/>
+                <Value name="textMaxWidth" value="1000px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="buttonBoxDialogSilo" extends="buttonBoxDialog">
+            <Variant name="mobile">
+                <Value name="size" value="1200px 200px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="siloDialogText" extends="dialogTextWithTitle">
+            <Value name="position" value="0px -35px"/>
+            <Value name="textWrapWidth" value="420px"/>
+
+            <Variant name="mobile">
+                <Value name="textMaxWidth" value="850px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="multiTextOptionSilo" extends="multiTextOption" with="anchorTopCenter">
+            <Value name="size" value="408px 48px"/>
+            <Value name="position" value="0px -110px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="800px 105px"/>
+                <Value name="position" value="0px -200px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="multiTextOptionSiloText" extends="multiTextOptionText">
+            <!-- offset for icon -->
+            <Value name="position" value="15px 0"/>
+
+            <Variant name="mobile">
+                <Value name="position" value="0px 0px"/>
+                <Value name="textResizeWidth" value="420px"/>
+                <Value name="textMaxWidth" value="550px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="multiTextOptionSiloIcon" extends="baseReference" with="anchorMiddleCenter">
+            <Value name="imageUVs" value="0 0 1 1"/>
+            <Value name="size" value="40px 40px"/>
+            <Value name="position" value="0"/>
+            <Value name="margin" value="0px 0px 20px 0px"/>
+
+            <Variant name="mobile" with="anchorMiddleLeft">
+                <Value name="size" value="80px 80px"/>
+                <Value name="margin" value="0px 0px -120px 0px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="siloDialogMessageBg" extends="baseReference" with="anchorBottomCenter">
+            <Value name="imageColor" value="$preset_colorDarkRed"/>
+            <Value name="size" value="498px 40px"/>
+            <Value name="position" value="0 2px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="1200px 80px"/>
+                <Value name="color" value="$preset_colorDarkRed"/>
+                <Value name="position" value="0 0px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="siloDialogMessage" extends="textDefault" with="anchorMiddleCenter">
+            <Value name="textMaxWidth" value="420px"/>
+            <Value name="size" value="498px 40px"/>
+            <Value name="textSize" value="16px"/>
+            <Value name="textColor" value="$preset_colorWhite"/>
+            <Value name="textAlignment" value="center"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+
+            <Variant name="mobile">
+                <Value name="textMaxWidth" value="900px"/>
+                <Value name="textSize" value="33px"/>
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

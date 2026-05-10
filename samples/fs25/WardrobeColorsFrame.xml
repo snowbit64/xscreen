@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="wardrobeColors">
+    <GuiElement type="empty" profile="wardrobeFrame">
+        <GuiElement type="text" profile="wardrobeFrameTitle" id="title" />
+
+        <GuiElement type="smoothList" profile="wardrobeColorList" id="primaryList" onClick="onClickSelect" onDoubleClick="onDoubleClickSelect" focusInit="onOpen" showHighlights="true">
+            <GuiElement type="listItem" profile="wardrobeColorListItem">
+
+                <GuiElement type="bitmap" profile="wardrobeColorIcon" name="icon" />
+
+                <GuiElement type="bitmap" profile="wardrobeItemSelection" name="selected">
+                    <GuiElement type="bitmap" profile="wardrobeItemSelectionTick" />
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="wardrobeColorList" extends="list" with="anchorTopCenter">
+            <Value name="size" value="600px 347.4px" />
+            <Value name="position" value="0 -200px" />
+
+            <Value name="numLateralItems" value="12" />
+            <Value name="isHorizontalList" value="false" />
+
+            <Value name="listItemLateralSpacing" value="5.4px"/>
+            <Value name="listItemSpacing" value="5.4px"/>
+        </Profile>
+        <Profile name="wardrobeColorListItem" extends="listItem">
+            <Value name="size" value="48px 48px" />
+
+            <Value name="imageColor" value="$preset_colorItemBgNormal"/>
+            <Value name="imageFocusedColor" value="$preset_colorMainUI_80"/>
+            <Value name="imageSelectedColor" value="$preset_colorMainUI_80"/>
+        </Profile>
+
+        <Profile name="wardrobeColorIcon" extends="baseReference" with="anchorMiddleCenter">
+            <Value name="size" value="38px 38px" />
+        </Profile>
+    </GUIProfiles>
+</GUI>

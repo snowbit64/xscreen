@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="empty" profile="newLayer" />
+    <GuiElement type="bitmap" profile="dialogFullscreenBg" id="dialogBg" />
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlowDialog" />
+
+    <GuiElement type="roundCorner" profile="editFarmDialogBg" id="dialogElement">
+        <GuiElement type="bitmap" profile="dialogHeaderDocked">
+            <GuiElement type="text" profile="dialogHeaderText" text="$l10n_ui_createNewFarm" id="titleText"/>
+        </GuiElement>
+
+        <!-- Farm Color -->
+        <GuiElement type="bitmap" profile="editFarmDialogFarmIconBg"/>
+        <GuiElement type="bitmap" profile="editFarmDialogFarmIcon" id="farmIconPreview" />
+
+        <GuiElement type="boxLayout" profile="editFarmDialogLayout">
+            <!-- Farm Name -->
+            <GuiElement type="textInput" profile="editFarmDialogTextInput" id="farmNameInput" imeKeyboardType="normal" imeTitle="$l10n_ui_farmName" imeDescription="$l10n_ui_farmName" imePlaceholder="$l10n_ui_farmName" focusInit="onOpen">
+                <GuiElement type="text" profile="multiTextOptionTitle" text="$l10n_ui_farmName"/>
+            </GuiElement>
+
+            <!-- Farm Password -->
+            <GuiElement type="textInput" profile="editFarmDialogPasswordTextInput" id="farmPasswordInput" imeKeyboardType="password" imeTitle="$l10n_ui_password" imeDescription="$l10n_ui_password" imePlaceholder="$l10n_ui_password">
+                <GuiElement type="text" profile="multiTextOptionTitle" text="$l10n_ui_password"/>
+            </GuiElement>
+
+            <!-- Button Layout -->
+            <GuiElement type="text" profile="editFarmDialogColorsTitle" text="$l10n_ui_farmColor" />
+
+            <GuiElement type="boxLayout" profile="editFarmDialogColorsLayout" id="colorButtonLayout" />
+
+            <!-- Color Button Template -->
+            <GuiElement type="colorPickButton" profile="editFarmDialogColorButton" visible="false" onClick="onClickColorButton" onFocus="onFocusColorButton" onLeave="onLeaveColorButton" onHighlight="onFocusColorButton" onHighlightRemove="onLeaveColorButton" id="buttonTemplate" />
+        </GuiElement>
+
+        <!-- Dialog Buttons -->
+        <GuiElement type="flowLayout" profile="buttonBoxDialog" id="dialogButtonLayout" >
+            <GuiElement type="button" profile="buttonOK" text="$l10n_button_mp_createFarm" onClick="onClickDone" id="okButton" />
+            <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" id="backButton" />
+            <GuiElement type="button" profile="buttonActivate" text="$l10n_button_change" onClick="onClickEdit" id="editButton" />
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="editFarmDialogBg" extends="dialogBg">
+            <Value name="size" value="1100px 450px"/>
+        </Profile>
+
+        <Profile name="editFarmDialogFarmIconBg" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="size" value="228px 228px"/>
+            <Value name="position" value="75px 0"/>
+            <Value name="imageColor" value="$preset_colorMainUI_10"/>
+            <Value name="imageUVs" value="0 0 256px 256px"/>
+            <Value name="imageFilename" value="dataS/menu/hud/multiplayer_icons.png"/>
+        </Profile>
+
+        <Profile name="editFarmDialogFarmIcon" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="size" value="228px 228px"/>
+            <Value name="position" value="75px 0"/>
+            <Value name="imageColor" value="$preset_colorWhite"/>
+            <Value name="imageUVs" value="330px 0 256px 256px"/>
+            <Value name="imageFilename" value="dataS/menu/hud/multiplayer_icons.png"/>
+        </Profile>
+
+        <Profile name="editFarmDialogLayout" extends="emptyPanel" with="anchorMiddleRight">
+            <Value name="size" value="630px 290px"/>
+
+            <Value name="flowDirection" value="vertical"/>
+            <Value name="alignmentX" value="left"/>
+            <Value name="alignmentY" value="top"/>
+
+            <Value name="useFullVisibility" value="false"/>
+            <Value name="autoValidateLayout" value="true"/>
+        </Profile>
+
+        <Profile name="editFarmDialogTextInput" extends="textInput">
+            <Value name="handleFocus" value="true"/>
+            <Value name="size" value="418px 48px"/>
+
+            <Value name="margin" value="0 28px 40px 16px"/>
+
+            <Value name="maxInputTextWidth" value="410px"/>
+            <Value name="maxCharacters" value="24"/>
+            <Value name="textSize" value="18px"/>
+            <Value name="textBold" value="false"/>
+            <Value name="textAlignment" value="left"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+        </Profile>
+
+        <Profile name="editFarmDialogPasswordTextInput" extends="editFarmDialogTextInput">
+            <Value name="isPassword" value="true"/>
+            <Value name="maxCharacters" value="16"/>
+        </Profile>
+
+        <Profile name="editFarmDialogColorsTitle" extends="textDefault">
+            <Value name="margin" value="0 0px 40px 10px"/>
+            <Value name="textOffset" value="2px 0"/>
+            <Value name="textAlignment" value="left"/>
+            <Value name="textSize" value="20px"/>
+            <Value name="textMaxWidth" value="295px"/>
+        </Profile>
+
+        <Profile name="editFarmDialogColorsLayout" extends="emptyPanel">
+            <Value name="fitFlowToElements" value="true" />
+            <Value name="flowDirection" value="horizontal" />
+            <Value name="size" value="418px 52px" />
+            <Value name="margin" value="0 0 40px 16px"/>
+        </Profile>
+
+        <Profile name="editFarmDialogColorButton" extends="wideButton" with="anchorTopLeft">
+            <Value name="fitToContent" value="false"/>
+            <Value name="handleFocus" value="true"/>
+
+            <Value name="size" value="48px 48px"/>
+            <Value name="position" value="0"/>
+            <Value name="iconSize" value="0"/>
+            <Value name="margin" value="2px 2px 2px 2px" />
+
+            <Value name="selectionFrameThickness" value="3px 3px" />
+            <Value name="selectionFrameColor" value="$preset_colorMainUI" />
+            <Value name="metallicImageUVs" value="544px 718px 48px 48px" />
+        </Profile>
+    </GUIProfiles>
+</GUI>

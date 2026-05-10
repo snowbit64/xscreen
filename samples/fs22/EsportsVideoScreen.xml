@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="dynamicFadedBitmap" profile="uiFullBlurBG"/>
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlow" />
+
+    <GuiElement type="video"  profile="esportsVideo" id="videoElement" allowStop="false" onCreate="onVideoElementCreated" onEndVideo="onVideoEnd" subtitleElementId="subtitles" timeLeftElementId="timeLeft" >
+        <GuiElement type="text" profile="esportsVideoSubtitles" id="subtitles" />
+        <GuiElement type="text" profile="esportsVideoTime" id="timeLeft" text="-00:00" />
+    </GuiElement>
+
+    <GuiElement type="flowLayout" profile="buttonBoxDockedOnScreen">
+        <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" />
+    </GuiElement>
+
+    <GUIProfiles>
+        <Profile name="esportsVideo" with="anchorMiddleCenter">
+            <Value name="size" value="1920px 1080px" />
+            <Value name="position" value="0px 0px" />
+
+            <Value name="hasFrame" value="false"/>
+            <Value name="frameThickness" value="2px 2px 2px 2px"/>
+            <Value name="frameLeftColor" value="$preset_colorMainUI" />
+            <Value name="frameTopColor" value="$preset_colorMainUI" />
+            <Value name="frameRightColor" value="$preset_colorMainUI" />
+            <Value name="frameBottomColor" value="$preset_colorMainUI" />
+        </Profile>
+
+        <Profile name="esportsVideoSubtitles" extends="textDefault" with="anchorBottomCenter">
+            <Value name="size" value="1400px 40px" />
+            <Value name="position" value="0px 48px" />
+            <Value name="textMaxNumLines" value="2"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textSize" value="40px" />
+            <Value name="textAlignment" value="center" />
+        </Profile>
+        <Profile name="esportsVideoTime" extends="textDefault" with="anchorBottomRight">
+            <Value name="size" value="100px 40px" />
+            <Value name="position" value="-45px 45px" />
+            <Value name="textMaxNumLines" value="2"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+            <Value name="textSize" value="30px" />
+            <Value name="textAlignment" value="right" />
+        </Profile>
+    </GUIProfiles>
+</GUI>

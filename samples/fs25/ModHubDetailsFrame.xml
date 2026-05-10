@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="modHubDetails">
+    <GuiElement type="empty" profile="modHubFrame">
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel">
+            <GuiElement type="text" profile="ingameMenuFrameHeaderText" position="0 0" id="headerText"/>
+
+            <!-- Current balance display in header -->
+            <GuiElement type="flowLayout" profile="shopMoneyBox">
+                <GuiElement type="text" profile="shopBalance" text="$l10n_ui_usedDiscSpace:" />
+                <GuiElement type="text" profile="shopMoney" text="0" position="0px 0px" id="spaceUsageLabel" />
+            </GuiElement>
+        </GuiElement>
+
+        <!-- Navigation header -->
+        <GuiElement type="breadcrumbs" profile="shopItemsNavLayout" id="breadcrumbs">
+            <GuiElement type="textBackdrop" profile="shopItemsNavItemTextBackdrop">
+                <GuiElement type="text" profile="shopItemsNavItemText" />
+            </GuiElement>
+            <GuiElement type="bitmap" profile="shopItemsNavFilledArrow" />
+        </GuiElement>
+
+        <GuiElement type="empty" profile="modHubDetailBox" id="pageInformation" >
+            <GuiElement type="bitmap" profile="modHubDetailPreview" id="modPreviewImage[1]" position="0 0" />
+            <GuiElement type="bitmap" profile="modHubDetailPreview" id="modPreviewImage[2]" position="482.5px 0" />
+            <GuiElement type="bitmap" profile="modHubDetailPreview" id="modPreviewImage[3]" position="965px 0" />
+
+            <GuiElement type="boxLayout" profile="modHubDetailInfoBox" id="modInfoBox">
+                <GuiElement type="text" profile="modHubDetailInfoKey" text="Author" />
+                <GuiElement type="text" profile="modHubDetailInfoValueAuthor" id="modAuthor" />
+
+                <GuiElement type="text" profile="modHubDetailInfoKey" text="$l10n_ui_modVersion" />
+                <GuiElement type="text" profile="modHubDetailInfoValue" id="modInfoVersion" />
+
+                <GuiElement type="text" profile="modHubDetailInfoKey" text="Size" id="modInfoSizeLabel" />
+                <GuiElement type="text" profile="modHubDetailInfoValue" id="modInfoSize" />
+
+                <GuiElement type="text" profile="modHubDetailInfoKey" text="$l10n_ui_modFileHash" id="modInfoHashLabel" />
+                <GuiElement type="text" profile="modHubDetailInfoValue" id="modInfoHash" size="345px 42px" />
+            </GuiElement>
+
+            <GuiElement type="empty" profile="modHubDetailDescriptionLayout">
+                <GuiElement type="bitmap" profile="topScrollClipper" name="topClipper" />
+                <GuiElement type="bitmap" profile="bottomScrollClipper" name="bottomClipper" />
+
+                <GuiElement type="scrollingLayout" profile="modHubDetailDescriptionLayout" id="descriptionLayout" topClipperElementName="topClipper" bottomClipperElementName="bottomClipper">
+                    <GuiElement type="text" profile="modHubDetailDescription" id="modDescription" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="threePartBitmap" profile="verticalListSliderRightDocked" size="12px 458px">
+                <GuiElement type="slider" profile="verticalListSliderBar" size="6px 450px" dataElementId="descriptionLayout" focusInit="onOpen" id="textSlider" />
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+    <Profile name="modHubDetailBox" extends="baseReference" with="anchorBottomLeft">
+        <Value name="size" value="1400px 708px"/>
+    </Profile>
+
+    <Profile name="modHubDetailPreview" extends="baseReference" with="anchorBottomLeft">
+        <Value name="size" value="435.5px 230px"/>
+        <Value name="imagePreviewFilename" value="dataS/menu/modHubPreview_default.png"/>
+        <Value name="imageColor" value="$preset_colorWhite"/>
+        <Value name="imageUVs" value="0.002 0.002 0.996 0.996"/>
+        <Value name="imageIsWebOverlay" value="true"/>
+    </Profile>
+
+    <Profile name="modHubDetailInfoBox" extends="baseReference" with="anchorTopLeft">
+        <Value name="autoValidateLayout" value="true"/>
+        <Value name="size" value="345px 458px"/>
+
+        <Value name="alignmentX" value="left"/>
+        <Value name="alignmentY" value="top"/>
+        <Value name="imageColor" value="$preset_colorDetailBackground"/>
+    </Profile>
+
+    <Profile name="modHubDetailInfoValue" extends="textDefault">
+        <Value name="textSize" value="21px"/>
+        <Value name="textOffset" value="8px 0"/>
+        <Value name="size" value="335px 21px"/>
+    </Profile>
+
+    <Profile name="modHubDetailInfoKey" extends="modHubDetailInfoValue">
+        <Value name="textSize" value="18px"/>
+        <Value name="size" value="335px 18px"/>
+        <Value name="textColor" value="$preset_colorWhite_50"/>
+        <Value name="margin" value="0 10px 0 2px"/>
+    </Profile>
+
+    <Profile name="modHubDetailInfoValueAuthor" extends="modHubDetailInfoValue">
+        <Value name="textColor" value="$preset_colorMainUI"/>
+        <Value name="textLayoutMode" value="resize"/>
+        <Value name="textMaxNumLines" value="2"/>
+        <Value name="size" value="335px 42px"/>
+        <Value name="textVerticalAlignment" value="top"/>
+    </Profile>
+
+    <Profile name="modHubDetailDescriptionLayout" extends="emptyPanel" with="anchorTopRight">
+        <Value name="size" value="1035px 458px"/>
+
+        <Variant name="mobile">
+            <Value name="supportsTouchScrolling" value="true" />
+        </Variant>
+    </Profile>
+
+    <Profile name="modHubDetailDescription" extends="textDefault" >
+        <Value name="size" value="1035px 1000px"/>
+        <Value name="textSize" value="18px"/>
+        <Value name="textLineHeightScale" value="1.3"/>
+        <Value name="textMaxNumLines" value="1000000"/>
+        <Value name="textVerticalAlignment" value="top"/>
+        <Value name="margin" value="0 10px 0 0"/>
+    </Profile>
+    </GUIProfiles>
+</GUI>

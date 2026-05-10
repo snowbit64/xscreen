@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+    <GuiElement type="dynamicFadedBitmap" profile="uiFullBlurBG"/>
+    <GuiElement type="bitmap" profile="bgVignette"/>
+    <GuiElement type="bitmap" profile="bgGlow" />
+
+    <GuiElement type="bitmap" profile="uiElementContainerFullScreen">
+        <GuiElement type="bitmap" profile="createGameContainerFullScreen">
+
+            <GuiElement type="bitmap" profile="headerBoxDocked" >
+                <GuiElement type="bitmap" profile="createGameScreenMultiplayerIcon"/>
+                <GuiElement type="text" profile="headerText" text="$l10n_ui_inGameMenuModeMultiplayer" />
+            </GuiElement>
+
+            <GuiElement type="boxLayout" profile="createGameScreenLayout1" id="settingsBox1">
+                <GuiElement type="empty" profile="createGameSettingsTextInputWrapper">
+                    <GuiElement type="textInput" profile="createGameSettingsTextInputName" id="serverNameElement" maxCharacters="30" needExternalClick="true" onFocus="onFocus" onLeave="onLeave" onEnterPressed="onEnterPressed" imeKeyboardType="normal" imeTitle="$l10n_ui_serverName" imeDescription="$l10n_ui_serverName" imePlaceholder="$l10n_ui_serverName" focusInit="onOpen" />
+                    <GuiElement type="text" profile="createGameSettingsTitle" text="$l10n_ui_serverName"/>
+                </GuiElement>
+
+                <GuiElement type="empty" profile="createGameSettingsTextInputWrapper">
+                    <GuiElement type="textInput" profile="createGameSettingsTextInput" isPassword="true" id="passwordElement" maxCharacters="16" needExternalClick="true" onEnter="onEnter" onFocus="onFocus" onLeave="onLeave" onEscPressed="onEscPressed" onEnterPressed="onEnterPressed" imeKeyboardType="password" imeTitle="$l10n_ui_password" imeDescription="$l10n_ui_password" imePlaceholder="$l10n_ui_password" />
+                    <GuiElement type="text" profile="createGameSettingsTitle" text="$l10n_ui_password"/>
+                </GuiElement>
+
+                <GuiElement type="empty" profile="createGameSettingsTextInputWrapper" id="portElementBox" >
+                    <GuiElement type="textInput" profile="createGameSettingsTextInput" id="portElement" onEnter="onEnter" needExternalClick="true" onFocus="onFocus" onLeave="onLeave" onIsUnicodeAllowed="onIsUnicodeAllowed" maxCharacters="5" onEscPressed="onEscPressed" onEnterPressed="onEnterPressed" imeKeyboardType="numeric" imeTitle="$l10n_ui_port" imeDescription="$l10n_ui_port" imePlaceholder="$l10n_ui_port" />
+                    <GuiElement type="text" profile="createGameSettingsTitle" text="$l10n_ui_port"/>
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="boxLayout" profile="createGameScreenLayout2" id="settingsBox2">
+                <GuiElement type="empty" profile="createGameMultiTextOptionWithTitleText" id="allowCrossPlayElementBox" >
+                    <GuiElement type="checkedOption" profile="createGameMultiTextOption" id="allowCrossPlayElement" onClick="onClickAllowCrossPlay"/>
+                    <GuiElement type="text"   profile="createGameSettingsTitle" text="$l10n_ui_allowCrossPlay"/>
+                </GuiElement>
+                <GuiElement type="empty" profile="createGameMultiTextOptionWithTitleText" >
+                    <GuiElement type="multiTextOption" profile="createGameMultiTextOption" onClick="onClickBandwidth" onCreate="onCreateBandwidth"/>
+                    <GuiElement type="text"   profile="createGameSettingsTitle" text="$l10n_ui_internetConnection"/>
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="boxLayout" profile="createGameScreenLayout3" id="settingsBox3">
+                <GuiElement type="empty" profile="createGameMultiTextOptionWithTitleText" id="useUpnpElementBox">
+                    <GuiElement type="checkedOption" profile="createGameMultiTextOption" onClick="onClickUseUpnp" id="useUpnpElement" />
+                    <GuiElement type="text"   profile="createGameSettingsTitle" text="$l10n_ui_useUPnP"/>
+                </GuiElement>
+
+                <GuiElement type="empty" profile="createGameMultiTextOptionWithTitleText" >
+                    <GuiElement type="multiTextOption" profile="createGameMultiTextOption" onClick="onClickNumPlayer" onCreate="onCreateNumPlayer"/>
+                    <GuiElement type="text"   profile="createGameSettingsTitle" text="$l10n_ui_maxNumPlayers"/>
+                </GuiElement>
+                <GuiElement type="empty" profile="createGameMultiTextOptionWithTitleText" >
+                    <GuiElement type="checkedOption" profile="createGameMultiTextOption" onClick="onClickAutoAccept" id="autoAcceptElement"/>
+                    <GuiElement type="text"   profile="createGameSettingsTitle" text="$l10n_ui_autoAccept"/>
+                </GuiElement>
+
+                <GuiElement type="empty" profile="createGameMultiTextOptionWithTitleText" >
+                    <GuiElement type="multiTextOption" profile="createGameMultiTextOption" onClick="onClickMultiplayerLanguage" onCreate="onCreateMultiplayerLanguage"/>
+                    <GuiElement type="text"   profile="createGameSettingsTitle" text="$l10n_setting_multiplayerLanguage"/>
+                </GuiElement>
+
+                <GuiElement type="empty" profile="createGameMultiTextOptionWithTitleText" id="allowOnlyFriendsElementBox" >
+                    <GuiElement type="checkedOption" profile="createGameMultiTextOption" onClick="onClickAllowOnlyFriends" id="allowOnlyFriendsElement" />
+                    <GuiElement type="text"   profile="createGameSettingsTitle" text="$l10n_ui_allowOnlyFriends"/>
+                </GuiElement>
+            </GuiElement>
+
+        </GuiElement>
+    </GuiElement>
+
+    <GuiElement type="flowLayout" profile="createGameButtonBox" id="buttonBox">
+        <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack" />
+        <GuiElement type="button" profile="buttonOK" text="$l10n_button_start" onClick="onClickOk" />
+        <GuiElement type="button" profile="buttonActivate" text="$l10n_button_change" onClick="onClickActivate" id="changeButton" visible="false" />
+    </GuiElement>
+
+
+    <GUIProfiles>
+    <Profile name="createGameContainerFullScreen" extends="uiElementCenter">
+        <Value name="size" value="1258px 698px" />
+
+        <Variant name="mobile">
+            <Value name="size" value="1768px 698px" />
+        </Variant>
+    </Profile>
+
+    <Profile name="createGameScreenMultiplayerIcon" extends="baseIcon">
+        <Value name="imageUVs" value="336px 96px 48px 48px" />
+    </Profile>
+
+    <Profile name="createGameScreenLayout1" extends="baseReference" with="anchorTopCenter">
+        <Value name="size" value="1258px 220px"/>
+        <Value name="position" value="0px 0px"/>
+
+        <Value name="imageColor" value="$preset_colorTransparent" />
+
+        <Value name="fitFlowToElements" value="true"/>
+        <Value name="flowDirection" value="vertical" />
+
+        <Variant name="mobile" with="anchorTopLeft">
+            <Value name="size" value="1768px 398px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="createGameScreenLayout2" extends="createGameScreenLayout1">
+        <Value name="position" value="0px -215px"/>
+        <Value name="size" value="1258px 145px"/>
+
+
+        <Variant name="mobile" with="anchorBottomLeft">
+            <Value name="size" value="884px 311px"/>
+            <Value name="position" value="0px 0px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="createGameScreenLayout3" extends="createGameScreenLayout1">
+        <Value name="position" value="0px -360px"/>
+        <Value name="size" value="1258px 303px"/>
+
+        <Value name="imageColor" value="$preset_colorTransparent" />
+
+        <Value name="fitFlowToElements" value="true"/>
+        <Value name="flowDirection" value="vertical" />
+
+
+        <Variant name="mobile" with="anchorBottomRight">
+            <Value name="size" value="884px 569px"/>
+            <Value name="position" value="0px 0px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="createGameSettingsTextInputWrapper" extends="baseReference">
+        <Value name="size" value="1400px 48px"/>
+        <Value name="margin" value="0 12px 0 12px"/>
+        <Value name="focusFallthrough" value="true"/>
+
+        <Variant name="mobile">
+            <Value name="size" value="1400px 105px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="createGameSettingsTextInput" extends="textInput" with="anchorMiddleLeft">
+        <Value name="handleFocus" value="true"/>
+        <Value name="position" value="400px 0"/>
+        <Value name="size" value="316px 48px"/>
+        <Value name="margin" value="30px 28px 49px 16px"/>
+        <Value name="maxInputTextWidth" value="290px"/>
+        <Value name="textSize" value="18px"/>
+        <Value name="textBold" value="false"/>
+        <Value name="textAlignment" value="center"/>
+        <Value name="textVerticalAlignment" value="middle"/>
+        <Value name="enterWhenClickOutside" value="true"/>
+
+        <Variant name="mobile">
+            <Value name="position" value="362px 0px"/>
+            <Value name="size" value="500px 105px"/>
+            <Value name="textSize" value="35px"/>
+            <Value name="maxInputTextWidth" value="450px"/>
+            <Value name="cursorSize" value="2px 35px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="createGameSettingsTextInputName" extends="createGameSettingsTextInput">
+
+        <Variant name="mobile">
+            <Value name="size" value="600px 105px"/>
+            <Value name="maxInputTextWidth" value="1200px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="createGameSettingsTitle" extends="textDefault" with="anchorMiddleLeft">
+        <Value name="size" value="0 48px" />
+
+        <Value name="textSize" value="20px" />
+        <Value name="textAlignment" value="left" />
+        <Value name="textVerticalAlignment" value="middle" />
+        <Value name="textAutoWidth" value="true" />
+        <Value name="textMaxWidth" value="400px" />
+        <Value name="textMaxNumLines" value="2" />
+
+        <Variant name="mobile">
+            <Value name="textMaxWidth" value="350px" />
+            <Value name="textSize" value="35px"/>
+        </Variant>
+    </Profile>
+
+
+    <Profile name="createGameMultiTextOptionWithTitleText" extends="multiTextOptionWithTitleText" >
+        <Value name="size" value="716px 48px"/>
+        <Value name="margin" value="0 12px 0 12px"/>
+
+        <Variant name="mobile">
+            <Value name="size" value="863px 105px"/>
+        </Variant>
+
+    </Profile>
+
+    <Profile name="createGameMultiTextOption" extends="multiTextOption" with="anchorMiddleRight">
+        <Value name="defaultProfileText" value="createGameMultiTextOptionText" />
+
+        <Variant name="mobile">
+            <Value name="size" value="500px 105px"/>
+        </Variant>
+    </Profile>
+
+    <Profile name="createGameMultiTextOptionText" extends="multiTextOptionText">
+        <Value name="size" value="0 48px"/>
+
+        <Value name="textMaxWidth" value="210px" />
+        <Value name="textAutoWidth" value="true"/>
+        <Value name="textAlignment" value="center"/>
+
+        <Variant name="mobile">
+            <Value name="textMaxWidth" value="260px" />
+            <Value name="textMaxNumLines" value="2" />
+        </Variant>
+    </Profile>
+
+    <Profile name="createGameButtonBox" extends="buttonBoxDockedOnScreen">
+    </Profile>
+    </GUIProfiles>
+</GUI>

@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="ingameMenuWeather">
+    <GuiElement type="empty" profile="uiInGameMenuFrame">
+        <!-- Static page header -->
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel">
+            <GuiElement type="bitmap" profile="ingameMenuWeatherHeaderIcon" />
+            <GuiElement type="text" profile="ingameMenuFrameHeaderText" text="$l10n_ui_ingameMenuWeather"/>
+        </GuiElement>
+
+        <GuiElement type="empty" profile="ingameMenuWeatherSettingsBox" id="container">
+            <GuiElement type="empty" profile="ingameMenuWeatherTodayBox">
+                <GuiElement type="bitmap" profile="ingameMenuWeatherTodayIcon" id="nowWeatherIcon" />
+                <GuiElement type="text" profile="ingameMenuWeatherTodayMonth" id="nowWeatherMonth" />
+                <GuiElement type="text" profile="ingameMenuWeatherTodayNow" text="$l10n_ui_currently:" />
+                <GuiElement type="text" profile="ingameMenuWeatherTodayTemperature" id="nowTemperature" />
+                <GuiElement type="text" profile="ingameMenuWeatherTodayTemperatureUnit" id="nowTemperatureUnit" text="*C" />
+
+                <GuiElement type="flowLayout" profile="ingameMenuWeatherTodayWindSpeedBox">
+                    <GuiElement type="text" profile="ingameMenuWeatherTodayWindSpeedTitle" text="$l10n_ui_windSpeedAndDirection:" />
+
+                    <GuiElement type="empty" profile="ingameMenuWeatherWindIndicatorBoxToday">
+                        <GuiElement type="bitmap" profile="ingameMenuWeatherWindIndicatorIcon" id="nowWindDirection" />
+                        <GuiElement type="text" profile="ingameMenuWeatherWindIndicatorText" id="nowWindSpeed" text="1" />
+                    </GuiElement>
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="ingameMenuWeatherVerticalSeparator" />
+
+            <GuiElement type="empty" profile="ingameMenuWeatherHourlyBox">
+                <GuiElement type="smoothList" profile="ingameMenuWeatherHourlyList" id="forecastHourlyList" focusInit="onOpen">
+                    <GuiElement type="listItem" profile="ingameMenuWeatherHourlyListItem">
+                        <GuiElement type="text" profile="ingameMenuWeatherListItemTitle" name="time" />
+                        <GuiElement type="bitmap" profile="ingameMenuWeatherListItemIcon" name="icon" />
+                        <GuiElement type="text" profile="ingameMenuWeatherListItemTemperature" name="temperature" />
+
+                        <GuiElement type="empty" profile="ingameMenuWeatherWindIndicatorBox">
+                            <GuiElement type="bitmap" profile="ingameMenuWeatherWindIndicatorIcon" name="windDirection" />
+                            <GuiElement type="text" profile="ingameMenuWeatherWindIndicatorText" text="1" name="windSpeed" />
+                        </GuiElement>
+
+                        <GuiElement type="bitmap" profile="ingameMenuWeatherHourlyItemSeparator" name="separator"/>
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="threePartBitmap" profile="ingameMenuWeatherHorizontalListSlider">
+                    <GuiElement type="slider" profile="ingameMenuWeatherHorizontalListSliderBar" useStepRounding="true" id="forecastHourlySlider" dataElementId="forecastHourlyList" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="bitmap" profile="ingameMenuWeatherHorizontalSeparator" />
+
+            <GuiElement type="empty" profile="ingameMenuWeatherDailyBox">
+                <GuiElement type="smoothList" profile="ingameMenuWeatherDailyList" id="forecastDailyList">
+                    <GuiElement type="listItem" profile="ingameMenuWeatherDailyListItem">
+                        <GuiElement type="text" profile="ingameMenuWeatherListItemTitle" name="day" />
+                        <GuiElement type="bitmap" profile="ingameMenuWeatherListItemIcon" name="icon" />
+                        <GuiElement type="text" profile="ingameMenuWeatherListItemTemperature" name="highTemperature" />
+                        <GuiElement type="text" profile="ingameMenuWeatherListItemTemperatureLow" name="lowTemperature" />
+
+                        <GuiElement type="empty" profile="ingameMenuWeatherWindIndicatorBox">
+                            <GuiElement type="bitmap" profile="ingameMenuWeatherWindIndicatorIcon" name="windDirection" />
+                            <GuiElement type="text" profile="ingameMenuWeatherWindIndicatorText" text="1" name="windSpeed" />
+                        </GuiElement>
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="empty" profile="ingameWeatherSeparatorCotainer">
+                    <GuiElement type="bitmap" profile="ingameMenuWeatherListItemSeparator" position="199px 0" />
+                    <GuiElement type="bitmap" profile="ingameMenuWeatherListItemSeparator" position="399px 0" />
+                    <GuiElement type="bitmap" profile="ingameMenuWeatherListItemSeparator" position="599px 0" />
+                    <GuiElement type="bitmap" profile="ingameMenuWeatherListItemSeparator" position="799px 0" />
+                    <GuiElement type="bitmap" profile="ingameMenuWeatherListItemSeparator" position="999px 0" />
+                    <GuiElement type="bitmap" profile="ingameMenuWeatherListItemSeparator" position="1199px 0" />
+                </GuiElement>
+                <GuiElement type="empty" profile="ingameWeatherSeparatorCotainerMobile">
+                    <GuiElement type="bitmap" profile="ingameMenuWeatherListItemSeparatorBig" position="252.5px 0" />
+                    <GuiElement type="bitmap" profile="ingameMenuWeatherListItemSeparatorBig" position="505px 0" />
+                    <GuiElement type="bitmap" profile="ingameMenuWeatherListItemSeparatorBig" position="757.5px 0" />
+                    <GuiElement type="bitmap" profile="ingameMenuWeatherListItemSeparatorBig" position="1010px 0" />
+                    <GuiElement type="bitmap" profile="ingameMenuWeatherListItemSeparatorBig" position="1262.5px 0" />
+                    <GuiElement type="bitmap" profile="ingameMenuWeatherListItemSeparatorBig" position="1515px 0" />
+                </GuiElement>
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="ingameMenuWeatherHeaderIcon" extends="menuHeaderIcon">
+            <Value name="size" value="64px 64px"/>
+            <Value name="imageUVs" value="130px 0px 65px 65px"/>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherSettingsBox" extends="ingameMenuSettingsBox">
+
+            <Variant name="mobile">
+                <Value name="size" value="1768px 800px"/>
+                <Value name="position" value="0px 50px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherTodayBox" extends="baseReference" with="anchorTopLeft">
+            <Value name="size" value="700px 408px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="800px 420px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherTodayIcon" extends="baseReference" with="anchorTopLeft">
+            <Value name="pivot" value="0.5 0.5" />
+
+            <Value name="size" value="360px 360px" />
+            <Value name="position" value="213px -213px" />
+
+            <Value name="imageFilename" value="dataS/menu/hud/weather_icons.png" />
+            <Value name="imageSize" value="512 512" />
+            <Value name="imageUVs" value="96px 240px 48px 48px" />
+            <Value name="imageSdfWidth" value="0.015" />
+        </Profile>
+
+        <Profile name="ingameMenuWeatherTodayMonth" extends="textDefault" with="anchorTopRight">
+            <Value name="position" value="-88px -75px" />
+
+            <Value name="textAlignment" value="right" />
+            <Value name="textUpperCase" value="true" />
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textSize" value="24px" />
+
+            <Variant name="mobile">
+                <Value name="textSize" value="35px" />
+                <Value name="position" value="-238px -105px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherTodayNow" extends="textDefault" with="anchorTopRight">
+            <Value name="position" value="-88px -125px" />
+
+            <Value name="textAlignment" value="right" />
+            <Value name="textUpperCase" value="true" />
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textSize" value="18px" />
+            <Value name="textColor" value="0.5 0.5 0.5 1" />
+
+            <Variant name="mobile">
+                <Value name="textSize" value="25px" />
+                <Value name="position" value="-238px -155px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherTodayTemperature" extends="textDefault" with="anchorTopRight">
+            <Value name="position" value="-113px -145px" />
+            <Value name="size" value="0 110px" />
+
+            <Value name="textAlignment" value="right" />
+            <Value name="textUpperCase" value="true" />
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textSize" value="110px" />
+            <Value name="textVerticalAlignment" value="top" />
+            <Value name="textMaxWidth" value="200px" />
+            <Value name="textLayoutMode" value="resize" />
+
+            <Value name="format" value="number" />
+            <Value name="formatDecimalPlaces" value="0" />
+
+            <Variant name="mobile">
+                <Value name="position" value="-103px -105px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherTodayTemperatureUnit" extends="textDefault" with="anchorTopRight">
+            <Value name="position" value="-88px -145px" />
+
+            <Value name="textAlignment" value="right" />
+            <Value name="textUpperCase" value="true" />
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textSize" value="30px" />
+
+            <Variant name="mobile">
+                <Value name="position" value="-88px -105px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherTodayWindSpeedBox" extends="emptyPanel" with="anchorBottomRight">
+            <Value name="size" value="200px 80px" />
+            <Value name="position" value="-80px 70px" />
+            <Value name="alignmentX" value="right" />
+            <Value name="alignmentY" value="middle" />
+
+            <Variant name="mobile">
+                <Value name="size" value="350px 110px" />
+                <Value name="position" value="-80px 70px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherTodayWindSpeedTitle" extends="textDefault">
+            <Value name="size" value="0 40px" />
+
+            <Value name="textColor" value="0.5 0.5 0.5 1" />
+            <Value name="textAlignment" value="right" />
+            <Value name="textMaxNumLines" value="2" />
+            <Value name="textUpperCase" value="true" />
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textSize" value="16px" />
+            <Value name="textMaxWidth" value="150px" />
+
+            <Variant name="mobile">
+                <Value name="position" value="50px -50px" />
+                <Value name="size" value="0px 100px" />
+                <Value name="textSize" value="25px" />
+                <Value name="textMaxNumLines" value="3" />
+                <Value name="textMaxWidth" value="190px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherWindIndicatorBoxToday" extends="emptyPanel" with="anchorBottomCenter">
+            <Value name="size" value="80px 80px" />
+            <Value name="anchors" value="0 0 1 1" />
+
+            <Variant name="mobile">
+                <Value name="size" value="105px 105px" />
+                <Value name="margin" value="35px 0 15px 0" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherWindIndicatorIcon" extends="baseReference" with="anchorMiddleCenter">
+            <Value name="position" value="0 10px" />
+            <Value name="size" value="70px 70px" />
+
+            <Value name="imageColor" value="1 1 1 0.3" />
+            <Value name="imageFilename" value="dataS/menu/hud/hud_elements.png" />
+            <Value name="imageUVs" value="564px 699px 92px 92px" />
+            <Value name="imagePivot" value="24px 24px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="122px 122px" />
+                <Value name="position" value="0px 0px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherWindIndicatorIcon45" extends="ingameMenuWeatherWindIndicatorIcon">
+            <Value name="imageUVs" value="658px 699px 92px 92px" />
+        </Profile>
+        <Profile name="ingameMenuWeatherWindIndicatorIcon90" extends="ingameMenuWeatherWindIndicatorIcon">
+            <Value name="imageUVs" value="752px 699px 92px 92px" />
+        </Profile>
+        <Profile name="ingameMenuWeatherWindIndicatorIcon135" extends="ingameMenuWeatherWindIndicatorIcon">
+            <Value name="imageUVs" value="846px 699px 92px 92px" />
+        </Profile>
+        <Profile name="ingameMenuWeatherWindIndicatorIcon180" extends="ingameMenuWeatherWindIndicatorIcon">
+            <Value name="imageUVs" value="564px 793px 92px 92px" />
+        </Profile>
+        <Profile name="ingameMenuWeatherWindIndicatorIcon225" extends="ingameMenuWeatherWindIndicatorIcon">
+            <Value name="imageUVs" value="658px 793px 92px 92px" />
+        </Profile>
+        <Profile name="ingameMenuWeatherWindIndicatorIcon270" extends="ingameMenuWeatherWindIndicatorIcon">
+            <Value name="imageUVs" value="752px 793px 92px 92px" />
+        </Profile>
+        <Profile name="ingameMenuWeatherWindIndicatorIcon315" extends="ingameMenuWeatherWindIndicatorIcon">
+            <Value name="imageUVs" value="846px 793px 92px 92px" />
+        </Profile>
+
+        <Profile name="ingameMenuWeatherWindIndicatorText" extends="textDefault" with="anchorMiddleCenter">
+            <Value name="size" value="36px 22px" />
+
+            <Value name="textSize" value="16px" />
+            <Value name="textAlignment" value="center" />
+
+            <Value name="format" value="number" />
+            <Value name="formatDecimalPlaces" value="0" />
+
+            <Variant name="mobile">
+                <Value name="textSize" value="25px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherVerticalSeparator" extends="baseReference" with="anchorTopCenter">
+            <Value name="position" value="0 -45px" />
+            <Value name="size" value="2dp 300px" />
+            <Value name="imageColor" value="1 1 1 0.4" />
+
+            <Variant name="mobile">
+                <Value name="size" value="2dp 330px" />
+                <Value name="position" value="-80px -35px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherHourlyBox" extends="emptyPanel" with="anchorTopRight">
+            <Value name="size" value="700px 408px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="950px 408px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherHourlyList" extends="list" with="anchorMiddleCenter">
+            <Value name="size" value="630px 270px" />
+            <Value name="listSmoothingDisabled" value="true" />
+
+            <Variant name="mobile">
+                <Value name="size" value="870px 310px" />
+                <Value name="supportsTouchScrolling" value="true" />
+                <Value name="itemizedScrollDelta" value="true" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherHourlyListItem" extends="listItem">
+            <Value name="size" value="126px 270px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="145px 310px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherListItemTitle" extends="textDefault" with="anchorTopCenter">
+            <Value name="size" value="0 18px" />
+
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textMaxWidth" value="125px" />
+            <Value name="textAlignment" value="center" />
+            <Value name="textSize" value="18px" />
+            <Value name="textUpperCase" value="true" />
+
+            <Variant name="mobile">
+                <Value name="textMaxWidth" value="200px" />
+                <Value name="textSize" value="30px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherListItemIcon" extends="baseReference" with="anchorTopCenter">
+            <Value name="position" value="0 -26px" />
+            <Value name="size" value="82px 82px" />
+
+            <Value name="imageFilename" value="dataS/menu/hud/weather_icons.png" />
+            <Value name="imageSize" value="512 512" />
+            <Value name="imageSdfWidth" value="0.025" />
+        </Profile>
+
+        <Profile name="ingameMenuWeatherListItemTemperature" extends="textDefault" with="anchorTopCenter">
+            <Value name="size" value="0 32px" />
+            <Value name="position" value="0 -110px" />
+
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textMaxWidth" value="125px" />
+            <Value name="textAlignment" value="center" />
+            <Value name="textSize" value="32px" />
+            <Value name="textUpperCase" value="true" />
+            <Value name="format" value="temperature" />
+            <Value name="formatDecimalPlaces" value="0" />
+
+            <Variant name="mobile">
+                <Value name="textSize" value="35px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherWindIndicatorBox" extends="emptyPanel" with="anchorBottomCenter">
+            <Value name="size" value="80px 80px" />
+            <Value name="position" value="0 39px" />
+
+            <Value name="margin" value="10px 0 0 0" />
+        </Profile>
+
+        <Profile name="ingameMenuWeatherHourlyItemSeparator" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="size" value="2dp 178px" />
+            <Value name="imageColor" value="1 1 1 0.4" />
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherHorizontalListSlider" extends="horizontalListSliderRightDocked">
+            <Value name="size" value="630px 12px" />
+            <Value name="anchors" value="0.5 0.5 0.5 0.5" />
+            <Value name="position" value="0 -150px" />
+
+            <Variant name="mobile">
+                <Value name="position" value="0 -170px" />
+                <Value name="size" value="870px 12px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherHorizontalListSliderBar" extends="horizontalListSliderBar">
+            <Value name="size" value="622px 6px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="862px 6px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherHorizontalSeparator" extends="baseReference" with="anchorTopCenter">
+            <Value name="position" value="0 -408px" />
+            <Value name="size" value="1400px 2dp" />
+            <Value name="imageColor" value="1 1 1 0.4" />
+
+            <Variant name="mobile">
+                <Value name="size" value="1768px 2dp" />
+                <Value name="position" value="0px -420px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherDailyBox" extends="baseReference" with="anchorBottomCenter">
+            <Value name="size" value="1400px 348px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="1768px 348px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherDailyList" extends="list" with="anchorBottomCenter">
+            <Value name="size" value="1400px 300px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="1768px 348px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherDailyListItem" extends="listItem">
+            <Value name="size" value="200px 300px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="252px 300" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherListItemTemperatureLow" extends="textDefault" with="anchorBottomCenter">
+            <Value name="size" value="0 20px" />
+            <Value name="position" value="0 130px" />
+
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textMaxWidth" value="125px" />
+            <Value name="textAlignment" value="center" />
+            <Value name="textSize" value="20px" />
+            <Value name="textColor" value="1 1 1 0.5" />
+            <Value name="textSelectedColor" value="1 1 1 0.5" />
+            <Value name="textUpperCase" value="true" />
+            <Value name="format" value="temperature" />
+            <Value name="formatDecimalPlaces" value="0" />
+
+            <Variant name="mobile">
+                <Value name="position" value="0 150px" />
+                <Value name="textSize" value="32px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameWeatherSeparatorCotainer">
+
+            <Variant name="mobile">
+                <Value name="visible" value="false" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameWeatherSeparatorCotainerMobile">
+            <Value name="visible" value="false" />
+
+            <Variant name="mobile">
+                <Value name="visible" value="true" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherListItemSeparator" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="size" value="2dp 178px" />
+            <Value name="imageColor" value="1 1 1 0.4" />
+
+            <Variant name="mobile">
+                <Value name="size" value="2dp 200px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuWeatherListItemSeparatorBig" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="size" value="2dp 178px" />
+            <Value name="imageColor" value="1 1 1 0.4" />
+
+            <Variant name="mobile">
+                <Value name="size" value="2dp 250px" />
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

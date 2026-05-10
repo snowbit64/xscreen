@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI name="ingameMenuPrices">
+    <GuiElement type="empty" profile="uiInGameMenuFrame">
+        <!-- Static page header -->
+        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel">
+            <GuiElement type="bitmap" profile="ingameMenuPricesHeaderIcon" />
+            <GuiElement type="text" profile="ingameMenuFrameHeaderText" text="$l10n_ui_ingameMenuPrices"/>
+        </GuiElement>
+
+        <GuiElement type="empty" profile="ingameMenuPricesBox" id="mainBox">
+
+            <GuiElement type="empty" profile="ingameMenuPricesLeftColumn">
+                <GuiElement type="boxLayout" profile="ingameMenuPricesHeaderBox">
+                        <GuiElement type="text" profile="ingameMenuPricesHeader" size="340px 104px" text="$l10n_ui_goods" />
+                        <GuiElement type="text" profile="ingameMenuPricesHeader" size="340px 104px" text="$l10n_statistic_storage" textAlignment="right" textOffset="-30px 0px" />
+                </GuiElement>
+                <GuiElement type="boxLayout" profile="ingameMenuPricesHeaderBoxMobile">
+                    <GuiElement type="text" profile="ingameMenuPricesHeader" size="437px 104px" text="$l10n_ui_goods" />
+                    <GuiElement type="text" profile="ingameMenuPricesHeader" size="437px 104px" text="$l10n_statistic_storage" textAlignment="right" textOffset="-30px 0px" />
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="topScrollClipper" name="topClipper" position="0 -102px"/>
+                <GuiElement type="bitmap" profile="bottomScrollClipper" name="bottomClipper" position="0 50px"/>
+
+                <GuiElement type="smoothList" profile="ingameMenuPricesList" id="productList" focusChangeTop="nil" focusChangeBottom="nil" selectedWithoutFocus="true" startClipperElementName="topClipper" endClipperElementName="bottomClipper">
+                    <GuiElement type="listItem" profile="ingameMenuPricesListItem">
+                        <GuiElement type="bitmap" name="icon" profile="ingameMenuPricesGoodsIcon" />
+                        <GuiElement type="text" name="title" profile="ingameMenuPricesItemTitle" />
+                        <GuiElement type="text" name="storage" profile="ingameMenuPricesItemStorage" />
+                        <GuiElement type="bitmap" name="greatDemand" profile="ingameMenuPricesGreatDemand" />
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="threePartBitmap" profile="verticalPriceListSliderRightDocked">
+                    <GuiElement type="slider" profile="verticalPriceListSliderBar" dataElementId="productList" id="productListSlider" />
+                </GuiElement>
+            </GuiElement>
+
+            <GuiElement type="empty" profile="ingameMenuPricesRightColumn" id="pricesColumn">
+                <GuiElement type="boxLayout" profile="ingameMenuPricesHeaderBox">
+                    <GuiElement type="text" profile="ingameMenuPricesHeader" size="330px 104px" text="$l10n_ui_stations" />
+                    <GuiElement type="text" profile="ingameMenuPricesHeader" size="180px 104px"  text="$l10n_ui_buyPrices" />
+                    <GuiElement type="text" profile="ingameMenuPricesHeader" size="160px 104px"  text="$l10n_ui_sellPrices" textOffset="0 0" />
+                </GuiElement>
+                <GuiElement type="boxLayout" profile="ingameMenuPricesHeaderBoxMobile">
+                    <GuiElement type="text" profile="ingameMenuPricesHeader" size="450px 104px" text="$l10n_ui_stations" />
+                    <GuiElement type="text" profile="ingameMenuPricesHeader" size="220px 104px"  text="$l10n_ui_buyPrices" />
+                    <GuiElement type="text" profile="ingameMenuPricesHeader" size="180px 104px"  text="$l10n_ui_sellPrices" textOffset="0 0" />
+                </GuiElement>
+
+                <GuiElement type="smoothList" profile="ingameMenuPricesList" id="priceList" focusChangeTop="nil" focusChangeBottom="nil">
+                    <GuiElement type="listItem" profile="ingameMenuPricesListItem">
+                        <GuiElement type="bitmap" name="hotspot" profile="ingameMenuPricesItemHotspot" />
+                        <GuiElement type="text" name="title" profile="ingameMenuPricesSellpointTitle" />
+                        <GuiElement type="empty" profile="ingameMenuPricesItemTrend">
+                            <GuiElement type="bitmap" profile="ingameMenuPricesArrow" name="priceTrend" />
+                        </GuiElement>
+                        <GuiElement type="text" name="price" profile="ingameMenuPricesItemPrice" />
+                        <GuiElement type="text" name="buyPrice" profile="ingameMenuPricesItemBuyPrice" />
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="text" profile="ingameMenuPricesNoSellpointsText" text="$l10n_ui_noSellPointsForThisFillType" id="noSellpointsText" />
+            </GuiElement>
+
+            <GuiElement type="empty" profile="ingameMenuPricesRightColumn" id="fluctuationsColumn">
+                <GuiElement type="boxLayout" profile="ingameMenuPricesHeaderBox">
+                    <GuiElement type="text" profile="ingameMenuPricesHeader" size="680px 104px" text="$l10n_ui_seasonalPriceFluctuations" textOffset="0 10px" textAlignment="center" />
+                </GuiElement>
+                <GuiElement type="boxLayout" profile="ingameMenuPricesHeaderBoxMobile">
+                    <GuiElement type="text" profile="ingameMenuPricesHeader" size="874px 104px" text="$l10n_ui_seasonalPriceFluctuations" textOffset="0 10px" textAlignment="center" />
+                </GuiElement>
+
+                <GuiElement type="text" profile="ingameMenuPricesNoSellpointsText" text="$l10n_ui_noFluctuationsForThisFillType" id="noFluctuationsText" />
+
+                <GuiElement type="boxLayout" profile="ingameMenuPricesFluctuationLayoutBg">
+                    <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationBg" />
+                    <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationBgAlternate" />
+                    <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationBg" />
+                    <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationBgAlternate" />
+                    <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationBg" />
+                    <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationBgAlternate" />
+                    <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationBg" />
+                    <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationBgAlternate" />
+                    <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationBg" />
+                    <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationBgAlternate" />
+                </GuiElement>
+
+                <GuiElement type="scrollingLayout" profile="ingameMenuPricesFluctuationLayout" id="fluctuationsLayout">
+                    <GuiElement type="empty" profile="ingameMenuPricesFluctuationItem">
+                        <GuiElement type="text" profile="ingameMenuPricesFluctuationMonth" id="fluctuationMonthHeader[1]" />
+                        <GuiElement type="empty" profile="ingameMenuPricesFluctuationBarBgUp" id="fluctuationBars[1]">
+                            <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationBarUp" />
+                        </GuiElement>
+                    </GuiElement>
+
+                    <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationItem">
+                        <GuiElement type="text" profile="ingameMenuPricesFluctuationMonth" id="fluctuationMonthHeader[2]" />
+                        <GuiElement type="empty" profile="ingameMenuPricesFluctuationBarBgUp" id="fluctuationBars[2]">
+                            <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationBarUp" />
+                        </GuiElement>
+                    </GuiElement>
+
+                    <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationItem">
+                        <GuiElement type="text" profile="ingameMenuPricesFluctuationMonth" id="fluctuationMonthHeader[3]" />
+                        <GuiElement type="empty" profile="ingameMenuPricesFluctuationBarBgUp" id="fluctuationBars[3]">
+                            <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationBarUp" />
+                        </GuiElement>
+                    </GuiElement>
+
+                    <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationItem">
+                        <GuiElement type="text" profile="ingameMenuPricesFluctuationMonth" id="fluctuationMonthHeader[4]" />
+                        <GuiElement type="empty" profile="ingameMenuPricesFluctuationBarBgUp" id="fluctuationBars[4]">
+                            <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationBarUp" />
+                        </GuiElement>
+                    </GuiElement>
+
+                    <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationItem">
+                        <GuiElement type="text" profile="ingameMenuPricesFluctuationMonth" id="fluctuationMonthHeader[5]" />
+                        <GuiElement type="empty" profile="ingameMenuPricesFluctuationBarBgUp" id="fluctuationBars[5]">
+                            <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationBarUp" />
+                        </GuiElement>
+                    </GuiElement>
+
+                    <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationItem">
+                        <GuiElement type="text" profile="ingameMenuPricesFluctuationMonth" id="fluctuationMonthHeader[6]" />
+                        <GuiElement type="empty" profile="ingameMenuPricesFluctuationBarBgUp" id="fluctuationBars[6]">
+                            <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationBarUp" />
+                        </GuiElement>
+                    </GuiElement>
+
+                    <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationItem">
+                        <GuiElement type="text" profile="ingameMenuPricesFluctuationMonth" id="fluctuationMonthHeader[7]" />
+                        <GuiElement type="empty" profile="ingameMenuPricesFluctuationBarBgUp" id="fluctuationBars[7]">
+                            <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationBarUp" />
+                        </GuiElement>
+                    </GuiElement>
+
+                    <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationItem">
+                        <GuiElement type="text" profile="ingameMenuPricesFluctuationMonth" id="fluctuationMonthHeader[8]" />
+                        <GuiElement type="empty" profile="ingameMenuPricesFluctuationBarBgUp" id="fluctuationBars[8]">
+                            <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationBarUp" />
+                        </GuiElement>
+                    </GuiElement>
+
+                    <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationItem">
+                        <GuiElement type="text" profile="ingameMenuPricesFluctuationMonth" id="fluctuationMonthHeader[9]" />
+                        <GuiElement type="empty" profile="ingameMenuPricesFluctuationBarBgUp" id="fluctuationBars[9]">
+                            <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationBarUp" />
+                        </GuiElement>
+                    </GuiElement>
+
+                    <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationItem">
+                        <GuiElement type="text" profile="ingameMenuPricesFluctuationMonth" id="fluctuationMonthHeader[10]" />
+                        <GuiElement type="empty" profile="ingameMenuPricesFluctuationBarBgUp" id="fluctuationBars[10]">
+                            <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationBarUp" />
+                        </GuiElement>
+                    </GuiElement>
+
+                    <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationItem">
+                        <GuiElement type="text" profile="ingameMenuPricesFluctuationMonth" id="fluctuationMonthHeader[11]" />
+                        <GuiElement type="empty" profile="ingameMenuPricesFluctuationBarBgUp" id="fluctuationBars[11]">
+                            <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationBarUp" />
+                        </GuiElement>
+                    </GuiElement>
+
+                    <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationItem">
+                        <GuiElement type="text" profile="ingameMenuPricesFluctuationMonth" id="fluctuationMonthHeader[12]" />
+                        <GuiElement type="empty" profile="ingameMenuPricesFluctuationBarBgUp" id="fluctuationBars[12]">
+                            <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationBarUp" />
+                        </GuiElement>
+                    </GuiElement>
+                </GuiElement>
+
+                <GuiElement type="threePartBitmap" profile="horizontalFLuctuationSlider" >
+                    <GuiElement type="slider" profile="horizontalFluctuationSliderBar" dataElementId="fluctuationsLayout" id="fluctuationSlider" />
+                </GuiElement>
+
+                <GuiElement type="bitmap" profile="ingameMenuPricesFluctuationCurrent" id="fluctuationCurrentPrice" />
+
+                <GuiElement type="text" profile="ingameMenuPricesFluctuationHigh" id="fluctuationHigh" />
+                <GuiElement type="text" profile="ingameMenuPricesFluctuationLow" id="fluctuationLow" />
+            </GuiElement>
+        </GuiElement>
+    </GuiElement>
+
+
+    <GUIProfiles>
+        <Profile name="ingameMenuPricesHeaderIcon" extends="menuHeaderIcon">
+            <Value name="size" value="64px 64px"/>
+            <Value name="imageUVs" value="195px 0px 65px 65px"/>
+        </Profile>
+
+        <Profile name="ingameMenuPricesBox" extends="emptyPanel" with="anchorTopLeft">
+            <Value name="size" value="1400px 756px"/>
+            <Value name="position" value="0" />
+
+            <Variant name="mobile" with="anchorMiddleCenter">
+                <Value name="size" value="1768px 650px"/>
+                <Value name="position" value="0px 80px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesLeftColumn" extends="emptyPanel" with="anchorTopLeft">
+            <Value name="size" value="680px 756px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="864px 756px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesHeaderBox" extends="baseReference" with="anchorTopLeft">
+            <Value name="size" value="680px 104px"/>
+            <Value name="alignmentX" value="left"/>
+            <Value name="alignmentY" value="bottom"/>
+            <Value name="imageColor" value="$preset_colorListHeaderBackground"/>
+            <Value name="flowDirection" value="horizontal"/>
+            <Value name="wrapAround" value="true"/>
+            <Value name="lateralFlowSize" value="104px"/>
+            <Value name="autoValidateLayout" value="true"/>
+
+            <Variant name="mobile">
+                <Value name="visible" value="false"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesHeader" extends="textDefault">
+            <Value name="textAlignment" value="left"/>
+            <Value name="textBold" value="true"/>
+            <Value name="textColor" value="$preset_colorHeaderText"/>
+            <Value name="textFocusedColor" value="$preset_colorWhite"/>
+            <Value name="textHighlightedColor" value="$preset_colorWhite"/>
+            <Value name="textOffset" value="30px 0px"/>
+            <Value name="textSize" value="20px" />
+            <Value name="textUpperCase" value="true"/>
+            <Value name="textVerticalAlignment" value="middle"/>
+
+            <Variant name="mobile">
+                <Value name="position" value="1440px 0px" />
+                <Value name="textSize" value="35px" />
+                <Value name="textLayoutMode" value="resize" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesHeaderBoxMobile" extends="baseReference" with="anchorTopLeft">
+            <Value name="visible" value="false"/>
+
+            <Value name="alignmentX" value="left"/>
+            <Value name="alignmentY" value="bottom"/>
+            <Value name="imageColor" value="$preset_colorListHeaderBackground"/>
+            <Value name="flowDirection" value="horizontal"/>
+            <Value name="wrapAround" value="true"/>
+            <Value name="lateralFlowSize" value="104px"/>
+            <Value name="autoValidateLayout" value="true"/>
+
+            <Variant name="mobile">
+                <Value name="visible" value="true"/>
+                <Value name="size" value="864px 104px" />
+                <Value name="imageColor" value="0 0 0 0" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesList" extends="list" with="anchorTopLeft">
+            <Value name="size" value="680px 652px"/>
+            <Value name="position" value="0 -104px"/>
+            <Value name="isHorizontalList" value="false" />
+            <Value name="selectedWithoutFocus" value="false" />
+
+            <Variant name="mobile">
+                <Value name="size" value="864px 600px"/>
+                <Value name="supportsTouchScrolling" value="true" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesListItem" extends="listItem" with="alternating">
+            <Value name="size" value="680px 50px" />
+
+            <Value name="imageColor" value="$preset_colorListRowBackground"/>
+            <Value name="imageFocusedColor" value="$preset_colorFocusBackgroundGradient"/>
+            <Value name="imageSelectedColor" value="$preset_colorFocusBackgroundGradient"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="864px 100px"/>
+                <Value name="imageColor" value="0 0 0 0"/>
+                <Value name="imageFocusedColor" value="$preset_colorListRowAlternateBackground"/>
+                <Value name="imageSelectedColor" value="$preset_colorListRowAlternateBackground"/>
+                <Value name="alternateBackgroundColor" value="0 0 0 0" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesGoodsIcon" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="imageColor" value="$preset_colorWhite" />
+            <Value name="imageUVs" value="0 0 1 1" />
+            <Value name="size" value="34px 34px" />
+            <Value name="position" value="5.5px 0" />
+
+            <Variant name="mobile">
+                <Value name="size" value="85px 85px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesItemTitle" extends="textDefault">
+            <Value name="size" value="200px 50px" />
+            <Value name="textVerticalAlignment" value="middle" />
+            <Value name="textAutoWidth" value="true" />
+            <Value name="position" value="45px 0" />
+
+            <Variant name="mobile" with="anchorMiddleLeft">
+                <Value name="textSize" value="35px"/>
+                <Value name="textSize" value="35px"/>
+                <Value name="position" value="100px 0" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesItemStorage" extends="textDefault" with="anchorMiddleRight">
+            <Value name="size" value="150px 50px" />
+            <Value name="textVerticalAlignment" value="middle" />
+            <Value name="textAutoWidth" value="true" />
+            <Value name="position" value="-46px 0" />
+
+            <Variant name="mobile">
+                <Value name="textSize" value="35px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="verticalPriceListSliderRightDocked" extends="verticalListSliderRightDocked">
+            <Value name="size" value="12px 652px" />
+            <Value name="position" value="28px -104px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="12px 600px"/>
+                <Value name="position" value="20px -104px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="verticalPriceListSliderBar" extends="verticalListSliderBar">
+            <Value name="size" value="6px 644px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="6px 592px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesRightColumn" extends="emptyPanel" with="anchorTopRight">
+            <Value name="size" value="680px 756px"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="864px 704px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesItemHotspot" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="size" value="24px 24px"/>
+            <Value name="position" value="10.5px 0"/>
+            <Value name="imageUVs" value="6px 342px 36px 36px"/>
+            <Value name="imageColor" value="$preset_colorWhite_25"/>
+            <Value name="imageSelectedColor" value="$preset_colorWhite_25"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="60px 60px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesItemHotspotActive" extends="ingameMenuPricesItemHotspot">
+            <Value name="imageColor" value="$preset_colorMainUI"/>
+            <Value name="imageSelectedColor" value="$preset_colorWhite"/>
+        </Profile>
+
+        <Profile name="ingameMenuPricesSellpointTitle" extends="textDefault" with="anchorMiddleLeft">
+            <Value name="size" value="200px 50px" />
+            <Value name="textVerticalAlignment" value="middle" />
+            <Value name="textAutoWidth" value="true" />
+            <Value name="position" value="45px 0" />
+
+            <Variant name="mobile">
+                <Value name="textSize" value="35px"/>
+                <Value name="position" value="85px 0px" />
+                <Value name="textMaxWidth" value="355px" />
+                <Value name="textLayoutMode" value="resize"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesItemTrend" extends="baseReference" with="anchorMiddleLeft">
+            <Value name="size" value="50px 50px" />
+            <Value name="position" value="340px 0" />
+
+            <Variant name="mobile">
+                <Value name="position" value="450px 0px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesArrow" extends="baseReference" with="anchorMiddleCenter">
+            <Value name="imageUVs" value="54px 342px 36px 36px"/>
+            <Value name="size" value="18px 18px"/>
+            <Value name="position" value="0 0"/>
+            <Value name="imageColor" value="$preset_colorTransparent"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="45px 45px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesArrowClimbing" extends="ingameMenuPricesArrow">
+            <Value name="imageColor" value="$preset_colorGreen"/>
+            <Value name="imageRotation" value="0"/>
+        </Profile>
+        <Profile name="ingameMenuPricesArrowFalling" extends="ingameMenuPricesArrow">
+            <Value name="imageColor" value="$preset_colorRed"/>
+            <Value name="imageRotation" value="180"/>
+        </Profile>
+        <Profile name="ingameMenuPricesArrowGreatDemand" extends="ingameMenuPricesArrow">
+            <Value name="imageColor" value="$preset_colorBlue"/>
+            <Value name="imageSelectedColor" value="$preset_colorWhite"/>
+            <Value name="imageRotation" value="90"/>
+        </Profile>
+        <Profile name="ingameMenuPricesGreatDemand" extends="ingameMenuPricesArrow" with="anchorMiddleRight">
+            <Value name="imageColor" value="$preset_colorBlue"/>
+            <Value name="imageSelectedColor" value="$preset_colorWhite"/>
+            <Value name="position" value="-5px 0" />
+            <Value name="size" value="30px 30px" />
+        </Profile>
+
+        <Profile name="ingameMenuPricesItemPrice" extends="textDefault" with="anchorMiddleLeft">
+            <Value name="size" value="130px 50px" />
+            <Value name="textVerticalAlignment" value="middle" />
+            <Value name="format" value="currency" />
+            <Value name="position" value="390px 0" />
+
+            <Variant name="mobile">
+                <Value name="size" value="150px 50px" />
+                <Value name="textSize" value="35px"/>
+                <Value name="position" value="510px 0" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesItemBuyPrice" extends="textDefault" with="anchorMiddleLeft">
+            <Value name="size" value="160px 50px" />
+            <Value name="textVerticalAlignment" value="middle" />
+            <Value name="format" value="currency" />
+            <Value name="position" value="520px 0" />
+
+            <Variant name="mobile">
+                <Value name="size" value="180px 50px" />
+                <Value name="textSize" value="35px"/>
+                <Value name="position" value="660px 0" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesNoSellpointsText" extends="textDefault" with="anchorMiddleCenter">
+            <Value name="textSize" value="20px" />
+            <Value name="textAlignment" value="center" />
+            <Value name="textAutoWidth" value="true" />
+            <Value name="textMaxNumLines" value="2" />
+            <Value name="textMaxWidth" value="450px" />
+            <Value name="position" value="0 -50px" />
+
+            <Variant name="mobile">
+                <Value name="textSize" value="35px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesFluctuationLayoutBg" extends="emptyPanel" with="anchorBottomLeft">
+            <Value name="size" value="680px 652px" />
+
+            <Variant name="mobile">
+                <Value name="size" value="864px 600px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesFluctuationBg" extends="baseReference" with="anchorTopLeft">
+            <Value name="size" value="680px 65px" />
+            <Value name="imageColor" value="$preset_colorListRowBackground" />
+
+            <Variant name="mobile">
+                <Value name="size" value="864px 60px" />
+                <Value name="imageColor" value="0 0 0 0" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesFluctuationBgAlternate" extends="ingameMenuPricesFluctuationBg">
+            <Value name="imageColor" value="$preset_colorListRowAlternateBackground" />
+            <Variant name="mobile">
+                <Value name="imageColor" value="0 0 0 0" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesFluctuationLayout" extends="emptyPanel" with="anchorBottomLeft">
+            <Value name="size" value="680px 692px" />
+            <Value name="alignmentX" value="left" />
+            <Value name="flowDirection" value="horizontal" />
+            <Value name="alignmentY" value="bottom" />
+
+            <Variant name="mobile">
+                <Value name="size" value="864px 640px" />
+                <Value name="supportsTouchScrolling" value="true" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesFluctuationItem" extends="baseReference" with="anchorTopLeft">
+            <Value name="size" value="57px 650px" />
+            <Value name="imageColor" value="$preset_colorTransparent"/>
+
+            <Variant name="mobile">
+                <Value name="size" value="150px 600px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesFluctuationMonth" extends="baseReference" with="anchorTopLeft">
+            <Value name="size" value="57px 652px" />
+            <Value name="textAlignment" value="center" />
+            <Value name="textColor" value="$preset_colorHeaderText" />
+            <Value name="textBold" value="true" />
+            <Value name="textVerticalAlignment" value="top" />
+            <Value name="textSize" value="20px" />
+            <Value name="textOffset" value="0 34px" />
+            <Value name="textMaxWidth" value="50px" />
+            <Value name="textLayoutMode" value="resize" />
+
+            <Value name="hasFrame" value="true" />
+            <Value name="frameThickness" value="0 0 1dp 0" />
+            <Value name="frameRightColor" value="1 1 1 0.05" />
+
+            <Variant name="mobile">
+                <Value name="textMaxWidth" value="90px" />
+                <Value name="size" value="150px 600px" />
+                <Value name="textSize" value="25px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesFluctuationBarBg" extends="emptyPanel" with="anchorBottomCenter">
+            <Value name="size" value="36.667px 652px" />
+            <Value name="hasFrame" value="true" />
+            <Value name="margin" value="10px 0 10px 0" />
+
+            <Value name="frameTopColor" value="$preset_colorWhite" />
+            <Value name="frameBottomColor" value="$preset_colorWhite" />
+
+            <Variant name="mobile">
+                <Value name="size" value="100px 630px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesFluctuationBarBgDown" extends="ingameMenuPricesFluctuationBarBg">
+            <Value name="frameThickness" value="0 0 0 2px" />
+
+            <Variant name="mobile">
+                <Value name="frameThickness" value="0 0 0 4px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesFluctuationBarBgUp" extends="ingameMenuPricesFluctuationBarBg">
+            <Value name="frameThickness" value="0 2px 0 0" />
+
+            <Variant name="mobile">
+                <Value name="frameThickness" value="0 4px 0 0" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesFluctuationBar" extends="baseReference">
+            <Value name="size" value="10px 652px" />
+            <Value name="anchors" value="0.5 0.5 0 1" />
+
+            <Variant name="mobile">
+                <Value name="size" value="40px 600px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesFluctuationBarDown" extends="ingameMenuPricesFluctuationBar">
+            <Value name="imageColor" value="$preset_colorRed" />
+        </Profile>
+
+        <Profile name="ingameMenuPricesFluctuationBarUp" extends="ingameMenuPricesFluctuationBar">
+            <Value name="imageColor" value="$preset_colorGreen" />
+        </Profile>
+
+        <Profile name="ingameMenuPricesFluctuationCurrent" extends="baseReference" with="anchorBottomCenter">
+            <Value name="size" value="680px 1dp" />
+            <Value name="imageColor" value="$preset_colorWhite_50" />
+
+            <Variant name="mobile">
+                <Value name="size" value="864px 4dp" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesFluctuationHigh" extends="textDefault" with="anchorBottomRight">
+            <Value name="textSize" value="16px" />
+            <Value name="size" value="100px 14px" />
+            <Value name="position" value="-8px 565px" />
+            <Value name="textAlignment" value="right" />
+            <Value name="format" value="currency" />
+            <Value name="textColor" value="$preset_colorWhite_50" />
+            <Value name="textLayoutMode" value="overflow" />
+
+            <Variant name="mobile">
+                <Value name="position" value="-10px 555px" />
+                <Value name="textSize" value="25px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="ingameMenuPricesFluctuationLow" extends="ingameMenuPricesFluctuationHigh" with="anchorBottomRight">
+            <Value name="position" value="-5px 75px" />
+
+            <Variant name="mobile">
+                <Value name="position" value="-10px 35px" />
+                <Value name="textSize" value="25px" />
+            </Variant>
+        </Profile>
+
+        <Profile name="horizontalFLuctuationSlider" extends="horizontalListSliderRightDocked">
+            <Value name="visible" value="false" />
+
+            <Variant name="mobile">
+                <Value name="visible" value="true" />
+                <Value name="size" value="864px 12px"/>
+                <Value name="position" value="0px -20px"/>
+            </Variant>
+        </Profile>
+
+        <Profile name="horizontalFluctuationSliderBar" extends="horizontalListSliderBar">
+
+            <Variant name="mobile">
+                <Value name="size" value="856px 6px"/>
+
+                <Value name="handleFocus" value="true"/>
+            </Variant>
+        </Profile>
+    </GUIProfiles>
+</GUI>

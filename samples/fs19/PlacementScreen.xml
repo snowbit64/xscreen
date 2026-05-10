@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUI onOpen="onOpen" onClose="onClose">
+    <GuiElement type="text" profile="textDefault" screenAlign="bottomCenter" positionOrigin="bottomCenter" position="0px 120px" id="messageText" textAlignment="center" />
+    <GuiElement type="bitmap" profile="placementCrosshair" id="crossHairElement" />
+</GUI>
