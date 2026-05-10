@@ -413,8 +413,8 @@ static void* appThread(void* arg) {
         int events;
         int ident;
 
-        while ((ident = ALooper_pollAll(app->windowReady && app->hasFocus ? 0 : -1,
-                                         nullptr, &events, nullptr)) >= 0) {
+        while ((ident = ALooper_pollOnce(app->windowReady && app->hasFocus ? 0 : -1,
+                                          nullptr, &events, nullptr)) >= 0) {
             if (ident == 1) {
                 processCmd(app);
             }
