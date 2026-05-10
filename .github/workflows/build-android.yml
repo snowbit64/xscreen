@@ -33,23 +33,26 @@ jobs:
 
       - name: Validate XML screens
         run: |
+          sudo apt-get install -y -qq libxml2-utils
           for xml in ui/screens/*.xml; do
-            if ! xmllint --noout "$xml" 2>/dev/null; then
+            if ! xmllint --noout "$xml"; then
               echo "INVALID: $xml"
               exit 1
             fi
             echo "OK: $(basename $xml)"
           done
 
-      - name: Build APK
+      - name: Generate Gradle wrapper
         working-directory: android
         run: |
-          chmod +x gradlew 2>/dev/null || true
-          # Generate gradle wrapper if not present
           if [ ! -f gradlew ]; then
             gradle wrapper --gradle-version 8.4
           fi
-          ./gradlew assembleDebug
+          chmod +x gradlew
+
+      - name: Build APK
+        working-directory: android
+        run: ./gradlew assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
