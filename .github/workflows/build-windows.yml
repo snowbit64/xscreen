@@ -1,0 +1,43 @@
+name: Build Windows
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure CMake
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build --config Release
+
+      - name: Validate XML screens
+        shell: pwsh
+        run: |
+          $xmlFiles = Get-ChildItem -Path "ui/screens" -Filter "*.xml" -Recurse
+          foreach ($file in $xmlFiles) {
+            try {
+              [xml]$content = Get-Content $file.FullName
+              Write-Host "OK: $($file.Name)"
+            } catch {
+              Write-Host "INVALID: $($file.Name) - $($_.Exception.Message)"
+              exit 1
+            }
+          }
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: xscreen-windows
+          path: |
+            build/Release/xscreen.exe
+            ui/
