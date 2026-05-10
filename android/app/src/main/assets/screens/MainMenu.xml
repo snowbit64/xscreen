@@ -28,7 +28,7 @@
 
     <Screen
         name="MainMenu"
-        script="scripts/mainMenu.lua">
+        script="ui/scripts/mainMenu.lua">
 
         <VBox
             width="0.4"
@@ -67,6 +67,12 @@
                 profile="mainButton"
                 text="UI Test Screen"
                 onClick="onTestScreenClick"/>
+
+            <Button
+                id="screenSwitchButton"
+                profile="mainButton"
+                text="Screen Switch Example"
+                onClick="onScreenSwitchClick"/>
 
             <Button
                 id="quitButton"

@@ -39,6 +39,7 @@ public:
     void handleInput(const InputEvent& event);
 
     Screen* getActiveScreen();
+    Screen* getScreen(const std::string& name);
     const std::string& getActiveScreenName() const;
 
     void registerCallbackHandler(std::function<void(const std::string&, const std::string&)> handler);

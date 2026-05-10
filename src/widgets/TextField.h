@@ -23,6 +23,9 @@ public:
     bool isFocused() const;
     void setFocused(bool focused);
 
+    using FocusCallback = std::function<void(bool focused)>;
+    void setFocusChangeCallback(FocusCallback cb) { focusCallback_ = std::move(cb); }
+
     void render(Renderer& renderer) override;
     bool handleInput(const InputEvent& event) override;
     void update(float dt) override;
@@ -40,6 +43,7 @@ private:
     bool focused_ = false;
     float cursorBlink_ = 0.0f;
     int cursorPos_ = 0;
+    FocusCallback focusCallback_;
 };
 
 } // namespace xscreen

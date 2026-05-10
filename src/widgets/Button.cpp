@@ -36,10 +36,12 @@ void Button::render(Renderer& renderer) {
     if (!text_.empty()) {
         Color4 tc = textColor_;
         tc.a *= alpha;
+        renderer.setClipRect(r);
         Vec2 textSize = renderer.measureText(text_, fontSize_);
         float tx = r.x + (r.w - textSize.x) * 0.5f;
         float ty = r.y + (r.h - textSize.y) * 0.5f;
         renderer.drawText(text_, tx, ty, fontSize_, tc);
+        renderer.clearClipRect();
     }
 
     UIElement::render(renderer);

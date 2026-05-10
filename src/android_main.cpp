@@ -27,6 +27,8 @@
 #include "animation/AnimationManager.h"
 #include "renderer/GLESRenderer.h"
 #include "widgets/Button.h"
+#include "widgets/TextField.h"
+#include <jni.h>
 
 extern "C" {
 #include "lua.h"
@@ -91,6 +93,8 @@ struct AppState {
     std::unique_ptr<ScreenManager> screenManager;
     std::unique_ptr<AnimationManager> animations;
 
+    std::vector<unsigned char> fontData;
+
     pthread_mutex_t mutex;
     pthread_cond_t cond;
 
@@ -106,6 +110,81 @@ enum AppCmd {
     CMD_PAUSE,
     CMD_DESTROY,
 };
+
+static void showSoftKeyboard(ANativeActivity* activity, bool show) {
+    JavaVM* vm = activity->vm;
+    JNIEnv* env = nullptr;
+    vm->AttachCurrentThread(&env, nullptr);
+
+    jobject ctx = activity->clazz;
+    jclass ctxClass = env->GetObjectClass(ctx);
+    jmethodID getSystemService = env->GetMethodID(ctxClass, "getSystemService",
+        "(Ljava/lang/String;)Ljava/lang/Object;");
+
+    jstring serviceName = env->NewStringUTF("input_method");
+    jobject imm = env->CallObjectMethod(ctx, getSystemService, serviceName);
+    env->DeleteLocalRef(serviceName);
+
+    if (imm) {
+        jclass immClass = env->GetObjectClass(imm);
+        if (show) {
+            jmethodID getWindow = env->GetMethodID(ctxClass, "getWindow",
+                "()Landroid/view/Window;");
+            jobject window = env->CallObjectMethod(ctx, getWindow);
+            jclass windowClass = env->GetObjectClass(window);
+            jmethodID getDecorView = env->GetMethodID(windowClass, "getDecorView",
+                "()Landroid/view/View;");
+            jobject decorView = env->CallObjectMethod(window, getDecorView);
+
+            jmethodID showSoft = env->GetMethodID(immClass, "showSoftInput",
+                "(Landroid/view/View;I)Z");
+            env->CallBooleanMethod(imm, showSoft, decorView, 0);
+
+            env->DeleteLocalRef(decorView);
+            env->DeleteLocalRef(windowClass);
+            env->DeleteLocalRef(window);
+        } else {
+            jmethodID getWindow = env->GetMethodID(ctxClass, "getWindow",
+                "()Landroid/view/Window;");
+            jobject window = env->CallObjectMethod(ctx, getWindow);
+            jclass windowClass = env->GetObjectClass(window);
+            jmethodID getDecorView = env->GetMethodID(windowClass, "getDecorView",
+                "()Landroid/view/View;");
+            jobject decorView = env->CallObjectMethod(window, getDecorView);
+            jclass viewClass = env->GetObjectClass(decorView);
+            jmethodID getWindowToken = env->GetMethodID(viewClass, "getWindowToken",
+                "()Landroid/os/IBinder;");
+            jobject token = env->CallObjectMethod(decorView, getWindowToken);
+
+            jmethodID hideSoft = env->GetMethodID(immClass, "hideSoftInputFromWindow",
+                "(Landroid/os/IBinder;I)Z");
+            env->CallBooleanMethod(imm, hideSoft, token, 0);
+
+            env->DeleteLocalRef(token);
+            env->DeleteLocalRef(viewClass);
+            env->DeleteLocalRef(decorView);
+            env->DeleteLocalRef(windowClass);
+            env->DeleteLocalRef(window);
+        }
+        env->DeleteLocalRef(immClass);
+        env->DeleteLocalRef(imm);
+    }
+    env->DeleteLocalRef(ctxClass);
+    vm->DetachCurrentThread();
+}
+
+static void installTextFieldFocusCallbacks(AppState* app, const std::shared_ptr<UIElement>& element) {
+    auto* tf = dynamic_cast<TextField*>(element.get());
+    if (tf) {
+        tf->setFocusChangeCallback([app](bool focused) {
+            LOGI("TextField focus changed: %s", focused ? "true" : "false");
+            showSoftKeyboard(app->activity, focused);
+        });
+    }
+    for (auto& child : element->getChildren()) {
+        installTextFieldFocusCallbacks(app, child);
+    }
+}
 
 static bool initEGL(AppState* app) {
     app->display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
@@ -282,10 +361,10 @@ static bool initApp(AppState* app) {
 
     AAssetManager* mgr = app->activity->assetManager;
 
-    auto fontData = readAssetBinary(mgr, "fonts/Roboto-Regular.ttf");
-    if (!fontData.empty()) {
-        FontId fid = app->renderer->loadFontFromMemory(fontData.data(),
-                                                        static_cast<int>(fontData.size()), 48);
+    app->fontData = readAssetBinary(mgr, "fonts/Roboto-Regular.ttf");
+    if (!app->fontData.empty()) {
+        FontId fid = app->renderer->loadFontFromMemory(app->fontData.data(),
+                                                        static_cast<int>(app->fontData.size()), 48);
         if (fid != INVALID_FONT) {
             app->renderer->setDefaultFont(fid);
             LOGI("Default font loaded: Roboto-Regular.ttf");
@@ -297,6 +376,13 @@ static bool initApp(AppState* app) {
     loadScreenFromAsset(app, mgr, "screens/MainMenu.xml");
     loadScreenFromAsset(app, mgr, "screens/SettingsScreen.xml");
     loadScreenFromAsset(app, mgr, "screens/TestScreen.xml");
+    loadScreenFromAsset(app, mgr, "screens/ScreenSwitchExample.xml");
+
+    const char* screenNames[] = {"MainMenu", "SettingsScreen", "TestScreen", "ScreenSwitchExample"};
+    for (const char* name : screenNames) {
+        auto* s = app->screenManager->getScreen(name);
+        if (s && s->root) installTextFieldFocusCallbacks(app, s->root);
+    }
 
     app->screenManager->show("MainMenu");
 
@@ -386,6 +472,15 @@ static void processCmd(AppState* app) {
                     } else {
                         app->renderer->setScreenSize(app->width, app->height);
                         app->renderer->init(app->width, app->height, "XScreen");
+                        if (!app->fontData.empty()) {
+                            FontId fid = app->renderer->loadFontFromMemory(
+                                app->fontData.data(),
+                                static_cast<int>(app->fontData.size()), 48);
+                            if (fid != INVALID_FONT) {
+                                app->renderer->setDefaultFont(fid);
+                                LOGI("Font reloaded after window recreate");
+                            }
+                        }
                     }
                 }
             }

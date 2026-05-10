@@ -98,33 +98,43 @@ if(XSCREEN_BUILD_ANDROID)
     )
 else()
     # ─────────────────────────────────────────────────────────
-    # Desktop: raylib renderer
+    # Desktop: GLFW + OpenGL 3.3 renderer (same pipeline as Android)
     # ─────────────────────────────────────────────────────────
-    set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-    set(BUILD_GAMES    OFF CACHE BOOL "" FORCE)
+    set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+    set(GLFW_BUILD_TESTS    OFF CACHE BOOL "" FORCE)
+    set(GLFW_BUILD_DOCS     OFF CACHE BOOL "" FORCE)
     FetchContent_Declare(
-        raylib
-        GIT_REPOSITORY https://github.com/raysan5/raylib.git
-        GIT_TAG        5.5
+        glfw
+        GIT_REPOSITORY https://github.com/glfw/glfw.git
+        GIT_TAG        3.4
         GIT_SHALLOW    TRUE
     )
-    FetchContent_MakeAvailable(raylib)
+    FetchContent_MakeAvailable(glfw)
 
     set(XSCREEN_DESKTOP_SOURCES
         ${XSCREEN_CORE_SOURCES}
-        src/renderer/RaylibRenderer.cpp
+        src/renderer/GLESRenderer.cpp
+        third_party/glad/src/gl.c
     )
 
     add_library(xscreen_lib STATIC ${XSCREEN_DESKTOP_SOURCES})
     target_include_directories(xscreen_lib PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/src
+        ${CMAKE_CURRENT_SOURCE_DIR}/third_party/stb
+        ${CMAKE_CURRENT_SOURCE_DIR}/third_party/glad/include
         ${lua_SOURCE_DIR}
     )
     target_link_libraries(xscreen_lib PUBLIC
-        raylib
+        glfw
         tinyxml2
         lua_static
     )
+    if(WIN32)
+        target_link_libraries(xscreen_lib PUBLIC opengl32)
+    else()
+        find_package(OpenGL REQUIRED)
+        target_link_libraries(xscreen_lib PUBLIC OpenGL::GL)
+    endif()
 
     add_executable(xscreen src/main.cpp)
     target_link_libraries(xscreen PRIVATE xscreen_lib)

@@ -122,6 +122,11 @@ Screen* ScreenManager::getActiveScreen() {
     return (it != screens_.end()) ? &it->second : nullptr;
 }
 
+Screen* ScreenManager::getScreen(const std::string& name) {
+    auto it = screens_.find(name);
+    return (it != screens_.end()) ? &it->second : nullptr;
+}
+
 const std::string& ScreenManager::getActiveScreenName() const {
     return activeScreen_;
 }

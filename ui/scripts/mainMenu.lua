@@ -22,6 +22,11 @@ function MainMenu:onTestScreenClick()
     UI:push("TestScreen")
 end
 
+function MainMenu:onScreenSwitchClick()
+    logInfo("Screen Switch Example clicked!")
+    UI:push("ScreenSwitchExample")
+end
+
 function MainMenu:onQuitClick()
     logInfo("Quit clicked!")
 end

@@ -37,7 +37,9 @@ void Label::render(Renderer& renderer) {
             break;
     }
 
+    renderer.setClipRect(r);
     renderer.drawText(text_, tx, ty, fontSize_, color);
+    renderer.clearClipRect();
     UIElement::render(renderer);
 }
 

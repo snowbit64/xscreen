@@ -6,11 +6,15 @@
 #include "layout/LayoutEngine.h"
 #include "scripting/LuaBridge.h"
 #include "animation/AnimationManager.h"
-#include "renderer/RaylibRenderer.h"
+#include "renderer/GLESRenderer.h"
 #include "widgets/Button.h"
-#include "raylib.h"
+#include "widgets/TextField.h"
+
+#include <glad/gl.h>
+#include <GLFW/glfw3.h>
 
 #include <cstdio>
+#include <chrono>
 
 extern "C" {
 #include "lua.h"
@@ -20,14 +24,104 @@ extern "C" {
 
 using namespace xscreen;
 
+static ScreenManager* g_screenManager = nullptr;
+
+static void glfwErrorCallback(int error, const char* description) {
+    std::fprintf(stderr, "[GLFW] Error %d: %s\n", error, description);
+}
+
+static void glfwCharCallback(GLFWwindow* /*window*/, unsigned int codepoint) {
+    if (!g_screenManager || codepoint >= 128) return;
+    InputEvent keyEvent;
+    keyEvent.action = InputAction::Press;
+    keyEvent.key = static_cast<int>(codepoint);
+    g_screenManager->handleInput(keyEvent);
+}
+
+static void glfwKeyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/) {
+    if (!g_screenManager || action != GLFW_PRESS) return;
+    int mappedKey = 0;
+    if (key == GLFW_KEY_BACKSPACE) mappedKey = 259;
+    else if (key == GLFW_KEY_DELETE) mappedKey = 261;
+    else if (key == GLFW_KEY_LEFT) mappedKey = 263;
+    else if (key == GLFW_KEY_RIGHT) mappedKey = 262;
+    if (mappedKey) {
+        InputEvent keyEvent;
+        keyEvent.action = InputAction::Press;
+        keyEvent.key = mappedKey;
+        g_screenManager->handleInput(keyEvent);
+    }
+}
+
+static void glfwScrollCallback(GLFWwindow* w, double /*xoffset*/, double yoffset) {
+    if (!g_screenManager) return;
+    double mx, my;
+    glfwGetCursorPos(w, &mx, &my);
+    InputEvent scrollEvent;
+    scrollEvent.action = InputAction::Scroll;
+    scrollEvent.x = static_cast<float>(mx);
+    scrollEvent.y = static_cast<float>(my);
+    scrollEvent.scrollDelta = static_cast<float>(yoffset);
+    g_screenManager->handleInput(scrollEvent);
+}
+
 int main(int argc, char* argv[]) {
     std::string basePath = "ui/";
     if (argc > 1) basePath = argv[1];
 
-    RaylibRenderer renderer;
-    if (!renderer.init(1280, 720, "XScreen - South American Farming UI")) {
-        std::fprintf(stderr, "Failed to initialize renderer\n");
+    glfwSetErrorCallback(glfwErrorCallback);
+    if (!glfwInit()) {
+        std::fprintf(stderr, "Failed to initialize GLFW\n");
         return 1;
+    }
+
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+#ifdef __APPLE__
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+#endif
+    glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
+    glfwWindowHint(GLFW_SAMPLES, 4);
+
+    GLFWwindow* window = glfwCreateWindow(1280, 720,
+        "XScreen - South American Farming UI", nullptr, nullptr);
+    if (!window) {
+        std::fprintf(stderr, "Failed to create GLFW window\n");
+        glfwTerminate();
+        return 1;
+    }
+    glfwMakeContextCurrent(window);
+    glfwSwapInterval(1);
+    glfwSetCharCallback(window, glfwCharCallback);
+    glfwSetKeyCallback(window, glfwKeyCallback);
+    glfwSetScrollCallback(window, glfwScrollCallback);
+
+    int version = gladLoadGL(glfwGetProcAddress);
+    if (!version) {
+        std::fprintf(stderr, "Failed to initialize OpenGL loader (glad)\n");
+        glfwDestroyWindow(window);
+        glfwTerminate();
+        return 1;
+    }
+    std::printf("OpenGL %d.%d loaded\n", GLAD_VERSION_MAJOR(version), GLAD_VERSION_MINOR(version));
+
+    int fbW, fbH;
+    glfwGetFramebufferSize(window, &fbW, &fbH);
+
+    GLESRenderer renderer;
+    if (!renderer.init(fbW, fbH, "XScreen")) {
+        std::fprintf(stderr, "Failed to initialize renderer\n");
+        glfwDestroyWindow(window);
+        glfwTerminate();
+        return 1;
+    }
+
+    std::string fontPath = basePath + "fonts/Roboto-Regular.ttf";
+    FontId defaultFont = renderer.loadFont(fontPath, 48);
+    if (defaultFont != INVALID_FONT) {
+        renderer.setDefaultFont(defaultFont);
+        std::printf("Default font loaded: %s\n", fontPath.c_str());
     }
 
     ProfileManager profiles;
@@ -42,53 +136,31 @@ int main(int argc, char* argv[]) {
 
     LayoutEngine layout;
     ScreenManager screenManager(lua, layout, profiles, factory);
+    g_screenManager = &screenManager;
 
     lua_State* L = lua.getState();
 
     lua_getglobal(L, "_xscreen_callbacks");
     lua_pushcfunction(L, [](lua_State* L) -> int {
-        lua_getglobal(L, "_screenManager");
-        auto* sm = static_cast<ScreenManager*>(lua_touserdata(L, -1));
-        lua_pop(L, 1);
-        if (sm) {
-            const char* name = luaL_checkstring(L, 1);
-            sm->show(name);
-        }
+        if (g_screenManager) g_screenManager->show(luaL_checkstring(L, 1));
         return 0;
     });
     lua_setfield(L, -2, "show");
 
     lua_pushcfunction(L, [](lua_State* L) -> int {
-        lua_getglobal(L, "_screenManager");
-        auto* sm = static_cast<ScreenManager*>(lua_touserdata(L, -1));
-        lua_pop(L, 1);
-        if (sm) {
-            const char* name = luaL_checkstring(L, 1);
-            sm->close(name);
-        }
+        if (g_screenManager) g_screenManager->close(luaL_checkstring(L, 1));
         return 0;
     });
     lua_setfield(L, -2, "close");
 
     lua_pushcfunction(L, [](lua_State* L) -> int {
-        lua_getglobal(L, "_screenManager");
-        auto* sm = static_cast<ScreenManager*>(lua_touserdata(L, -1));
-        lua_pop(L, 1);
-        if (sm) {
-            const char* name = luaL_checkstring(L, 1);
-            sm->push(name);
-        }
+        if (g_screenManager) g_screenManager->push(luaL_checkstring(L, 1));
         return 0;
     });
     lua_setfield(L, -2, "push");
 
     lua_pushcfunction(L, [](lua_State* L) -> int {
-        lua_getglobal(L, "_screenManager");
-        auto* sm = static_cast<ScreenManager*>(lua_touserdata(L, -1));
-        lua_pop(L, 1);
-        if (sm) {
-            sm->pop();
-        }
+        if (g_screenManager) g_screenManager->pop();
         return 0;
     });
     lua_setfield(L, -2, "pop");
@@ -102,10 +174,12 @@ int main(int argc, char* argv[]) {
     std::string mainMenuXml = basePath + "screens/MainMenu.xml";
     std::string settingsXml = basePath + "screens/SettingsScreen.xml";
     std::string testXml = basePath + "screens/TestScreen.xml";
+    std::string switchExXml = basePath + "screens/ScreenSwitchExample.xml";
 
     screenManager.loadScreen(mainMenuXml);
     screenManager.loadScreen(settingsXml);
     screenManager.loadScreen(testXml);
+    screenManager.loadScreen(switchExXml);
 
     screenManager.show("MainMenu");
 
@@ -114,21 +188,42 @@ int main(int argc, char* argv[]) {
             std::printf("[App] Callback: %s::%s\n", screen.c_str(), callback.c_str());
         });
 
-    while (!renderer.shouldClose()) {
-        float dt = renderer.getDeltaTime();
+    auto lastTime = std::chrono::high_resolution_clock::now();
+    double lastMouseX = 0, lastMouseY = 0;
 
-        Vector2 mousePos = GetMousePosition();
-        InputEvent moveEvent;
-        moveEvent.action = InputAction::Move;
-        moveEvent.x = mousePos.x;
-        moveEvent.y = mousePos.y;
-        screenManager.handleInput(moveEvent);
+    while (!glfwWindowShouldClose(window)) {
+        glfwPollEvents();
 
-        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        auto now = std::chrono::high_resolution_clock::now();
+        float dt = std::chrono::duration<float>(now - lastTime).count();
+        lastTime = now;
+        if (dt > 0.1f) dt = 0.016f;
+        renderer.setDeltaTime(dt);
+
+        glfwGetFramebufferSize(window, &fbW, &fbH);
+        renderer.setScreenSize(fbW, fbH);
+
+        double mouseX, mouseY;
+        glfwGetCursorPos(window, &mouseX, &mouseY);
+
+        if (mouseX != lastMouseX || mouseY != lastMouseY) {
+            InputEvent moveEvent;
+            moveEvent.action = InputAction::Move;
+            moveEvent.x = static_cast<float>(mouseX);
+            moveEvent.y = static_cast<float>(mouseY);
+            screenManager.handleInput(moveEvent);
+            lastMouseX = mouseX;
+            lastMouseY = mouseY;
+        }
+
+        static bool wasLeftPressed = false;
+        bool leftPressed = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS;
+
+        if (leftPressed && !wasLeftPressed) {
             InputEvent pressEvent;
             pressEvent.action = InputAction::Press;
-            pressEvent.x = mousePos.x;
-            pressEvent.y = mousePos.y;
+            pressEvent.x = static_cast<float>(mouseX);
+            pressEvent.y = static_cast<float>(mouseY);
             pressEvent.button = 0;
             screenManager.handleInput(pressEvent);
 
@@ -151,53 +246,31 @@ int main(int argc, char* argv[]) {
             }
         }
 
-        if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
+        if (!leftPressed && wasLeftPressed) {
             InputEvent releaseEvent;
             releaseEvent.action = InputAction::Release;
-            releaseEvent.x = mousePos.x;
-            releaseEvent.y = mousePos.y;
+            releaseEvent.x = static_cast<float>(mouseX);
+            releaseEvent.y = static_cast<float>(mouseY);
             releaseEvent.button = 0;
             screenManager.handleInput(releaseEvent);
         }
-
-        float wheel = GetMouseWheelMove();
-        if (wheel != 0.0f) {
-            InputEvent scrollEvent;
-            scrollEvent.action = InputAction::Scroll;
-            scrollEvent.x = mousePos.x;
-            scrollEvent.y = mousePos.y;
-            scrollEvent.scrollDelta = wheel;
-            screenManager.handleInput(scrollEvent);
-        }
-
-        int key = GetCharPressed();
-        while (key > 0) {
-            InputEvent keyEvent;
-            keyEvent.action = InputAction::Press;
-            keyEvent.key = key;
-            screenManager.handleInput(keyEvent);
-            key = GetCharPressed();
-        }
-
-        if (IsKeyPressed(KEY_BACKSPACE)) {
-            InputEvent keyEvent;
-            keyEvent.action = InputAction::Press;
-            keyEvent.key = 259;
-            screenManager.handleInput(keyEvent);
-        }
+        wasLeftPressed = leftPressed;
 
         screenManager.update(dt);
         animations.update(dt);
 
         renderer.beginFrame();
         screenManager.render(renderer,
-                             static_cast<float>(renderer.getScreenWidth()),
-                             static_cast<float>(renderer.getScreenHeight()));
+                             static_cast<float>(fbW),
+                             static_cast<float>(fbH));
         renderer.endFrame();
+        glfwSwapBuffers(window);
     }
 
     renderer.shutdown();
     lua.shutdown();
+    glfwDestroyWindow(window);
+    glfwTerminate();
 
     return 0;
 }
