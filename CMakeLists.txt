@@ -12,22 +12,6 @@ option(XSCREEN_BUILD_ANDROID "Build for Android" OFF)
 # ─────────────────────────────────────────────────────────────
 include(FetchContent)
 
-# raylib
-set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-set(BUILD_GAMES    OFF CACHE BOOL "" FORCE)
-
-if(XSCREEN_BUILD_ANDROID)
-    set(PLATFORM "Android" CACHE STRING "" FORCE)
-endif()
-
-FetchContent_Declare(
-    raylib
-    GIT_REPOSITORY https://github.com/raysan5/raylib.git
-    GIT_TAG        5.5
-    GIT_SHALLOW    TRUE
-)
-FetchContent_MakeAvailable(raylib)
-
 # tinyxml2
 FetchContent_Declare(
     tinyxml2
@@ -65,9 +49,9 @@ if(NOT WIN32)
 endif()
 
 # ─────────────────────────────────────────────────────────────
-# XScreen library
+# Shared core sources (renderer-independent)
 # ─────────────────────────────────────────────────────────────
-set(XSCREEN_SOURCES
+set(XSCREEN_CORE_SOURCES
     src/core/UIElement.cpp
     src/core/ProfileManager.cpp
     src/core/XMLParser.cpp
@@ -86,24 +70,61 @@ set(XSCREEN_SOURCES
     src/scripting/LuaBridge.cpp
     src/animation/Animation.cpp
     src/animation/AnimationManager.cpp
-    src/renderer/RaylibRenderer.cpp
 )
 
-add_library(xscreen_lib STATIC ${XSCREEN_SOURCES})
-target_include_directories(xscreen_lib PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/src
-    ${lua_SOURCE_DIR}
-)
-target_link_libraries(xscreen_lib PUBLIC
-    raylib
-    tinyxml2
-    lua_static
-)
+if(XSCREEN_BUILD_ANDROID)
+    # ─────────────────────────────────────────────────────────
+    # Android: OpenGL ES renderer + NativeActivity
+    # ─────────────────────────────────────────────────────────
+    set(XSCREEN_ANDROID_SOURCES
+        ${XSCREEN_CORE_SOURCES}
+        src/renderer/GLESRenderer.cpp
+        src/android_main.cpp
+    )
 
-# ─────────────────────────────────────────────────────────────
-# Desktop executable
-# ─────────────────────────────────────────────────────────────
-if(NOT XSCREEN_BUILD_ANDROID)
+    add_library(xscreen SHARED ${XSCREEN_ANDROID_SOURCES})
+    target_include_directories(xscreen PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/src
+        ${lua_SOURCE_DIR}
+    )
+    target_link_libraries(xscreen PUBLIC
+        tinyxml2
+        lua_static
+        android
+        log
+        EGL
+        GLESv3
+    )
+else()
+    # ─────────────────────────────────────────────────────────
+    # Desktop: raylib renderer
+    # ─────────────────────────────────────────────────────────
+    set(BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+    set(BUILD_GAMES    OFF CACHE BOOL "" FORCE)
+    FetchContent_Declare(
+        raylib
+        GIT_REPOSITORY https://github.com/raysan5/raylib.git
+        GIT_TAG        5.5
+        GIT_SHALLOW    TRUE
+    )
+    FetchContent_MakeAvailable(raylib)
+
+    set(XSCREEN_DESKTOP_SOURCES
+        ${XSCREEN_CORE_SOURCES}
+        src/renderer/RaylibRenderer.cpp
+    )
+
+    add_library(xscreen_lib STATIC ${XSCREEN_DESKTOP_SOURCES})
+    target_include_directories(xscreen_lib PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/src
+        ${lua_SOURCE_DIR}
+    )
+    target_link_libraries(xscreen_lib PUBLIC
+        raylib
+        tinyxml2
+        lua_static
+    )
+
     add_executable(xscreen src/main.cpp)
     target_link_libraries(xscreen PRIVATE xscreen_lib)
 

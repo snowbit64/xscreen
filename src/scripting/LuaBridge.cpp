@@ -1,6 +1,11 @@
 #include "LuaBridge.h"
 #include <cstdio>
 
+#ifdef __ANDROID__
+#include <android/log.h>
+#define LOG_TAG "xscreen"
+#endif
+
 extern "C" {
 #include "lua.h"
 #include "lualib.h"
@@ -79,7 +84,11 @@ static int lua_ui_pop(lua_State* L) {
 
 static int lua_log_info(lua_State* L) {
     const char* msg = luaL_checkstring(L, 1);
+#ifdef __ANDROID__
+    __android_log_print(ANDROID_LOG_INFO, LOG_TAG, "[Lua] %s", msg);
+#else
     std::printf("[Lua] %s\n", msg);
+#endif
     return 0;
 }
 

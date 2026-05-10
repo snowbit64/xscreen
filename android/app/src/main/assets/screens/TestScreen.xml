@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Gui>
+
+    <Profiles>
+
+        <Profile name="sectionTitle">
+            <Property name="fontSize" value="24"/>
+            <Property name="textColor" value="0.9 0.95 0.85 1.0"/>
+            <Property name="height" value="40px"/>
+        </Profile>
+
+        <Profile name="testButton">
+            <Property name="width" value="0.25"/>
+            <Property name="height" value="50px"/>
+            <Property name="fontSize" value="18"/>
+            <Property name="bgColor" value="0.2 0.35 0.5 1.0"/>
+            <Property name="cornerRadius" value="5"/>
+        </Profile>
+
+        <Profile name="greenButton" extends="testButton">
+            <Property name="bgColor" value="0.15 0.4 0.15 1.0"/>
+        </Profile>
+
+        <Profile name="redButton" extends="testButton">
+            <Property name="bgColor" value="0.4 0.15 0.15 1.0"/>
+        </Profile>
+
+        <Profile name="infoLabel">
+            <Property name="fontSize" value="16"/>
+            <Property name="textColor" value="0.7 0.7 0.7 1.0"/>
+            <Property name="height" value="28px"/>
+        </Profile>
+
+        <Profile name="progressStyle">
+            <Property name="height" value="24px"/>
+            <Property name="cornerRadius" value="4"/>
+        </Profile>
+
+    </Profiles>
+
+    <Screen
+        name="TestScreen"
+        script="scripts/testScreen.lua">
+
+        <VBox
+            width="0.85"
+            height="0.9"
+            align="center"
+            alignY="center"
+            spacing="8"
+            padding="15">
+
+            <Label
+                text="UI System Test Screen"
+                profile="sectionTitle"
+                align="center"/>
+
+            <Container height="2px" bgColor="0.3 0.5 0.3 1.0"/>
+
+            <!-- Button Section -->
+            <Label text="Buttons:" profile="infoLabel"/>
+
+            <HBox spacing="10" height="55px">
+                <Button
+                    id="btn1"
+                    profile="testButton"
+                    text="Button A"
+                    onClick="onButtonA"/>
+
+                <Button
+                    id="btn2"
+                    profile="greenButton"
+                    text="Button B (Green)"
+                    onClick="onButtonB"/>
+
+                <Button
+                    id="btn3"
+                    profile="redButton"
+                    text="Button C (Red)"
+                    onClick="onButtonC"/>
+            </HBox>
+
+            <!-- Layout Section -->
+            <Label text="Horizontal Layout:" profile="infoLabel"/>
+
+            <HBox spacing="8" height="40px">
+                <Container bgColor="0.4 0.2 0.2 0.8" cornerRadius="4"/>
+                <Container bgColor="0.2 0.4 0.2 0.8" cornerRadius="4"/>
+                <Container bgColor="0.2 0.2 0.4 0.8" cornerRadius="4"/>
+                <Container bgColor="0.4 0.4 0.2 0.8" cornerRadius="4"/>
+            </HBox>
+
+            <!-- Progress Bar Section -->
+            <Label text="Progress Bars:" profile="infoLabel"/>
+
+            <ProgressBar
+                id="progress1"
+                height="24px"
+                value="0.3"
+                barColor="0.2 0.6 0.2 1.0"
+                bgColor="0.15 0.15 0.15 1.0"
+                cornerRadius="4"/>
+
+            <ProgressBar
+                id="progress2"
+                height="24px"
+                value="0.7"
+                barColor="0.2 0.4 0.7 1.0"
+                bgColor="0.15 0.15 0.15 1.0"
+                cornerRadius="4"/>
+
+            <ProgressBar
+                id="progress3"
+                height="24px"
+                value="1.0"
+                barColor="0.6 0.5 0.1 1.0"
+                bgColor="0.15 0.15 0.15 1.0"
+                cornerRadius="4"/>
+
+            <!-- Text Input Section -->
+            <Label text="Text Input:" profile="infoLabel"/>
+
+            <TextField
+                id="textInput1"
+                height="40px"
+                placeholder="Type your farm name here..."
+                fontSize="18"
+                bgColor="0.1 0.1 0.1 1.0"
+                cornerRadius="4"/>
+
+            <!-- Labels Section -->
+            <Label text="Labels with different alignment:" profile="infoLabel"/>
+
+            <HBox spacing="5" height="30px">
+                <Label text="Left aligned" fontSize="14" textColor="0.8 0.6 0.6 1.0"/>
+                <Label text="Center text" fontSize="14" textColor="0.6 0.8 0.6 1.0" align="center"/>
+                <Label text="Right text" fontSize="14" textColor="0.6 0.6 0.8 1.0" align="end"/>
+            </HBox>
+
+            <!-- Navigation -->
+            <Container height="2px" bgColor="0.3 0.5 0.3 1.0"/>
+
+            <HBox spacing="10" height="50px">
+                <Button
+                    id="backToMenu"
+                    profile="testButton"
+                    text="Back to Menu"
+                    onClick="onBackClick"
+                    bgColor="0.3 0.3 0.3 1.0"/>
+
+                <Button
+                    id="navButton"
+                    profile="testButton"
+                    text="Navigate to Settings"
+                    onClick="onSettingsClick"
+                    bgColor="0.25 0.35 0.25 1.0"/>
+            </HBox>
+
+            <!-- Data Binding Preview -->
+            <Label
+                id="bindingLabel"
+                text="{{player.money}}"
+                profile="infoLabel"
+                align="center"/>
+
+        </VBox>
+
+    </Screen>
+
+</Gui>
