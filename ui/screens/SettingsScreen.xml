@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Gui>
+
+    <Profiles>
+
+        <Profile name="settingsTitle">
+            <Property name="fontSize" value="32"/>
+            <Property name="textColor" value="0.9 0.9 0.9 1.0"/>
+            <Property name="height" value="50px"/>
+        </Profile>
+
+        <Profile name="settingRow">
+            <Property name="height" value="50px"/>
+        </Profile>
+
+        <Profile name="settingLabel">
+            <Property name="fontSize" value="18"/>
+            <Property name="textColor" value="0.8 0.8 0.8 1.0"/>
+            <Property name="height" value="40px"/>
+        </Profile>
+
+        <Profile name="backButton">
+            <Property name="width" value="150px"/>
+            <Property name="height" value="50px"/>
+            <Property name="fontSize" value="18"/>
+            <Property name="bgColor" value="0.3 0.3 0.3 1.0"/>
+            <Property name="cornerRadius" value="4"/>
+        </Profile>
+
+    </Profiles>
+
+    <Screen
+        name="SettingsScreen"
+        script="ui/scripts/settingsScreen.lua">
+
+        <VBox
+            width="0.5"
+            height="0.7"
+            align="center"
+            alignY="center"
+            spacing="10"
+            padding="20">
+
+            <Label
+                id="settingsTitle"
+                text="Settings"
+                profile="settingsTitle"
+                align="center"/>
+
+            <Container
+                height="2px"
+                bgColor="0.3 0.3 0.3 1.0"/>
+
+            <Label text="Language: English" profile="settingLabel"/>
+            <Label text="Resolution: 1280x720" profile="settingLabel"/>
+            <Label text="Fullscreen: Off" profile="settingLabel"/>
+            <Label text="Audio Volume: 80%" profile="settingLabel"/>
+            <Label text="Music Volume: 60%" profile="settingLabel"/>
+
+            <Container height="2px" bgColor="0.3 0.3 0.3 1.0"/>
+
+            <Button
+                id="backButton"
+                profile="backButton"
+                text="Back"
+                onClick="onBackClick"
+                align="center"/>
+
+        </VBox>
+
+    </Screen>
+
+</Gui>

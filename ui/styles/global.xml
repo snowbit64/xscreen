@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Global style profiles for South American Farming UI system.
+    These profiles can be referenced by any screen XML.
+-->
+
+<Profiles>
+
+    <Profile name="baseButton">
+        <Property name="width" value="0.2"/>
+        <Property name="height" value="50px"/>
+        <Property name="fontSize" value="18"/>
+        <Property name="bgColor" value="0.2 0.3 0.2 1.0"/>
+        <Property name="cornerRadius" value="4"/>
+    </Profile>
+
+    <Profile name="primaryButton" extends="baseButton">
+        <Property name="bgColor" value="0.18 0.4 0.18 1.0"/>
+        <Property name="fontSize" value="20"/>
+    </Profile>
+
+    <Profile name="dangerButton" extends="baseButton">
+        <Property name="bgColor" value="0.5 0.15 0.15 1.0"/>
+    </Profile>
+
+    <Profile name="baseLabel">
+        <Property name="fontSize" value="16"/>
+        <Property name="textColor" value="0.85 0.85 0.85 1.0"/>
+        <Property name="height" value="24px"/>
+    </Profile>
+
+    <Profile name="titleText" extends="baseLabel">
+        <Property name="fontSize" value="36"/>
+        <Property name="textColor" value="0.95 0.95 0.9 1.0"/>
+        <Property name="height" value="50px"/>
+    </Profile>
+
+    <Profile name="subtitleText" extends="baseLabel">
+        <Property name="fontSize" value="20"/>
+        <Property name="textColor" value="0.7 0.7 0.65 1.0"/>
+        <Property name="height" value="30px"/>
+    </Profile>
+
+    <Profile name="baseContainer">
+        <Property name="bgColor" value="0.1 0.1 0.1 0.8"/>
+        <Property name="cornerRadius" value="8"/>
+    </Profile>
+
+    <Profile name="cardContainer" extends="baseContainer">
+        <Property name="bgColor" value="0.12 0.14 0.12 0.9"/>
+        <Property name="cornerRadius" value="12"/>
+        <Property name="padding" value="16"/>
+    </Profile>
+
+    <Profile name="baseProgressBar">
+        <Property name="height" value="20px"/>
+        <Property name="bgColor" value="0.15 0.15 0.15 1.0"/>
+        <Property name="barColor" value="0.2 0.5 0.2 1.0"/>
+        <Property name="cornerRadius" value="4"/>
+    </Profile>
+
+    <Profile name="baseTextField">
+        <Property name="height" value="40px"/>
+        <Property name="fontSize" value="16"/>
+        <Property name="bgColor" value="0.08 0.08 0.08 1.0"/>
+        <Property name="cornerRadius" value="4"/>
+    </Profile>
+
+</Profiles>
