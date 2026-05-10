@@ -12,11 +12,18 @@
 #define LOGE(...) std::fprintf(stderr, __VA_ARGS__)
 #endif
 
+#define STB_TRUETYPE_IMPLEMENTATION
+#include "stb_truetype.h"
+
 #include <cstring>
 #include <cmath>
 #include <cstdlib>
+#include <fstream>
+#include <algorithm>
 
 namespace xscreen {
+
+// ─── Shaders ────────────────────────────────────────────────
 
 static const char* rectVertSrc = R"(#version 300 es
 precision mediump float;
@@ -143,6 +150,8 @@ void main() {
 }
 )";
 
+// ─── Shader Helpers ─────────────────────────────────────────
+
 static unsigned int compileShader(unsigned int type, const char* src) {
     unsigned int s = glCreateShader(type);
     glShaderSource(s, 1, &src, nullptr);
@@ -176,6 +185,8 @@ static unsigned int linkProgram(const char* vertSrc, const char* fragSrc) {
     return prog;
 }
 
+// ─── GLESRenderer Implementation ────────────────────────────
+
 GLESRenderer::GLESRenderer() = default;
 GLESRenderer::~GLESRenderer() { shutdown(); }
 
@@ -183,7 +194,8 @@ bool GLESRenderer::init(int width, int height, const std::string& title) {
     width_ = width;
     height_ = height;
     initShaders();
-    initFontAtlas();
+
+    glGenVertexArrays(1, &dummyVAO_);
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -199,156 +211,6 @@ void GLESRenderer::initShaders() {
     fontProgram_ = linkProgram(fontVertSrc, fontFragSrc);
 }
 
-void GLESRenderer::initFontAtlas() {
-    const int ATLAS_W = 512;
-    const int ATLAS_H = 512;
-    const int FONT_SIZE = 32;
-    const int CELL_W = ATLAS_W / 16;
-    const int CELL_H = ATLAS_H / 8;
-
-    std::vector<unsigned char> atlas(ATLAS_W * ATLAS_H, 0);
-
-    FontEntry fe{};
-    fe.atlasW = ATLAS_W;
-    fe.atlasH = ATLAS_H;
-    fe.fontSize = FONT_SIZE;
-
-    for (int c = 32; c < 127; c++) {
-        int col = (c - 32) % 16;
-        int row = (c - 32) / 16;
-        int cellX = col * CELL_W;
-        int cellY = row * CELL_H;
-
-        int glyphW = FONT_SIZE / 2;
-        int glyphH = FONT_SIZE;
-
-        for (int gy = 0; gy < glyphH && gy < CELL_H; gy++) {
-            for (int gx = 0; gx < glyphW && gx < CELL_W; gx++) {
-                int px = cellX + gx;
-                int py = cellY + gy;
-                if (px < ATLAS_W && py < ATLAS_H) {
-                    bool pixel = false;
-
-                    float nx = (float)gx / glyphW;
-                    float ny = (float)gy / glyphH;
-
-                    switch (c) {
-                        case ' ': break;
-                        default: {
-                            float cx = 0.5f, cy = 0.5f;
-                            float dist = std::sqrt((nx - cx) * (nx - cx) + (ny - cy) * (ny - cy));
-                            pixel = dist < 0.45f;
-                            break;
-                        }
-
-                        case 'A': case 'a': pixel = (ny > 0.3f || (nx > 0.3f && nx < 0.7f)) && (nx < 0.15f || nx > 0.85f || (ny > 0.45f && ny < 0.55f)); break;
-                        case 'B': case 'b': pixel = nx < 0.15f || (ny < 0.1f || ny > 0.9f || (ny > 0.45f && ny < 0.55f)) && nx > 0.6f; break;
-                        case 'C': case 'c': pixel = nx < 0.15f || ((ny < 0.15f || ny > 0.85f) && nx < 0.8f); break;
-                        case 'D': case 'd': pixel = nx < 0.15f || (nx > 0.7f && ny > 0.15f && ny < 0.85f) || ny < 0.1f || ny > 0.9f; break;
-                        case 'E': case 'e': pixel = nx < 0.15f || ny < 0.1f || ny > 0.9f || (ny > 0.45f && ny < 0.55f && nx < 0.7f); break;
-                        case 'F': case 'f': pixel = nx < 0.15f || ny < 0.1f || (ny > 0.45f && ny < 0.55f && nx < 0.6f); break;
-                        case 'G': case 'g': pixel = nx < 0.15f || ny < 0.1f || ny > 0.9f || (nx > 0.7f && ny > 0.5f); break;
-                        case 'H': case 'h': pixel = nx < 0.15f || nx > 0.85f || (ny > 0.45f && ny < 0.55f); break;
-                        case 'I': case 'i': pixel = (nx > 0.35f && nx < 0.65f) || ny < 0.1f || ny > 0.9f; break;
-                        case 'J': case 'j': pixel = (nx > 0.6f && nx < 0.75f) || (ny > 0.85f && nx > 0.15f && nx < 0.75f) || (nx < 0.2f && ny > 0.7f); break;
-                        case 'K': case 'k': {
-                            float diag1 = std::abs(ny - 0.5f + (nx - 0.15f) * 1.0f);
-                            float diag2 = std::abs(ny - 0.5f - (nx - 0.15f) * 1.0f);
-                            pixel = nx < 0.15f || diag1 < 0.12f || diag2 < 0.12f;
-                            break;
-                        }
-                        case 'L': case 'l': pixel = nx < 0.15f || ny > 0.9f; break;
-                        case 'M': case 'm': pixel = nx < 0.1f || nx > 0.9f || (ny < 0.4f && (std::abs(nx - ny * 0.5f) < 0.1f || std::abs(nx - 1.0f + ny * 0.5f) < 0.1f)); break;
-                        case 'N': case 'n': pixel = nx < 0.1f || nx > 0.9f || std::abs(nx - ny) < 0.12f; break;
-                        case 'O': case 'o': pixel = (nx < 0.15f || nx > 0.85f) && ny > 0.1f && ny < 0.9f || (ny < 0.15f || ny > 0.85f) && nx > 0.1f && nx < 0.9f; break;
-                        case 'P': case 'p': pixel = nx < 0.15f || (ny < 0.1f || (ny > 0.45f && ny < 0.55f)) && nx < 0.8f || (nx > 0.7f && ny < 0.55f && ny > 0.05f); break;
-                        case 'Q': case 'q': pixel = ((nx < 0.15f || nx > 0.85f) && ny > 0.1f && ny < 0.9f) || ((ny < 0.15f || ny > 0.85f) && nx > 0.1f && nx < 0.9f) || (ny > 0.7f && std::abs(nx - ny) < 0.15f); break;
-                        case 'R': case 'r': pixel = nx < 0.15f || (ny < 0.1f || (ny > 0.45f && ny < 0.55f)) && nx < 0.8f || (nx > 0.7f && ny < 0.55f) || (ny > 0.5f && std::abs(nx - (ny - 0.5f) * 1.5f - 0.15f) < 0.1f); break;
-                        case 'S': case 's': pixel = (ny < 0.15f || ny > 0.85f || (ny > 0.43f && ny < 0.57f)) && (nx > 0.1f && nx < 0.9f) || (nx < 0.15f && ny < 0.5f) || (nx > 0.85f && ny > 0.5f); break;
-                        case 'T': case 't': pixel = ny < 0.1f || (nx > 0.4f && nx < 0.6f); break;
-                        case 'U': case 'u': pixel = (nx < 0.15f || nx > 0.85f) && ny < 0.85f || (ny > 0.85f && nx > 0.1f && nx < 0.9f); break;
-                        case 'V': case 'v': pixel = std::abs(nx - 0.5f - (0.5f - ny) * 0.5f) < 0.08f || std::abs(nx - 0.5f + (0.5f - ny) * 0.5f) < 0.08f; break;
-                        case 'W': case 'w': pixel = nx < 0.1f || nx > 0.9f || (ny > 0.6f && (std::abs(nx - 0.5f + (ny - 0.6f)) < 0.08f || std::abs(nx - 0.5f - (ny - 0.6f)) < 0.08f)); break;
-                        case 'X': case 'x': pixel = std::abs(nx - ny) < 0.12f || std::abs(nx + ny - 1.0f) < 0.12f; break;
-                        case 'Y': case 'y': pixel = (ny < 0.5f && (std::abs(nx - ny) < 0.1f || std::abs(nx + ny - 1.0f) < 0.1f)) || (ny >= 0.5f && nx > 0.4f && nx < 0.6f); break;
-                        case 'Z': case 'z': pixel = ny < 0.1f || ny > 0.9f || std::abs(nx - (1.0f - ny)) < 0.12f; break;
-
-                        case '0': pixel = ((nx < 0.15f || nx > 0.85f) && ny > 0.1f && ny < 0.9f) || ((ny < 0.15f || ny > 0.85f) && nx > 0.1f && nx < 0.9f); break;
-                        case '1': pixel = (nx > 0.4f && nx < 0.6f) || ny > 0.9f || (ny < 0.15f && nx < 0.5f && nx > 0.25f); break;
-                        case '2': pixel = ny < 0.1f || ny > 0.9f || (ny > 0.45f && ny < 0.55f) || (nx > 0.8f && ny < 0.5f) || (nx < 0.15f && ny > 0.5f); break;
-                        case '3': pixel = (ny < 0.1f || ny > 0.9f || (ny > 0.45f && ny < 0.55f)) || (nx > 0.8f); break;
-                        case '4': pixel = (nx > 0.7f) || (ny > 0.45f && ny < 0.55f) || (nx < 0.15f && ny < 0.55f); break;
-                        case '5': pixel = ny < 0.1f || ny > 0.9f || (ny > 0.45f && ny < 0.55f) || (nx < 0.15f && ny < 0.5f) || (nx > 0.8f && ny > 0.5f); break;
-                        case '6': pixel = ((nx < 0.15f) && ny > 0.1f) || ((ny < 0.15f || ny > 0.85f || (ny > 0.45f && ny < 0.55f)) && nx < 0.85f) || (nx > 0.8f && ny > 0.5f); break;
-                        case '7': pixel = ny < 0.1f || (nx > 0.7f && ny < 0.3f) || std::abs(nx - 0.7f + (ny - 0.1f) * 0.5f) < 0.08f; break;
-                        case '8': pixel = ((nx < 0.15f || nx > 0.85f) && ny > 0.1f && ny < 0.9f) || ((ny < 0.15f || ny > 0.85f || (ny > 0.45f && ny < 0.55f)) && nx > 0.1f && nx < 0.9f); break;
-                        case '9': pixel = ((nx > 0.85f) && ny < 0.9f) || ((ny < 0.15f || ny > 0.85f || (ny > 0.45f && ny < 0.55f)) && nx > 0.1f) || (nx < 0.15f && ny < 0.5f); break;
-
-                        case '.': pixel = ny > 0.85f && nx > 0.35f && nx < 0.65f; break;
-                        case ',': pixel = ny > 0.8f && nx > 0.3f && nx < 0.6f; break;
-                        case ':': pixel = (ny > 0.25f && ny < 0.35f && nx > 0.35f && nx < 0.65f) || (ny > 0.7f && ny < 0.8f && nx > 0.35f && nx < 0.65f); break;
-                        case ';': pixel = (ny > 0.25f && ny < 0.35f && nx > 0.35f && nx < 0.65f) || (ny > 0.7f && nx > 0.3f && nx < 0.6f); break;
-                        case '!': pixel = (nx > 0.4f && nx < 0.6f && ny < 0.7f) || (ny > 0.8f && nx > 0.4f && nx < 0.6f); break;
-                        case '?': pixel = ny < 0.1f || (nx > 0.8f && ny < 0.5f) || (ny > 0.45f && ny < 0.55f && nx > 0.35f && nx < 0.65f) || (ny > 0.8f && nx > 0.4f && nx < 0.6f); break;
-                        case '-': pixel = ny > 0.45f && ny < 0.55f && nx > 0.15f && nx < 0.85f; break;
-                        case '+': pixel = (ny > 0.45f && ny < 0.55f) || (nx > 0.45f && nx < 0.55f); break;
-                        case '=': pixel = (ny > 0.35f && ny < 0.45f) || (ny > 0.55f && ny < 0.65f); break;
-                        case '/': pixel = std::abs(nx - (1.0f - ny)) < 0.1f; break;
-                        case '\\': pixel = std::abs(nx - ny) < 0.1f; break;
-                        case '(': pixel = std::abs(nx - 0.6f + std::cos((ny - 0.5f) * 3.14f) * 0.3f) < 0.08f; break;
-                        case ')': pixel = std::abs(nx - 0.4f - std::cos((ny - 0.5f) * 3.14f) * 0.3f) < 0.08f; break;
-                        case '[': pixel = nx < 0.3f || (ny < 0.08f || ny > 0.92f) && nx < 0.7f; break;
-                        case ']': pixel = nx > 0.7f || (ny < 0.08f || ny > 0.92f) && nx > 0.3f; break;
-                        case '{': pixel = std::abs(nx - 0.5f + (ny < 0.5f ? std::cos((ny - 0.25f) * 6.28f) * 0.15f : -std::cos((ny - 0.75f) * 6.28f) * 0.15f)) < 0.08f; break;
-                        case '}': pixel = std::abs(nx - 0.5f - (ny < 0.5f ? std::cos((ny - 0.25f) * 6.28f) * 0.15f : -std::cos((ny - 0.75f) * 6.28f) * 0.15f)) < 0.08f; break;
-                        case '_': pixel = ny > 0.9f; break;
-                        case '"': pixel = ny < 0.3f && ((nx > 0.25f && nx < 0.4f) || (nx > 0.6f && nx < 0.75f)); break;
-                        case '\'': pixel = ny < 0.3f && nx > 0.4f && nx < 0.6f; break;
-                        case '<': pixel = std::abs(nx - 0.2f - std::abs(ny - 0.5f) * 1.2f) < 0.08f; break;
-                        case '>': pixel = std::abs(nx - 0.8f + std::abs(ny - 0.5f) * 1.2f) < 0.08f; break;
-                        case '#': pixel = (nx > 0.25f && nx < 0.35f) || (nx > 0.65f && nx < 0.75f) || (ny > 0.3f && ny < 0.4f) || (ny > 0.6f && ny < 0.7f); break;
-                        case '%': pixel = (ny < 0.3f && nx < 0.3f && (nx - 0.15f) * (nx - 0.15f) + (ny - 0.15f) * (ny - 0.15f) < 0.02f) || (ny > 0.7f && nx > 0.7f && (nx - 0.85f) * (nx - 0.85f) + (ny - 0.85f) * (ny - 0.85f) < 0.02f) || std::abs(nx - (1.0f - ny)) < 0.08f; break;
-                        case '@': pixel = ((nx < 0.15f || nx > 0.85f) && ny > 0.1f && ny < 0.9f) || ((ny < 0.15f || ny > 0.85f) && nx > 0.1f && nx < 0.9f) || (nx > 0.4f && nx < 0.7f && ny > 0.3f && ny < 0.7f && !(nx > 0.5f && nx < 0.6f && ny > 0.4f && ny < 0.6f)); break;
-                        case '&': pixel = (std::abs(nx - 0.5f) + std::abs(ny - 0.3f) < 0.25f && std::abs(nx - 0.5f) + std::abs(ny - 0.3f) > 0.15f) || (ny > 0.5f && (nx < 0.15f || std::abs(nx - ny + 0.2f) < 0.1f)); break;
-                        case '*': pixel = (std::abs(nx - 0.5f) < 0.05f || std::abs(ny - 0.5f) < 0.05f || std::abs(nx - ny) < 0.07f || std::abs(nx + ny - 1.0f) < 0.07f) && ny > 0.2f && ny < 0.8f; break;
-                        case '$': pixel = (ny < 0.15f || ny > 0.85f || (ny > 0.43f && ny < 0.57f)) || (nx < 0.15f && ny < 0.5f) || (nx > 0.85f && ny > 0.5f) || (nx > 0.45f && nx < 0.55f); break;
-                        case '^': pixel = ny < 0.35f && std::abs(nx - 0.5f) < (0.35f - ny) * 1.0f && std::abs(nx - 0.5f) > (0.25f - ny) * 1.0f; break;
-                        case '~': pixel = ny > 0.4f && ny < 0.6f && std::abs(ny - 0.5f - std::sin(nx * 6.28f) * 0.05f) < 0.04f; break;
-                        case '`': pixel = ny < 0.2f && nx > 0.3f && nx < 0.6f; break;
-                    }
-
-                    if (pixel) {
-                        atlas[py * ATLAS_W + px] = 255;
-                    }
-                }
-            }
-        }
-
-        fe.glyphs[c].u0 = (float)cellX / ATLAS_W;
-        fe.glyphs[c].v0 = (float)cellY / ATLAS_H;
-        fe.glyphs[c].u1 = (float)(cellX + glyphW) / ATLAS_W;
-        fe.glyphs[c].v1 = (float)(cellY + glyphH) / ATLAS_H;
-        fe.glyphs[c].width = (float)glyphW;
-        fe.glyphs[c].height = (float)glyphH;
-        fe.glyphs[c].bearingX = 0;
-        fe.glyphs[c].bearingY = 0;
-        fe.glyphs[c].advance = (float)glyphW;
-    }
-
-    unsigned int texId;
-    glGenTextures(1, &texId);
-    glBindTexture(GL_TEXTURE_2D, texId);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_R8, ATLAS_W, ATLAS_H, 0, GL_RED, GL_UNSIGNED_BYTE, atlas.data());
-
-    fe.atlasTexId = texId;
-    builtinFont_ = nextFontId_++;
-    fonts_[builtinFont_] = fe;
-}
-
 void GLESRenderer::shutdown() {
     for (auto& [id, entry] : textures_) {
         if (entry.glId) glDeleteTextures(1, &entry.glId);
@@ -359,7 +221,9 @@ void GLESRenderer::shutdown() {
         if (entry.atlasTexId) glDeleteTextures(1, &entry.atlasTexId);
     }
     fonts_.clear();
+    defaultFont_ = INVALID_FONT;
 
+    if (dummyVAO_) { glDeleteVertexArrays(1, &dummyVAO_); dummyVAO_ = 0; }
     if (rectProgram_) glDeleteProgram(rectProgram_);
     if (roundedProgram_) glDeleteProgram(roundedProgram_);
     if (texProgram_) glDeleteProgram(texProgram_);
@@ -371,9 +235,11 @@ void GLESRenderer::beginFrame() {
     glViewport(0, 0, width_, height_);
     glClearColor(0.118f, 0.118f, 0.137f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
+    glBindVertexArray(dummyVAO_);
 }
 
 void GLESRenderer::endFrame() {
+    glBindVertexArray(0);
     glFlush();
 }
 
@@ -383,6 +249,8 @@ int GLESRenderer::getScreenHeight() const { return height_; }
 void GLESRenderer::setScreenSize(int w, int h) { width_ = w; height_ = h; }
 void GLESRenderer::setDeltaTime(float dt) { deltaTime_ = dt; }
 float GLESRenderer::getDeltaTime() const { return deltaTime_; }
+
+// ─── Drawing Primitives ─────────────────────────────────────
 
 void GLESRenderer::drawRectInternal(float x, float y, float w, float h,
                                      float r, float g, float b, float a) {
@@ -417,14 +285,134 @@ void GLESRenderer::drawRoundedRect(const Rect& rect, const Color4& color, float 
     glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
+// ─── Font Loading with stb_truetype ─────────────────────────
+
+FontId GLESRenderer::createFontAtlas(const unsigned char* fontData, int dataSize, int pixelSize) {
+    stbtt_fontinfo fontInfo;
+    if (!stbtt_InitFont(&fontInfo, fontData, stbtt_GetFontOffsetForIndex(fontData, 0))) {
+        LOGE("stb_truetype: failed to init font\n");
+        return INVALID_FONT;
+    }
+
+    float scale = stbtt_ScaleForPixelHeight(&fontInfo, static_cast<float>(pixelSize));
+
+    int ascent, descent, lineGap;
+    stbtt_GetFontVMetrics(&fontInfo, &ascent, &descent, &lineGap);
+
+    const int FIRST_CHAR = 32;
+    const int NUM_CHARS = 224;
+    int atlasW = 1024;
+    int atlasH = 1024;
+
+    if (pixelSize > 48) {
+        atlasW = 2048;
+        atlasH = 2048;
+    }
+
+    std::vector<unsigned char> atlasBitmap(atlasW * atlasH, 0);
+    std::vector<stbtt_bakedchar> charData(NUM_CHARS);
+
+    int result = stbtt_BakeFontBitmap(fontData, 0, static_cast<float>(pixelSize),
+                                       atlasBitmap.data(), atlasW, atlasH,
+                                       FIRST_CHAR, NUM_CHARS, charData.data());
+    if (result <= 0) {
+        LOGE("stb_truetype: BakeFontBitmap failed (result=%d), trying larger atlas\n", result);
+        atlasW = 2048;
+        atlasH = 2048;
+        atlasBitmap.resize(atlasW * atlasH, 0);
+        result = stbtt_BakeFontBitmap(fontData, 0, static_cast<float>(pixelSize),
+                                       atlasBitmap.data(), atlasW, atlasH,
+                                       FIRST_CHAR, NUM_CHARS, charData.data());
+        if (result <= 0) {
+            LOGE("stb_truetype: BakeFontBitmap failed even with 2048 atlas\n");
+            return INVALID_FONT;
+        }
+    }
+
+    unsigned int texId;
+    glGenTextures(1, &texId);
+    glBindTexture(GL_TEXTURE_2D, texId);
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_R8, atlasW, atlasH, 0,
+                 GL_RED, GL_UNSIGNED_BYTE, atlasBitmap.data());
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+    FontEntry fe{};
+    fe.atlasTexId = texId;
+    fe.atlasW = atlasW;
+    fe.atlasH = atlasH;
+    fe.fontSize = pixelSize;
+    fe.ascent = ascent * scale;
+    fe.descent = descent * scale;
+    fe.lineGap = lineGap * scale;
+
+    for (int i = 0; i < NUM_CHARS; i++) {
+        int c = FIRST_CHAR + i;
+        if (c >= 256) break;
+        auto& bc = charData[i];
+        auto& g = fe.glyphs[c];
+
+        g.u0 = static_cast<float>(bc.x0) / atlasW;
+        g.v0 = static_cast<float>(bc.y0) / atlasH;
+        g.u1 = static_cast<float>(bc.x1) / atlasW;
+        g.v1 = static_cast<float>(bc.y1) / atlasH;
+        g.width = static_cast<float>(bc.x1 - bc.x0);
+        g.height = static_cast<float>(bc.y1 - bc.y0);
+        g.bearingX = bc.xoff;
+        g.bearingY = bc.yoff;
+        g.advance = bc.xadvance;
+    }
+
+    FontId fid = nextFontId_++;
+    fe.fontData.assign(fontData, fontData + dataSize);
+    fonts_[fid] = std::move(fe);
+
+    LOGI("Font loaded: id=%u, size=%dpx, atlas=%dx%d\n", fid, pixelSize, atlasW, atlasH);
+    return fid;
+}
+
+FontId GLESRenderer::loadFont(const std::string& path, int size) {
+    std::ifstream file(path, std::ios::binary | std::ios::ate);
+    if (!file.is_open()) {
+        LOGE("Failed to open font file: %s\n", path.c_str());
+        return INVALID_FONT;
+    }
+
+    auto fileSize = file.tellg();
+    file.seekg(0, std::ios::beg);
+    std::vector<unsigned char> data(fileSize);
+    file.read(reinterpret_cast<char*>(data.data()), fileSize);
+
+    return createFontAtlas(data.data(), static_cast<int>(data.size()), size);
+}
+
+FontId GLESRenderer::loadFontFromMemory(const unsigned char* data, int dataSize, int pixelSize) {
+    if (!data || dataSize <= 0) return INVALID_FONT;
+    return createFontAtlas(data, dataSize, pixelSize);
+}
+
+void GLESRenderer::unloadFont(FontId font) {
+    auto it = fonts_.find(font);
+    if (it != fonts_.end()) {
+        if (it->second.atlasTexId) glDeleteTextures(1, &it->second.atlasTexId);
+        fonts_.erase(it);
+        if (defaultFont_ == font) defaultFont_ = INVALID_FONT;
+    }
+}
+
+// ─── Text Rendering ─────────────────────────────────────────
+
 void GLESRenderer::drawText(const std::string& text, float x, float y,
                              float fontSize, const Color4& color, FontId font) {
-    FontId fid = (font != INVALID_FONT && fonts_.count(font)) ? font : builtinFont_;
+    FontId fid = (font != INVALID_FONT && fonts_.count(font)) ? font : defaultFont_;
     auto it = fonts_.find(fid);
     if (it == fonts_.end()) return;
 
     auto& fe = it->second;
-    float scale = fontSize / (float)fe.fontSize;
+    float scale = fontSize / static_cast<float>(fe.fontSize);
 
     glUseProgram(fontProgram_);
     glActiveTexture(GL_TEXTURE0);
@@ -433,15 +421,25 @@ void GLESRenderer::drawText(const std::string& text, float x, float y,
     glUniform2f(glGetUniformLocation(fontProgram_, "uScreen"), (float)width_, (float)height_);
     glUniform4f(glGetUniformLocation(fontProgram_, "uColor"), color.r, color.g, color.b, color.a);
 
+    float baseline = y + fe.ascent * scale;
     float cx = x;
+
     for (unsigned char c : text) {
-        if (c >= 128 || c < 32) c = '?';
+        if (c < 32 || c >= 256) c = '?';
         auto& g = fe.glyphs[c];
+        if (g.width <= 0 && g.height <= 0) {
+            cx += g.advance * scale;
+            continue;
+        }
+
+        float gx = cx + g.bearingX * scale;
+        float gy = baseline + g.bearingY * scale;
         float gw = g.width * scale;
         float gh = g.height * scale;
 
-        glUniform4f(glGetUniformLocation(fontProgram_, "uRect"), cx, y, gw, gh);
-        glUniform4f(glGetUniformLocation(fontProgram_, "uTexRect"), g.u0, g.v0, g.u1 - g.u0, g.v1 - g.v0);
+        glUniform4f(glGetUniformLocation(fontProgram_, "uRect"), gx, gy, gw, gh);
+        glUniform4f(glGetUniformLocation(fontProgram_, "uTexRect"),
+                    g.u0, g.v0, g.u1 - g.u0, g.v1 - g.v0);
         glDrawArrays(GL_TRIANGLES, 0, 6);
 
         cx += g.advance * scale;
@@ -449,19 +447,21 @@ void GLESRenderer::drawText(const std::string& text, float x, float y,
 }
 
 Vec2 GLESRenderer::measureText(const std::string& text, float fontSize, FontId font) {
-    FontId fid = (font != INVALID_FONT && fonts_.count(font)) ? font : builtinFont_;
+    FontId fid = (font != INVALID_FONT && fonts_.count(font)) ? font : defaultFont_;
     auto it = fonts_.find(fid);
     if (it == fonts_.end()) return {0, fontSize};
 
     auto& fe = it->second;
-    float scale = fontSize / (float)fe.fontSize;
+    float scale = fontSize / static_cast<float>(fe.fontSize);
     float w = 0;
     for (unsigned char c : text) {
-        if (c >= 128 || c < 32) c = '?';
+        if (c < 32 || c >= 256) c = '?';
         w += fe.glyphs[c].advance * scale;
     }
     return {w, fontSize};
 }
+
+// ─── Textures ───────────────────────────────────────────────
 
 TextureId GLESRenderer::loadTexture(const std::string& path) {
     return INVALID_TEXTURE;
@@ -507,12 +507,7 @@ void GLESRenderer::unloadTexture(TextureId tex) {
     }
 }
 
-FontId GLESRenderer::loadFont(const std::string& path, int size) {
-    return builtinFont_;
-}
-
-void GLESRenderer::unloadFont(FontId font) {
-}
+// ─── Clipping ───────────────────────────────────────────────
 
 void GLESRenderer::setClipRect(const Rect& rect) {
     glEnable(GL_SCISSOR_TEST);
