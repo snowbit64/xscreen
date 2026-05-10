@@ -46,7 +46,7 @@ jobs:
         working-directory: android
         run: |
           if [ ! -f gradlew ]; then
-            gradle wrapper --gradle-version 8.4
+            gradle wrapper --gradle-version 8.11.1
           fi
           chmod +x gradlew
 
