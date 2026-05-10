@@ -50,6 +50,7 @@ void TextField::render(Renderer& renderer) {
     float textX = r.x + 8.0f;
     float textY = r.y + (r.h - fontSize_) * 0.5f;
 
+    renderer.setClipRect(r);
     if (text_.empty() && !focused_) {
         Color4 ph = placeholderColor_;
         ph.a *= alpha;
@@ -66,6 +67,7 @@ void TextField::render(Renderer& renderer) {
             renderer.drawRect({textX + cursorOffset.x, textY, 2.0f, fontSize_}, cursorColor);
         }
     }
+    renderer.clearClipRect();
 
     UIElement::render(renderer);
 }
@@ -77,8 +79,12 @@ bool TextField::handleInput(const InputEvent& event) {
 
     if (event.action == InputAction::Press) {
         bool inside = r.contains(event.x, event.y);
+        bool wasFocused = focused_;
         focused_ = inside;
         cursorBlink_ = 0.0f;
+        if (focused_ != wasFocused && focusCallback_) {
+            focusCallback_(focused_);
+        }
         if (inside) {
             cursorPos_ = static_cast<int>(text_.size());
             return true;

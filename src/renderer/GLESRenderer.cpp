@@ -6,7 +6,7 @@
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, "xscreen", __VA_ARGS__)
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, "xscreen", __VA_ARGS__)
 #else
-#include <GLES3/gl3.h>
+#include <glad/gl.h>
 #include <cstdio>
 #define LOGI(...) std::printf(__VA_ARGS__)
 #define LOGE(...) std::fprintf(stderr, __VA_ARGS__)
@@ -24,9 +24,16 @@
 namespace xscreen {
 
 // ─── Shaders ────────────────────────────────────────────────
+// Shader bodies shared between GLES 3.0 (Android) and GL 3.3 (Desktop).
+// SHADER_HEADER is prepended at compile time.
 
-static const char* rectVertSrc = R"(#version 300 es
-precision mediump float;
+#ifdef __ANDROID__
+#define SH(body) "#version 300 es\nprecision mediump float;\n" body
+#else
+#define SH(body) "#version 330 core\n" body
+#endif
+
+static const char* rectVertSrc = SH(R"(
 uniform vec4 uRect;
 uniform vec2 uScreen;
 const vec2 pos[6] = vec2[6](
@@ -40,19 +47,17 @@ void main() {
     ndc.y = -ndc.y;
     gl_Position = vec4(ndc, 0.0, 1.0);
 }
-)";
+)");
 
-static const char* rectFragSrc = R"(#version 300 es
-precision mediump float;
+static const char* rectFragSrc = SH(R"(
 uniform vec4 uColor;
 out vec4 fragColor;
 void main() {
     fragColor = uColor;
 }
-)";
+)");
 
-static const char* roundedVertSrc = R"(#version 300 es
-precision mediump float;
+static const char* roundedVertSrc = SH(R"(
 uniform vec4 uRect;
 uniform vec2 uScreen;
 out vec2 vLocalPos;
@@ -68,10 +73,9 @@ void main() {
     ndc.y = -ndc.y;
     gl_Position = vec4(ndc, 0.0, 1.0);
 }
-)";
+)");
 
-static const char* roundedFragSrc = R"(#version 300 es
-precision mediump float;
+static const char* roundedFragSrc = SH(R"(
 uniform vec4 uColor;
 uniform vec4 uRect;
 uniform float uRadius;
@@ -86,10 +90,9 @@ void main() {
     float a = 1.0 - smoothstep(-1.0, 1.0, d);
     fragColor = vec4(uColor.rgb, uColor.a * a);
 }
-)";
+)");
 
-static const char* texVertSrc = R"(#version 300 es
-precision mediump float;
+static const char* texVertSrc = SH(R"(
 uniform vec4 uRect;
 uniform vec2 uScreen;
 out vec2 vTexCoord;
@@ -105,10 +108,9 @@ void main() {
     ndc.y = -ndc.y;
     gl_Position = vec4(ndc, 0.0, 1.0);
 }
-)";
+)");
 
-static const char* texFragSrc = R"(#version 300 es
-precision mediump float;
+static const char* texFragSrc = SH(R"(
 uniform sampler2D uTexture;
 uniform vec4 uTint;
 in vec2 vTexCoord;
@@ -116,10 +118,9 @@ out vec4 fragColor;
 void main() {
     fragColor = texture(uTexture, vTexCoord) * uTint;
 }
-)";
+)");
 
-static const char* fontVertSrc = R"(#version 300 es
-precision mediump float;
+static const char* fontVertSrc = SH(R"(
 uniform vec4 uRect;
 uniform vec2 uScreen;
 uniform vec4 uTexRect;
@@ -136,10 +137,9 @@ void main() {
     ndc.y = -ndc.y;
     gl_Position = vec4(ndc, 0.0, 1.0);
 }
-)";
+)");
 
-static const char* fontFragSrc = R"(#version 300 es
-precision mediump float;
+static const char* fontFragSrc = SH(R"(
 uniform sampler2D uTexture;
 uniform vec4 uColor;
 in vec2 vTexCoord;
@@ -148,7 +148,7 @@ void main() {
     float a = texture(uTexture, vTexCoord).r;
     fragColor = vec4(uColor.rgb, uColor.a * a);
 }
-)";
+)");
 
 // ─── Shader Helpers ─────────────────────────────────────────
 
@@ -477,7 +477,11 @@ TextureId GLESRenderer::loadTextureFromMemory(const unsigned char* data, int wid
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
+#ifdef __ANDROID__
     GLenum fmt = (channels == 4) ? GL_RGBA : (channels == 3 ? GL_RGB : GL_LUMINANCE);
+#else
+    GLenum fmt = (channels == 4) ? GL_RGBA : (channels == 3 ? GL_RGB : GL_RED);
+#endif
     glTexImage2D(GL_TEXTURE_2D, 0, fmt, width, height, 0, fmt, GL_UNSIGNED_BYTE, data);
 
     TextureId id = nextTextureId_++;

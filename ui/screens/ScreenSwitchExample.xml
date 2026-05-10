@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Gui>
+
+    <Profiles>
+
+        <Profile name="exTitle">
+            <Property name="fontSize" value="28"/>
+            <Property name="textColor" value="0.9 0.95 0.85 1.0"/>
+            <Property name="height" value="50px"/>
+        </Profile>
+
+        <Profile name="exDesc">
+            <Property name="fontSize" value="14"/>
+            <Property name="textColor" value="0.6 0.65 0.55 1.0"/>
+            <Property name="height" value="24px"/>
+        </Profile>
+
+        <Profile name="navButton">
+            <Property name="width" value="0.3"/>
+            <Property name="height" value="50px"/>
+            <Property name="fontSize" value="16"/>
+            <Property name="bgColor" value="0.2 0.35 0.5 1.0"/>
+            <Property name="cornerRadius" value="5"/>
+        </Profile>
+
+        <Profile name="pushButton" extends="navButton">
+            <Property name="bgColor" value="0.15 0.4 0.15 1.0"/>
+        </Profile>
+
+        <Profile name="popButton" extends="navButton">
+            <Property name="bgColor" value="0.4 0.15 0.15 1.0"/>
+        </Profile>
+
+    </Profiles>
+
+    <Screen
+        name="ScreenSwitchExample"
+        script="ui/scripts/screenSwitchExample.lua">
+
+        <VBox
+            width="0.6"
+            height="0.85"
+            align="center"
+            alignY="center"
+            spacing="10"
+            padding="20">
+
+            <Label
+                text="Screen Navigation Example"
+                profile="exTitle"
+                align="center"/>
+
+            <Container height="2px" bgColor="0.3 0.5 0.3 1.0"/>
+
+            <!-- UI:show replaces the current screen -->
+            <Label text="UI:show - replaces current screen:" profile="exDesc"/>
+            <HBox spacing="8" height="55px">
+                <Button
+                    id="showMainMenu"
+                    profile="navButton"
+                    text="show MainMenu"
+                    onClick="onShowMainMenu"/>
+                <Button
+                    id="showSettings"
+                    profile="navButton"
+                    text="show Settings"
+                    onClick="onShowSettings"/>
+            </HBox>
+
+            <!-- UI:push adds a screen to the stack -->
+            <Label text="UI:push - pushes screen onto the stack:" profile="exDesc"/>
+            <HBox spacing="8" height="55px">
+                <Button
+                    id="pushTest"
+                    profile="pushButton"
+                    text="push TestScreen"
+                    onClick="onPushTest"/>
+                <Button
+                    id="pushSettings"
+                    profile="pushButton"
+                    text="push Settings"
+                    onClick="onPushSettings"/>
+            </HBox>
+
+            <!-- UI:pop removes the top screen from the stack -->
+            <Label text="UI:pop - pops the current screen from the stack:" profile="exDesc"/>
+            <Button
+                id="popCurrent"
+                profile="popButton"
+                text="pop (go back)"
+                onClick="onPopCurrent"
+                align="center"/>
+
+            <Container height="2px" bgColor="0.3 0.5 0.3 1.0"/>
+
+            <Label
+                id="statusLabel"
+                text="Tap a button to navigate"
+                profile="exDesc"
+                align="center"/>
+
+            <Button
+                id="backBtn"
+                profile="popButton"
+                text="Back to Main Menu"
+                onClick="onBackToMenu"
+                align="center"
+                bgColor="0.3 0.3 0.3 1.0"/>
+
+        </VBox>
+
+    </Screen>
+
+</Gui>

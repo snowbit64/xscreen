@@ -69,6 +69,12 @@
                 onClick="onTestScreenClick"/>
 
             <Button
+                id="screenSwitchButton"
+                profile="mainButton"
+                text="Screen Switch Example"
+                onClick="onScreenSwitchClick"/>
+
+            <Button
                 id="quitButton"
                 profile="mainButton"
                 text="Quit"
