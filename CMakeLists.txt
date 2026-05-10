@@ -85,6 +85,7 @@ if(XSCREEN_BUILD_ANDROID)
     add_library(xscreen SHARED ${XSCREEN_ANDROID_SOURCES})
     target_include_directories(xscreen PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/src
+        ${CMAKE_CURRENT_SOURCE_DIR}/third_party/stb
         ${lua_SOURCE_DIR}
     )
     target_link_libraries(xscreen PUBLIC

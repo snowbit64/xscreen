@@ -46,14 +46,15 @@ public:
     void setDeltaTime(float dt);
 
     TextureId loadTextureFromMemory(const unsigned char* data, int width, int height, int channels);
+    FontId loadFontFromMemory(const unsigned char* data, int dataSize, int pixelSize);
+    void setDefaultFont(FontId font) { defaultFont_ = font; }
 
 private:
     void initShaders();
-    void initFontAtlas();
     void drawRectInternal(float x, float y, float w, float h,
                           float r, float g, float b, float a);
-    void drawRoundedRectInternal(float x, float y, float w, float h,
-                                 float r, float g, float b, float a, float radius);
+
+    FontId createFontAtlas(const unsigned char* fontData, int dataSize, int pixelSize);
 
     int width_ = 0;
     int height_ = 0;
@@ -65,6 +66,8 @@ private:
     unsigned int texProgram_ = 0;
     unsigned int fontProgram_ = 0;
 
+    unsigned int dummyVAO_ = 0;
+
     uint32_t nextTextureId_ = 1;
     uint32_t nextFontId_ = 1;
 
@@ -75,10 +78,10 @@ private:
     };
 
     struct GlyphInfo {
-        float u0, v0, u1, v1;
-        float width, height;
-        float bearingX, bearingY;
-        float advance;
+        float u0 = 0, v0 = 0, u1 = 0, v1 = 0;
+        float width = 0, height = 0;
+        float bearingX = 0, bearingY = 0;
+        float advance = 0;
     };
 
     struct FontEntry {
@@ -86,13 +89,17 @@ private:
         int atlasW = 0;
         int atlasH = 0;
         int fontSize = 0;
-        GlyphInfo glyphs[128];
+        float ascent = 0;
+        float descent = 0;
+        float lineGap = 0;
+        GlyphInfo glyphs[256];
+        std::vector<unsigned char> fontData;
     };
 
     std::unordered_map<TextureId, TextureEntry> textures_;
     std::unordered_map<FontId, FontEntry> fonts_;
 
-    FontId builtinFont_ = INVALID_FONT;
+    FontId defaultFont_ = INVALID_FONT;
 };
 
 } // namespace xscreen

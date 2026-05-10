@@ -53,6 +53,19 @@ static std::string readAssetString(AAssetManager* mgr, const char* path) {
     return content;
 }
 
+static std::vector<unsigned char> readAssetBinary(AAssetManager* mgr, const char* path) {
+    AAsset* asset = AAssetManager_open(mgr, path, AASSET_MODE_BUFFER);
+    if (!asset) {
+        LOGE("Failed to open binary asset: %s", path);
+        return {};
+    }
+    off_t len = AAsset_getLength(asset);
+    std::vector<unsigned char> data(len);
+    AAsset_read(asset, data.data(), len);
+    AAsset_close(asset);
+    return data;
+}
+
 struct AppState {
     ANativeActivity* activity = nullptr;
     ANativeWindow* window = nullptr;
@@ -268,6 +281,18 @@ static bool initApp(AppState* app) {
     setupLuaCallbacks(app);
 
     AAssetManager* mgr = app->activity->assetManager;
+
+    auto fontData = readAssetBinary(mgr, "fonts/Roboto-Regular.ttf");
+    if (!fontData.empty()) {
+        FontId fid = app->renderer->loadFontFromMemory(fontData.data(),
+                                                        static_cast<int>(fontData.size()), 48);
+        if (fid != INVALID_FONT) {
+            app->renderer->setDefaultFont(fid);
+            LOGI("Default font loaded: Roboto-Regular.ttf");
+        }
+    } else {
+        LOGE("Failed to load default font from assets");
+    }
 
     loadScreenFromAsset(app, mgr, "screens/MainMenu.xml");
     loadScreenFromAsset(app, mgr, "screens/SettingsScreen.xml");
